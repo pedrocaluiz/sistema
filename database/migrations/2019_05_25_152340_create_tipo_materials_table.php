@@ -15,11 +15,9 @@ class CreateTipoMaterialsTable extends Migration
     {
         Schema::create('tipo_materiais', function (Blueprint $table) {
             $table->bigIncrements('id');
-
             $table->string('descricao');
             $table->string('icone');
             $table->integer('usuarioAtualizacao');
-
             $table->timestamps();
         });
     }

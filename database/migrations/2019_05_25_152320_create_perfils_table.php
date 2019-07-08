@@ -15,12 +15,9 @@ class CreatePerfilsTable extends Migration
     {
         Schema::create('perfis', function (Blueprint $table) {
             $table->bigIncrements('id');
-
             $table->string('descricao');
             $table->boolean('administrador');
-            $table->boolean('ativo');
             $table->integer('usuarioAtualizacao');
-
             $table->timestamps();
         });
     }

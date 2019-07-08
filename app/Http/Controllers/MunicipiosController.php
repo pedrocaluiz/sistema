@@ -21,7 +21,7 @@ class MunicipiosController extends Controller
 
     public function indexJson($estado)
     {
-        $mun = DB::table('municipios')->where('estado_id', $estado)->get();
+        $mun = Municipio::where('estado_id', $estado)->get();
         return json_encode($mun);
     }
 

@@ -2,6 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Agencia;
+use App\Model\Cargo;
+use App\Model\Categoria;
+use App\Model\Curso;
+use App\Model\Funcao;
+use App\Model\Perfil;
+use App\Model\TipoDocumento;
+use App\Model\TipoMaterial;
+use App\Model\UnidadeMaterial;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +33,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::all();
+        $agencias = Agencia::all();
+        $cargos = Cargo::all();
+        $categorias = Categoria::all();
+        $funcoes = Funcao::all();
+        $perfis = Perfil::all();
+        $tipoDoc = TipoDocumento::all();
+        $tipoMat = TipoMaterial::all();
+        $cursos = Curso::all();
+        $materiais = UnidadeMaterial::all();
+        return view('home',
+            compact('users', 'agencias', 'cargos', 'categorias',
+                'funcoes', 'perfis', 'tipoDoc' ,'tipoMat',
+                'cursos', 'materiais'
+            ));
     }
 }

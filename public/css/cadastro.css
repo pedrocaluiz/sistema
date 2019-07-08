@@ -1,0 +1,42 @@
+/*CADASTRO*/
+
+fieldset {
+    margin-bottom: 20px !important;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+fieldset legend{
+    font-size: medium;
+}
+
+.box-footer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.botao{
+    width: 100%;
+    font-size: medium;
+    height: 34px;
+}
+
+.form-control:focus{
+    box-shadow: 0 0 20px #2980b9;
+    border: 0 none;
+}
+
+.form-control{
+    border-radius: 4px;
+}
+
+.select2-container--default .select2-selection--single {
+
+    border-radius: 4px;
+    height: 34px;
+}
+
+span strong {
+    font-weight: 700;
+    color: red;
+}

@@ -15,12 +15,10 @@ class CreateFuncaosTable extends Migration
     {
         Schema::create('funcoes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
             $table->string('descricao');
             $table->decimal('valorFuncao', 10, 2);
             $table->decimal('pisoSalarial', 10, 2);
             $table->integer('usuarioAtualizacao');
-
             $table->timestamps();
         });
     }

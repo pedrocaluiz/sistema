@@ -15,14 +15,10 @@ class CreatePerfilUsuariosTable extends Migration
     {
         Schema::create('perfil_usuarios', function (Blueprint $table) {
             $table->bigIncrements('id');
-
             $table->bigInteger('perfil_id')->unsigned();
             $table->foreign('perfil_id')->references('id')->on('perfis');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-
-            $table->boolean('ativo');
-
             $table->timestamps();
         });
     }

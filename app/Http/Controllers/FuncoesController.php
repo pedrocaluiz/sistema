@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Funcao;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FuncoesController extends Controller
 {
@@ -11,9 +14,15 @@ class FuncoesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $funcoes = Funcao::all();
+        $users = User::all();
+        $adicionada = $request->session()->get('adicionada');
+        $excluida = $request->session()->get('excluida');
+        $alterada = $request->session()->get('alterada');
+        return view('funcoes.funcoes',
+            compact('funcoes', 'users', 'adicionada', 'excluida', 'alterada'));
     }
 
     /**
@@ -23,7 +32,7 @@ class FuncoesController extends Controller
      */
     public function create()
     {
-        //
+        return view('funcoes.create');
     }
 
     /**
@@ -34,7 +43,10 @@ class FuncoesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $funcao = Funcao::create($request->all());
+        $request->session()->flash('adicionada',
+            "Função $funcao->descricao inserida com sucesso.");
+        return redirect('/funcoes');
     }
 
     /**
@@ -56,19 +68,38 @@ class FuncoesController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $funcao = Funcao::find($id);
+        $user = User::find($funcao->usuarioAtualizacao);
+        return view('funcoes.edit',
+            compact('funcao', 'user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+            $funcao = Funcao::find($id);
+            $funcao->descricao = $request->input('descricao');
+            $funcao->valorFuncao = $request->input('valorFuncao');
+            $funcao->pisoSalarial = $request->input('pisoSalarial');
+            $funcao->usuarioAtualizacao = $request->input('usuarioAtualizacao');
+            $funcao->save();
+
+        //dd($funcao);
+
+            $request->session()->flash('alterada',
+                "Função $funcao->descricao alterada com sucesso.");
+        DB::commit();
+
+        return redirect('funcoes');
     }
 
     /**
@@ -77,8 +108,17 @@ class FuncoesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $funcao = Funcao::find($id);
+        $descricao = $funcao->descricao;
+
+        if (isset($funcao)){
+            $funcao->delete();
+            $request->session()->flash('excluida',
+                "Função $descricao excluída com sucesso.");
+            return redirect('funcoes');
+        }
+        return response('Função não encontrada', 404);
     }
 }

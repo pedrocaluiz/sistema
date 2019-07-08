@@ -15,17 +15,14 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-
             $table->bigInteger('tipoDoc_id')->unsigned();
             $table->foreign('tipoDoc_id')->references('id')->on('tipo_documentos');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('estadoEmissor_id')->unsigned();
             $table->foreign('estadoEmissor_id')->references('id')->on('estados');
-
             $table->string('numeroDocumento');
             $table->integer('usuarioAtualizacao');
-
             $table->timestamps();
         });
     }

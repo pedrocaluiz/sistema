@@ -15,13 +15,11 @@ class CreateAgenciasTable extends Migration
     {
         Schema::create('agencias', function (Blueprint $table) {
             $table->bigIncrements('id');
-
             $table->integer('codigoUnidade');
             $table->string('descricao');
             $table->integer('SR');
             $table->integer('DIRE');
             $table->integer('usuarioAtualizacao');
-
             $table->timestamps();
         });
     }

@@ -15,16 +15,14 @@ class CreateCursosTable extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->bigIncrements('id');
-
             $table->bigInteger('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');
-            $table->string('descricao');
-            $table->string('descricaoResumida');
+            $table->string('titulo');
+            $table->longText('descricao');
             $table->string('icone');
-            $table->string('palavrasChave');
-            $table->boolean('ativo');
+            $table->longText('palavrasChave')->nullable()->default(null);
+            $table->boolean('ativo')->default(false);
             $table->integer('usuarioAtualizacao');
-
             $table->timestamps();
         });
     }

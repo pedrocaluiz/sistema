@@ -37,25 +37,25 @@
                     <ul class="navbar-nav mr-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cargos') }}">{{ __('Cargos') }}</a>
+                            <a class="nav-link" href="#">{{ __('Cargos') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('funcoes') }}">{{ __('Funções') }}</a>
+                            <a class="nav-link" href="#">{{ __('Funções') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('agencias') }}">{{ __('Agencias') }}</a>
+                            <a class="nav-link" href="#">{{ __('Agencias') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('perfis') }}">{{ __('Perfis') }}</a>
+                            <a class="nav-link" href="#">{{ __('Perfis') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categorias') }}">{{ __('Categorias') }}</a>
+                            <a class="nav-link" href="#">{{ __('Categorias') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tipodoc') }}">{{ __('Tipo Doc.') }}</a>
+                            <a class="nav-link" href="#">{{ __('Tipo Doc.') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tipomaterial') }}">{{ __('Tipo Mat.') }}</a>
+                            <a class="nav-link" href="#">{{ __('Tipo Mat.') }}</a>
                         </li>
 
                     </ul>

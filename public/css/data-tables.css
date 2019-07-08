@@ -1,0 +1,46 @@
+/*DATATABLES*/
+
+.acaoTxt {
+    display: inline-block;
+}
+
+.acaoIcon {
+    display: none;
+}
+
+#acoes {
+    min-width: 125px !important;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+    margin: 0 10px;
+}
+
+table.dataTable {
+    min-width: 100% !important;
+}
+
+/*parte mobile*/
+
+@media(max-width: 997px) {
+
+    .acaoTxt {
+        display: none;
+    }
+
+    .acaoIcon {
+        display: inline-block;
+    }
+
+    .content-wrapper {
+        min-height: calc(100vh - 176px) !important;
+    }
+
+    #acoes {
+        min-width: 108px !important;
+    }
+}

@@ -19,4 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/estados', 'EstadosController@indexJson');
 Route::get('/municipios/{estado}', 'MunicipiosController@indexJson');
+Route::get('/unidades/{curso}', 'UnidadesController@indexJson');
+Route::get('/materiais/{unidade}', 'MateriaisController@indexJson');
+
+
 

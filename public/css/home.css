@@ -1,0 +1,45 @@
+.small-box:hover {
+    transform: translate(0 , -10px);
+    box-shadow: 0 0 20px gray;
+    color: #57606f;
+}
+
+.small-box:hover .icon{
+    color: #57606f;
+}
+
+.small-box {
+    transition: transform 0.5s;
+    color: #bdc3c7;
+    background-color: white;
+}
+
+.small-box>.icon{
+    transition: transform 500ms, color 500ms;
+    font-size: 90px;
+    margin: 10px;
+}
+
+.small-box>.inner {
+    padding: 10px 10px 30px 10px;
+}
+
+.bg-white>.small-box-footer {
+    color: gray;
+}
+
+.small-box p {
+    font-size: 15px;
+    margin: 0 0 -3px;
+}
+
+.box>.home-box, .box>.home-box{
+    display: flex;
+    justify-content: center;
+}
+
+.video{
+    width: 980px;
+    height: 550px;
+    margin: 0 auto 20px auto;
+}

@@ -131,19 +131,19 @@
                                                     @endif
                                                 @endforeach
                                                 <td>
-                                                    <a href="/cursos/instrutor/{{$c->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
-                                                    <a href="/cursos/instrutor/{{$c->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/cursos/instrutor/{{$c->id}}"
+                                                    <a href="/cursos/{{$c->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
+                                                    <a href="/cursos/{{$c->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/cursos/{{$c->id}}"
                                                        onclick="event.preventDefault();
                                                                document.getElementById('delete-form-{{$c->id}}').submit();">
                                                         @lang('messages.delete')
                                                     </a>
-                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/cursos/instrutor/{{$c->id}}"
+                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/cursos/{{$c->id}}"
                                                        onclick="event.preventDefault();
                                                                document.getElementById('delete-form-{{$c->id}}').submit();">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                    <form id="delete-form-{{$c->id}}" action="/cursos/instrutor/{{$c->id}}" method="POST" style="display: none;">
+                                                    <form id="delete-form-{{$c->id}}" action="/cursos/{{$c->id}}" method="POST" style="display: none;">
                                                         @method('DELETE')
                                                         @csrf
                                                     </form>
@@ -181,7 +181,7 @@
                 </div>
                 <div class="box-footer d-flex justify-content-center">
                     <div class="col-md-2">
-                        <a href="{{route('cursos.instrutor.create')}}" type="button"  class="btn btn-primary botao" id="cadastro">
+                        <a href="{{route('cursos.create')}}" type="button"  class="btn btn-primary botao" id="cadastro">
                             <i class="fa fa-plus"></i> &nbsp;&nbsp;@lang('messages.course')
                         </a>
                     </div>

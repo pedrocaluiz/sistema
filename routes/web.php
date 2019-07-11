@@ -83,10 +83,11 @@ Route::prefix('tipomat')->name('tipomat')->group(function () {
     Route::put('/{id}', 'TipoMateriaisController@update')->name('.update');
 });
 
-Route::prefix('cursos/instrutor')->name('cursos.instrutor')->group(function () {
+Route::prefix('cursos')->name('cursos')->group(function () {
     Route::get('/', 'CursosController@index');
     Route::get('/create', 'CursosController@create')->name('.create');
     Route::post('/', 'CursosController@store')->name('.store');
+    Route::get('/{id}', 'CursosController@show')->name('.show');
     Route::delete('/{id}', 'CursosController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'CursosController@edit')->name('.edit');
     Route::put('/{id}', 'CursosController@update')->name('.update');
@@ -117,17 +118,6 @@ Route::prefix('questoes/instrutor')->name('questoes.instrutor')->group(function 
     Route::delete('/{id}', 'QuestoesController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'QuestoesController@edit')->name('.edit');
     Route::put('/{id}', 'QuestoesController@update')->name('.update');
-});
-
-Route::prefix('cursos/aluno')->name('cursos.aluno')->group(function () {
-    Route::get('/', 'CursosAlunoController@index');
-    Route::get('/create', 'CursosAlunoController@create')->name('.create');
-    Route::post('/', 'CursosAlunoController@store')->name('.store');
-    Route::get('/{id}', 'CursosAlunoController@show')->name('.show');
-    Route::delete('/{id}', 'CursosAlunoController@destroy')->name('.destroy');
-    Route::get('/{id}/edit', 'CursosAlunoController@edit')->name('.edit');
-    Route::put('/{id}', 'CursosAlunoController@update')->name('.update');
-
 });
 
 Route::prefix('unidades/aluno')->name('unidades.aluno')->group(function () {

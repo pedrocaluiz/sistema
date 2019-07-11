@@ -209,7 +209,7 @@
                 <div class="icon">
                     <i class="fa fa-file-zip-o"></i>
                 </div>
-                <a href="{{route('cursos.instrutor')}}" class="small-box-footer">
+                <a href="{{route('cursos')}}" class="small-box-footer">
                     Mais detalhes <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>

@@ -15,7 +15,7 @@
 @endpush
 
 @section('content')
-    <form method="POST" action="/cursos/instrutor/{{$curso->id}}" enctype="multipart/form-data" class="cadastro">
+    <form method="POST" action="/cursos/{{$curso->id}}" enctype="multipart/form-data" class="cadastro">
         @method('PUT')
         @csrf
 <div class="row align-items-end">

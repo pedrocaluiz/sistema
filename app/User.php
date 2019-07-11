@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Model\Documento;
+use App\Model\Perfil;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,8 @@ class User extends Authenticatable
         return $this->hasMany(Documento::class);
     }
 
-
-
+    public function perfil()
+    {
+        return $this->belongsToMany(Perfil::class, 'perfil_usuarios');
+    }
 }

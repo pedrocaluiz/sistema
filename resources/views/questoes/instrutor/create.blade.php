@@ -15,7 +15,7 @@
 @endpush
 
 @section('content')
-  <form method="POST" action="{{ route('questoes.instrutor.store') }}" enctype="multipart/form-data" class="cadastro">
+  <form method="POST" action="{{ route('questoes.store') }}" enctype="multipart/form-data" class="cadastro">
     @csrf
     <div class="row align-items-end">
       <div class="col-md-12">
@@ -52,9 +52,7 @@
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="questao">@lang('messages.question')</label>
-                  <textarea rows="2" cols="50" name="questao" id="questao" class="form-control" required maxlength="500" style="resize: vertical">
-                          At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-                  </textarea>
+                  <textarea rows="2" cols="50" name="questao" id="questao" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                 </div>
                 <div class="form-group col-md-3">
                   <label for="imagem">@lang('messages.image')</label>
@@ -66,42 +64,32 @@
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="correta">@lang('messages.right-answer')</label>
-                  <textarea rows="2" cols="50" name="correta" id="correta" class="form-control" required maxlength="500" style="resize: vertical">
-                      At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-                  </textarea>
+                  <textarea rows="2" cols="50" name="correta" id="correta" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                   <hr class="my-4">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
-                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control" required maxlength="500" style="resize: vertical">
-                      At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-                  </textarea>
+                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
-                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical">
-                      At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-                  </textarea>
+                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
-                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical">
-                      At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-                  </textarea>
+                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
-                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical">
-                      At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-                  </textarea>
+                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
 
@@ -152,7 +140,7 @@
                       <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                   </div>
                   <div class="form-group col-md-1">
-                      <button type="button" class="btn btn-primary botao novo" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
+                      <button type="button" class="btn btn-danger botao novo" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
                           <i class="fa fa-trash"></i>
                       </button>
                   </div>

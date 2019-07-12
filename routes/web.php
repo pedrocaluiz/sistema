@@ -93,10 +93,11 @@ Route::prefix('cursos')->name('cursos')->group(function () {
     Route::put('/{id}', 'CursosController@update')->name('.update');
 });
 
-Route::prefix('unidades/instrutor')->name('unidades.instrutor')->group(function () {
+Route::prefix('unidades')->name('unidades')->group(function () {
     Route::get('/', 'UnidadesController@index');
     Route::get('/create', 'UnidadesController@create')->name('.create');
     Route::post('/', 'UnidadesController@store')->name('.store');
+    Route::get('/{id}', 'UnidadesController@show')->name('.show');
     Route::delete('/{id}', 'UnidadesController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'UnidadesController@edit')->name('.edit');
     Route::put('/{id}', 'UnidadesController@update')->name('.update');
@@ -111,7 +112,7 @@ Route::prefix('materiais/instrutor')->name('materiais.instrutor')->group(functio
     Route::put('/{id}', 'MateriaisController@update')->name('.update');
 });
 
-Route::prefix('questoes/instrutor')->name('questoes.instrutor')->group(function () {
+Route::prefix('questoes')->name('questoes')->group(function () {
     Route::get('/', 'QuestoesController@index');
     Route::get('/create', 'QuestoesController@create')->name('.create');
     Route::post('/', 'QuestoesController@store')->name('.store');
@@ -120,15 +121,6 @@ Route::prefix('questoes/instrutor')->name('questoes.instrutor')->group(function 
     Route::put('/{id}', 'QuestoesController@update')->name('.update');
 });
 
-Route::prefix('unidades/aluno')->name('unidades.aluno')->group(function () {
-    Route::get('/', 'UnidadesAlunoController@index');
-    Route::get('/create', 'UnidadesAlunoController@create')->name('.create');
-    Route::post('/', 'UnidadesAlunoController@store')->name('.store');
-    Route::get('/{id}', 'UnidadesAlunoController@show')->name('.show');
-    Route::delete('/{id}', 'UnidadesAlunoController@destroy')->name('.destroy');
-    Route::get('/{id}/edit', 'UnidadesAlunoController@edit')->name('.edit');
-    Route::put('/{id}', 'UnidadesAlunoController@update')->name('.update');
-});
 
 
 Route::post('/inscrever/material', 'MateriaisController@inscrever');

@@ -17,7 +17,19 @@
                     <h1>Olá, {{Auth::user()->primeiroNome}}!</h1>
                 </div>
                 <div class="box-body home-box">
-                        <h3>Você está logado como Administrador / Usuário Comum</h3>
+                        <h3>Você está logado como
+                            @if (count(Auth::user()->perfil) > 1)
+                                @foreach(Auth::user()->perfil as $perfil)
+                                    @if ($loop->last)
+                                        <strong>{{$perfil->descricao}}</strong>.
+                                    @else
+                                        <strong>{{$perfil->descricao}}</strong> e
+                                    @endif
+                                @endforeach
+                            @else
+                                <strong>{{Auth::user()->perfil[0]->descricao}}</strong>
+                            @endif
+                        </h3>
                 </div>
             </div>
         </div>
@@ -175,29 +187,6 @@
             <!-- small box -->
             <div class="small-box bg-white">
                 <div class="inner">
-                    @if (isset($tipoMat))
-                        <h3>{{$tipoMat->count()}}</h3>
-                    @else
-                        <h3>00</h3>
-                    @endif
-                    <p>Tipos Mat.</p>
-                    <p>Registrados</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-file-zip-o"></i>
-                </div>
-                <a href="{{route('tipomat')}}" class="small-box-footer">
-                    Mais detalhes <i class="fa fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-        <!-- ./col -->
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-                <div class="inner">
                     @if (isset($cursos))
                         <h3>{{$cursos->count()}}</h3>
                     @else
@@ -216,7 +205,28 @@
         </div>
         <!-- ./col -->
 
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    @if (isset($unidades))
+                        <h3>{{$unidades->count()}}</h3>
+                    @else
+                        <h3>00</h3>
+                    @endif
+                    <p>Unidades</p>
+                    <p>Registradas</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-file-zip-o"></i>
+                </div>
+                <a href="{{route('unidades')}}" class="small-box-footer">
+                    Mais detalhes <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
         <!-- ./col -->
+
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-white">
@@ -233,6 +243,27 @@
                     <i class="fa fa-file-zip-o"></i>
                 </div>
                 <a href="{{route('materiais.instrutor')}}" class="small-box-footer">
+                    Mais detalhes <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    @if (isset($questoes))
+                        <h3>{{$questoes->count()}}</h3>
+                    @else
+                        <h3>00</h3>
+                    @endif
+                    <p>Questões</p>
+                    <p>Registradas</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-file-zip-o"></i>
+                </div>
+                <a href="{{route('questoes')}}" class="small-box-footer">
                     Mais detalhes <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>

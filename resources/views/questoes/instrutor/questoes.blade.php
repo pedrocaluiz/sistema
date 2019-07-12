@@ -1,11 +1,11 @@
-@extends('layouts.base', ["current" => "unidades"])
+@extends('layouts.base', ["current" => "questoes"])
 
 @section('header')
-    @lang('messages.units')
+    @lang('messages.questions')
 @endsection
 
 @section('title')
-    @lang('messages.units')
+    @lang('messages.questions')
 @endsection
 
 @push('css')
@@ -14,15 +14,15 @@
         /*parte mobile*/
         @media(max-width: 997px){
 
-            table#example1 td:nth-child(1), td:nth-child(5) {
+            table#example1 td:nth-child(1), td:nth-child(4) {
                 display: none;
             }
 
-            thead th:nth-child(1), th:nth-child(5) {
+            thead th:nth-child(1), th:nth-child(4) {
                 display: none;
             }
 
-            tfoot th:nth-child(1), th:nth-child(5) {
+            tfoot th:nth-child(1), th:nth-child(4) {
                 display: none;
             }
         }
@@ -30,21 +30,18 @@
         /*parte mobile usuarios*/
         @media(max-width: 1335px){
 
-            table#example1 td:nth-child(3){
+            table#example1 td:nth-child(2), td:nth-child(5){
                 display: none;
             }
 
-            thead th:nth-child(3){
+            thead th:nth-child(2), th:nth-child(5){
                 display: none;
             }
 
-            tfoot th:nth-child(3){
+            tfoot th:nth-child(2), th:nth-child(5){
                 display: none;
             }
         }
-
-
-
     </style>
 
 @endpush
@@ -87,66 +84,62 @@
                         @endif
                         <div class="row">
                             <div class="col-sm-12">
-                                @if(count($unidades) > 0)
+                                @if(count($questoes) > 0)
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="ID: activate to sort column descending" style="width: 50px;">
+                                                aria-label="ID: activate to sort column descending" >
                                                 ID
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Unidade: activate to sort column ascending" style="width: 245px;">
-                                                Curso
+                                                aria-label="Curso: activate to sort column ascending" >
+                                                Unidade
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Título: activate to sort column ascending" style="width: 245px;">
-                                                Título
+                                                aria-label="Unidade: activate to sort column ascending" >
+                                                Questão
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ordem: activate to sort column ascending" style="width: 245px;">
-                                                Ordem
+                                                aria-label="Ícone: activate to sort column ascending" >
+                                                Resp. Correta
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Usuário Atualização: activate to sort column ascending" style="width: 245px;">
-                                                Usuário Atualização
+                                                aria-label="Qtde Respostas: activate to sort column ascending" >
+                                                Qtde Incorretas
                                             </th>
                                             <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ações: activate to sort column ascending" style="width: 245px;">
+                                                aria-label="Ações: activate to sort column ascending" >
                                                 Ações
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($unidades as $u)
+                                        @foreach ($questoes as $q)
                                             <tr>
-                                                <td>{{$u->id}}</td>
-                                                @foreach ($cursos as $curso)
-                                                    @if($curso->id == $u->curso_id)
-                                                        <td>{{$curso->titulo}}</td>
+                                                <td>{{$q->id}}</td>
+                                                @foreach ($unidades as $unidade)
+                                                    @if ($unidade->id == $q->unidade_id)
+                                                        <td>{{$unidade->titulo}}</td>
                                                     @endif
                                                 @endforeach
-                                                <td>{{$u->titulo}}</td>
-                                                <td>{{$u->ordem}}</td>
-                                                @foreach ($users as $user)
-                                                    @if($user->id == $u->usuarioAtualizacao)
-                                                        <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
-                                                    @endif
-                                                @endforeach
+                                                <td>{{$q->questao}}</td>
+                                                <td>{{$q->respCorreta}}</td>
+                                                <td>{{count($q->respostas)}}</td>
                                                 <td>
-                                                    <a href="/unidades/{{$u->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
-                                                    <a href="/unidades/{{$u->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/unidades/{{$u->id}}"
+                                                    <a href="/questoes/{{$q->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
+                                                    <a href="/questoes/{{$q->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/questoes/{{$q->id}}"
                                                        onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$u->id}}').submit();">
+                                                               document.getElementById('delete-form-{{$q->id}}').submit();">
                                                         @lang('messages.delete')
                                                     </a>
-                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/unidades/{{$u->id}}"
+                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/questoes/{{$q->id}}"
                                                        onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$u->id}}').submit();">
+                                                               document.getElementById('delete-form-{{$q->id}}').submit();">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                    <form id="delete-form-{{$u->id}}" action="/unidades/{{$u->id}}" method="POST" style="display: none;">
+                                                    <form id="delete-form-{{$q->id}}" action="/questoes/{{$q->id}}" method="POST" style="display: none;">
                                                         @method('DELETE')
                                                         @csrf
                                                     </form>
@@ -160,16 +153,16 @@
                                                 ID
                                             </th>
                                             <th rowspan="1" colspan="1">
-                                                Cursos
+                                                Unidade
                                             </th>
                                             <th rowspan="1" colspan="1">
-                                                Título
+                                                Questão
                                             </th>
                                             <th rowspan="1" colspan="1">
-                                                Ordem
+                                                Resp. Correta
                                             </th>
                                             <th rowspan="1" colspan="1">
-                                                Usuário Atualização
+                                                Qtde Incorretas
                                             </th>
                                             <th rowspan="1" colspan="1">
                                                 Ações
@@ -182,10 +175,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer d-flex justify-content-center">
+                <div class="box-footer">
                     <div class="col-md-2">
-                        <a href="{{route('unidades.create')}}" type="button"  class="btn btn-primary botao" id="cadastro">
-                            <i class="fa fa-plus"></i> &nbsp;&nbsp;@lang('messages.unity')
+                        <a href="{{route('questoes.create')}}" type="button"  class="btn btn-primary botao" id="cadastro">
+                            <i class="fa fa-plus"></i> &nbsp;&nbsp;@lang('messages.question')
                         </a>
                     </div>
                 </div>

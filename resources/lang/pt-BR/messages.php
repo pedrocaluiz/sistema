@@ -35,6 +35,8 @@ return [
     'zip-code' => 'CEP',
     'phone-number' => 'Telefone',
     'cell-number' => 'Celular',
+    'activity' => 'Atividade',
+
 
     'title' => 'Título',
 

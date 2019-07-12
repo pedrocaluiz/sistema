@@ -18,8 +18,18 @@
       justify-content: center;
     }
     .video {
-      width: 294px;
-      height: 165px;
+      width: 852px;
+      height: 480px;
+    }
+    #descricao {
+      font-size: 30px;
+    }
+    .flex-justify-center {
+      display: flex;
+      justify-content: center;
+    }
+    .flex-justify-center>label {
+      margin-right: 10px;
     }
   </style>
 @endpush
@@ -30,6 +40,8 @@
     @if (isset($unidade, $user))
 
 
+
+
         <div class="box">
           <div class="box-header curso">
             <h1 class="box-title">{{$unidade->titulo}}</h1>
@@ -38,9 +50,6 @@
             <div class="row">
               <div class="col-md-12" style="display: flex; justify-content: flex-end">
                 <p>Instrutor do Curso: <strong>{{ $user->primeiroNome }} {{ $user->ultimoNome }}</strong></p>
-              </div>
-              <div class="col-md-12">
-                <p id="teste"></p>
               </div>
             </div>
 
@@ -53,9 +62,9 @@
 
                 @foreach($materiais as $mat)
                   <div class="row" style="display: flex; justify-content: center; margin-top: 40px">
-                    <p>Descrição: <strong>{{ $mat->descricao }}</strong></p>
+                    <p id="descricao">Descrição: <strong>{{ $mat->descricao }}</strong></p>
                   </div>
-                  <input type="text" id="material_id" name="material_id" value="{{$mat->id}}">
+                  <input type="text" id="material_id" name="material_id" value="{{$mat->id}}" hidden>
 
 
                     @if (($mat->material_id == 2) && ($mat->storage == 0))
@@ -80,9 +89,18 @@
 
                     @if (($mat->material_id == 3) && ($mat->storage == 0))
                         <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                          <a href="{{$mat->urlArquivo}}" onclick="concluir();" target="_blank"><strong>Link</strong></a>
+
+                            <a href="{{$mat->urlArquivo}}" onclick="concluir();" target="_blank"><strong>Link</strong></a>
+
                         </div>
                     @endif
+
+                  <div class="row flex-justify-center">
+                    <div class="col-md-3 flex-justify-center">
+                      <label for="concluido">Concluído</label>
+                      <input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido">
+                    </div>
+                  </div>
 
                 @endforeach
 
@@ -94,7 +112,18 @@
               </div>
             </div>
           </div>
+
+          <div class="box-footer">
+            <div class="col-md-6" style="display: flex; justify-content: center">
+              <a href="#atividade" id="atividade">
+                Clique aqui para Avaliação de Aprendizagem
+              </a>
+            </div>
+          </div>
+
         </div>
+
+
 
 
 
@@ -187,7 +216,10 @@
     });*/
 
     $(function(){
-
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue'
+        });
     });
 
 </script>

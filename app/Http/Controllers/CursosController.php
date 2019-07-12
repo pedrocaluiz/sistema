@@ -24,6 +24,7 @@ class CursosController extends Controller
      */
     public function index(Request $request)
     {
+
         $this->authorize('view', Curso::class);
 
         $categorias = Categoria::all();
@@ -32,6 +33,8 @@ class CursosController extends Controller
         $adicionada = $request->session()->get('adicionada');
         $excluida = $request->session()->get('excluida');
         $alterada = $request->session()->get('alterada');
+
+
 
         return view('cursos.instrutor.cursos',
             compact('cursos', 'users', 'adicionada',
@@ -92,7 +95,7 @@ class CursosController extends Controller
             "Curso $curso->descricao inserida com sucesso.");
         DB::commit();
 
-        return redirect('/home');
+        return redirect()->route('cursos');
     }
 
     /**
@@ -166,6 +169,9 @@ class CursosController extends Controller
     {
         DB::beginTransaction();
         $curso = Curso::find($id);
+
+        $this->authorize('update', $curso);
+
         $curso->categoria_id = $request->input('categoria_id');
         $curso->titulo = $request->input('tituloCurso');
         $curso->descricao = $request->input('descricaoCurso');

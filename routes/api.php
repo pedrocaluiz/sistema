@@ -22,5 +22,7 @@ Route::get('/municipios/{estado}', 'MunicipiosController@indexJson');
 Route::get('/unidades/{curso}', 'UnidadesController@indexJson');
 Route::get('/materiais/{unidade}', 'MateriaisController@indexJson');
 
+Route::delete('/respostas/{id}', 'RespostasController@destroyAjax');
+
 
 

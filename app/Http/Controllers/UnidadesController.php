@@ -7,9 +7,11 @@ use App\Model\Questao;
 use App\Model\Resposta;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
+use App\Model\UsuarioCursoUnidadeMaterial;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UnidadesController extends Controller
 {
@@ -78,7 +80,7 @@ class UnidadesController extends Controller
             "Unidade $unidade->titulo inserida com sucesso.");
         DB::commit();
 
-        return redirect()->route('unidades.instrutor');
+        return redirect()->route('unidades');
     }
 
     /**
@@ -89,7 +91,35 @@ class UnidadesController extends Controller
      */
     public function show($id)
     {
-        //
+        //para mostrar a unidade, tem que estar logado e inscrito no curso
+        //se não estiver, redirecionar para a página do curso correspondente.
+
+        $auth = Auth::user();
+        $unidade = Unidade::find($id);
+
+        if (isset($unidade)){
+            $user = \App\User::find($unidade->usuarioAtualizacao);
+            $materiais = UnidadeMaterial::where('unidade_id', $unidade->id)
+                ->orderBy('ordem', 'asc')
+                ->paginate(1);
+
+            $user_unidade = UsuarioCursoUnidadeMaterial::where([
+                ['unidade_id', $unidade->id],
+                ['user_id', $auth->id],
+            ])->get();
+
+            //se não existir registro para esse UserUnidade, cria um registro
+            if (!isset($user_unidade[0])){
+                $tableUserUnidade = new UsuarioCursoUnidadeMaterial();
+                $tableUserUnidade->user_id = $auth->id;
+                $tableUserUnidade->unidade_id = $unidade->id;
+                $tableUserUnidade->save();
+            }
+            return view('unidades.aluno.unidade',
+                compact('unidade', 'user', 'auth', 'materiais'));
+        }else {
+            return view('home');
+        }
     }
 
     /**
@@ -135,7 +165,7 @@ class UnidadesController extends Controller
             "Unidade $unidade->titulo alterada com sucesso.");
         DB::commit();
 
-        return redirect()->route('unidades.instrutor');
+        return redirect()->route('unidades');
     }
 
     /**
@@ -148,14 +178,4 @@ class UnidadesController extends Controller
     {
         //
     }
-
-    /*public function carregarOrdens($id){
-
-        $ordem = Unidade::select('ordem')
-            ->where('curso_id', $id)
-            ->orderBy('ordem', 'asc')
-            ->get();
-
-        return json_encode($ordem);
-    }*/
 }

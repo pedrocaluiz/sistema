@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Model\UsuarioCursoUnidadeMaterial;
 use App\User;
 use App\Model\Curso;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -20,7 +19,7 @@ class CursosPolicy
      */
     public function view(User $user)
     {
-        //dd($user->perfil[0]->descricao);
+        dd($user->perfil[0]->descricao);
         foreach ($user->perfil as $perfil){
             if ($perfil->descricao == "Instrutor"){
                 return true;

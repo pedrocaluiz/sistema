@@ -8,11 +8,12 @@ use App\Model\Categoria;
 use App\Model\Curso;
 use App\Model\Funcao;
 use App\Model\Perfil;
+use App\Model\Questao;
 use App\Model\TipoDocumento;
 use App\Model\TipoMaterial;
+use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\User;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -43,10 +44,12 @@ class HomeController extends Controller
         $tipoMat = TipoMaterial::all();
         $cursos = Curso::all();
         $materiais = UnidadeMaterial::all();
+        $unidades = Unidade::all();
+        $questoes = Questao::all();
         return view('home',
             compact('users', 'agencias', 'cargos', 'categorias',
                 'funcoes', 'perfis', 'tipoDoc' ,'tipoMat',
-                'cursos', 'materiais'
+                'cursos', 'materiais', 'unidades', 'questoes'
             ));
     }
 }

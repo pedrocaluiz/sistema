@@ -11,11 +11,27 @@
 @push('css')
   <style>
 
+    #unidades {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .flex-itens {
+      display: flex;
+    }
+    .small-box {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .small-box > .inner {
+      flex-grow: 1;
+    }
+
   </style>
 @endpush
 
 @section('content')
-  <form method="POST" action="/unidades/instrutor/{{$unidade->id}}" enctype="multipart/form-data" class="cadastro">
+  <form method="POST" action="/unidades/{{$unidade->id}}" enctype="multipart/form-data" class="cadastro">
     @method('PUT')
     @csrf
     <div class="row align-items-end">
@@ -83,9 +99,8 @@
   <fieldset id="unid-cadastrados" style="display: none">
     <legend>Unidades cadastrados neste Curso:</legend>
     <div class="row align-items-end">
-      <div class="col-md-12" >
+      <div class="col-md-12" id="col-12">
         <div class="row" id="unidades">
-
         </div>
       </div>
     </div>
@@ -106,7 +121,7 @@
               $('div#unidades>div').remove();
               for (i=0; i<unidades.length; i++) {
                   $('div#unidades').append(
-                      `<div class="col-lg-2 col-xs-2"><div class="small-box bg-white"><div class="inner"><h3>${unidades[i].id}</h3><p>${unidades[i].titulo}</p></div><div class="icon"><i class=""></i></div><a class="small-box-footer" href="/unidades/instrutor/${unidades[i].id}/edit" >Ordem: ${unidades[i].ordem}&nbsp;&nbsp;Editar <i class="fa fa-arrow-circle-right"></i></a></div></div>`);
+                      `<div class="col-lg-3 col-xs-6 flex-itens"><div class="small-box bg-white"><div class="inner"><h3>${unidades[i].id}</h3><p>${unidades[i].titulo}</p></div><div class="icon"><i class=""></i></div><a class="small-box-footer" href="/unidades/${unidades[i].id}/edit" >Ordem: ${unidades[i].ordem}&nbsp;&nbsp;Editar <i class="fa fa-arrow-circle-right"></i></a></div></div>`);
               }
               if (unidades.length > 0){
                   $('#unid-cadastrados').show();

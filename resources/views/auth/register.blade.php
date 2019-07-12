@@ -57,8 +57,8 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="ativo">@lang('messages.enable')</label>
-                                <input type="hidden" name="ativo" value="0">
-                                <input class="icheckbox_flat-blue" type="checkbox" name="ativo" value="1">
+                                <!--<input type="hidden" name="ativo" value="0">-->
+                                <input class="icheckbox_flat-blue" type="checkbox" name="ativo" value="1" checked disabled>
                             </div>
                         </div>
                         <div class="row">
@@ -86,10 +86,14 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="perfil_id">@lang('messages.profile')</label>
-                                <select class="form-control select2" id="perfil_id" name="perfil_id" autofocus>
+                                <select class="form-control select2" id="perfil_id" name="perfil_id" disabled>
                                     @if(count($perfis) > 0)
                                         @foreach ($perfis as $perfil)
+                                            @if ($perfil->descricao == "Aluno")
+                                                <option value="{{$perfil->id}}" selected>{{$perfil->descricao}}</option>
+                                            @else
                                                 <option value="{{$perfil->id}}">{{$perfil->descricao}}</option>
+                                            @endif
                                         @endforeach
                                     @endif
                                 </select>

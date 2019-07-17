@@ -30,6 +30,23 @@
     .box-curso {
      padding: 30px;
     }
+    .ordem {
+      text-align: center;
+      width: 40px;
+    }
+    .progresso {
+      width: 200px;
+      padding: 15px 5px !important;
+    }
+    .percent{
+      width: 150px;
+      text-align: center;
+    }
+    .progress{
+      margin-bottom: 0 !important;
+    }
+
+
   </style>
 @endpush
 
@@ -39,17 +56,137 @@
     @if (isset($curso, $cat, $user, $user_curso))
       <!--Partials .. Curso INFO.. -->
         @includeIf('layouts.subviews.partials.curso-info')
-    @endif
+      @endif
     </div>
   </div>
 
+
+  @if (isset($user_curso[0]))
+  <div class="row align-items-end">
+    <div class="col-md-12">
+      @if (isset($unidades, $user_curso[0] ))
+        <div class="row">
+
+          @foreach ($unidades as $unidade)
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">{{$curso->titulo}}</h3>
+
+
+                   {{-- $unidade->materiais[0]->usuario->where('id', 2 ) --}}
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <table class="table table-bordered table-striped">
+                    <tbody><tr>
+                      <th class="ordem">{{$unidade->id}}</th>
+                      <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
+
+                      @forelse ($unidade->usuario->where('id', Auth::user()->id) as $user)
+                        @if (empty($user->pivot->dataConclusao))
+                          <th class="progresso">
+                            <div class="progress progress-xs" >
+                              <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
+                            </div>
+                          </th>
+                          <th class="percent">
+                            <span class="badge bg-yellow">Em andamento</span>
+                          </th>
+
+                        @else
+                          <th class="progresso">
+                            <div class="progress progress-xs" >
+                              <div class="progress-bar progress-bar-green" style="width: 100%"></div>
+                            </div>
+                          </th>
+                          <th class="percent">
+                            <span class="badge bg-green">Concluído</span>
+                          </th>
+                        @endif
+                      @empty
+                        <th class="progresso">
+                          <div class="progress progress-xs" >
+                            <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
+                          </div>
+                        </th>
+                        <th class="percent">
+                          <span class="badge bg-red">Não iniciado</span>
+                        </th>
+                      @endforelse
+
+                    </tr>
+
+                    @foreach($unidade->materiais->sortBy('ordem') as $material)
+                    <tr>
+                      <td class="ordem">{{$material->ordem}}</td>
+                      <td>{{$material->descricao}}</td>
+
+                      @forelse ($material->usuario->where('id', Auth::user()->id) as $user)
+                        @if (empty($user->pivot->dataConclusao))
+                          <th class="progresso">
+                            <div class="progress progress-xs" >
+                              <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
+                            </div>
+                          </th>
+                          <th class="percent">
+                            <span class="badge bg-yellow">Em andamento</span>
+                          </th>
+
+                        @else
+                          <th class="progresso">
+                            <div class="progress progress-xs" >
+                              <div class="progress-bar progress-bar-green" style="width: 100%"></div>
+                            </div>
+                          </th>
+                          <th class="percent">
+                            <span class="badge bg-green">Concluído</span>
+                          </th>
+                        @endif
+                      @empty
+                        <th class="progresso">
+                          <div class="progress progress-xs" >
+                            <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
+                          </div>
+                        </th>
+                        <th class="percent">
+                          <span class="badge bg-red">Não iniciado</span>
+                        </th>
+                      @endforelse
+
+                    </tr>
+                    @endforeach
+
+
+
+
+
+
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.box-body -->
+              </div>
+            </div>
+          @endforeach
+        </div>
+      @endif
+    </div>
+  </div>
+  @endif
+@endsection
+
+
+@section('teste')
 
   <div class="row align-items-end">
     <div class="col-md-12">
       @if (isset($unidades, $user_curso[0] ))
         <div class="row">
           @foreach ($unidades as $unidade)
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-6 col-xs-12">
               <!-- small box -->
               <div class="small-box bg-white">
                 <div class="inner">
@@ -70,8 +207,6 @@
       @endif
     </div>
   </div>
-
-
 
 @endsection
 
@@ -121,6 +256,15 @@
               );
           });
       }
+
+      $('.percent').text();
+
+      $('.percent').each(function () {
+          if (this).text
+      });
+
+
+
 
   </script>
 @endpush

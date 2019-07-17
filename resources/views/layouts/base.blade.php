@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <title>
         @yield('header', 'Sistema')
     </title>
-@includeIf('layouts.subviews.head')
-@stack('css')
+
+    @includeIf('layouts.subviews.head')
+    @stack('css')
+
+    @includeIf('layouts.subviews.scripts')
+    @stack('scripts')
+
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
 <div class="wrapper">
@@ -59,8 +64,7 @@
 
 </div>
 <!-- ./wrapper -->
-@includeIf('layouts.subviews.scripts')
-@stack('scripts')
+
 
 </body>
 </html>

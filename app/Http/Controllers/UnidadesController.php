@@ -178,4 +178,15 @@ class UnidadesController extends Controller
     {
         //
     }
+
+    public function concluir(Request $request)
+    {
+
+        dd($request);
+
+
+
+
+    }
+
 }

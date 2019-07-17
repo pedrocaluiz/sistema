@@ -12,5 +12,4 @@ class Questao extends Model
     {
         return $this->hasMany(Resposta::class);
     }
-
 }

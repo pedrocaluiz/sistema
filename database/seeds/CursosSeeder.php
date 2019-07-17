@@ -35,6 +35,6 @@ class CursosSeeder extends Seeder
             'descricao' => 'Analista de Aplicações WEB e mais alguns dizeres ...',
             'icone' => 'glyphicon glyphicon-headphones',
             'palavrasChave' => 'Analista; Aplicações; WEB; maisAlgumaCoisa;',
-            'usuarioAtualizacao' => 2]);
+            'usuarioAtualizacao' => 1]);
     }
 }

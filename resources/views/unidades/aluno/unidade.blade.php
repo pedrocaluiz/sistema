@@ -95,6 +95,12 @@
                         </div>
                     @endif
 
+                    @if (($mat->material_id == 16) && ($mat->storage == 1))
+                      <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
+                        <img src="/storage/{{$mat->urlArquivo}}" style="margin-bottom: 20px" onload="concluir();" >
+                      </div>
+                    @endif
+
                   <div class="row flex-justify-center">
                     <div class="col-md-3 flex-justify-center">
                       <label for="concluido">Concluído</label>
@@ -161,6 +167,7 @@
     }
 
     function concluir() {
+        console.log("deu certo");
         let current_datetime = new Date();
         let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds();
         dados = {

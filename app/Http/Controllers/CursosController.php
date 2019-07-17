@@ -6,8 +6,9 @@ use App\Model\Categoria;
 use App\Model\Curso;
 use App\Model\TipoMaterial;
 use App\Model\Unidade;
-use App\Model\UsuarioCursoUnidadeMaterial;
 use App\User;
+use App\Model\UnidadeMaterial;
+use App\Model\UsuarioCursoUnidadeMaterial;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,16 @@ class CursosController extends Controller
         $this->authorize('view', Curso::class);
 
         $categorias = Categoria::all();
-        $cursos = Curso::all();
+        //$cursos = Curso::all();
+
+        $cursos = DB::table('cursos')
+            ->where('categoria_id', 1)
+            ->inRandomOrder()
+            ->limit(2)
+            ->get();
+
+        dd($cursos);
+
         $users = User::all();
         $adicionada = $request->session()->get('adicionada');
         $excluida = $request->session()->get('excluida');
@@ -107,25 +117,18 @@ class CursosController extends Controller
      */
     public function show($id)
     {
-        //$auth = Auth::user();
         $curso = Curso::find($id);
-
-//        $this->authorize('matriculado', $curso);
+        $auth = Auth::user();
 
         if (isset($curso)){
             $user = User::find($curso->usuarioAtualizacao);
             $cat = Categoria::find($curso->categoria_id);
-            /*$user_curso = UsuarioCursoUnidadeMaterial::where([
-                ['curso_id', $curso->id],
-                ['user_id', $auth->id],
-            ])->get();*/
+            $user_curso = $curso->usuario->where('id', $auth->id);
 
-            $user_curso = $curso->usuario;
-
-            $unidades = Unidade::where('curso_id', $id)
+            $unidades = Unidade::with(['materiais', 'questoes'])
+                ->where('curso_id', $id)
                 ->orderBy('ordem', 'asc')
                 ->get();
-
 
             return view('cursos.aluno.curso',
                 compact('curso', 'user', 'cat', 'user_curso', 'unidades'));
@@ -230,7 +233,5 @@ class CursosController extends Controller
 
         return json_encode($matricula[0]);
     }
-
-
 
 }

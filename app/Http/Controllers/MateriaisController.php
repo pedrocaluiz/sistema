@@ -240,6 +240,7 @@ class MateriaisController extends Controller
         }
 
         //retorna todos os materiais daquela unidade
+        //fazer metodo para procurar se há questoes, se não houver concluir, se houver, verificar se ela está concluída
         $todosMateriais = UnidadeMaterial::where([
             ['unidade_id', $request->unidade_id],])
             ->get();
@@ -249,7 +250,7 @@ class MateriaisController extends Controller
         }
 
         $nao_concluidos = UsuarioCursoUnidadeMaterial::
-            whereIn('material_id', $array )
+        whereIn('material_id', $array )
             ->where([
                 ['user_id', $auth->id],
                 ['dataConclusao', NULL],])
@@ -265,20 +266,8 @@ class MateriaisController extends Controller
 
             $user_unidade[0]->dataConclusao = $request->dataConclusao;
             $user_unidade[0]->save();
-
-            //dd($user_unidade[0]);
         }
-        return json_encode($nao_concluidos);
+
+        return json_encode($todosMateriais);
     }
-
-
-    /*public function carregarOrdens($id){
-
-        $ordem = UnidadeMaterial::select('ordem')
-            ->where('unidade_id', $id)
-            ->orderBy('ordem', 'asc')
-            ->get();
-
-        return json_encode($ordem);
-    }*/
 }

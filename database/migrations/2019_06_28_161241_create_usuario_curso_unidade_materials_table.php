@@ -13,7 +13,7 @@ class CreateUsuarioCursoUnidadeMaterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario_curso_unidade_materiais', function (Blueprint $table) {
+        Schema::create('usuario_curso_unidade_material_prova', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->nullable()->default(null);
             $table->foreign('user_id')->references('id')->on('users');
@@ -23,8 +23,8 @@ class CreateUsuarioCursoUnidadeMaterialsTable extends Migration
             $table->foreign('unidade_id')->references('id')->on('unidades');
             $table->bigInteger('material_id')->unsigned()->nullable()->default(null);
             $table->foreign('material_id')->references('id')->on('unidade_materiais');
-            $table->bigInteger('questao_id')->unsigned()->nullable()->default(null);
-            $table->foreign('questao_id')->references('id')->on('questoes');
+            $table->bigInteger('prova_id')->unsigned()->nullable()->default(null);
+            $table->foreign('prova_id')->references('id')->on('provas');
             $table->decimal('notaAval', '5', '2')->nullable()->default(null);
             $table->date('dataConclusao')->nullable()->default(null);
             $table->timestamps();

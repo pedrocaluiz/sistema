@@ -125,7 +125,7 @@ Route::prefix('questoes')->name('questoes')->group(function () {
 
 Route::post('/inscrever/material', 'MateriaisController@inscrever');
 Route::post('/concluir/material', 'MateriaisController@concluir');
-Route::post('/inscrever/curso', 'CursosAlunoController@inscrever');
+Route::post('/inscrever/curso', 'CursosController@inscrever');
 
 
 

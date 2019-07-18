@@ -67,44 +67,71 @@
                   <input type="text" id="material_id" name="material_id" value="{{$mat->id}}" hidden>
 
 
-                    @if (($mat->material_id == 2) && ($mat->storage == 0))
-                        <div class="row">
-                          <div class="video">
-                            <iframe id="player" class="video" src="{{$mat->urlArquivo}}?enablejsapi=1" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                            </iframe>
-                          </div>
-                        </div>
-                    @endif
+              @if (($mat->material_id == 1) && ($mat->storage == 1))
+                <!--pdf, doc, xls, ppt local onload="inscrever()" -->
+              @endif
 
-                    @if (($mat->material_id == 2) && ($mat->storage == 1))
-                        <div class="row">
-                          <div class="video" >
-                            <video class="video" controls onclick="concluir();">
-                              <source src="/storage/{{$mat->urlArquivo}}" type="video/mp4">
-                            </video>
-                          </div>
-                        </div>
-                    @endif
+              @if ((($mat->material_id == 1) or ($mat->material_id == 5) or ($mat->material_id == 6) or ($mat->material_id == 7)) && ($mat->storage == 0))
+                <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
+                  <a href="{{$mat->urlArquivo}}" onload="inscrever();" onclick="concluir();" target="_blank"><strong>Link</strong></a>
+                </div>
+              @endif
+            <!--pdf, doc, xls, ppt web-->
+              @if (($mat->material_id == 2) && ($mat->storage == 1))
+                <div class="row">
+                  <div class="video" >
+                    <video class="video" controls onload="inscrever();" onclick="concluir();">
+                      <source src="/storage/{{$mat->urlArquivo}}" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              @endif
+            <!--video local-->
+              @if (($mat->material_id == 2) && ($mat->storage == 0))
+                  <div class="row">
+                    <div class="video">
+                      <iframe id="player" class="video" src="{{$mat->urlArquivo}}?enablejsapi=1" frameborder="0"
+                              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                      </iframe>
+                    </div>
+                  </div>
+              @endif
+            <!--video web-->
+              @if (($mat->material_id == 3))
+                  <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
+                    <a href="{{$mat->urlArquivo}}" onload="inscrever();" onclick="concluir();" target="_blank"><strong>Link</strong></a>
+                  </div>
+              @endif
+            <!--link-->
+              @if (($mat->material_id == 4) && ($mat->storage == 1))
+                <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
+                  <img src="/storage/{{$mat->urlArquivo}}" style="margin-bottom: 20px" onload="concluir();" >
+                </div>
+              @endif
+            <!--imagem local-->
+              @if (($mat->material_id == 4) && ($mat->storage == 0))
+                <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
+                  <img src="{{$mat->urlArquivo}}" style="margin-bottom: 20px" onload="concluir();" >
+                </div>
+              @endif
+            <!--imagem web-->
 
-                    @if (($mat->material_id == 3) && ($mat->storage == 0))
-                        <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-
-                            <a href="{{$mat->urlArquivo}}" onclick="concluir();" target="_blank"><strong>Link</strong></a>
-
-                        </div>
-                    @endif
-
-                    @if (($mat->material_id == 16) && ($mat->storage == 1))
-                      <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                        <img src="/storage/{{$mat->urlArquivo}}" style="margin-bottom: 20px" onload="concluir();" >
-                      </div>
-                    @endif
 
                   <div class="row flex-justify-center">
                     <div class="col-md-3 flex-justify-center">
                       <label for="concluido">Concluído</label>
-                      <input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido">
+                    @forelse ($mat->usuario->where('id', Auth::user()->id) as $user)
+                      @if (empty($user->pivot->dataConclusao))
+                        <!--Existe registro na tabela UCUMP, mas não existe registro no dataConclusao-->
+                          <input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido">
+                      @else
+                        <!--Existe registro na tabela UCUMP e dataConclusao checked-->
+                          <input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido" checked>
+                      @endif
+                    @empty
+                      <!--Não existe registro na tabela UCUMP-->
+                        <input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido">
+                      @endforelse
                     </div>
                   </div>
 

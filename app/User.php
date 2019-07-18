@@ -50,6 +50,6 @@ class User extends Authenticatable
 
     public function perfil()
     {
-        return $this->belongsToMany(Perfil::class, 'perfil_usuarios');
+        return $this->belongsToMany(Perfil::class, 'perfil_usuario');
     }
 }

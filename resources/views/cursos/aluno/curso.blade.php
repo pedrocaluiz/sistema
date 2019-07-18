@@ -126,6 +126,7 @@
 
                       @forelse ($material->usuario->where('id', Auth::user()->id) as $user)
                         @if (empty($user->pivot->dataConclusao))
+                          <!--Existe registro na tabela UCUMP, mas não existe registro no dataConclusao-->
                           <th class="progresso">
                             <div class="progress progress-xs" >
                               <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
@@ -136,6 +137,7 @@
                           </th>
 
                         @else
+                          <!--Existe registro na tabela UCUMP e dataConclusao-->
                           <th class="progresso">
                             <div class="progress progress-xs" >
                               <div class="progress-bar progress-bar-green" style="width: 100%"></div>
@@ -146,6 +148,7 @@
                           </th>
                         @endif
                       @empty
+                      <!--Não existe registro na tabela UCUMP-->
                         <th class="progresso">
                           <div class="progress progress-xs" >
                             <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
@@ -158,11 +161,6 @@
 
                     </tr>
                     @endforeach
-
-
-
-
-
 
                     </tbody>
                   </table>
@@ -232,6 +230,7 @@
               console.log(data);
               dataJson = JSON.parse(data);
               console.log(dataJson);
+
               $("#btnInscrever").remove();
               $("div#inscrito").append(
                   `<p><strong>Sua inscrição foi efetuada</strong></p>`
@@ -256,15 +255,6 @@
               );
           });
       }
-
-      $('.percent').text();
-
-      $('.percent').each(function () {
-          if (this).text
-      });
-
-
-
 
   </script>
 @endpush

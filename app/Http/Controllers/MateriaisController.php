@@ -6,7 +6,7 @@ use App\Model\Curso;
 use App\Model\TipoMaterial;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
-use App\Model\UsuarioCursoUnidadeMaterial;
+use App\Model\UsuarioCursoUnidadeMaterialProva;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -199,14 +199,14 @@ class MateriaisController extends Controller
     public function inscrever(Request $request)
     {
         $auth = Auth::user();
-        $user_mats = UsuarioCursoUnidadeMaterial::where([
+        $user_mats = UsuarioCursoUnidadeMaterialProva::where([
             ['material_id', $request->material_id],
             ['user_id', $auth->id],
         ])->get();
 
         //se não existir registro para esse UserMaterial, cria um registro
         if (!isset($user_mats[0])){
-            $user_mat = new UsuarioCursoUnidadeMaterial();
+            $user_mat = new UsuarioCursoUnidadeMaterialProva();
             $user_mat->user_id = $auth->id;
             $user_mat->material_id = $request->material_id;
             $user_mat->save();
@@ -220,7 +220,7 @@ class MateriaisController extends Controller
     public function concluir(Request $request)
     {
         $auth = Auth::user();
-        $user_mats = UsuarioCursoUnidadeMaterial::where([
+        $user_mats = UsuarioCursoUnidadeMaterialProva::where([
             ['material_id', $request->material_id],
             ['user_id', $auth->id],
         ])->get();
@@ -232,7 +232,7 @@ class MateriaisController extends Controller
             $user_mats[0]->dataConclusao = $request->dataConclusao;
             $user_mats[0]->save();
         }else {
-            $user_mat = new UsuarioCursoUnidadeMaterial();
+            $user_mat = new UsuarioCursoUnidadeMaterialProva();
             $user_mat->user_id = $auth->id;
             $user_mat->material_id = $request->material_id;
             $user_mat->dataConclusao = $request->dataConclusao;
@@ -249,7 +249,7 @@ class MateriaisController extends Controller
             $array[$i] = $todosMateriais[$i]->id;
         }
 
-        $nao_concluidos = UsuarioCursoUnidadeMaterial::
+        $nao_concluidos = UsuarioCursoUnidadeMaterialProva::
         whereIn('material_id', $array )
             ->where([
                 ['user_id', $auth->id],
@@ -259,7 +259,7 @@ class MateriaisController extends Controller
         if (!isset($nao_concluidos[0])){
             //se NAO existir NENHUM material NULL então ...
             //concluir Unidade
-            $user_unidade = UsuarioCursoUnidadeMaterial::where([
+            $user_unidade = UsuarioCursoUnidadeMaterialProva::where([
                 ['user_id', $auth->id],
                 ['unidade_id', $request->unidade_id],])
                 ->get();

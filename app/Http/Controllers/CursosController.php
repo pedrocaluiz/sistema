@@ -6,9 +6,9 @@ use App\Model\Categoria;
 use App\Model\Curso;
 use App\Model\TipoMaterial;
 use App\Model\Unidade;
+use App\Model\UsuarioCursoUnidadeMaterialProva;
 use App\User;
 use App\Model\UnidadeMaterial;
-use App\Model\UsuarioCursoUnidadeMaterial;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,12 +32,28 @@ class CursosController extends Controller
         //$cursos = Curso::all();
 
         $cursos = DB::table('cursos')
-            ->where('categoria_id', 1)
-            ->inRandomOrder()
-            ->limit(2)
+            ->where('id', 14)
             ->get();
 
-        dd($cursos);
+        $cursos2 = DB::table('cursos')
+            ->whereNotIn('id', [$cursos[0]->id])
+            ->inRandomOrder()
+            ->limit(6)
+            ->get();
+
+        $cursos2 = [
+            0 => $cursos2[0],
+            1 => $cursos2[1],
+            2 => $cursos2[2],
+            3 => $cursos2[3],
+            4 => $cursos[0]
+        ];
+
+        shuffle($cursos2);
+
+        dd($cursos, $cursos2);
+        //dd($cursos);
+
 
         $users = User::all();
         $adicionada = $request->session()->get('adicionada');
@@ -216,14 +232,14 @@ class CursosController extends Controller
     public function inscrever(Request $request)
     {
         $auth = Auth::user();
-        $matricula = UsuarioCursoUnidadeMaterial::where([
+        $matricula = UsuarioCursoUnidadeMaterialProva::where([
             ['curso_id', $request->curso_id],
             ['user_id', $auth->id],
         ])->get();
 
         //se não existir registro para esse UserMaterial, cria um registro
         if (!isset($matricula[0])){
-            $user_curso = new UsuarioCursoUnidadeMaterial();
+            $user_curso = new UsuarioCursoUnidadeMaterialProva();
             $user_curso->user_id = $auth->id;
             $user_curso->curso_id = $request->curso_id;
             $user_curso->save();
@@ -231,7 +247,9 @@ class CursosController extends Controller
             return json_encode($user_curso);
         }
 
-        return json_encode($matricula[0]);
+
+
+        return json_encode(dd($matricula));
     }
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsuarioCursoUnidadeMaterialsTable extends Migration
+class CreateUsuarioCursoUnidadeMaterialProvaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -26,7 +26,7 @@ class CreateUsuarioCursoUnidadeMaterialsTable extends Migration
             $table->bigInteger('prova_id')->unsigned()->nullable()->default(null);
             $table->foreign('prova_id')->references('id')->on('provas');
             $table->decimal('notaAval', '5', '2')->nullable()->default(null);
-            $table->date('dataConclusao')->nullable()->default(null);
+            $table->dateTime('dataConclusao')->nullable()->default(null);
             $table->timestamps();
         });
     }
@@ -41,3 +41,9 @@ class CreateUsuarioCursoUnidadeMaterialsTable extends Migration
         Schema::dropIfExists('usuario_curso_unidade_materials');
     }
 }
+
+
+
+
+
+

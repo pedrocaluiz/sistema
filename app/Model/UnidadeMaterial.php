@@ -10,7 +10,7 @@ class UnidadeMaterial extends Model
     protected  $table = 'unidade_materiais';
 
     public function usuario() {
-        return $this->belongsToMany(User::class, 'usuario_curso_unidade_materiais', 'material_id')->withPivot('dataConclusao');
+        return $this->belongsToMany(User::class, 'usuario_curso_unidade_material_prova', 'material_id')->withPivot('dataConclusao');
     }
 
     public function unidade() {

@@ -81,7 +81,7 @@
                             </button>
                         </div>
                         <div class="form-group col-md-5">
-                            <label for="palavrasChave">@lang('messages.description')</label>
+                            <label for="palavrasChave">@lang('messages.keywords')</label>
                             <textarea rows="2" cols="50" name="palavrasChave" id="palavrasChave" class="form-control"
                                       readonly maxlength="500" style="resize: vertical">{{ $curso->palavrasChave }}</textarea>
                         </div>
@@ -117,31 +117,25 @@
             }
         });
 
-        $("#newkeyword").click(function(){
-            txtArea = $("#palavrasChave");
-            txtAreaI = $("#palavrasChave-i");
-            if (txtAreaI.val() == ""){
-                alert("Digite alguma palavra-chave");
-            }else if (txtAreaI.val().length < 3){
-                //console.log(txtAreaI.val().length);
-                alert("Digite no mínimo 3 caracteres");
-            }else {
-                txtArea.val(txtArea.val() + txtAreaI.val() + ';');
-                txtAreaI.val("");
-            }
-        });
-
-        $("#deletekeyword").click(function(){
-            txtArea = $("#palavrasChave");
-            txtArea.val('');
-        });
-
-
-
-
-
         $(function(){
-            //
+            $("#newkeyword").click(function(){
+                txtArea = $("#palavrasChave");
+                txtAreaI = $("#palavrasChave-i");
+                if (txtAreaI.val() == ""){
+                    alert("Digite alguma palavra-chave");
+                }else if (txtAreaI.val().length < 3){
+                    //console.log(txtAreaI.val().length);
+                    alert("Digite no mínimo 3 caracteres");
+                }else {
+                    txtArea.val(txtArea.val() + txtAreaI.val() + ';');
+                    txtAreaI.val("");
+                }
+            });
+
+            $("#deletekeyword").click(function(){
+                txtArea = $("#palavrasChave");
+                txtArea.val('');
+            });
         });
     </script>
 @endpush

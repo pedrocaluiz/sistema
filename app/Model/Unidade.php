@@ -21,4 +21,9 @@ class Unidade extends Model
     {
         return $this->hasMany(Questao::class);
     }
+
+    public function provas()
+    {
+        return $this->hasMany(Prova::class);
+    }
 }

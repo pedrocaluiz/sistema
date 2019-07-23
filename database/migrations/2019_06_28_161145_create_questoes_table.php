@@ -20,8 +20,7 @@ class CreateQuestoesTable extends Migration
             $table->longText('questao');
             $table->string('imagem')->nullable()->default(null);;
 
-            $table->bigInteger('respCorreta_id')->unsigned()->nullable()->default(null);
-            $table->foreign('respCorreta_id')->references('id')->on('respostas');
+            $table->integer('respCorreta_id')->unsigned()->nullable()->default(null);
 
             $table->boolean('ativo')->nullable()->default(true);
             $table->integer('usuarioAtualizacao');

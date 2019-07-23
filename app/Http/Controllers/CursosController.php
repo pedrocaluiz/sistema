@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Categoria;
 use App\Model\Curso;
+use App\Model\Prova;
 use App\Model\TipoMaterial;
 use App\Model\Unidade;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
@@ -136,6 +137,7 @@ class CursosController extends Controller
         $curso = Curso::find($id);
         $auth = Auth::user();
 
+
         if (isset($curso)){
             $user = User::find($curso->usuarioAtualizacao);
             $cat = Categoria::find($curso->categoria_id);
@@ -145,6 +147,8 @@ class CursosController extends Controller
                 ->where('curso_id', $id)
                 ->orderBy('ordem', 'asc')
                 ->get();
+
+
 
             return view('cursos.aluno.curso',
                 compact('curso', 'user', 'cat', 'user_curso', 'unidades'));
@@ -195,6 +199,7 @@ class CursosController extends Controller
         $curso->titulo = $request->input('tituloCurso');
         $curso->descricao = $request->input('descricaoCurso');
         $curso->icone = $request->input('icone');
+        $curso->palavrasChave = $request->input('palavrasChave');
         $curso->usuarioAtualizacao = $request->input('usuarioAtualizacao');
         $curso->save();
 
@@ -250,6 +255,28 @@ class CursosController extends Controller
 
 
         return json_encode(dd($matricula));
+    }
+
+    public function meusCursos()
+    {
+        $auth = Auth::user();
+
+        $matriculas = UsuarioCursoUnidadeMaterialProva::where([
+            ['user_id', $auth->id],
+            ['curso_id', '<>', null]
+        ])->get();
+
+        if ($matriculas->first()){
+            for($i = 0; $i < count($matriculas); $i++){
+                $array[$i] = $matriculas[$i]->curso_id;
+            }
+
+            $cursos = Curso::whereIn('id', $array )->get();
+        }
+
+        return view('cursos.aluno.meus-cursos',
+            compact('matriculas', 'cursos'));
+
     }
 
 }

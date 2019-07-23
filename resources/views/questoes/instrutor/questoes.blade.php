@@ -124,7 +124,11 @@
                                                     @endif
                                                 @endforeach
                                                 <td>{{$q->questao}}</td>
-                                                <td>{{$q->respCorreta}}</td>
+                                                @foreach ($respostas as $resp)
+                                                    @if ($resp->id == $q->respCorreta_id)
+                                                        <td>{{$resp->resposta}}</td>
+                                                    @endif
+                                                @endforeach
                                                 <td>{{count($q->respostas)}}</td>
                                                 <td>
                                                     <a href="/questoes/{{$q->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>

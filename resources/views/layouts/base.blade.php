@@ -7,7 +7,6 @@
 
     @includeIf('layouts.subviews.head')
     @stack('css')
-
     @includeIf('layouts.subviews.scripts')
     @stack('scripts')
 

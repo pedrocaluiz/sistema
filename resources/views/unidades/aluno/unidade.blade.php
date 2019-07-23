@@ -148,7 +148,7 @@
 
           <div class="box-footer">
             <div class="col-md-6" style="display: flex; justify-content: center">
-              <a href="#atividade" id="atividade">
+              <a type="button" href="/provas/{{$unidade->id}}/lista" id="atividade">
                 Clique aqui para Avaliação de Aprendizagem
               </a>
             </div>

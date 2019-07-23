@@ -85,7 +85,7 @@
 
                 <div id="tabs" class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li><a data-toggle="tab"><i class="fa fa-plus"></i></a></li>
+                        <li><a data-toggle="tab"><i class="fa fa-plus" id="fa-plus"></i></a></li>
                         <li class="active"><a href="#unidade1" data-toggle="tab" aria-expanded="true">Unidade1</a></li>
                     </ul>
                     <div class="tab-content">
@@ -132,33 +132,45 @@
             }
         });
 
-        $("#newkeyword").click(function(){
-            txtArea = $("#palavrasChave");
-            txtAreaI = $("#palavrasChave-i");
-            if (txtAreaI.val() == ""){
-                alert("Digite alguma palavra-chave");
-            }else if (txtAreaI.val().length < 3){
-                //console.log(txtAreaI.val().length);
-                alert("Digite no mínimo 3 caracteres");
-            }else {
-                txtArea.val(txtArea.val() + txtAreaI.val() + ';');
-                txtAreaI.val("");
-            }
-        });
+        function remover(botao){
+            var seletorLi = 'li#' + botao.id;
+            var seletorDiv = 'div#unidade' + botao.id;
+            $(seletorLi).remove();
+            $(seletorDiv).remove();
+            $("div#unidade1").addClass('active');
+            $("a#ui-id-1").click();
+        }
 
-        $("#deletekeyword").click(function(){
-            txtArea = $("#palavrasChave");
-            txtArea.val('');
-        });
+        $(function(){
+            $("#tabs").tabs();
 
-        var a = 2;
+            $("#newkeyword").click(function(){
+                txtArea = $("#palavrasChave");
+                txtAreaI = $("#palavrasChave-i");
+                if (txtAreaI.val() == ""){
+                    alert("Digite alguma palavra-chave");
+                }else if (txtAreaI.val().length < 3){
+                    //console.log(txtAreaI.val().length);
+                    alert("Digite no mínimo 3 caracteres");
+                }else {
+                    txtArea.val(txtArea.val() + txtAreaI.val() + ';');
+                    txtAreaI.val("");
+                }
+            });
 
-        $(".fa-plus").click(function(){
-            $(".nav-tabs").append(
-                    '<li id="'+a+'"><a href="#unidade'+a+'" data-toggle="tab" id="ui-id-'+a+'">Unidade'+a+'</a></li>'
-            );
-            $(".tab-content").append(
-                    `<div class="tab-pane" id="unidade${a}">
+            $("#deletekeyword").click(function(){
+                txtArea = $("#palavrasChave");
+                txtArea.val('');
+            });
+
+            var a = 2;
+
+            $("#fa-plus").click(function(){
+                $(".nav-tabs").append(
+                        '<li id="'+a+'"><a href="#unidade'+a+'" data-toggle="tab" id="ui-id-'+a+'">Unidade'+a+'</a></li>'
+                );
+                $(".tab-content").append(
+                        `<div class="tab-pane" id="unidade${a}">
                         <fieldset>
                         <legend>@lang('messages.informations'):</legend>
                             <div class="row">
@@ -178,33 +190,11 @@
                             </div>
                         </fieldset>
                     </div>`
-            );
+                );
+                $(".ordem").mask("90");
 
-            /*$(".ordem").append(
-                    '<option value="'+a+'">'+a+'</option>'
-            );
-
-            ordens = $(".ordem>option").clone();
-            console.log(ordens);
-            $(".novaordem>option").remove();
-            $(".novaordem").append(ordens);*/
-
-            $(".ordem").mask("90");
-
-            a = a+1;
-        });
-
-        function remover(botao){
-            var seletorLi = 'li#' + botao.id;
-            var seletorDiv = 'div#unidade' + botao.id;
-            $(seletorLi).remove();
-            $(seletorDiv).remove();
-            $("div#unidade1").addClass('active');
-            $("a#ui-id-1").click();
-        }
-
-        $(function(){
-            $("#tabs").tabs();
+                a = a+1;
+            });
         });
     </script>
 @endpush

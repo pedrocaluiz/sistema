@@ -116,9 +116,17 @@ Route::prefix('questoes')->name('questoes')->group(function () {
     Route::get('/', 'QuestoesController@index');
     Route::get('/create', 'QuestoesController@create')->name('.create');
     Route::post('/', 'QuestoesController@store')->name('.store');
+
     Route::delete('/{id}', 'QuestoesController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'QuestoesController@edit')->name('.edit');
     Route::put('/{id}', 'QuestoesController@update')->name('.update');
+});
+
+Route::prefix('provas')->name('provas')->group(function () {
+    Route::get('/{id}', 'QuestoesController@show')->name('.show');
+    Route::post('/concluir', 'QuestoesController@concluirProva')->name('.concluir');
+    Route::get('/{id}/lista', 'QuestoesController@listarProvas')->name('.lista');
+    Route::get('/{id}/revisao', 'QuestoesController@revisarProvas')->name('.revisar');
 });
 
 
@@ -128,7 +136,7 @@ Route::post('/concluir/material', 'MateriaisController@concluir');
 Route::post('/inscrever/curso', 'CursosController@inscrever');
 
 
-
+Route::get('/meus-cursos', 'CursosController@meusCursos')->name('meus-cursos');
 Route::get('/usuarios', 'UsersController@index')->name('usuarios');
 
 

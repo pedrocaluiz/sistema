@@ -72,13 +72,11 @@
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title">{{$curso->titulo}}</h3>
-
-
-                   {{-- $unidade->materiais[0]->usuario->where('id', 2 ) --}}
-
-
                 </div>
                 <!-- /.box-header -->
+
+                {{-- TODO CONCLUIR UNIDADE SÓ QUANDO A PROVA TIVER SIDO APROVADA??--}}
+
                 <div class="box-body">
                   <table class="table table-bordered table-striped">
                     <tbody><tr>
@@ -95,8 +93,7 @@
                           <th class="percent">
                             <span class="badge bg-yellow">Em andamento</span>
                           </th>
-
-                        @else
+                        @elseif ($unidade->provas->max('notaAval') > 7)
                           <th class="progresso">
                             <div class="progress progress-xs" >
                               <div class="progress-bar progress-bar-green" style="width: 100%"></div>
@@ -104,6 +101,15 @@
                           </th>
                           <th class="percent">
                             <span class="badge bg-green">Concluído</span>
+                          </th>
+                        @else
+                          <th class="progresso">
+                            <div class="progress progress-xs" >
+                              <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
+                            </div>
+                          </th>
+                          <th class="percent">
+                            <span class="badge bg-light-blue">Falta Avaliação*</span>
                           </th>
                         @endif
                       @empty
@@ -177,37 +183,6 @@
 @endsection
 
 
-@section('teste')
-
-  <div class="row align-items-end">
-    <div class="col-md-12">
-      @if (isset($unidades, $user_curso[0] ))
-        <div class="row">
-          @foreach ($unidades as $unidade)
-            <div class="col-lg-6 col-xs-12">
-              <!-- small box -->
-              <div class="small-box bg-white">
-                <div class="inner">
-                  <h3>{{$unidade->id}}</h3>
-                  <p>{{$unidade->titulo}}</p>
-                </div>
-                <div class="icon">
-                  <i class=""></i>
-                </div>
-                <!-- small box footer -->
-                <a href="/unidades/aluno/{{$unidade->id}}" class="small-box-footer">
-                  Mais detalhes <i class="fa fa-arrow-circle-right"></i>
-                </a>
-              </div>
-            </div>
-          @endforeach
-        </div>
-      @endif
-    </div>
-  </div>
-
-@endsection
-
 @push('scripts')
   <script type="text/javascript">
 
@@ -245,7 +220,7 @@
                               <p>{{$unidade->titulo}}</p>
                             </div>
                               <div class="icon"><i class=""></i></div>
-                            <a href="/unidades/aluno/{{$unidade->id}}" class="small-box-footer">
+                            <a href="/unidades/{{$unidade->id}}" class="small-box-footer">
                               Mais detalhes <i class="fa fa-arrow-circle-right"></i>
                             </a>
                           </div>

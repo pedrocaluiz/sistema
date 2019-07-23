@@ -66,15 +66,16 @@
               <div class="row">
                 <div class="form-group col-md-9">
                   <label for="correta">@lang('messages.right-answer')</label>
+                  <input type="hidden" name="correta_id" value="{{$respCorreta[0]->id}}">
                   <textarea rows="2" cols="50" name="correta" id="correta" class="form-control" required maxlength="500" style="resize: vertical"
-                      placeholder="{{$questao->respCorreta}}">{{$questao->respCorreta}}</textarea>
+                      placeholder="{{$respCorreta[0]->resposta}}">{{$respCorreta[0]->resposta}}</textarea>
                   <hr class="my-4">
                 </div>
               </div>
 
               @isset($respostas)
-                @foreach($respostas as $resposta)
-                  <div class="row" id="{{$loop->iteration}}">
+                @foreach($respostas->whereNotIn('id', [$questao->respCorreta_id]) as $resposta)
+                  <div class="row resp" id="{{$loop->iteration}}">
                     <div class="form-group col-md-9">
                       <input type="hidden" name="incorretas_id[]" value="{{$resposta->id}}">
                       <label for="incorreta">@lang('messages.wrong-answer')</label>
@@ -130,25 +131,6 @@
           }
       });
 
-      var a = 0;
-
-      $("#btnResp").click(function(){
-          $("#respostas").append(
-              `<div class="row" id="${a}">
-                  <div class="form-group col-md-9">
-                      <label for="incorreta">@lang('messages.wrong-answer')</label>
-                      <textarea id="incorreta" rows="2" cols="50" name="novas_incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
-                  </div>
-                  <div class="form-group col-md-1">
-                      <button type="button" class="btn btn-danger botao novo" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
-                          <i class="fa fa-trash"></i>
-                      </button>
-                  </div>
-              </div>`
-          );
-          a = a+1;
-      });
-
       function remover(botao){
           if (botao.value > 0) {
               console.log(botao.value);
@@ -174,7 +156,23 @@
       }
 
       $(function(){
-
+          $("#btnResp").click(function(){
+              var a = parseInt($("#respostas>.resp:last").attr('id')) + 1;
+              console.log(a);
+              $("#respostas").append(
+                  `<div class="row resp" id="${a}">
+                  <div class="form-group col-md-9">
+                      <label for="incorreta">@lang('messages.wrong-answer')</label>
+                      <textarea id="incorreta" rows="2" cols="50" name="novas_incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                  </div>
+                  <div class="form-group col-md-1">
+                      <button type="button" class="btn btn-danger botao novo" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
+                          <i class="fa fa-trash"></i>
+                      </button>
+                  </div>
+              </div>`
+              );
+          });
       });
   </script>
 @endpush

@@ -130,25 +130,6 @@
           }
       });
 
-      var a = 0;
-
-      $("#btnResp").click(function(){
-          $("#respostas").append(
-              `<div class="row" id="${a}">
-                  <div class="form-group col-md-6">
-                      <label for="incorreta">@lang('messages.wrong-answer')</label>
-                      <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
-                  </div>
-                  <div class="form-group col-md-1">
-                      <button type="button" class="btn btn-danger botao novo" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
-                          <i class="fa fa-trash"></i>
-                      </button>
-                  </div>
-              </div>`
-          );
-          a = a+1;
-      });
-
       function remover(botao){
           var seletor = 'div#' + botao.id;
           $(seletor).remove();
@@ -172,6 +153,24 @@
 
       $(function(){
           carregarUnidades($('#curso_id')[0]);
+          var a = 0;
+
+          $("#btnResp").click(function(){
+              $("#respostas").append(
+                  `<div class="row" id="${a}">
+                  <div class="form-group col-md-6">
+                      <label for="incorreta">@lang('messages.wrong-answer')</label>
+                      <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                  </div>
+                  <div class="form-group col-md-1">
+                      <button type="button" class="btn btn-danger botao novo" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
+                          <i class="fa fa-trash"></i>
+                      </button>
+                  </div>
+              </div>`
+              );
+              a = a+1;
+          });
       });
   </script>
 @endpush

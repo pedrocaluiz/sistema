@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 
 class UnidadesController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -95,6 +97,7 @@ class UnidadesController extends Controller
         //se não estiver, redirecionar para a página do curso correspondente.
 
         $auth = Auth::user();
+
         $unidade = Unidade::find($id);
 
         if (isset($unidade)){

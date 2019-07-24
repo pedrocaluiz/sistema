@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "unidades"])
+@extends('layouts.base', ["current" => "unidades", "menu" => "listar"])
 
 @section('header')
     @lang('messages.units')

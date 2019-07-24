@@ -62,8 +62,6 @@ class QuestoesController extends Controller
         $unidades = Unidade::all();
         $cursos = Curso::all();
 
-        $this->authorize('create', Questao::class);
-
         return view('questoes.instrutor.create',
             compact('unidades', 'cursos'));
     }

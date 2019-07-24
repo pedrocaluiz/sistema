@@ -75,7 +75,11 @@
                 </div>
                 <!-- /.box-header -->
 
-                {{-- TODO CONCLUIR UNIDADE SÓ QUANDO A PROVA TIVER SIDO APROVADA??--}}
+                {{-- TODO
+                CONCLUIR UNIDADE SÓ QUANDO A PROVA TIVER SIDO APROVADA??
+                VERIFICAR SE HA QUESTOES CADASTRADAS PARA A UNIDADE,
+                  SE NÃO HOUVER, CONCLUIR SEM PROVA.
+                --}}
 
                 <div class="box-body">
                   <table class="table table-bordered table-striped">

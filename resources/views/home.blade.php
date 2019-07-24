@@ -147,27 +147,6 @@
             <!-- small box -->
             <div class="small-box bg-white">
                 <div class="inner">
-                    @if (isset($perfis))
-                        <h3>{{$perfis->count()}}</h3>
-                    @else
-                        <h3>00</h3>
-                    @endif
-                    <p>Perfis</p>
-                    <p>Registrados</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-user-secret"></i>
-                </div>
-                <a href="{{route('perfis')}}" class="small-box-footer">
-                    Mais detalhes <i class="fa fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-                <div class="inner">
                     @if (isset($tipoDoc))
                         <h3>{{$tipoDoc->count()}}</h3>
                     @else

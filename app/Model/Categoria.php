@@ -9,4 +9,8 @@ class Categoria extends Model
   protected $fillable = [
     'descricao', 'icone', 'usuarioAtualizacao',
   ];
+
+    public function cursos() {
+        return $this->hasMany(Curso::class);
+    }
 }

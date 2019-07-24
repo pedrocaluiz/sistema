@@ -135,8 +135,13 @@ Route::post('/inscrever/material', 'MateriaisController@inscrever');
 Route::post('/concluir/material', 'MateriaisController@concluir');
 Route::post('/inscrever/curso', 'CursosController@inscrever');
 
+Route::prefix('meus-cursos')->name('meus-cursos')->group(function () {
+    Route::get('/', 'CursosController@meusCursos');
+    Route::get('/andamento', 'CursosController@andamento')->name('.andamento');
+    Route::get('/concluidos', 'CursosController@concluidos')->name('.concluidos');
+});
 
-Route::get('/meus-cursos', 'CursosController@meusCursos')->name('meus-cursos');
+Route::get('/todos-cursos', 'CursosController@todosCursos')->name('todos-cursos');
 Route::get('/usuarios', 'UsersController@index')->name('usuarios');
 
 

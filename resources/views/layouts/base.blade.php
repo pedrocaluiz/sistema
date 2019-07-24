@@ -11,7 +11,7 @@
     @stack('scripts')
 
 </head>
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition sidebar-mini skin-blue">
 <div class="wrapper">
 
     <!-- Header Nav-->

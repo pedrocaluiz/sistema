@@ -30,9 +30,9 @@ class CursosController extends Controller
         $this->authorize('view', Curso::class);
 
         $categorias = Categoria::all();
-        //$cursos = Curso::all();
+        $cursos = Curso::all();
 
-        $cursos = DB::table('cursos')
+        /*$cursos = DB::table('cursos')
             ->where('id', 14)
             ->get();
 
@@ -50,11 +50,7 @@ class CursosController extends Controller
             4 => $cursos[0]
         ];
 
-        shuffle($cursos2);
-
-        dd($cursos, $cursos2);
-        //dd($cursos);
-
+        shuffle($cursos2);*/
 
         $users = User::all();
         $adicionada = $request->session()->get('adicionada');
@@ -261,22 +257,88 @@ class CursosController extends Controller
     {
         $auth = Auth::user();
 
-        $matriculas = UsuarioCursoUnidadeMaterialProva::where([
+        $cursos = UsuarioCursoUnidadeMaterialProva::where([
             ['user_id', $auth->id],
             ['curso_id', '<>', null]
         ])->get();
-
-        if ($matriculas->first()){
-            for($i = 0; $i < count($matriculas); $i++){
-                $array[$i] = $matriculas[$i]->curso_id;
+        if ($cursos->first()){
+            for($i = 0; $i < count($cursos); $i++){
+                $array[$i] = $cursos[$i]->curso_id;
             }
-
             $cursos = Curso::whereIn('id', $array )->get();
         }
 
-        return view('cursos.aluno.meus-cursos',
-            compact('matriculas', 'cursos'));
+        $concluidos = UsuarioCursoUnidadeMaterialProva::where([
+            ['user_id', $auth->id],
+            ['curso_id', '<>', null],
+            ['dataConclusao', '<>', null],
+        ])->get();
+        if ($concluidos->first()){
+            for($i = 0; $i < count($concluidos); $i++){
+                $array[$i] = $concluidos[$i]->curso_id;
+            }
+            $concluidos = Curso::whereIn('id', $array )->get();
+        }
 
+        $andamento = UsuarioCursoUnidadeMaterialProva::where([
+            ['user_id', $auth->id],
+            ['curso_id', '<>', null],
+            ['dataConclusao', null],
+        ])->get();
+        if ($andamento->first()){
+            for($i = 0; $i < count($andamento); $i++){
+                $array[$i] = $andamento[$i]->curso_id;
+            }
+            $andamento = Curso::whereIn('id', $array )->get();
+        }
+
+        return view('cursos.aluno.meus-cursos',
+            compact('cursos', 'concluidos', 'andamento'));
+
+    }
+
+    public function todosCursos()
+    {
+        $cursos = Curso::all();
+        $categorias = Categoria::all();
+        return view('cursos.aluno.todos-cursos',
+            compact('cursos', 'categorias'));
+    }
+
+    public function andamento()
+    {
+        $auth = Auth::user();
+        $andamento = UsuarioCursoUnidadeMaterialProva::where([
+            ['user_id', $auth->id],
+            ['curso_id', '<>', null],
+            ['dataConclusao', null],
+        ])->get();
+        if ($andamento->first()){
+            for($i = 0; $i < count($andamento); $i++){
+                $array[$i] = $andamento[$i]->curso_id;
+            }
+            $andamento = Curso::whereIn('id', $array )->get();
+        }
+        return view('cursos.aluno.andamento-cursos',
+            compact('andamento'));
+    }
+
+    public function concluidos()
+    {
+        $auth = Auth::user();
+        $concluidos = UsuarioCursoUnidadeMaterialProva::where([
+            ['user_id', $auth->id],
+            ['curso_id', '<>', null],
+            ['dataConclusao', '<>', null],
+        ])->get();
+        if ($concluidos->first()){
+            for($i = 0; $i < count($concluidos); $i++){
+                $array[$i] = $concluidos[$i]->curso_id;
+            }
+            $concluidos = Curso::whereIn('id', $array )->get();
+        }
+        return view('cursos.aluno.concluidos-cursos ',
+            compact('concluidos'));
     }
 
 }

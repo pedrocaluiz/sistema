@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "materiais"])
+@extends('layouts.base', ["current" => "materiais", "menu" => "listar"])
 
 @section('header')
     @lang('messages.materials')

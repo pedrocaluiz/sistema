@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Curso;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -51,5 +52,9 @@ class User extends Authenticatable
     public function perfil()
     {
         return $this->belongsToMany(Perfil::class, 'perfil_usuario');
+    }
+
+    public function cursos() {
+        return $this->belongsToMany(Curso::class, 'usuario_curso_unidade_material_prova', 'user_id')->withPivot('dataConclusao', 'notaAval', 'created_at');
     }
 }

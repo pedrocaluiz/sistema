@@ -36,15 +36,15 @@
     /*parte mobile*/
     @media(max-width: 1335px){
 
-        table#example1 td:nth-child(5), td:nth-child(6) {
+        table#example1 td:nth-child(3), td:nth-child(5) {
             display: none;
         }
 
-        thead th:nth-child(5), th:nth-child(6) {
+        thead th:nth-child(3), th:nth-child(5) {
             display: none;
         }
 
-        tfoot th:nth-child(5), th:nth-child(6) {
+        tfoot th:nth-child(3), th:nth-child(5) {
             display: none;
         }
     }
@@ -111,13 +111,10 @@
                         Matrícula
                       </th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Celular: activate to sort column ascending" >
-                        Celular
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                           aria-label="Função: activate to sort column ascending" >
                         Função
                       </th>
-                      <th id="acao" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                      <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                           aria-label="Ação: activate to sort column ascending" >
                         Ação
                       </th>
@@ -131,7 +128,6 @@
                         <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->matricula}}</td>
-                        <td>{{$user->celular}}</td>
                         @if (isset($funcoes))
                           @foreach ($funcoes as $funcao)
                             @if ($funcao->id == $user->funcao_id)
@@ -140,8 +136,12 @@
                           @endforeach
                         @endif
                         <td>
+                          <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoTxt">Detalhes</a>
+                          <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoIcon"><i class="fa fa-list-ul"></i></a>
+
                           <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-primary acaoTxt">Editar</a>
                           <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
+
                           <a class="btn btn=sm btn-danger acaoTxt" href="/usuarios/{{$user->id}}"
                              onclick="event.preventDefault();
                                      document.getElementById('delete-form-{{$user->id}}').submit();">
@@ -174,9 +174,6 @@
                         Matrícula
                       </th>
                       <th rowspan="1" colspan="1">
-                        Celular
-                      </th>
-                      <th rowspan="1" colspan="1">
                         Função
                       </th>
                       <th rowspan="1" colspan="1">
@@ -188,13 +185,6 @@
                 @endif
               </div>
             </div>
-          </div>
-        </div>
-        <div class="box-footer d-flex justify-content-center">
-          <div class="col-md-2">
-            <a href="{{route('register')}}" type="button"  class="btn btn-primary botao" id="cadastro">
-              <i class="fa fa-plus"></i> &nbsp;&nbsp;@lang('messages.user')
-            </a>
           </div>
         </div>
       </div>

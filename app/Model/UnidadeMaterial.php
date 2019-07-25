@@ -16,4 +16,9 @@ class UnidadeMaterial extends Model
     public function unidade() {
         return $this->belongsTo(Unidade::class);
     }
+
+    public function tipoMaterial() {
+        return $this->belongsTo(TipoMaterial::class);
+    }
+
 }

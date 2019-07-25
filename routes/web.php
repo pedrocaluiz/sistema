@@ -134,6 +134,7 @@ Route::prefix('provas')->name('provas')->group(function () {
 Route::post('/inscrever/material', 'MateriaisController@inscrever');
 Route::post('/concluir/material', 'MateriaisController@concluir');
 Route::post('/inscrever/curso', 'CursosController@inscrever');
+Route::get('/download-material/{id}', 'UnidadesController@download');
 
 Route::prefix('meus-cursos')->name('meus-cursos')->group(function () {
     Route::get('/', 'CursosController@meusCursos');
@@ -142,7 +143,13 @@ Route::prefix('meus-cursos')->name('meus-cursos')->group(function () {
 });
 
 Route::get('/todos-cursos', 'CursosController@todosCursos')->name('todos-cursos');
-Route::get('/usuarios', 'UsersController@index')->name('usuarios');
+
+
+Route::prefix('usuarios')->name('usuarios')->group(function () {
+    Route::get('/', 'UsersController@index');
+    Route::get('/relatorio/{user_id}', 'UsersController@relatorioUser')->name('.relatorio.user');
+    Route::get('/relatorio/{user_id}/curso/{curso_id}', 'UsersController@relatorioCurso')->name('.relatorio.curso');
+});
 
 
 Route::get('/admin', function (){

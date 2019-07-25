@@ -31,6 +31,10 @@
     .flex-justify-center>label {
       margin-right: 10px;
     }
+    .btn-primary {
+      margin: 5px;
+    }
+
   </style>
 @endpush
 
@@ -50,6 +54,7 @@
             <div class="row">
               <div class="col-md-12" style="display: flex; justify-content: flex-end">
                 <p>Instrutor do Curso: <strong>{{ $user->primeiroNome }} {{ $user->ultimoNome }}</strong></p>
+
               </div>
             </div>
 
@@ -63,24 +68,35 @@
                 @foreach($materiais as $mat)
                   <div class="row" style="display: flex; justify-content: center; margin-top: 40px">
                     <p id="descricao">Descrição: <strong>{{ $mat->descricao }}</strong></p>
+
                   </div>
+
                   <input type="text" id="material_id" name="material_id" value="{{$mat->id}}" hidden>
 
 
-              @if (($mat->material_id == 1) && ($mat->storage == 1))
-                <!--pdf, doc, xls, ppt local onload="inscrever()" -->
-              @endif
-
-              @if ((($mat->material_id == 1) or ($mat->material_id == 5) or ($mat->material_id == 6) or ($mat->material_id == 7)) && ($mat->storage == 0))
-                <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                  <a href="{{$mat->urlArquivo}}" onload="inscrever();" onclick="concluir();" target="_blank"><strong>Link</strong></a>
+              @if ((($mat->material_id == 1) or ($mat->material_id == 5) or ($mat->material_id == 6) or ($mat->material_id == 7)) && ($mat->storage == 1))
+                <div class="row flex-justify-center" style="margin: 30px">
+                  <div class="icon"><i class="{{$tipoMat->where('id', $mat->material_id)->first()->icone}}" style="font-size: 60px"></i></div>
                 </div>
+                <div class="row flex-justify-center" style="margin: 30px">
+                  <a class="btn btn=sm btn-primary" onclick="concluir();" href="/download-material/{{$mat->id}}"> Download</a>
+                  <a type="button" class="btn btn=sm btn-primary" onclick="concluir();" href="/storage/{{$mat->urlArquivo}}" target="_blank"> Ver online</a>
+                </div>
+              @endif
+            <!--pdf, doc, xls, ppt local-->
+              @if ((($mat->material_id == 1) or ($mat->material_id == 5) or ($mat->material_id == 6) or ($mat->material_id == 7)) && ($mat->storage == 0))
+                  <div class="row flex-justify-center" style="margin: 30px">
+                    <div class="icon"><i class="{{$tipoMat->where('id', $mat->material_id)->first()->icone}}" style="font-size: 60px"></i></div>
+                  </div>
+                  <div class="row flex-justify-center" style="margin: 30px">
+                    <a type="button" class="btn btn=sm btn-primary" onclick="concluir();" href="{{$mat->urlArquivo}}" target="_blank"> Ver online</a>
+                  </div>
               @endif
             <!--pdf, doc, xls, ppt web-->
               @if (($mat->material_id == 2) && ($mat->storage == 1))
                 <div class="row">
                   <div class="video" >
-                    <video class="video" controls onload="inscrever();" onclick="concluir();">
+                    <video class="video" controls onclick="concluir();">
                       <source src="/storage/{{$mat->urlArquivo}}" type="video/mp4">
                     </video>
                   </div>
@@ -98,8 +114,8 @@
               @endif
             <!--video web-->
               @if (($mat->material_id == 3))
-                  <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                    <a href="{{$mat->urlArquivo}}" onload="inscrever();" onclick="concluir();" target="_blank"><strong>Link</strong></a>
+                  <div class="row flex-justify-center" style="margin: 30px">
+                    <a type="button" class="btn btn=sm btn-primary" onclick="concluir();" href="{{$mat->urlArquivo}}" target="_blank"> Visitar</a>
                   </div>
               @endif
             <!--link-->
@@ -119,18 +135,18 @@
 
                   <div class="row flex-justify-center">
                     <div class="col-md-3 flex-justify-center">
-                      <label for="concluido">Concluído</label>
                     @forelse ($mat->usuario->where('id', Auth::user()->id) as $user)
                       @if (empty($user->pivot->dataConclusao))
-                        <!--Existe registro na tabela UCUMP, mas não existe registro no dataConclusao-->
-                          <input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido">
+                        <!--Existe registro na tabela UCUMP, mas não existe dataConclusao-->
+                          <span class="badge bg-yellow">Em andamento</span>
                       @else
                         <!--Existe registro na tabela UCUMP e dataConclusao checked-->
-                          <input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido" checked>
+                          <!--<input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido" checked >-->
+                          <span class="badge bg-green">Concluído</span>
                       @endif
                     @empty
                       <!--Não existe registro na tabela UCUMP-->
-                        <input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido">
+                        <span class="badge bg-red">Não iniciado</span>
                       @endforelse
                     </div>
                   </div>
@@ -254,7 +270,9 @@
             checkboxClass: 'icheckbox_flat-blue',
             radioClass: 'iradio_flat-blue'
         });
+        inscrever();
     });
+
 
 </script>
 @endpush

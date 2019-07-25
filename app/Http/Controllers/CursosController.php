@@ -144,8 +144,6 @@ class CursosController extends Controller
                 ->orderBy('ordem', 'asc')
                 ->get();
 
-
-
             return view('cursos.aluno.curso',
                 compact('curso', 'user', 'cat', 'user_curso', 'unidades'));
         }else{

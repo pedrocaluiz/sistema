@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Curso;
 use App\Model\Questao;
 use App\Model\Resposta;
+use App\Model\TipoMaterial;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
@@ -12,6 +13,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UnidadesController extends Controller
 {
@@ -99,6 +101,7 @@ class UnidadesController extends Controller
         $auth = Auth::user();
 
         $unidade = Unidade::find($id);
+        $tipoMat = TipoMaterial::all();
 
         if (isset($unidade)){
             $user = \App\User::find($unidade->usuarioAtualizacao);
@@ -119,7 +122,7 @@ class UnidadesController extends Controller
                 $tableUserUnidade->save();
             }
             return view('unidades.aluno.unidade',
-                compact('unidade', 'user', 'auth', 'materiais'));
+                compact('unidade', 'user', 'auth', 'materiais', 'tipoMat'));
         }else {
             return view('home');
         }
@@ -184,12 +187,17 @@ class UnidadesController extends Controller
 
     public function concluir(Request $request)
     {
-
         dd($request);
+    }
 
-
-
-
+    public function download($id)
+    {
+        $material = UnidadeMaterial::find($id);
+        if (isset($material)){
+            $path = Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($material->urlArquivo);
+            return response()->download($path);
+        }
+        return redirect()->back();
     }
 
 }

@@ -133,6 +133,7 @@ class QuestoesController extends Controller
         $unidade = Unidade::find($id);
         //verificar se todos os materiais estão concluídos.
 
+
         $prova_iniciada = Prova::where([
             ['unidade_id', $unidade->id],
             ['user_id', $auth->id],
@@ -340,12 +341,18 @@ class QuestoesController extends Controller
         return ($prova);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function concluirProva(Request $request)
     {
-        //dd($request->all());
+        $auth = Auth::user();
         $data = Carbon::now()->toDateTimeString();
         $quest_resp = ProvaQuestao::where('prova_id', $request->prova_id)->get();
 
+        DB::beginTransaction();
         foreach ($quest_resp as $resp){
             $id = $resp->questao_id;
             $resp->alternativaMarcada = $request->input($id);
@@ -367,13 +374,36 @@ class QuestoesController extends Controller
         $prova->notaAval = $notaAval;
         $prova->save();
 
+        $maior_nota = Prova::where([
+            ['unidade_id', $prova->unidade_id],
+            ['user_id', $auth->id],
+        ])->max('notaAval');
+
+        //pegando a matricula nessa unidade
+        $matricula = UsuarioCursoUnidadeMaterialProva::where([
+            ['unidade_id', $prova->unidade_id],
+            ['user_id', $auth->id],
+        ])->get();
+
+        $matricula->first()->notaAval = $maior_nota;
+        $matricula->first()->save();
+
+        DB::commit();
+
         return Redirect::to('provas/' . $prova->unidade_id . '/lista');
     }
 
-    public function listarProvas($id)
+    public function listarProvas($id, Request $request)
     {
         $auth = Auth::user();
         $unidade = Unidade::find($id);
+
+        $perguntas = Questao::where('unidade_id', $unidade->id)->get();
+
+        if (empty($perguntas[0])){
+            return Redirect::to('unidades/' . $unidade->id);
+        }
+
         $provas = Prova::where('unidade_id', $unidade->id)->get();
         $curso = Curso::where('id', $unidade->curso_id)->get();
 
@@ -391,14 +421,12 @@ class QuestoesController extends Controller
             for($i = 0; $i < count($todosMateriais); $i++){
                 $array[$i] = $todosMateriais[$i]->id;
             }
-
             $nao_concluidos = UsuarioCursoUnidadeMaterialProva::
             whereIn('material_id', $array )
                 ->where([
                     ['user_id', $auth->id],
                     ['dataConclusao', NULL],])
                 ->get();
-
             return view('questoes.aluno.pre-questoes',
                 compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos'));
 

@@ -8,6 +8,7 @@ use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -220,18 +221,20 @@ class MateriaisController extends Controller
     public function concluir(Request $request)
     {
         $auth = Auth::user();
+        $data = Carbon::now()->toDateTimeString();
         $user_mats = UsuarioCursoUnidadeMaterialProva::where([
             ['material_id', $request->material_id],
             ['user_id', $auth->id],
         ])->get();
+        $user_unidade = UsuarioCursoUnidadeMaterialProva::where([
+            ['unidade_id', $request->unidade_id],
+            ['user_id', $auth->id],
+        ])->get();
 
-        //preciso verificar se já está concluído o material.
-        //se a unidade está concluída primeiro, se estiver, já retornar.
-
-        if (isset($user_mats[0])){
+        if (isset($user_mats[0])){ // se existir registro para o material, conclui
             $user_mats[0]->dataConclusao = $request->dataConclusao;
             $user_mats[0]->save();
-        }else {
+        }else { // se não existir registro para o material, cria a conclui
             $user_mat = new UsuarioCursoUnidadeMaterialProva();
             $user_mat->user_id = $auth->id;
             $user_mat->material_id = $request->material_id;
@@ -239,33 +242,30 @@ class MateriaisController extends Controller
             $user_mat->save();
         }
 
-        //retorna todos os materiais daquela unidade
-        //fazer metodo para procurar se há questoes, se não houver concluir, se houver, verificar se ela está concluída
         $todosMateriais = UnidadeMaterial::where([
-            ['unidade_id', $request->unidade_id],])
-            ->get();
+            ['unidade_id', $request->unidade_id],
+            ])->get();
 
         for($i = 0; $i < count($todosMateriais); $i++){
             $array[$i] = $todosMateriais[$i]->id;
         }
 
-        $nao_concluidos = UsuarioCursoUnidadeMaterialProva::
-        whereIn('material_id', $array )
+        $concluidos = UsuarioCursoUnidadeMaterialProva::
+            whereIn('material_id', $array)
             ->where([
                 ['user_id', $auth->id],
-                ['dataConclusao', NULL],])
+                ['dataConclusao', '<>', NULL],])
             ->get();
 
-        if (!isset($nao_concluidos[0])){
-            //se NAO existir NENHUM material NULL então ...
-            //concluir Unidade
-            $user_unidade = UsuarioCursoUnidadeMaterialProva::where([
-                ['user_id', $auth->id],
-                ['unidade_id', $request->unidade_id],])
-                ->get();
-
-            $user_unidade[0]->dataConclusao = $request->dataConclusao;
+        if (count($todosMateriais) <= 0){ // se não existir nenhum material conclui a unidade
+            $user_unidade[0]->dataConclusao = $data;
             $user_unidade[0]->save();
+        }elseif (count($concluidos) > 0){
+            $status = intval(count($concluidos) / count($todosMateriais));
+            if ($status >= 1){
+                $user_unidade[0]->dataConclusao = $data;
+                $user_unidade[0]->save();
+            }
         }
 
         return json_encode($todosMateriais);

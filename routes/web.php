@@ -17,10 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
-Route::prefix('agencias')->name('agencias')->group(function () {
+Route::prefix('agencias')->name('agencias')->middleware('auth')->group(function () {
   Route::get('/', 'AgenciasController@index');
   Route::get('/create', 'AgenciasController@create')->name('.create');
   Route::post('/', 'AgenciasController@store')->name('.store');
@@ -29,7 +29,7 @@ Route::prefix('agencias')->name('agencias')->group(function () {
   Route::put('/{id}', 'AgenciasController@update')->name('.update');
 });
 
-Route::prefix('cargos')->name('cargos')->group(function () {
+Route::prefix('cargos')->name('cargos')->middleware('auth')->group(function () {
     Route::get('/', 'CargosController@index');
     Route::get('/create', 'CargosController@create')->name('.create');
     Route::post('/', 'CargosController@store')->name('.store');
@@ -38,7 +38,7 @@ Route::prefix('cargos')->name('cargos')->group(function () {
     Route::put('/{id}', 'CargosController@update')->name('.update');
 });
 
-Route::prefix('categorias')->name('categorias')->group(function () {
+Route::prefix('categorias')->name('categorias')->middleware('auth')->group(function () {
     Route::get('/', 'CategoriasController@index');
     Route::get('/create', 'CategoriasController@create')->name('.create');
     Route::post('/', 'CategoriasController@store')->name('.store');
@@ -47,7 +47,7 @@ Route::prefix('categorias')->name('categorias')->group(function () {
     Route::put('/{id}', 'CategoriasController@update')->name('.update');
 });
 
-Route::prefix('funcoes')->name('funcoes')->group(function () {
+Route::prefix('funcoes')->name('funcoes')->middleware('auth')->group(function () {
     Route::get('/', 'FuncoesController@index');
     Route::get('/create', 'FuncoesController@create')->name('.create');
     Route::post('/', 'FuncoesController@store')->name('.store');
@@ -56,7 +56,7 @@ Route::prefix('funcoes')->name('funcoes')->group(function () {
     Route::put('/{id}', 'FuncoesController@update')->name('.update');
 });
 
-Route::prefix('perfis')->name('perfis')->group(function () {
+Route::prefix('perfis')->name('perfis')->middleware('auth')->group(function () {
     Route::get('/', 'PerfisController@index');
     Route::get('/create', 'PerfisController@create')->name('.create');
     Route::post('/', 'PerfisController@store')->name('.store');
@@ -65,7 +65,7 @@ Route::prefix('perfis')->name('perfis')->group(function () {
     Route::put('/{id}', 'PerfisController@update')->name('.update');
 });
 
-Route::prefix('tipodoc')->name('tipodoc')->group(function () {
+Route::prefix('tipodoc')->name('tipodoc')->middleware('auth')->group(function () {
     Route::get('/', 'TipoDocsController@index');
     Route::get('/create', 'TipoDocsController@create')->name('.create');
     Route::post('/', 'TipoDocsController@store')->name('.store');
@@ -74,7 +74,7 @@ Route::prefix('tipodoc')->name('tipodoc')->group(function () {
     Route::put('/{id}', 'TipoDocsController@update')->name('.update');
 });
 
-Route::prefix('tipomat')->name('tipomat')->group(function () {
+Route::prefix('tipomat')->name('tipomat')->middleware('auth')->group(function () {
     Route::get('/', 'TipoMateriaisController@index');
     Route::get('/create', 'TipoMateriaisController@create')->name('.create');
     Route::post('/', 'TipoMateriaisController@store')->name('.store');
@@ -83,7 +83,7 @@ Route::prefix('tipomat')->name('tipomat')->group(function () {
     Route::put('/{id}', 'TipoMateriaisController@update')->name('.update');
 });
 
-Route::prefix('cursos')->name('cursos')->group(function () {
+Route::prefix('cursos')->name('cursos')->middleware('auth')->group(function () {
     Route::get('/', 'CursosController@index');
     Route::get('/create', 'CursosController@create')->name('.create');
     Route::post('/', 'CursosController@store')->name('.store');
@@ -91,9 +91,10 @@ Route::prefix('cursos')->name('cursos')->group(function () {
     Route::delete('/{id}', 'CursosController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'CursosController@edit')->name('.edit');
     Route::put('/{id}', 'CursosController@update')->name('.update');
+    Route::post('/{curso_id}/pdf', 'CursosController@certificadoCurso')->name('.pdf');;
 });
 
-Route::prefix('unidades')->name('unidades')->group(function () {
+Route::prefix('unidades')->name('unidades')->middleware('auth')->group(function () {
     Route::get('/', 'UnidadesController@index');
     Route::get('/create', 'UnidadesController@create')->name('.create');
     Route::post('/', 'UnidadesController@store')->name('.store');
@@ -103,7 +104,7 @@ Route::prefix('unidades')->name('unidades')->group(function () {
     Route::put('/{id}', 'UnidadesController@update')->name('.update');
 });
 
-Route::prefix('materiais/instrutor')->name('materiais.instrutor')->group(function () {
+Route::prefix('materiais/instrutor')->name('materiais.instrutor')->middleware('auth')->group(function () {
     Route::get('/', 'MateriaisController@index');
     Route::get('/create', 'MateriaisController@create')->name('.create');
     Route::post('/', 'MateriaisController@store')->name('.store');
@@ -112,7 +113,7 @@ Route::prefix('materiais/instrutor')->name('materiais.instrutor')->group(functio
     Route::put('/{id}', 'MateriaisController@update')->name('.update');
 });
 
-Route::prefix('questoes')->name('questoes')->group(function () {
+Route::prefix('questoes')->name('questoes')->middleware('auth')->group(function () {
     Route::get('/', 'QuestoesController@index');
     Route::get('/create', 'QuestoesController@create')->name('.create');
     Route::post('/', 'QuestoesController@store')->name('.store');
@@ -122,30 +123,30 @@ Route::prefix('questoes')->name('questoes')->group(function () {
     Route::put('/{id}', 'QuestoesController@update')->name('.update');
 });
 
-Route::prefix('provas')->name('provas')->group(function () {
+Route::prefix('provas')->name('provas')->middleware('auth')->group(function () {
     Route::get('/{id}', 'QuestoesController@show')->name('.show');
     Route::post('/concluir', 'QuestoesController@concluirProva')->name('.concluir');
     Route::get('/{id}/lista', 'QuestoesController@listarProvas')->name('.lista');
     Route::get('/{id}/revisao', 'QuestoesController@revisarProvas')->name('.revisar');
 });
 
+Route::post('/inscrever/material', 'MateriaisController@inscrever')->middleware('auth');
+Route::post('/concluir/material', 'MateriaisController@concluir')->middleware('auth');
+Route::post('/inscrever/curso', 'CursosController@inscrever')->middleware('auth');
+Route::get('/download-material/{id}', 'UnidadesController@download')->middleware('auth');
 
-
-Route::post('/inscrever/material', 'MateriaisController@inscrever');
-Route::post('/concluir/material', 'MateriaisController@concluir');
-Route::post('/inscrever/curso', 'CursosController@inscrever');
-Route::get('/download-material/{id}', 'UnidadesController@download');
-
-Route::prefix('meus-cursos')->name('meus-cursos')->group(function () {
+Route::prefix('meus-cursos')->name('meus-cursos')->middleware('auth')->group(function () {
     Route::get('/', 'CursosController@meusCursos');
     Route::get('/andamento', 'CursosController@andamento')->name('.andamento');
     Route::get('/concluidos', 'CursosController@concluidos')->name('.concluidos');
 });
 
-Route::get('/todos-cursos', 'CursosController@todosCursos')->name('todos-cursos');
+Route::get('/todos-cursos', 'CursosController@todosCursos')->name('todos-cursos')->middleware('auth');
 
 
-Route::prefix('usuarios')->name('usuarios')->group(function () {
+
+
+Route::prefix('usuarios')->name('usuarios')->middleware('auth')->group(function () {
     Route::get('/', 'UsersController@index');
     Route::get('/relatorio/{user_id}', 'UsersController@relatorioUser')->name('.relatorio.user');
     Route::get('/relatorio/{user_id}/curso/{curso_id}', 'UsersController@relatorioCurso')->name('.relatorio.curso');

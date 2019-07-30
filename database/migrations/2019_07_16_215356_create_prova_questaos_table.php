@@ -20,7 +20,7 @@ class CreateProvaQuestaosTable extends Migration
             $table->foreign('prova_id')->references('id')->on('provas');
             $table->bigInteger('questao_id')->unsigned()->nullable()->default(null);
             $table->foreign('questao_id')->references('id')->on('questoes');
-            $table->decimal('notaQuestao', '5', '2')->nullable()->default(null);
+            $table->decimal('notaQuestao', '5', '2')->nullable()->default(0);
 
 
             $table->bigInteger('resposta_id_1')->unsigned()->nullable()->default(null);

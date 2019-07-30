@@ -86,20 +86,30 @@
                     <tbody><tr>
                       <th class="ordem">{{$unidade->id}}</th>
                       <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
-
                       @forelse ($unidade->usuario->where('id', Auth::user()->id) as $user)
                         @if (empty($user->pivot->dataConclusao))
+                          @if (count($unidade->materiais) > 0)
                           <th class="progresso">
-                            <div class="progress progress-xs" >
+                            <div class="progress progress-xs progress-striped active" >
                               <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
                             </div>
                           </th>
                           <th class="percent">
                             <span class="badge bg-yellow">Em andamento</span>
                           </th>
+                          @else
+                          <th class="progresso">
+                            <div class="progress progress-xs progress-striped active" >
+                              <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
+                            </div>
+                          </th>
+                          <th class="percent">
+                            <span class="badge bg-light-blue">Falta Avaliação*</span>
+                          </th>
+                          @endif
                         @elseif ($unidade->provas->max('notaAval') > 7)
                           <th class="progresso">
-                            <div class="progress progress-xs" >
+                            <div class="progress progress-xs progress-striped active" >
                               <div class="progress-bar progress-bar-green" style="width: 100%"></div>
                             </div>
                           </th>
@@ -108,7 +118,7 @@
                           </th>
                         @else
                           <th class="progresso">
-                            <div class="progress progress-xs" >
+                            <div class="progress progress-xs progress-striped active" >
                               <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
                             </div>
                           </th>
@@ -118,7 +128,7 @@
                         @endif
                       @empty
                         <th class="progresso">
-                          <div class="progress progress-xs" >
+                          <div class="progress progress-xs progress-striped active" >
                             <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
                           </div>
                         </th>
@@ -137,36 +147,36 @@
                       @forelse ($material->usuario->where('id', Auth::user()->id) as $user)
                         @if (empty($user->pivot->dataConclusao))
                           <!--Existe registro na tabela UCUMP, mas não existe registro no dataConclusao-->
-                          <th class="progresso">
-                            <div class="progress progress-xs" >
+                          <td class="progresso">
+                            <div class="progress progress-xs progress-striped active" >
                               <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
                             </div>
-                          </th>
-                          <th class="percent">
+                          </td>
+                          <td class="percent">
                             <span class="badge bg-yellow">Em andamento</span>
-                          </th>
+                          </td>
 
                         @else
                           <!--Existe registro na tabela UCUMP e dataConclusao-->
-                          <th class="progresso">
-                            <div class="progress progress-xs" >
+                          <td class="progresso">
+                            <div class="progress progress-xs progress-striped active" >
                               <div class="progress-bar progress-bar-green" style="width: 100%"></div>
                             </div>
-                          </th>
-                          <th class="percent">
+                          </td>
+                          <td class="percent">
                             <span class="badge bg-green">Concluído</span>
-                          </th>
+                          </td>
                         @endif
                       @empty
                       <!--Não existe registro na tabela UCUMP-->
-                        <th class="progresso">
-                          <div class="progress progress-xs" >
+                        <td class="progresso">
+                          <div class="progress progress-xs progress-striped active" >
                             <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
                           </div>
-                        </th>
-                        <th class="percent">
+                        </td>
+                        <td class="percent">
                           <span class="badge bg-red">Não iniciado</span>
-                        </th>
+                        </td>
                       @endforelse
 
                     </tr>

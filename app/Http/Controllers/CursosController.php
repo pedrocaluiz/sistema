@@ -10,10 +10,12 @@ use App\Model\Unidade;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
 use App\User;
 use App\Model\UnidadeMaterial;
+use Carbon\Carbon;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CursosController extends Controller
 {
@@ -132,17 +134,42 @@ class CursosController extends Controller
     {
         $curso = Curso::find($id);
         $auth = Auth::user();
-
+        $data = Carbon::now()->toDateTimeString();
 
         if (isset($curso)){
             $user = User::find($curso->usuarioAtualizacao);
             $cat = Categoria::find($curso->categoria_id);
-            $user_curso = $curso->usuario->where('id', $auth->id);
+            $user_curso = UsuarioCursoUnidadeMaterialProva::where([
+                ['curso_id', $curso->id],
+                ['user_id', $auth->id],
+            ])->get();
 
-            $unidades = Unidade::with(['materiais', 'questoes'])
-                ->where('curso_id', $id)
-                ->orderBy('ordem', 'asc')
-                ->get();
+            $unidades = $curso->unidades->sortBy('ordem');
+
+            //verificando se há unidades e se estão concluidas
+            if (count($unidades) > 0) {
+                for ($i = 0; $i < count($unidades); $i++) {
+                    $array[$i] = $unidades[$i]->id;
+                }
+                $concluidas = UsuarioCursoUnidadeMaterialProva::
+                    whereIn('unidade_id', $array)
+                    ->where([
+                        ['user_id', $auth->id],
+                        ['dataConclusao', '<>', NULL],])
+                    ->get();
+            }
+
+            if (!empty($user_curso[0])){
+                if (count($unidades) <= 0){
+                    $user_curso[0]->dataConclusao = $data;
+                }elseif (count($concluidas) > 0){
+                    $status = intval(count($concluidas) / count($unidades));
+                    if ($status >= 1){
+                        $user_curso[0]->dataConclusao = $data;
+                    }
+                }
+                $user_curso[0]->save();
+            }
 
             return view('cursos.aluno.curso',
                 compact('curso', 'user', 'cat', 'user_curso', 'unidades'));
@@ -245,10 +272,7 @@ class CursosController extends Controller
 
             return json_encode($user_curso);
         }
-
-
-
-        return json_encode(dd($matricula));
+        return json_encode($matricula);
     }
 
     public function meusCursos()
@@ -337,6 +361,24 @@ class CursosController extends Controller
         }
         return view('cursos.aluno.concluidos-cursos ',
             compact('concluidos'));
+    }
+
+    public function certificadoCurso($curso_id)
+    {
+        $auth = Auth::user();
+        $curso = Curso::find($curso_id);
+        $instrutor = User::find($curso->usuarioAtualizacao);
+
+        $nomeArquivo = $auth->primeiroNome . $auth->ultimoNome;
+
+        $data = ['auth' => $auth, 'curso' => $curso, 'instrutor' => $instrutor];
+        $pdf = PDF::loadView('certificado', $data)->setPaper('a4', 'landscape');
+
+        return $pdf->stream($nomeArquivo . '.pdf');
+
+        //return view('certificado', compact('auth', 'curso', 'instrutor'));
+
+
     }
 
 }

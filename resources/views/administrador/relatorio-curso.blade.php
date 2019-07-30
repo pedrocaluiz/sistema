@@ -1,11 +1,11 @@
-@extends('layouts.base', ["current" => "usuarios"])
+@extends('layouts.base', ["current" => "relatorio-curso"])
 
 @section('header')
-  @lang('messages.users')
+  @lang('messages.course')
 @endsection
 
 @section('title')
-  @lang('messages.users')
+  @lang('messages.course')
 @endsection
 
 @push('css')
@@ -90,29 +90,29 @@
             @endif
             <div class="row">
               <div class="col-sm-12">
-                @if (isset($users))
+                @if (isset($user))
                   <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
                       <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                          id="id" aria-label="ID: activate to sort column descending" >
-                        ID
+                          id="id" aria-label="Ordem: activate to sort column descending" >
+                        Ordem
                       </th>
                       <th id="nome" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Nome: activate to sort column ascending" >
-                        Nome
+                          aria-label="Unidade: activate to sort column ascending" >
+                        Unidade
                       </th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="E-mail: activate to sort column ascending" >
-                        E-mail
+                          aria-label="Progresso: activate to sort column ascending" >
+                        Nota Unidade
                       </th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Matrícula: activate to sort column ascending" >
-                        Matrícula
+                          aria-label="Status: activate to sort column ascending" >
+                        Progresso
                       </th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Função: activate to sort column ascending" >
-                        Função
+                          aria-label="Nota Unidade: activate to sort column ascending" >
+                        Status
                       </th>
                       <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                           aria-label="Ação: activate to sort column ascending" >
@@ -122,41 +122,82 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($users as $user)
+
+                      @foreach($curso->unidades->sortBy('ordem') as $unidade)
                       <tr>
-                        <td>{{$user->id}}</td>
-                        <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->matricula}}</td>
-                        @if (isset($funcoes))
-                          @foreach ($funcoes as $funcao)
-                            @if ($funcao->id == $user->funcao_id)
-                              <td>{{$funcao->descricao}}</td>
-                            @endif
-                          @endforeach
-                        @endif
+                        <td>{{$unidade->ordem}}</td>
+                        <td>{{$unidade->titulo}}</td>
                         <td>
-                          <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoTxt">Detalhes</a>
-                          <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoIcon"><i class="fa fa-list-ul"></i></a>
-
-                          <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-primary acaoTxt">Editar</a>
-                          <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-
-                          <a class="btn btn=sm btn-danger acaoTxt" href="/usuarios/{{$user->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$user->id}}').submit();">
-                            {{ __('Excluir') }}
-                          </a>
-                          <a class="btn btn=sm btn-danger acaoIcon"href="/usuarios/{{$user->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$user->id}}').submit();">
-                            <i class="fa fa-trash"></i>
-                          </a>
-                          <form id="delete-form-{{$user->id}}" action="/usuarios/{{$user->id}}" method="POST" style="display: none;">
-                            @method('DELETE')
-                            @csrf
-                          </form>
+                          @if(!empty($unidade->usuario->where('id', $user->id)[0]))
+                            {{$unidade->usuario->where('id', $user->id)->first()->pivot->notaAval}}
+                          @else
+                            0.00
+                          @endif
                         </td>
+                        @forelse ($unidade->usuario->where('id', $user->id) as $user)
+                          @if (empty($user->pivot->dataConclusao))
+                            <!--Existe registro na tabela UCUMP, mas não existe dataConclusao-->
+                            @if (count($unidade->materiais) > 0)
+
+                                @if ($progresso[$unidade->id] == 0)
+                                  <td class="progresso">
+                                    <div class="progress progress-xs progress-striped active" >
+                                      <div class="progress-bar progress-bar-red" style="width:5%"></div>
+                                    </div>
+                                  </td>
+                                  <td><span class="badge bg-red">Em Andamento</span></td>
+                                @else
+                                  <td class="progresso">
+                                    <div class="progress progress-xs progress-striped active" >
+                                      <div class="progress-bar progress-bar-yellow" style="width: {{$progresso[$unidade->id]}}%"></div>
+                                    </div>
+                                  </td>
+                                  <td><span class="badge bg-yellow">Em Andamento</span></td>
+                                @endif
+
+                            @else
+
+                                <td class="progresso">
+                                  <div class="progress progress-xs progress-striped active" >
+                                    <div class="progress-bar progress-bar-light-blue" style="width: {{$progresso[$unidade->id]}}%"></div>
+                                  </div>
+                                </td>
+                                <td><span class="badge bg-blue">Falta Avaliação*</span></td>
+                            @endif
+                          @elseif ($unidade->provas->max('notaAval') > 7)
+
+                            <!--Existe registro na tabela UCUMP e dataConclusao checked-->
+                              <td class="progresso">
+                                <div class="progress progress-xs progress-striped active" >
+                                  <div class="progress-bar progress-bar-green" style="width: {{$progresso[$unidade->id]}}%"></div>
+                                </div>
+                              </td>
+                              <td><span class="badge bg-green">Concluída</span></td>
+                          @else
+
+                            <!--Existe registro na tabela UCUMP e dataConclusao checked-->
+                              <td class="progresso">
+                                <div class="progress progress-xs progress-striped active" >
+                                  <div class="progress-bar progress-bar-light-blue" style="width: {{$progresso[$unidade->id]}}%"></div>
+                                </div>
+                              </td>
+                              <td><span class="badge bg-blue">Falta Avaliação*</span></td>
+                          @endif
+                        @empty
+
+                          <!--Não existe registro na tabela UCUMP-->
+                            <td class="progresso">
+                              <div class="progress progress-xs progress-striped active" >
+                                <div class="progress-bar progress-bar-red" style="width: 5%"></div>
+                              </div>
+                            </td>
+                            <td><span class="badge bg-red">Não iniciada</span></td>
+                        @endforelse
+                        <td>
+                          <a href="#/usuarios/relatorio/{{$user->id}}/curso/" class="btn btn=sm btn-info acaoTxt">Detalhes</a>
+                          <a href="#/usuarios/relatorio/{{$user->id}}/curso/" class="btn btn=sm btn-info acaoIcon"><i class="fa fa-list-ul"></i></a>
+                        </td>
+
                     @endforeach
                     </tbody>
                     <tfoot>
@@ -165,16 +206,16 @@
                         ID
                       </th>
                       <th rowspan="1" colspan="1">
-                        Nome
+                        Unidade
                       </th>
                       <th rowspan="1" colspan="1">
-                        E-mail
+                        Nota Unidade
                       </th>
                       <th rowspan="1" colspan="1">
-                        Matrícula
+                        Progresso
                       </th>
                       <th rowspan="1" colspan="1">
-                        Função
+                        Status
                       </th>
                       <th rowspan="1" colspan="1">
                         Ações

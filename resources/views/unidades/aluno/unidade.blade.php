@@ -147,7 +147,7 @@
                     @empty
                       <!--Não existe registro na tabela UCUMP-->
                         <span class="badge bg-red">Não iniciado</span>
-                      @endforelse
+                    @endforelse
                     </div>
                   </div>
 
@@ -162,13 +162,22 @@
             </div>
           </div>
 
-          <div class="box-footer">
-            <div class="col-md-6" style="display: flex; justify-content: center">
-              <a type="button" href="/provas/{{$unidade->id}}/lista" id="atividade">
-                Clique aqui para Avaliação de Aprendizagem
-              </a>
+          @if (!empty($questoes[0]))
+            <div class="box-footer">
+              <div class="col-md-6" style="display: flex; justify-content: center">
+                <a type="button" href="/provas/{{$unidade->id}}/lista" id="atividade">
+                  Clique aqui para Avaliação de Aprendizagem
+                </a>
+              </div>
             </div>
-          </div>
+          @else
+            <div class="box-footer">
+              <div class="col-md-6" style="display: flex; justify-content: center">
+                <p>Não há questões cadastradas para essa Unidade</p>
+              </div>
+            </div>
+          @endif
+
 
         </div>
 

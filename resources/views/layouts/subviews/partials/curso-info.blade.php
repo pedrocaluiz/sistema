@@ -1,4 +1,5 @@
-<form class="cadastro" id="formCurso">
+<form class="cadastro" id="formCurso" action="/cursos/{{$curso->id}}/pdf" method="POST">
+    @csrf
     <div class="box">
         <div class="box-header curso">
             <i class="{{$curso->icone}}"></i>
@@ -19,11 +20,15 @@
             <div class="col-md-2" id="inscrito">
                 @if (isset($user_curso[0]))
                     <p><strong>Você já está inscrito</strong></p>
+                  <button class="btn btn=sm btn-danger acaoTxt" type="submit">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </button>
                 @else
                     <button type="button" class="btn btn-primary botao" id="btnInscrever" onclick="inscrever()">
                         <i class="fa fa-plus"></i> &nbsp;&nbsp;Inscrever-se
                     </button>
                 @endif
+
             </div>
         </div>
     </div>

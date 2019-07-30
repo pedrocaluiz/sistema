@@ -9,6 +9,7 @@ use App\Model\TipoMaterial;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -97,32 +98,68 @@ class UnidadesController extends Controller
     {
         //para mostrar a unidade, tem que estar logado e inscrito no curso
         //se não estiver, redirecionar para a página do curso correspondente.
-
         $auth = Auth::user();
-
         $unidade = Unidade::find($id);
         $tipoMat = TipoMaterial::all();
+        $data = Carbon::now()->toDateTimeString();
 
         if (isset($unidade)){
-            $user = \App\User::find($unidade->usuarioAtualizacao);
+            $user = User::find($unidade->usuarioAtualizacao);
             $materiais = UnidadeMaterial::where('unidade_id', $unidade->id)
                 ->orderBy('ordem', 'asc')
                 ->paginate(1);
+
+            $questoes = Questao::where('unidade_id', $unidade->id)->get();
 
             $user_unidade = UsuarioCursoUnidadeMaterialProva::where([
                 ['unidade_id', $unidade->id],
                 ['user_id', $auth->id],
             ])->get();
 
+            //verificando se há materiais e se estão concluidos
+            if (count($unidade->materiais) > 0) {
+                for ($i = 0; $i < count($unidade->materiais); $i++) {
+                    $array[$i] = $unidade->materiais[$i]->id;
+                }
+                $concluidos = UsuarioCursoUnidadeMaterialProva::
+                    whereIn('material_id', $array)
+                    ->where([
+                        ['user_id', $auth->id],
+                        ['dataConclusao', '<>', NULL],])
+                    ->get();
+            }
+
             //se não existir registro para esse UserUnidade, cria um registro
             if (!isset($user_unidade[0])){
                 $tableUserUnidade = new UsuarioCursoUnidadeMaterialProva();
                 $tableUserUnidade->user_id = $auth->id;
                 $tableUserUnidade->unidade_id = $unidade->id;
+
+                if (count($unidade->materiais) <= 0){
+                    $tableUserUnidade->dataConclusao = $data;
+                }elseif (count($concluidos) > 0){
+                    $status = intval(count($concluidos) / count($unidade->materiais));
+                    if ($status >= 1){
+                        $tableUserUnidade->dataConclusao = $data;
+                    }
+                }
                 $tableUserUnidade->save();
+                //dd($tableUserUnidade);
+            }else{
+                if (count($unidade->materiais) <= 0){
+                    $user_unidade[0]->dataConclusao = $data;
+                }elseif (count($concluidos) > 0){
+                    $status = intval(count($concluidos) / count($unidade->materiais));
+                    if ($status >= 1){
+                        $user_unidade[0]->dataConclusao = $data;
+                    }
+                }
+                $user_unidade[0]->save();
+                //dd($user_unidade[0]);
             }
+
             return view('unidades.aluno.unidade',
-                compact('unidade', 'user', 'auth', 'materiais', 'tipoMat'));
+                compact('unidade', 'user', 'auth', 'materiais', 'tipoMat', 'questoes'));
         }else {
             return view('home');
         }

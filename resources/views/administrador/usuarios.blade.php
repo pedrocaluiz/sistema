@@ -187,13 +187,6 @@
             </div>
           </div>
         </div>
-        <div class="box-footer d-flex justify-content-center">
-          <div class="col-md-2">
-            <a href="{{route('register')}}" type="button"  class="btn btn-primary botao" id="cadastro">
-              <i class="fa fa-plus"></i> &nbsp;&nbsp;@lang('messages.user')
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   </div>

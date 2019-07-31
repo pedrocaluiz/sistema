@@ -90,7 +90,7 @@
             @endif
             <div class="row">
               <div class="col-sm-12">
-                @if (isset($user))
+                @if (isset($cursos))
                   <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
@@ -124,27 +124,33 @@
                     <tbody>
 
                     @foreach ($cursos as $curso)
+                      @php
+                      if ($curso->usuario->where('id', $user->id)->first() !== null){
+                        $notaCurso = $curso->usuario->where('id', $user->id)->first()->pivot->notaAval;
+                      }
+                        foreach ($curso->unidades as $unidade){
+                            $questoes = $unidade->questoes;
+                            if (count($questoes) > 0){
+                                $ha_questoes = 1;
+                                break;
+                            }else{
+                                $ha_questoes = 0;
+                            }
+                        }
+                      @endphp
                       <tr>
                         <td>{{$curso->id}}</td>
                         <td>{{$curso->titulo}}</td>
                         <td>
-                          @if(!empty($notaCurso[$curso->id]))
-                            @if ($notaCurso[$curso->id] < 1)
-                                Não Aprovado
-                            @else
-                                Aprovado
-                            @endif
-                          @else
-                            Não Aprovado
+                          @if ($ha_questoes == 0)
+                            Sem aval.
+                          @elseif (empty($notaCurso)) 0.00
+                          @else {{$notaCurso}}
                           @endif
                         </td>
 
                       @forelse ($curso->usuario->where('id', $user->id) as $user)
-                        @php
 
-                         // dd($curso->usuario->where('id', $user->id)->first()->pivot->dataConclusao);
-
-                        @endphp
                           @if (empty($user->pivot->dataConclusao))
                           <!--Existe registro na tabela UCUMP, mas não existe dataConclusao-->
                             @if ($progressoCurso[$curso->id] == 100)
@@ -157,19 +163,23 @@
                             @else
                               <td class="progresso">
                                 <div class="progress progress-xs progress-striped active" >
-                                  <div class="progress-bar progress-bar-yellow" style="width: {{$progressoCurso[$curso->id]}}%"></div>
+                                  @if ($progressoCurso[$curso->id] > 5)
+                                    <div class="progress-bar progress-bar-yellow" style="width: {{$progressoCurso[$curso->id]}}%"></div>
+                                  @else
+                                    <div class="progress-bar progress-bar-yellow" style="width: 5%"></div>
+                                  @endif
                                 </div>
                               </td>
                               <td><span class="badge bg-yellow">Em Andamento</span></td>
                             @endif
-                          @elseif ($notaCurso[$curso->id] >= 1)
+                          @elseif ($notaCurso >= 7 or $ha_questoes == 0)
                               <!--Existe registro na tabela UCUMP e dataConclusao checked-->
                               <td class="progresso">
                                 <div class="progress progress-xs progress-striped active" >
                                   <div class="progress-bar progress-bar-green" style="width: {{$progressoCurso[$curso->id]}}%"></div>
                                 </div>
                               </td>
-                              <td><span class="badge bg-green">Concluído</span></td>
+                              <td><span class="badge bg-green">Aprovado</span></td>
                             @else
                             <!--Existe registro na tabela UCUMP e dataConclusao checked-->
                             <td class="progresso">

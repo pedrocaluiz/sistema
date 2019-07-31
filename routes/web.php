@@ -91,7 +91,9 @@ Route::prefix('cursos')->name('cursos')->middleware('auth')->group(function () {
     Route::delete('/{id}', 'CursosController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'CursosController@edit')->name('.edit');
     Route::put('/{id}', 'CursosController@update')->name('.update');
-    Route::post('/{curso_id}/pdf', 'CursosController@certificadoCurso')->name('.pdf');;
+    Route::post('/{curso_id}/pdf', 'CursosController@certificadoCurso')->name('.pdf');
+    Route::get('/{curso_id}/rating', 'CursosController@rating')->name('.rating');
+    Route::post('/rating', 'CursosController@ratingSave')->name('.rating-save');
 });
 
 Route::prefix('unidades')->name('unidades')->middleware('auth')->group(function () {

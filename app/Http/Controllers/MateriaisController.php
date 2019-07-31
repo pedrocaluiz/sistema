@@ -222,12 +222,17 @@ class MateriaisController extends Controller
     {
         $auth = Auth::user();
         $data = Carbon::now()->toDateTimeString();
+        $unidade = Unidade::find($request->unidade_id);
         $user_mats = UsuarioCursoUnidadeMaterialProva::where([
             ['material_id', $request->material_id],
             ['user_id', $auth->id],
         ])->get();
         $user_unidade = UsuarioCursoUnidadeMaterialProva::where([
             ['unidade_id', $request->unidade_id],
+            ['user_id', $auth->id],
+        ])->get();
+        $user_curso = UsuarioCursoUnidadeMaterialProva::where([
+            ['curso_id', $unidade->curso_id],
             ['user_id', $auth->id],
         ])->get();
 
@@ -245,11 +250,9 @@ class MateriaisController extends Controller
         $todosMateriais = UnidadeMaterial::where([
             ['unidade_id', $request->unidade_id],
             ])->get();
-
         for($i = 0; $i < count($todosMateriais); $i++){
             $array[$i] = $todosMateriais[$i]->id;
         }
-
         $concluidos = UsuarioCursoUnidadeMaterialProva::
             whereIn('material_id', $array)
             ->where([
@@ -257,14 +260,64 @@ class MateriaisController extends Controller
                 ['dataConclusao', '<>', NULL],])
             ->get();
 
+        $todasUnidades = Unidade::where([
+            ['curso_id', $unidade->curso_id],
+        ])->get();
+        for($i = 0; $i < count($todasUnidades); $i++){
+            $arrayUnidades[$i] = $todasUnidades[$i]->id;
+        }
+
         if (count($todosMateriais) <= 0){ // se não existir nenhum material conclui a unidade
+            //concluir a unidade
             $user_unidade[0]->dataConclusao = $data;
             $user_unidade[0]->save();
+
+            $unidades_concluidas = UsuarioCursoUnidadeMaterialProva::
+            whereIn('unidade_id', $arrayUnidades)
+                ->where([
+                    ['user_id', $auth->id],
+                    ['dataConclusao', '<>', NULL],])
+                ->get();
+
+            if (count($todasUnidades) <= 0){
+                //se não houver unidades concluir o curso
+                $user_curso[0]->dataConclusao = $data;
+                $user_curso[0]->save();
+            }elseif (count($unidades_concluidas) > 0){
+                $status = intval(count($unidades_concluidas) / count($todasUnidades));
+                if ($status >= 1){
+                    //se todas as unidades estiverem concluidas concluir o curso
+                    $user_curso[0]->dataConclusao = $data;
+                    $user_curso[0]->save();
+                }
+            }
+
         }elseif (count($concluidos) > 0){
+            // se existirem materiais concluídos, faz a conta e conclui a unidade e curso
             $status = intval(count($concluidos) / count($todosMateriais));
             if ($status >= 1){
                 $user_unidade[0]->dataConclusao = $data;
                 $user_unidade[0]->save();
+
+                $unidades_concluidas = UsuarioCursoUnidadeMaterialProva::
+                whereIn('unidade_id', $arrayUnidades)
+                    ->where([
+                        ['user_id', $auth->id],
+                        ['dataConclusao', '<>', NULL],])
+                    ->get();
+
+                if (count($todasUnidades) <= 0){
+                    //se não houver unidades concluir o curso
+                    $user_curso[0]->dataConclusao = $data;
+                    $user_curso[0]->save();
+                }elseif (count($unidades_concluidas) > 0){
+                    $status = intval(count($unidades_concluidas) / count($todasUnidades));
+                    if ($status >= 1){
+                        //se todas as unidades estiverem concluidas concluir o curso
+                        $user_curso[0]->dataConclusao = $data;
+                        $user_curso[0]->save();
+                    }
+                }
             }
         }
 

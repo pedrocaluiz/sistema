@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Storage;
 
 class UnidadesController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      *
@@ -102,6 +100,10 @@ class UnidadesController extends Controller
         $unidade = Unidade::find($id);
         $tipoMat = TipoMaterial::all();
         $data = Carbon::now()->toDateTimeString();
+        $user_curso = UsuarioCursoUnidadeMaterialProva::where([
+            ['curso_id', $unidade->curso_id],
+            ['user_id', $auth->id],
+        ])->get();
 
         if (isset($unidade)){
             $user = User::find($unidade->usuarioAtualizacao);
@@ -129,6 +131,15 @@ class UnidadesController extends Controller
                     ->get();
             }
 
+            //verificando todas as unidades
+            $todasUnidades = Unidade::where([
+                ['curso_id', $unidade->curso_id],
+            ])->get();
+            for($i = 0; $i < count($todasUnidades); $i++){
+                $arrayUnidades[$i] = $todasUnidades[$i]->id;
+            }
+
+
             //se não existir registro para esse UserUnidade, cria um registro
             if (!isset($user_unidade[0])){
                 $tableUserUnidade = new UsuarioCursoUnidadeMaterialProva();
@@ -144,8 +155,30 @@ class UnidadesController extends Controller
                     }
                 }
                 $tableUserUnidade->save();
-                //dd($tableUserUnidade);
-            }else{
+
+                $unidades_concluidas = UsuarioCursoUnidadeMaterialProva::
+                whereIn('unidade_id', $arrayUnidades)
+                    ->where([
+                        ['user_id', $auth->id],
+                        ['dataConclusao', '<>', NULL],])
+                    ->get();
+
+                if (count($todasUnidades) <= 0){
+                    //se não houver unidades concluir o curso
+                    $user_curso[0]->dataConclusao = $data;
+                    $user_curso[0]->save();
+                }elseif (count($unidades_concluidas) > 0){
+                    $status = intval(count($unidades_concluidas) / count($todasUnidades));
+                    if ($status >= 1){
+                        //se todas as unidades estiverem concluidas concluir o curso
+                        $user_curso[0]->dataConclusao = $data;
+                        $user_curso[0]->save();
+                    }
+                }
+
+
+
+            }else{ //se existir registro para esse UserUnidade, atualiza com data de conclusão
                 if (count($unidade->materiais) <= 0){
                     $user_unidade[0]->dataConclusao = $data;
                 }elseif (count($concluidos) > 0){
@@ -155,7 +188,27 @@ class UnidadesController extends Controller
                     }
                 }
                 $user_unidade[0]->save();
-                //dd($user_unidade[0]);
+
+                $unidades_concluidas = UsuarioCursoUnidadeMaterialProva::
+                whereIn('unidade_id', $arrayUnidades)
+                    ->where([
+                        ['user_id', $auth->id],
+                        ['dataConclusao', '<>', NULL],])
+                    ->get();
+
+                if (count($todasUnidades) <= 0){
+                    //se não houver unidades concluir o curso
+                    $user_curso[0]->dataConclusao = $data;
+                    $user_curso[0]->save();
+                }elseif (count($unidades_concluidas) > 0){
+                    $status = intval(count($unidades_concluidas) / count($todasUnidades));
+                    if ($status >= 1){
+                        //se todas as unidades estiverem concluidas concluir o curso
+                        $user_curso[0]->dataConclusao = $data;
+                        $user_curso[0]->save();
+                    }
+                }
+
             }
 
             return view('unidades.aluno.unidade',

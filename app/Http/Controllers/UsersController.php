@@ -77,16 +77,10 @@ class UsersController extends Controller
                 }else {
                     $progressoCurso[$curso->id] = 0.00;
                 }
-
-                if (isset($notaUnidade) && (count($notaUnidade) > 0)){
-                    $notaCurso[$curso->id] = number_format(array_sum($notaUnidade) / count($notaUnidade), 2, ".", "");
-                }else{
-                    $notaCurso[$curso->id] = 0.00;
-                }
             }
 
             return view('administrador.relatorio-user',
-                compact('user', 'cursos', 'notaCurso', 'progressoCurso'));
+                compact('user', 'cursos', 'progressoCurso'));
         }
 
         return view('administrador.relatorio-user',

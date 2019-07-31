@@ -81,6 +81,10 @@
                   SE NÃO HOUVER, CONCLUIR SEM PROVA.
                 --}}
 
+                @php
+                        //dd(empty($unidade->questoes[0]));
+                @endphp
+
                 <div class="box-body">
                   <table class="table table-bordered table-striped">
                     <tbody><tr>
@@ -107,7 +111,7 @@
                             <span class="badge bg-light-blue">Falta Avaliação*</span>
                           </th>
                           @endif
-                        @elseif ($unidade->provas->max('notaAval') > 7)
+                        @elseif (($unidade->provas->max('notaAval') > 7) or (empty($unidade->questoes[0])))
                           <th class="progresso">
                             <div class="progress progress-xs progress-striped active" >
                               <div class="progress-bar progress-bar-green" style="width: 100%"></div>

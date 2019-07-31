@@ -350,6 +350,7 @@ class QuestoesController extends Controller
     {
         $auth = Auth::user();
         $data = Carbon::now()->toDateTimeString();
+
         $quest_resp = ProvaQuestao::where('prova_id', $request->prova_id)->get();
 
         DB::beginTransaction();
@@ -388,6 +389,43 @@ class QuestoesController extends Controller
         $matricula->first()->notaAval = $maior_nota;
         $matricula->first()->save();
 
+        //verificando nota das unidades e concluindo o curso
+        $unidade = Unidade::find($prova->unidade_id);
+        $curso = Curso::find($unidade->curso_id);
+
+        for($i = 0; $i < count($curso->unidades); $i++){
+            $questoes_unid[$i] = $curso->unidades[$i]->questoes;
+            $notaAval_unid[$i] = $curso->unidades[$i]->usuario->where('id', $auth->id)[0]->pivot->notaAval;
+
+            if ( (count($questoes_unid[$i]) <= 0 ) or ( $notaAval_unid[$i] > 7) ){
+                $aprovado[$i] = 1;
+            }else{
+                $aprovado[$i] = 0;
+            }
+        }
+
+        if (count($aprovado) > 0){
+            $aprovado_curso = intval(array_sum($aprovado) / count($aprovado));
+            if ($aprovado_curso == 1){
+                //concluir curso e atribuir nota
+                for($i = 0; $i < count($questoes_unid); $i++){
+                    if ((count($questoes_unid[$i]) > 0) && ($aprovado[$i] == 1)){
+                        $nota_com_questoes[$i] = $notaAval_unid[$i];
+                    }
+                }
+                $notaCurso = intval(array_sum($nota_com_questoes) / count($nota_com_questoes));
+                $user_curso = UsuarioCursoUnidadeMaterialProva::where([
+                    ['curso_id', $curso->id],
+                    ['user_id', $auth->id],
+                ])->get();
+                $user_curso[0]->notaAval = $notaCurso;
+                if ($user_curso[0]->dataConclusao == null){
+                    $user_curso[0]->dataConclusao = $data;
+                }
+                $user_curso[0]->save();
+            }
+        }
+
         DB::commit();
 
         return Redirect::to('provas/' . $prova->unidade_id . '/lista');
@@ -421,19 +459,31 @@ class QuestoesController extends Controller
             for($i = 0; $i < count($todosMateriais); $i++){
                 $array[$i] = $todosMateriais[$i]->id;
             }
-            $nao_concluidos = UsuarioCursoUnidadeMaterialProva::
+            $concluidos = UsuarioCursoUnidadeMaterialProva::
             whereIn('material_id', $array )
                 ->where([
                     ['user_id', $auth->id],
-                    ['dataConclusao', NULL],])
+                    ['dataConclusao', '<>', NULL],])
                 ->get();
+
+            if (count($concluidos) > 0){
+                $status = intval(count($concluidos) / count($todosMateriais));
+                if ($status >= 1){
+                    $nao_concluidos = 0;
+                }else{
+                    $nao_concluidos = 1;
+                }
+            }
+
             return view('questoes.aluno.pre-questoes',
                 compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos'));
 
         }
 
+        $nao_concluidos = 0;
+
         return view('questoes.aluno.pre-questoes',
-            compact('provas', 'unidade', 'curso', 'prova_iniciada'));
+            compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos'));
     }
 
     /**
@@ -445,9 +495,6 @@ class QuestoesController extends Controller
     public function revisarProvas($id)
     {
         $prova = Prova::find($id);
-
-
-
 
         if (isset($prova) ) {
             $unidade = Unidade::find($prova->unidade_id);

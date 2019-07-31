@@ -297,9 +297,9 @@ class CursosController extends Controller
         ])->get();
         if ($concluidos->first()){
             for($i = 0; $i < count($concluidos); $i++){
-                $array[$i] = $concluidos[$i]->curso_id;
+                $array_conc[$i] = $concluidos[$i]->curso_id;
             }
-            $concluidos = Curso::whereIn('id', $array )->get();
+            $concluidos = Curso::whereIn('id', $array_conc )->get();
         }
 
         $andamento = UsuarioCursoUnidadeMaterialProva::where([
@@ -307,12 +307,15 @@ class CursosController extends Controller
             ['curso_id', '<>', null],
             ['dataConclusao', null],
         ])->get();
+
         if ($andamento->first()){
             for($i = 0; $i < count($andamento); $i++){
-                $array[$i] = $andamento[$i]->curso_id;
+                $array_and[$i] = $andamento[$i]->curso_id;
             }
-            $andamento = Curso::whereIn('id', $array )->get();
+            $andamento = Curso::whereIn('id', $array_and )->get();
         }
+
+
 
         return view('cursos.aluno.meus-cursos',
             compact('cursos', 'concluidos', 'andamento'));
@@ -347,6 +350,7 @@ class CursosController extends Controller
 
     public function concluidos()
     {
+        //Cursos concluídos do usuario
         $auth = Auth::user();
         $concluidos = UsuarioCursoUnidadeMaterialProva::where([
             ['user_id', $auth->id],
@@ -369,16 +373,59 @@ class CursosController extends Controller
         $curso = Curso::find($curso_id);
         $instrutor = User::find($curso->usuarioAtualizacao);
 
-        $nomeArquivo = $auth->primeiroNome . $auth->ultimoNome;
+        $user_curso = UsuarioCursoUnidadeMaterialProva::where([
+            ['user_id', $auth->id],
+            ['curso_id', $curso->id],
+            ['dataConclusao', '<>', null],
+        ])->get();
 
-        $data = ['auth' => $auth, 'curso' => $curso, 'instrutor' => $instrutor];
-        $pdf = PDF::loadView('certificado', $data)->setPaper('a4', 'landscape');
+        foreach ($curso->unidades as $unidade){
+            $questoes = $unidade->questoes;
+            if (count($questoes) > 0){
+                $ha_questoes = 1;
+                break;
+            }else{
+                $ha_questoes = 0;
+            }
+        }
 
-        return $pdf->stream($nomeArquivo . '.pdf');
-
+        if ( isset($user_curso[0]) && ( ($user_curso[0]->notaAval > 7) or ($ha_questoes == 0) )  ) {
+            $nomeArquivo = $auth->primeiroNome . $auth->ultimoNome;
+            $data = ['auth' => $auth, 'curso' => $curso, 'instrutor' => $instrutor];
+            $pdf = PDF::loadView('certificado', $data)->setPaper('a4', 'landscape');
+            return $pdf->stream($nomeArquivo . '.pdf');
+        }else{
+            return redirect()->back();
+        }
         //return view('certificado', compact('auth', 'curso', 'instrutor'));
+    }
+
+    public function rating($curso_id)
+    {
+        $curso = Curso::find($curso_id);
+        return view('cursos.aluno.rating', compact('curso'));
+    }
+
+    public function ratingSave(Request $request)
+    {
+        $auth = Auth::user();
+        $curso = Curso::find($request->curso);
+        $user_curso = UsuarioCursoUnidadeMaterialProva::where([
+            ['user_id', $auth->id],
+            ['curso_id', $curso->id],
+        ])->get();
+
+        dd($request->all());
+
+        /*$user_curso[0]->rating = $request->rating;
+        $user_curso[0]->comentario = $request->comentario;
+        $user_curso[0]->save();*/
 
 
+        $request->session()->flash('adicionada',
+            "Obrigado por avaliar o Curos $curso->descricao.");
+
+        return view('cursos.aluno.rating', compact('curso'));
     }
 
 }

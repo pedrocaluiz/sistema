@@ -90,7 +90,7 @@
             @endif
             <div class="row">
               <div class="col-sm-12">
-                @if (isset($user))
+                @if (isset($curso))
                   <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
@@ -104,7 +104,7 @@
                       </th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                           aria-label="Progresso: activate to sort column ascending" >
-                        Nota Unidade
+                        Nota
                       </th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                           aria-label="Status: activate to sort column ascending" >
@@ -114,26 +114,27 @@
                           aria-label="Nota Unidade: activate to sort column ascending" >
                         Status
                       </th>
-                      <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Ação: activate to sort column ascending" >
-                        Ação
-                      </th>
-                      </th>
                     </tr>
                     </thead>
                     <tbody>
 
                       @foreach($curso->unidades->sortBy('ordem') as $unidade)
+                        @php
+                          if ($unidade->usuario->where('id', $user->id)->first() !== null){
+                             $notaUnidade = $unidade->usuario->where('id', $user->id)->first()->pivot->notaAval;
+                          }
+                        @endphp
                       <tr>
                         <td>{{$unidade->ordem}}</td>
                         <td>{{$unidade->titulo}}</td>
                         <td>
-                          @if(!empty($unidade->usuario->where('id', $user->id)[0]))
-                            {{$unidade->usuario->where('id', $user->id)->first()->pivot->notaAval}}
-                          @else
-                            0.00
-                          @endif
+                        @if (empty($unidade->questoes[0]))
+                            Sem aval.
+                        @elseif (empty($notaUnidade)) 0.00
+                          @else {{$notaUnidade}}
+                        @endif
                         </td>
+
                         @forelse ($unidade->usuario->where('id', $user->id) as $user)
                           @if (empty($user->pivot->dataConclusao))
                             <!--Existe registro na tabela UCUMP, mas não existe dataConclusao-->
@@ -154,9 +155,7 @@
                                   </td>
                                   <td><span class="badge bg-yellow">Em Andamento</span></td>
                                 @endif
-
                             @else
-
                                 <td class="progresso">
                                   <div class="progress progress-xs progress-striped active" >
                                     <div class="progress-bar progress-bar-light-blue" style="width: {{$progresso[$unidade->id]}}%"></div>
@@ -164,7 +163,7 @@
                                 </td>
                                 <td><span class="badge bg-blue">Falta Avaliação*</span></td>
                             @endif
-                          @elseif ($unidade->provas->max('notaAval') > 7)
+                          @elseif (($unidade->provas->max('notaAval') > 7) or (empty($unidade->questoes[0])))
 
                             <!--Existe registro na tabela UCUMP e dataConclusao checked-->
                               <td class="progresso">
@@ -193,10 +192,7 @@
                             </td>
                             <td><span class="badge bg-red">Não iniciada</span></td>
                         @endforelse
-                        <td>
-                          <a href="#/usuarios/relatorio/{{$user->id}}/curso/" class="btn btn=sm btn-info acaoTxt">Detalhes</a>
-                          <a href="#/usuarios/relatorio/{{$user->id}}/curso/" class="btn btn=sm btn-info acaoIcon"><i class="fa fa-list-ul"></i></a>
-                        </td>
+
 
                     @endforeach
                     </tbody>
@@ -209,16 +205,13 @@
                         Unidade
                       </th>
                       <th rowspan="1" colspan="1">
-                        Nota Unidade
+                        Nota
                       </th>
                       <th rowspan="1" colspan="1">
                         Progresso
                       </th>
                       <th rowspan="1" colspan="1">
                         Status
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Ações
                       </th>
                     </tr>
                     </tfoot>

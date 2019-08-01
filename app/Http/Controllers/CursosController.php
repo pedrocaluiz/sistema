@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Redirect;
 
 class CursosController extends Controller
 {
@@ -28,43 +29,73 @@ class CursosController extends Controller
      */
     public function index(Request $request)
     {
-
         $this->authorize('view', Curso::class);
 
         $categorias = Categoria::all();
         $cursos = Curso::all();
-
-        /*$cursos = DB::table('cursos')
-            ->where('id', 14)
-            ->get();
-
-        $cursos2 = DB::table('cursos')
-            ->whereNotIn('id', [$cursos[0]->id])
-            ->inRandomOrder()
-            ->limit(6)
-            ->get();
-
-        $cursos2 = [
-            0 => $cursos2[0],
-            1 => $cursos2[1],
-            2 => $cursos2[2],
-            3 => $cursos2[3],
-            4 => $cursos[0]
-        ];
-
-        shuffle($cursos2);*/
-
         $users = User::all();
         $adicionada = $request->session()->get('adicionada');
         $excluida = $request->session()->get('excluida');
         $alterada = $request->session()->get('alterada');
 
-
-
         return view('cursos.instrutor.cursos',
             compact('cursos', 'users', 'adicionada',
                 'excluida', 'alterada', 'categorias'
             ));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function indexAdm(Request $request)
+    {
+        //$this->authorize('administrador', Curso::class);
+        $categorias = Categoria::all();
+        $cursos = Curso::all();
+        $users = User::all();
+        $adicionada = $request->session()->get('adicionada');
+        $excluida = $request->session()->get('excluida');
+        $alterada = $request->session()->get('alterada');
+
+        return view('administrador.cursos',
+            compact('cursos', 'users', 'adicionada',
+                'excluida', 'alterada', 'categorias'
+            ));
+
+    }
+
+    public function enable($id, Request $request)
+    {
+        $curso = Curso::find($id);
+
+        if ($curso->ativo == 0){
+            $curso->ativo = 1;
+            $curso->save();
+        }
+
+        $request->session()->flash('adicionada',
+            "Curso $curso->titulo publicado com sucesso.");
+
+        return redirect()->route('cursos.index-adm');
+    }
+
+    public function disable($id, Request $request)
+    {
+        $curso = Curso::find($id);
+
+        if ($curso->ativo == 1){
+            $curso->ativo = 0;
+            $curso->save();
+        }
+
+        $request->session()->flash('excluida',
+            "Curso $curso->titulo desativado com sucesso.");
+
+        return redirect()->route('cursos.index-adm');
     }
 
     /**
@@ -117,7 +148,7 @@ class CursosController extends Controller
         }
 
         $request->session()->flash('adicionada',
-            "Curso $curso->descricao inserida com sucesso.");
+            "Curso $curso->titulo inserida com sucesso.");
         DB::commit();
 
         return redirect()->route('cursos');
@@ -136,7 +167,7 @@ class CursosController extends Controller
         $auth = Auth::user();
         $data = Carbon::now()->toDateTimeString();
 
-        if (isset($curso)){
+        if (isset($curso) and ($curso->ativo == 1)){
             $user = User::find($curso->usuarioAtualizacao);
             $cat = Categoria::find($curso->categoria_id);
             $user_curso = UsuarioCursoUnidadeMaterialProva::where([
@@ -222,6 +253,7 @@ class CursosController extends Controller
         $curso->icone = $request->input('icone');
         $curso->palavrasChave = $request->input('palavrasChave');
         $curso->usuarioAtualizacao = $request->input('usuarioAtualizacao');
+        $curso->ativo = 0;
         $curso->save();
 
         $request->session()->flash('alterada',
@@ -312,7 +344,7 @@ class CursosController extends Controller
             for($i = 0; $i < count($andamento); $i++){
                 $array_and[$i] = $andamento[$i]->curso_id;
             }
-            $andamento = Curso::whereIn('id', $array_and )->get();
+            $andamento = Curso::whereIn('id', $array_and )->where('ativo', 1)->get();
         }
 
 
@@ -342,7 +374,7 @@ class CursosController extends Controller
             for($i = 0; $i < count($andamento); $i++){
                 $array[$i] = $andamento[$i]->curso_id;
             }
-            $andamento = Curso::whereIn('id', $array )->get();
+            $andamento = Curso::whereIn('id', $array )->where('ativo', 1)->get();
         }
         return view('cursos.aluno.andamento-cursos',
             compact('andamento'));
@@ -402,8 +434,15 @@ class CursosController extends Controller
 
     public function rating($curso_id)
     {
+        $auth = Auth::user();
         $curso = Curso::find($curso_id);
-        return view('cursos.aluno.rating', compact('curso'));
+
+        $user_curso = UsuarioCursoUnidadeMaterialProva::where([
+            ['user_id', $auth->id],
+            ['curso_id', $curso->id],
+        ])->get();
+
+        return view('cursos.aluno.rating', compact('curso', 'user_curso'));
     }
 
     public function ratingSave(Request $request)
@@ -415,17 +454,14 @@ class CursosController extends Controller
             ['curso_id', $curso->id],
         ])->get();
 
-        dd($request->all());
-
-        /*$user_curso[0]->rating = $request->rating;
+        $user_curso[0]->rating = $request->rating;
         $user_curso[0]->comentario = $request->comentario;
-        $user_curso[0]->save();*/
-
+        $user_curso[0]->save();
 
         $request->session()->flash('adicionada',
-            "Obrigado por avaliar o Curos $curso->descricao.");
+            "Obrigado por avaliar o Curos $curso->titulo.");
 
-        return view('cursos.aluno.rating', compact('curso'));
+        return Redirect::to('cursos/' . $curso->id);
     }
 
 }

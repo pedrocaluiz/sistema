@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "funcoes"])
+@extends('layouts.base', ["menu" => "listar", "current" => "funcoes"])
 
 @section('header')
   @lang('messages.functions')

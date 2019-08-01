@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "tipodoc"])
+@extends('layouts.base', ["menu" => "cadastrar", "current" => "tipodoc"])
 
 @section('header')
   @lang('messages.types-doc')

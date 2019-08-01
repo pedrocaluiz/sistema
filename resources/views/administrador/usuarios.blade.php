@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "usuarios"])
+@extends('layouts.base', ["menu" => "listar", "current" => "usuarios"])
 
 @section('header')
   @lang('messages.users')
@@ -136,26 +136,58 @@
                           @endforeach
                         @endif
                         <td>
-                          <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoTxt">Detalhes</a>
+                          <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoTxt">Relatório</a>
                           <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoIcon"><i class="fa fa-list-ul"></i></a>
 
-                          <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-primary acaoTxt">Editar</a>
-                          <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
+                            @php $perfil = $user->perfil->where('descricao', 'Instrutor')->first(); @endphp
+                            @if (empty($perfil))
+                                <a class="btn btn=sm btn-success acaoTxt "href="/usuarios/instrutor/{{$user->id}}" style="min-width: 124px"
+                                   onclick="event.preventDefault();
+                                       document.getElementById('instrutor-form-{{$user->id}}').submit();">
+                                    Tornar Instrutor
+                                </a>
+                                <a class="btn btn=sm btn-success acaoIcon "href="/usuarios/instrutor/{{$user->id}}"
+                                   onclick="event.preventDefault();
+                                       document.getElementById('instrutor-form-{{$user->id}}').submit();">
+                                    <i class="fa fa-mortar-board"></i>
+                                </a>
+                                <form id="instrutor-form-{{$user->id}}" action="/usuarios/instrutor/{{$user->id}}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            @else
+                                <a class="btn btn=sm btn-warning acaoTxt "href="/usuarios/aluno/{{$user->id}}" style="min-width: 124px"
+                                   onclick="event.preventDefault();
+                                       document.getElementById('aluno-form-{{$user->id}}').submit();">
+                                    Remov. Instrutor
+                                </a>
+                                <a class="btn btn=sm btn-warning acaoIcon "href="/usuarios/aluno/{{$user->id}}"
+                                   onclick="event.preventDefault();
+                                       document.getElementById('aluno-form-{{$user->id}}').submit();">
+                                    <i class="fa fa-mortar-board"></i>
+                                </a>
+                                <form id="aluno-form-{{$user->id}}" action="/usuarios/aluno/{{$user->id}}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            @endif
 
-                          <a class="btn btn=sm btn-danger acaoTxt" href="/usuarios/{{$user->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$user->id}}').submit();">
-                            {{ __('Excluir') }}
-                          </a>
-                          <a class="btn btn=sm btn-danger acaoIcon"href="/usuarios/{{$user->id}}"
+
+                          <a class="btn btn=sm btn-danger acaoTxt "href="/usuarios/{{$user->id}}"
                              onclick="event.preventDefault();
                                      document.getElementById('delete-form-{{$user->id}}').submit();">
                             <i class="fa fa-trash"></i>
+                          </a>
+                          <a class="btn btn=sm btn-danger acaoIcon "href="/usuarios/{{$user->id}}"
+                             onclick="event.preventDefault();
+                                 document.getElementById('delete-form-{{$user->id}}').submit();">
+                              <i class="fa fa-trash"></i>
                           </a>
                           <form id="delete-form-{{$user->id}}" action="/usuarios/{{$user->id}}" method="POST" style="display: none;">
                             @method('DELETE')
                             @csrf
                           </form>
+
+
+
                         </td>
                     @endforeach
                     </tbody>

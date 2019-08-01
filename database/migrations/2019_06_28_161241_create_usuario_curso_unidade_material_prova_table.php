@@ -27,6 +27,9 @@ class CreateUsuarioCursoUnidadeMaterialProvaTable extends Migration
             $table->foreign('prova_id')->references('id')->on('provas');
             $table->decimal('notaAval', '5', '2')->nullable()->default(0);
             $table->dateTime('dataConclusao')->nullable()->default(null);
+            $table->integer('rating')->nullable()->default(null);
+            $table->longText('comentario')->nullable()->default(null);
+
             $table->timestamps();
         });
     }

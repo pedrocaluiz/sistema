@@ -70,13 +70,16 @@ class UnidadesController extends Controller
      */
     public function store(Request $request)
     {
+        $curso = Curso::find($request->input('curso_id'));
         DB::beginTransaction();
 
         $unidade = new Unidade();
         $unidade->titulo = $request->input('tituloUnidade');
         $unidade->ordem = $request->input('ordem');
         $unidade->usuarioAtualizacao = $request->input('usuarioAtualizacao');
-        $unidade->curso_id = $request->input('curso_id');
+        $unidade->curso_id = $curso->id;
+            $curso->ativo = 0;
+            $curso->save();
         $unidade->save();
 
         $request->session()->flash('adicionada',
@@ -248,13 +251,16 @@ class UnidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $curso = Curso::find($request->input('curso_id'));
         DB::beginTransaction();
 
         $unidade = Unidade::find($id);
         $unidade->titulo = $request->input('tituloUnidade');
         $unidade->ordem = $request->input('ordem');
         $unidade->usuarioAtualizacao = $request->input('usuarioAtualizacao');
-        $unidade->curso_id = $request->input('curso_id');
+        $unidade->curso_id = $curso->id;
+            $curso->ativo = 0;
+            $curso->save();
         $unidade->save();
 
         $request->session()->flash('alterada',

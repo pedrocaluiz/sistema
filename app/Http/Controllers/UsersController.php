@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Curso;
 use App\Model\Funcao;
+use App\Model\PerfilUsuario;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
@@ -13,11 +14,16 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $users = User::all();
         $funcoes = Funcao::all();
-        return view('administrador.usuarios', compact('users', 'funcoes'));
+        $adicionada = $request->session()->get('adicionada');
+        $excluida = $request->session()->get('excluida');
+        $alterada = $request->session()->get('alterada');
+        return view('administrador.usuarios',
+            compact('users', 'funcoes', 'adicionada',
+            'excluida', 'alterada'));
     }
 
     public function relatorioUser($user_id)
@@ -128,7 +134,45 @@ class UsersController extends Controller
             compact('user', 'curso'));
     }
 
+    public function certificadoCurso($curso_id)
+    {
+        //
+    }
 
+    public function certificadoUser($curso_id)
+    {
+        //
+    }
 
+    public function instrutor($id, Request $request)
+    {
+        $user = User::find($id);
+        $perfil = $user->perfil->where('descricao', 'Instrutor')->first();
+
+        if (empty($perfil)){
+            $perfil = new PerfilUsuario();
+            $perfil->perfil_id = 2;
+            $perfil->user_id = $user->id;
+            $perfil->save();
+        }
+        $request->session()->flash('adicionada',
+            "Usuário $user->primeiroNome $user->ultimoNome tornou-se um Instrutor.");
+
+        return redirect()->route('usuarios');
+    }
+
+    public function aluno($id, Request $request)
+    {
+        $user = User::find($id);
+        $perfil = $user->perfil->where('descricao', 'Instrutor')->first();
+
+        if (isset($perfil)){
+            $user->perfil()->detach($perfil->id);
+        }
+        $request->session()->flash('excluida',
+            "Usuário $user->primeiroNome $user->ultimoNome não é mais um Instrutor.");
+
+        return redirect()->route('usuarios');
+    }
 
 }

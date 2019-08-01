@@ -1,7 +1,11 @@
-@extends('layouts.base', ["menu" => "listar", "current" => "agencias"])
+@extends('layouts.base', ["current" => "cursos", "menu" => "listar"])
 
 @section('header')
-    @lang('messages.agencies')
+    @lang('messages.courses')
+@endsection
+
+@section('title')
+    @lang('messages.courses')
 @endsection
 
 @push('css')
@@ -10,15 +14,15 @@
         /*parte mobile*/
         @media(max-width: 997px){
 
-            table#example1 td:nth-child(4), td:nth-child(5) {
+            table#example1 td:nth-child(1), td:nth-child(5) {
                 display: none;
             }
 
-            thead th:nth-child(4), th:nth-child(5) {
+            thead th:nth-child(1), th:nth-child(5) {
                 display: none;
             }
 
-            tfoot th:nth-child(4), th:nth-child(5) {
+            tfoot th:nth-child(1), th:nth-child(5) {
                 display: none;
             }
         }
@@ -26,25 +30,21 @@
         /*parte mobile usuarios*/
         @media(max-width: 1335px){
 
-            table#example1 td:nth-child(1), td:nth-child(6){
+            table#example1 td:nth-child(3){
                 display: none;
             }
 
-            thead th:nth-child(1), th:nth-child(6) {
+            thead th:nth-child(3){
                 display: none;
             }
 
-            tfoot th:nth-child(1), th:nth-child(6) {
+            tfoot th:nth-child(3){
                 display: none;
             }
         }
     </style>
 
 @endpush
-
-@section('title')
-    @lang('messages.agencies')
-@endsection
 
 @section('content')
     <div class="row align-items-end">
@@ -65,7 +65,7 @@
                         @if (!empty($excluida))
                             <div class="row" style="display: flex; justify-content: space-around">
                                 <div class="col-md-6">
-                                    <div class="alert alert-danger alert-dismissible">
+                                    <div class="alert alert-warning alert-dismissible">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                         <h4><i class="icon fa fa-check"></i> {{$excluida}}</h4>
                                     </div>
@@ -84,7 +84,7 @@
                         @endif
                         <div class="row">
                             <div class="col-sm-12">
-                                @if(count($agencias) > 0)
+                                @if(count($cursos) > 0)
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
@@ -93,24 +93,20 @@
                                                 ID
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Código: activate to sort column ascending" style="width: 245px;">
-                                                Código
+                                                aria-label="Categoria: activate to sort column ascending" style="width: 245px;">
+                                                Categoria
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Agência: activate to sort column ascending" style="width: 245px;">
-                                                Agência
+                                                aria-label="Título.: activate to sort column ascending" style="width: 245px;">
+                                                Título
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="SR: activate to sort column ascending" style="width: 245px;">
-                                                SR
+                                                aria-label="Ícone: activate to sort column ascending" style="width: 245px;">
+                                                Ícone
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="DIRE: activate to sort column ascending" style="width: 245px;">
-                                                DIRE
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Usuário Atualização: activate to sort column ascending" style="width: 245px;">
-                                                Usuário Atualização
+                                                aria-label="Instrutor: activate to sort column ascending" style="width: 245px;">
+                                                Instrutor
                                             </th>
                                             <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                                 aria-label="Ações: activate to sort column ascending" style="width: 245px;">
@@ -119,32 +115,62 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($agencias as $agencia)
+                                        @foreach ($cursos as $c)
                                             <tr>
-                                                <td>{{$agencia->id}}</td>
-                                                <td>{{$agencia->codigoUnidade}}</td>
-                                                <td>{{$agencia->descricao}}</td>
-                                                <td>{{$agencia->SR}}</td>
-                                                <td>{{$agencia->DIRE}}</td>
+                                                <td>{{$c->id}}</td>
+                                                @foreach ($categorias as $categoria)
+                                                    @if ($categoria->id == $c->categoria_id)
+                                                        <td>{{$categoria->descricao}}</td>
+                                                    @endif
+                                                @endforeach
+                                                <td>{{$c->titulo}}</td>
+                                                <td><i class="{{$c->icone}}"></i></td>
                                                 @foreach ($users as $user)
-                                                    @if($user->id == $agencia->usuarioAtualizacao)
+                                                    @if($user->id == $c->usuarioAtualizacao)
                                                         <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
                                                     @endif
                                                 @endforeach
                                                 <td>
-                                                    <a href="/agencias/{{$agencia->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
-                                                    <a href="/agencias/{{$agencia->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/agencias/{{$agencia->id}}"
+                                                @if ($c->ativo == 0)
+                                                    <a class="btn btn=sm btn-success acaoTxt" href="/cursos/enable/{{$c->id}}" style="min-width: 80px"
                                                        onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$agencia->id}}').submit();">
+                                                           document.getElementById('enable-form-{{$c->id}}').submit();">
+                                                        Publicar
+                                                    </a>
+                                                    <a class="btn btn=sm btn-success acaoIcon"href="/cursos/enable/{{$c->id}}"
+                                                       onclick="event.preventDefault();
+                                                           document.getElementById('enable-form-{{$c->id}}').submit();">
+                                                        <i class="fa fa-level-up"></i>
+                                                    </a>
+                                                    <form id="enable-form-{{$c->id}}" action="/cursos/enable/{{$c->id}}" method="POST" style="display: none;">
+                                                        @csrf
+                                                    </form>
+                                                @else
+                                                    <a class="btn btn=sm btn-warning acaoTxt" href="/cursos/disable/{{$c->id}}" style="min-width: 80px"
+                                                       onclick="event.preventDefault();
+                                                           document.getElementById('disable-form-{{$c->id}}').submit();">
+                                                        Desativar
+                                                    </a>
+                                                    <a class="btn btn=sm btn-warning acaoIcon"href="/cursos/disable/{{$c->id}}"
+                                                       onclick="event.preventDefault();
+                                                           document.getElementById('disable-form-{{$c->id}}').submit();">
+                                                        <i class="fa fa-level-down"></i>
+                                                    </a>
+                                                    <form id="disable-form-{{$c->id}}" action="/cursos/disable/{{$c->id}}" method="POST" style="display: none;">
+                                                        @csrf
+                                                    </form>
+                                                @endif
+                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/cursos/{{$c->id}}"
+                                                       onclick="event.preventDefault();
+                                                               document.getElementById('delete-form-{{$c->id}}').submit();">
                                                         @lang('messages.delete')
                                                     </a>
-                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/agencias/{{$agencia->id}}"
+                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/cursos/{{$c->id}}"
                                                        onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$agencia->id}}').submit();">
+                                                               document.getElementById('delete-form-{{$c->id}}').submit();">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                    <form id="delete-form-{{$agencia->id}}" action="/agencias/{{$agencia->id}}" method="POST" style="display: none;">
+                                                    <form id="delete-form-{{$c->id}}" action="/cursos/{{$c->id}}" method="POST" style="display: none;">
                                                         @method('DELETE')
                                                         @csrf
                                                     </form>
@@ -158,19 +184,16 @@
                                                 ID
                                             </th>
                                             <th rowspan="1" colspan="1">
-                                                Código
+                                                Categoria
                                             </th>
                                             <th rowspan="1" colspan="1">
-                                                Agência
+                                                Título
                                             </th>
                                             <th rowspan="1" colspan="1">
-                                                SR
+                                                Ícone
                                             </th>
                                             <th rowspan="1" colspan="1">
-                                                DIRE
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Usuário Atualização
+                                                Instrutor
                                             </th>
                                             <th rowspan="1" colspan="1">
                                                 Ações
@@ -185,8 +208,8 @@
                 </div>
                 <div class="box-footer d-flex justify-content-center">
                     <div class="col-md-2">
-                        <a href="{{route('agencias.create')}}" type="button"  class="btn btn-primary botao" id="cadastro">
-                            <i class="fa fa-plus"></i> &nbsp;&nbsp;@lang('messages.agency')
+                        <a href="{{route('cursos.create')}}" type="button"  class="btn btn-primary botao" id="cadastro">
+                            <i class="fa fa-plus"></i> &nbsp;&nbsp;@lang('messages.course')
                         </a>
                     </div>
                 </div>

@@ -26,26 +26,89 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="rating">Rating</label>
-                  <div style="margin-top: 10px">
-                  <a href="javascript:void(0)" onclick="Avaliar(1)">
-                    <img src="/img/star0.png" id="s1"></a>
+                    @if (isset($user_curso[0]))
+                        @switch($user_curso[0]->rating)
+                            @case(0)
+                            <div style="margin-top: 10px">
+                                <a href="javascript:void(0)" onclick="Avaliar(1)"><img src="/img/star0.png" id="s1"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(2)"><img src="/img/star0.png" id="s2"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(3)"><img src="/img/star0.png" id="s3"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(4)"><img src="/img/star0.png" id="s4"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(5)"><img src="/img/star0.png" id="s5"></a>
+                            </div>
+                            @break
 
-                  <a href="javascript:void(0)" onclick="Avaliar(2)">
-                    <img src="/img/star0.png" id="s2"></a>
+                            @case(1)
+                            <div style="margin-top: 10px">
+                                <a href="javascript:void(0)" onclick="Avaliar(1)"><img src="/img/star1.png" id="s1"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(2)"><img src="/img/star0.png" id="s2"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(3)"><img src="/img/star0.png" id="s3"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(4)"><img src="/img/star0.png" id="s4"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(5)"><img src="/img/star0.png" id="s5"></a>
+                            </div>
+                            @break
 
-                  <a href="javascript:void(0)" onclick="Avaliar(3)">
-                    <img src="/img/star0.png" id="s3"></a>
+                            @case(2)
+                            <div style="margin-top: 10px">
+                                <a href="javascript:void(0)" onclick="Avaliar(1)"><img src="/img/star1.png" id="s1"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(2)"><img src="/img/star1.png" id="s2"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(3)"><img src="/img/star0.png" id="s3"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(4)"><img src="/img/star0.png" id="s4"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(5)"><img src="/img/star0.png" id="s5"></a>
+                            </div>
+                            @break
 
-                  <a href="javascript:void(0)" onclick="Avaliar(4)">
-                    <img src="/img/star0.png" id="s4"></a>
+                            @case(3)
+                            <div style="margin-top: 10px">
+                                <a href="javascript:void(0)" onclick="Avaliar(1)"><img src="/img/star1.png" id="s1"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(2)"><img src="/img/star1.png" id="s2"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(3)"><img src="/img/star1.png" id="s3"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(4)"><img src="/img/star0.png" id="s4"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(5)"><img src="/img/star0.png" id="s5"></a>
+                            </div>
+                            @break
 
-                  <a href="javascript:void(0)" onclick="Avaliar(5)">
-                    <img src="/img/star0.png" id="s5"></a>
-                  </div>
+                            @case(4)
+                            <div style="margin-top: 10px">
+                                <a href="javascript:void(0)" onclick="Avaliar(1)"><img src="/img/star1.png" id="s1"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(2)"><img src="/img/star1.png" id="s2"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(3)"><img src="/img/star1.png" id="s3"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(4)"><img src="/img/star1.png" id="s4"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(5)"><img src="/img/star0.png" id="s5"></a>
+                            </div>
+                            @break
+
+                            @case(5)
+                            <div style="margin-top: 10px">
+                                <a href="javascript:void(0)" onclick="Avaliar(1)"><img src="/img/star1.png" id="s1"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(2)"><img src="/img/star1.png" id="s2"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(3)"><img src="/img/star1.png" id="s3"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(4)"><img src="/img/star1.png" id="s4"></a>
+                                <a href="javascript:void(0)" onclick="Avaliar(5)"><img src="/img/star1.png" id="s5"></a>
+                            </div>
+                            @break
+
+
+                        @endswitch
+                    @else
+                        <div style="margin-top: 10px">
+                            <a href="javascript:void(0)" onclick="Avaliar(1)"><img src="/img/star0.png" id="s1"></a>
+                            <a href="javascript:void(0)" onclick="Avaliar(2)"><img src="/img/star0.png" id="s2"></a>
+                            <a href="javascript:void(0)" onclick="Avaliar(3)"><img src="/img/star0.png" id="s3"></a>
+                            <a href="javascript:void(0)" onclick="Avaliar(4)"><img src="/img/star0.png" id="s4"></a>
+                            <a href="javascript:void(0)" onclick="Avaliar(5)"><img src="/img/star0.png" id="s5"></a>
+                        </div>
+                    @endif
+
                 </div>
                 <div class="form-group col-md-6">
                   <label for="comentario">Comentário</label>
-                  <textarea id="comentario" rows="2" cols="50" name="comentario" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                    @if (isset($user_curso[0]))
+                        <textarea id="comentario" rows="2" cols="50" name="comentario" class="form-control"  required maxlength="500" style="resize: vertical">{{$user_curso[0]->comentario}}</textarea>
+                    @else
+                        <textarea id="comentario" rows="2" cols="50" name="comentario" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                    @endif
+
                 </div>
                 <input type="hidden" name="usuarioAtualizacao" value="{{Auth::user()->id}}">
                 <input type="hidden" name="curso" value="{{$curso->id}}">

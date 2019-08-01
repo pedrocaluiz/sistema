@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "cargos"])
+@extends('layouts.base', ["menu" => "listar", "current" => "cargos"])
 
 @section('header')
   @lang('messages.charges')

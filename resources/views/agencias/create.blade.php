@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "agencias"])
+@extends('layouts.base', ["menu" => "cadastrar", "current" => "agencias"])
 
 @section('header')
   @lang('messages.agencies')

@@ -14,7 +14,6 @@ class Unidade extends Model
 
     public function usuario() {
         return $this->belongsToMany(User::class, 'usuario_curso_unidade_material_prova')->withPivot('dataConclusao', 'notaAval');
-
     }
 
     public function questoes()

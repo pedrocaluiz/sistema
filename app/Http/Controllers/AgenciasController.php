@@ -117,8 +117,7 @@ class AgenciasController extends Controller
             $agencia->delete();
             $request->session()->flash('excluida',
                 "Agência $descricao excluída com sucesso.");
-            return redirect('agencias');
         }
-        return response('Agência não encontrada', 404);
+        return redirect('agencias');
     }
 }

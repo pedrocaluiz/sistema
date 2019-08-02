@@ -156,9 +156,11 @@ Route::get('/todos-cursos', 'CursosController@todosCursos')->name('todos-cursos'
 Route::prefix('usuarios')->name('usuarios')->middleware('auth')->group(function () {
     Route::get('/', 'UsersController@index');
     Route::get('/relatorio/{user_id}', 'UsersController@relatorioUser')->name('.relatorio.user');
+    Route::get('/relatorio-pdf/{user_id}', 'UsersController@relatorioUserPdf')->name('.relatorio.pdf');
     Route::get('/relatorio/{user_id}/curso/{curso_id}', 'UsersController@relatorioCurso')->name('.relatorio.curso');
     Route::post('/instrutor/{id}', 'UsersController@instrutor')->name('.instrutor')->middleware('auth');
     Route::post('/aluno/{id}', 'UsersController@aluno')->name('.aluno')->middleware('auth');
+    Route::delete('/delete', 'UsersController@destroy')->name('.destroy')->middleware('auth');
 });
 
 

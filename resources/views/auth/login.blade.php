@@ -75,6 +75,11 @@
                     </div>
                     <button type="submit" class="btn btn-primary shadow-2 mb-4">{{ __('messages.login') }}</button>
                     <p class="mb-0 text-muted">@lang('messages.login') <a href="/register">Registre-se</a></p>
+                    {{--@if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif--}}
                 </form>
             </div>
         </div>

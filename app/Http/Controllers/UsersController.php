@@ -9,6 +9,7 @@ use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 
@@ -174,5 +175,90 @@ class UsersController extends Controller
 
         return redirect()->route('usuarios');
     }
+
+    public function relatorioUserPdf($user_id)
+    {
+        $user = User::find($user_id);
+        $cursos = $user->cursos;
+
+            if (count($cursos) > 0){ // se existe curso para esse usuario
+                foreach ($cursos as $curso){
+                    $progresso = [];
+                    $notaUnidade = [];
+                    if (count($curso->unidades) > 0){ // se existe unidade nesse curso
+                        foreach ($curso->unidades as $unidade){
+                            $todosMateriais = $unidade->materiais;
+                            if (count($todosMateriais) > 0){ // se existe materiais para essa unidade
+                                for ($j = 0; $j < count($todosMateriais); $j++) {
+                                    $array[$j] = $todosMateriais[$j]->id;
+                                    /*
+                                     * 0 => id 12
+                                     * 1 => id 33
+                                     * */
+                                }
+                                $concluidos = "";
+                                $concluidos = UsuarioCursoUnidadeMaterialProva::
+                                whereIn('material_id', $array)
+                                    ->where([
+                                        ['user_id', $user_id],
+                                        ['dataConclusao', '<>', NULL],])
+                                    ->get();
+                            }
+                            if ((count($todosMateriais) > 0) && (isset($concluidos))){
+                                $soma = floor(count($concluidos) / count($todosMateriais) * 100);
+                                $progresso[$unidade->id] = $soma;
+                            }elseif ((count($todosMateriais) > 0) && (empty($concluidos))){
+                                $soma = 0;
+                                $progresso[$unidade->id] = $soma;
+                            }elseif (empty($unidade->usuario->where('id', $user_id)[0])) {
+                                $soma = 0;
+                                $progresso[$unidade->id] = $soma;
+                            }else{
+                                $soma = 100;
+                                $progresso[$unidade->id] = $soma;
+                            }
+
+                            if (!empty($unidade->usuario->where('id', $user_id)[0])){
+                                $nota = $unidade->usuario->where('id', $user_id)->first()->pivot->notaAval;
+                                if ($nota > 7) { $notaUnidade[$unidade->id] = 1; }else {$notaUnidade[$unidade->id] = 0;}
+                            }
+
+                            //dd($cursos[3]->unidades[2]->usuario->where('id', $user_id)->first()->pivot->notaAval);
+
+                        }
+                    }
+                    if (count($progresso) > 0){
+                        $progressoCurso[$curso->id] =  number_format(array_sum($progresso) / count($progresso), 2, ".", "") ;
+                    }else {
+                        $progressoCurso[$curso->id] = 0.00;
+                    }
+                }
+            }
+
+            if ( isset($user) and isset($cursos) and isset($progressoCurso) ) {
+                $nomeArquivo = $user->primeiroNome . $user->ultimoNome;
+                $data = ['user' => $user, 'cursos' => $cursos, 'progressoCurso' => $progressoCurso];
+                $pdf = PDF::loadView('administrador.relatorio-user-pdf', $data)->setPaper('a4', 'landscape');
+                return $pdf->stream($nomeArquivo . '.pdf');
+            }else{
+                return redirect()->back();
+            }
+            //return view('administrador.relatorio-user-pdf', compact('user', 'cursos', 'progressoCurso'));
+
+    }
+
+    public function destroy(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $nome = $user->primeiroNome . ' ' . $user->ultimoNome;
+
+        if (isset($user)){
+            $user->delete();
+            $request->session()->flash('excluida',
+                "Usuário $nome excluído com sucesso.");
+        }
+        return redirect()->back();
+    }
+
 
 }

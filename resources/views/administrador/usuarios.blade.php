@@ -170,8 +170,18 @@
                                 </form>
                             @endif
 
+                            <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
+                                data-user_id="{{$user->id}}" id="excluir">
+                               <i class="fa fa-trash"></i>
+                            </button>
+                            <a class="btn btn=sm btn-danger acaoIcon "href="/usuarios/{{$user->id}}"
+                               onclick="event.preventDefault();
+                                   document.getElementById('delete-form-{{$user->id}}').submit();">
+                                <i class="fa fa-trash"></i>
+                            </a>
 
-                          <a class="btn btn=sm btn-danger acaoTxt "href="/usuarios/{{$user->id}}"
+
+                          {{--<a class="btn btn=sm btn-danger acaoTxt "href="/usuarios/{{$user->id}}"
                              onclick="event.preventDefault();
                                      document.getElementById('delete-form-{{$user->id}}').submit();">
                             <i class="fa fa-trash"></i>
@@ -181,10 +191,12 @@
                                  document.getElementById('delete-form-{{$user->id}}').submit();">
                               <i class="fa fa-trash"></i>
                           </a>
-                          <form id="delete-form-{{$user->id}}" action="/usuarios/{{$user->id}}" method="POST" style="display: none;">
-                            @method('DELETE')
-                            @csrf
-                          </form>
+                            <form id="delete-form-{{$user->id}}" action="/usuarios/{{$user->id}}" method="POST" style="display: none;">
+                                @method('DELETE')
+                                @csrf
+                            </form>--}}
+
+
 
 
 
@@ -222,8 +234,85 @@
       </div>
     </div>
   </div>
+
+  <div class="modal modal-danger fade" tabindex="-1" id="delete">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Excluir Usuário</h4>
+              </div>
+              <form id="delete-form" action="{{route('usuarios.destroy')}}" method="POST">
+                  @method('DELETE')
+                  @csrf
+                  <div class="modal-body">
+                      <p>Deseja realmente apagar esse registro?</p>
+                      <input type="hidden" name="user_id" id="user_id" value="">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não, cancelar</button>
+                      <button type="submit" class="btn btn=sm btn-danger acaoTxt">Sim, excluir</button>
+                  </div>
+              </form>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
 @endsection
 
 @push('scripts')
+<script type="text/javascript">
+    //tem que ser quando a página estiver carregada.
+    $(document).ready(function(){
+        $('#delete').on('shown.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var user_id = button.data('user_id');
+            var modal = $(this);
+            modal.find('.modal-body #user_id').val(user_id);
+        })
+    });
+
+
+    /*$('#excluir').on('click', function(){
+        var user_id = $(this).data('user_id'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
+        var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
+        $('span.nome').text(nome+ ' (id = ' +id+ ')'); // inserir na o nome na pergunta de confirmação dentro da modal
+        $('a.delete-yes').attr('href', 'apagar.php?id=' +id); // mudar dinamicamente o link, href do botão confirmar da modal
+        $('#delete').modal('show'); // modal aparece
+    });
+
+    $('#excluir').on('click', function(){
+        console.log(event);
+        var button = $(event.relatedTarget);
+        console.log(button);
+        var user_id = button.data('user_id');
+        console.log(user_id);
+        var modal = $(this);
+        console.log(modal);
+
+        modal.find('.modal-body #user_id').val(user_id);
+        console.log(modal.find('.modal-body #user_id').val());
+    });*/
+
+
+        /*$('#myModal').on('show.bs.modal', function (event) {                                                       <<<<<<<<<<<#myModal = nome do modal
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipientId    = button.data('id')                                                                 <<<<<<<<<<< button.data('id') é o data-id que você passou em cima
+            var recipientNome = button.data('nome') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('#id').val(recipientId) << pega o valor armazenado no recipient e substitui no modal onde o #id = o id do campo no modal para substituir
+            modal.find('#nome').val(recipientNome)
+        })*/
+
+
+
+
+</script>
+
+
 @endpush
 

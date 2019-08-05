@@ -119,7 +119,10 @@
                                             <tr>
                                                 <td>{{$c->id}}</td>
                                                 @foreach ($categorias as $categoria)
-                                                    @if ($categoria->id == $c->categoria_id)
+                                                    @if ($c->categoria_id == null)
+                                                        <td style="text-decoration: line-through;">Sem Categoria Associado</td>
+                                                        @break
+                                                    @elseif ($categoria->id == $c->categoria_id)
                                                         <td>{{$categoria->descricao}}</td>
                                                     @endif
                                                 @endforeach
@@ -160,20 +163,14 @@
                                                         @csrf
                                                     </form>
                                                 @endif
-                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/cursos/{{$c->id}}"
-                                                       onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$c->id}}').submit();">
+                                                    <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
+                                                            data-curso_id="{{$c->id}}" id="excluir">
                                                         @lang('messages.delete')
-                                                    </a>
-                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/cursos/{{$c->id}}"
-                                                       onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$c->id}}').submit();">
+                                                    </button>
+                                                    <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                                            data-curso_id="{{$c->id}}" id="excluir">
                                                         <i class="fa fa-trash"></i>
-                                                    </a>
-                                                    <form id="delete-form-{{$c->id}}" action="/cursos/{{$c->id}}" method="POST" style="display: none;">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                    </form>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -216,5 +213,45 @@
             </div>
         </div>
     </div>
+
+    <div class="modal modal-danger fade" tabindex="-1" id="delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Excluir Curso</h4>
+                </div>
+                <form id="delete-form" action="{{route('cursos.destroy')}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-body">
+                        <p>Deseja realmente apagar esse registro?</p>
+                        <input type="hidden" name="curso_id" id="curso_id" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não, cancelar</button>
+                        <button type="submit" class="btn btn=sm btn-danger">Sim, excluir</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        //tem que ser quando a página estiver carregada.
+        $(document).ready(function(){
+            $('#delete').on('shown.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var curso_id = button.data('curso_id');
+                var modal = $(this);
+                modal.find('.modal-body #curso_id').val(curso_id);
+            })
+        });
+    </script>
+@endpush
 

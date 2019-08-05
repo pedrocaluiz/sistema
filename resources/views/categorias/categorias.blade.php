@@ -122,20 +122,14 @@
                         <td>
                           <a href="/categorias/{{$cat->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
                           <a href="/categorias/{{$cat->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                          <a class="btn btn=sm btn-danger acaoTxt" href="/categorias/{{$cat->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$cat->id}}').submit();">
-                            @lang('messages.delete')
-                          </a>
-                          <a class="btn btn=sm btn-danger acaoIcon" href="/categorias/{{$cat->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$cat->id}}').submit();">
-                            <i class="fa fa-edit"></i>
-                          </a>
-                          <form id="delete-form-{{$cat->id}}" action="/categorias/{{$cat->id}}" method="POST" style="display: none;">
-                            @method('DELETE')
-                            @csrf
-                          </form>
+                            <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
+                                    data-categoria_id="{{$cat->id}}" id="excluir">
+                                @lang('messages.delete')
+                            </button>
+                            <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                    data-categoria_id="{{$cat->id}}" id="excluir">
+                                <i class="fa fa-trash"></i>
+                            </button>
                         </td>
                     @endforeach
                     </tbody>
@@ -173,6 +167,47 @@
       </div>
     </div>
   </div>
+</div>
 
+  <div class="modal modal-danger fade" tabindex="-1" id="delete">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Excluir Categoria</h4>
+              </div>
+              <form id="delete-form" action="{{route('categorias.destroy')}}" method="POST">
+                  @method('DELETE')
+                  @csrf
+                  <div class="modal-body">
+                      <p>Deseja realmente apagar esse registro?</p>
+                      <input type="hidden" name="categoria_id" id="categoria_id" value="">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não, cancelar</button>
+                      <button type="submit" class="btn btn=sm btn-danger">Sim, excluir</button>
+                  </div>
+              </form>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
   </div>
+
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        //tem que ser quando a página estiver carregada.
+        $(document).ready(function(){
+            $('#delete').on('shown.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var categoria_id = button.data('categoria_id');
+                var modal = $(this);
+                modal.find('.modal-body #categoria_id').val(categoria_id);
+            })
+        });
+    </script>
+
+@endpush

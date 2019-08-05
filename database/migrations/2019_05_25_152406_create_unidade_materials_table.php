@@ -15,7 +15,7 @@ class CreateUnidadeMaterialsTable extends Migration
     {
         Schema::create('unidade_materiais', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('unidade_id')->unsigned();
+            $table->bigInteger('unidade_id')->unsigned()->nullable()->default(null);
             $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('cascade');
             $table->bigInteger('material_id')->unsigned();
             $table->foreign('material_id')->references('id')->on('tipo_materiais');

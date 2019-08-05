@@ -126,20 +126,14 @@
                         <td>
                           <a href="/tipodoc/{{$tp->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
                           <a href="/tipodoc/{{$tp->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                          <a class="btn btn=sm btn-danger acaoTxt" href="/tipodoc/{{$tp->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$tp->id}}').submit();">
-                            @lang('messages.delete')
-                          </a>
-                          <a class="btn btn=sm btn-danger acaoIcon" href="/tipodoc/{{$tp->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$tp->id}}').submit();">
-                            <i class="fa fa-edit"></i>
-                          </a>
-                          <form id="delete-form-{{$tp->id}}" action="/tipodoc/{{$tp->id}}" method="POST" style="display: none;">
-                            @method('DELETE')
-                            @csrf
-                          </form>
+                          <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
+                                  data-tipodoc_id="{{$tp->id}}" id="excluir">
+                              @lang('messages.delete')
+                          </button>
+                          <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                  data-tipodoc_id="{{$tp->id}}" id="excluir">
+                              <i class="fa fa-trash"></i>
+                          </button>
                         </td>
                     @endforeach
                     </tbody>
@@ -178,4 +172,44 @@
       </div>
     </div>
   </div>
+
+  <div class="modal modal-danger fade" tabindex="-1" id="delete">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Excluir Tipo Doc.</h4>
+              </div>
+              <form id="delete-form" action="{{route('tipodoc.destroy')}}" method="POST">
+                  @method('DELETE')
+                  @csrf
+                  <div class="modal-body">
+                      <p>Deseja realmente apagar esse registro?</p>
+                      <input type="hidden" name="tipodoc_id" id="tipodoc_id" value="">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não, cancelar</button>
+                      <button type="submit" class="btn btn=sm btn-danger">Sim, excluir</button>
+                  </div>
+              </form>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        //tem que ser quando a página estiver carregada.
+        $(document).ready(function(){
+            $('#delete').on('shown.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var tipodoc_id = button.data('tipodoc_id');
+                var modal = $(this);
+                modal.find('.modal-body #tipodoc_id').val(tipodoc_id);
+            })
+        });
+    </script>
+
+@endpush

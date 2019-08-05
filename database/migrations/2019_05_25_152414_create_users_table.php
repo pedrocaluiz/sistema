@@ -22,11 +22,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('foto')->nullable()->default(null);
-            $table->bigInteger('cargo_id')->unsigned();
+            $table->bigInteger('cargo_id')->unsigned()->nullable()->default(null);
             $table->foreign('cargo_id')->references('id')->on('cargos');
-            $table->bigInteger('funcao_id')->unsigned();
+            $table->bigInteger('funcao_id')->unsigned()->nullable()->default(null);
             $table->foreign('funcao_id')->references('id')->on('funcoes');
-            $table->bigInteger('agencia_id')->unsigned();
+            $table->bigInteger('agencia_id')->unsigned()->nullable()->default(null);
             $table->foreign('agencia_id')->references('id')->on('agencias');
             $table->date('dataNascimento');
             $table->string('matricula', 9);

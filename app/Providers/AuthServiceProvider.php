@@ -6,6 +6,7 @@ use App\Model\Curso;
 use App\Model\Questao;
 use App\Policies\CursosPolicy;
 use App\Policies\QuestoesPolicy;
+use App\Policies\UsersPolicy;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -22,7 +23,8 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
         Curso::class => CursosPolicy::class,
-        Questao::class => QuestoesPolicy::class
+        Questao::class => QuestoesPolicy::class,
+        User::class => UsersPolicy::class
     ];
 
     /**

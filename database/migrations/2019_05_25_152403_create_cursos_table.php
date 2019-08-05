@@ -15,7 +15,7 @@ class CreateCursosTable extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('categoria_id')->unsigned();
+            $table->bigInteger('categoria_id')->unsigned()->nullable()->default(null);
             $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->string('titulo');
             $table->longText('descricao');

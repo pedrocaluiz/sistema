@@ -108,12 +108,19 @@ class FuncoesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-        $funcao = Funcao::find($id);
+        $funcao = Funcao::find($request->funcao_id);
         $descricao = $funcao->descricao;
 
         if (isset($funcao)){
+
+            $users = User::where('funcao_id', $funcao->id)->get();
+            foreach ($users as $user){
+                $user->funcao_id = null;
+                $user->save();
+            }
+
             $funcao->delete();
             $request->session()->flash('excluida',
                 "Função $descricao excluída com sucesso.");

@@ -127,20 +127,14 @@
                         <td>
                           <a href="/funcoes/{{$funcao->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
                           <a href="/funcoes/{{$funcao->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                          <a class="btn btn=sm btn-danger acaoTxt" href="/funcoes/{{$funcao->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$funcao->id}}').submit();">
-                            @lang('messages.delete')
-                          </a>
-                          <a class="btn btn=sm btn-danger acaoIcon" href="/funcoes/{{$funcao->id}}"
-                             onclick="event.preventDefault();
-                                     document.getElementById('delete-form-{{$funcao->id}}').submit();">
-                            <i class="fa fa-edit"></i>
-                          </a>
-                          <form id="delete-form-{{$funcao->id}}" action="/funcoes/{{$funcao->id}}" method="POST" style="display: none;">
-                            @method('DELETE')
-                            @csrf
-                          </form>
+                            <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
+                                    data-funcao_id="{{$funcao->id}}" id="excluir">
+                                @lang('messages.delete')
+                            </button>
+                            <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                    data-funcao_id="{{$funcao->id}}" id="excluir">
+                                <i class="fa fa-trash"></i>
+                            </button>
                         </td>
                     @endforeach
                     </tbody>
@@ -183,5 +177,45 @@
     </div>
   </div>
 
+  <div class="modal modal-danger fade" tabindex="-1" id="delete">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Excluir Função</h4>
+              </div>
+              <form id="delete-form" action="{{route('funcoes.destroy')}}" method="POST">
+                  @method('DELETE')
+                  @csrf
+                  <div class="modal-body">
+                      <p>Deseja realmente apagar esse registro?</p>
+                      <input type="hidden" name="funcao_id" id="funcao_id" value="">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não, cancelar</button>
+                      <button type="submit" class="btn btn=sm btn-danger">Sim, excluir</button>
+                  </div>
+              </form>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+
 
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        //tem que ser quando a página estiver carregada.
+        $(document).ready(function(){
+            $('#delete').on('shown.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var funcao_id = button.data('funcao_id');
+                var modal = $(this);
+                modal.find('.modal-body #funcao_id').val(funcao_id);
+            })
+        });
+    </script>
+
+@endpush

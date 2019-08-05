@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Agencia;
+use App\Model\Cargo;
 use App\Model\Curso;
+use App\Model\Documento;
+use App\Model\Estado;
 use App\Model\Funcao;
+use App\Model\Municipio;
+use App\Model\Perfil;
 use App\Model\PerfilUsuario;
+use App\Model\TipoDocumento;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class UsersController extends Controller
@@ -135,16 +143,6 @@ class UsersController extends Controller
             compact('user', 'curso'));
     }
 
-    public function certificadoCurso($curso_id)
-    {
-        //
-    }
-
-    public function certificadoUser($curso_id)
-    {
-        //
-    }
-
     public function instrutor($id, Request $request)
     {
         $user = User::find($id);
@@ -253,6 +251,17 @@ class UsersController extends Controller
         $nome = $user->primeiroNome . ' ' . $user->ultimoNome;
 
         if (isset($user)){
+
+            $documentos = Documento::where('user_id', $user->id)->get();
+            foreach ($documentos as $doc){
+                $doc->delete();
+            }
+
+            $ucump = UsuarioCursoUnidadeMaterialProva::where('user_id', $user->id)->get();
+            foreach ($ucump as $u){
+                $u->delete();
+            }
+
             $user->delete();
             $request->session()->flash('excluida',
                 "Usuário $nome excluído com sucesso.");
@@ -260,5 +269,63 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function edit($id)
+    {
+        $cargos = Cargo::all();
+        $agencias = Agencia::all();
+        $funcoes = Funcao::all();
+        $municipios = Municipio::all();
+        $estados = Estado::all();
+        $perfis = Perfil::all();
+        $tiposDoc = TipoDocumento::all();
+        $user = User::find($id);
+        $municipio = Municipio::find($user->municipio_id);
+        $estado = Estado::find($municipio->estado_id);
+
+        $this->authorize('update', $user);
+
+        return view('aluno.profile-edit', compact(
+            'cargos', 'agencias', 'funcoes', 'municipios', 'municipio',
+            'estados', 'estado', 'perfis', 'tiposDoc', 'user'));
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
+        $curso = Curso::find($id);
+
+        $this->authorize('update', $curso);
+
+        $curso->categoria_id = $request->input('categoria_id');
+        $curso->titulo = $request->input('tituloCurso');
+        $curso->descricao = $request->input('descricaoCurso');
+        $curso->icone = $request->input('icone');
+        $curso->palavrasChave = $request->input('palavrasChave');
+        $curso->usuarioAtualizacao = $request->input('usuarioAtualizacao');
+        $curso->ativo = 0;
+        $curso->save();
+
+        $request->session()->flash('alterada',
+            "Curso $curso->titulo alterado com sucesso.");
+        DB::commit();
+
+        return redirect()->route('cursos');
+    }
 
 }

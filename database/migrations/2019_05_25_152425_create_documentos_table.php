@@ -15,7 +15,7 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('tipoDoc_id')->unsigned();
+            $table->bigInteger('tipoDoc_id')->unsigned()->nullable()->default(null);
             $table->foreign('tipoDoc_id')->references('id')->on('tipo_documentos');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

@@ -134,20 +134,16 @@
                                                 <td>
                                                     <a href="/agencias/{{$agencia->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
                                                     <a href="/agencias/{{$agencia->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/agencias/{{$agencia->id}}"
-                                                       onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$agencia->id}}').submit();">
+                                                    <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
+                                                            data-agencia_id="{{$agencia->id}}" id="excluir">
                                                         @lang('messages.delete')
-                                                    </a>
-                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/agencias/{{$agencia->id}}"
-                                                       onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$agencia->id}}').submit();">
+                                                    </button>
+                                                    <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                                            data-agencia_id="{{$agencia->id}}" id="excluir">
                                                         <i class="fa fa-trash"></i>
-                                                    </a>
-                                                    <form id="delete-form-{{$agencia->id}}" action="/agencias/{{$agencia->id}}" method="POST" style="display: none;">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                    </form>
+                                                    </button>
+
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -193,5 +189,44 @@
             </div>
         </div>
     </div>
-@endsection
 
+    <div class="modal modal-danger fade" tabindex="-1" id="delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Excluir Agência</h4>
+                </div>
+                <form id="delete-form" action="{{route('agencias.destroy')}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-body">
+                        <p>Deseja realmente apagar esse registro?</p>
+                        <input type="hidden" name="agencia_id" id="agencia_id" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não, cancelar</button>
+                        <button type="submit" class="btn btn=sm btn-danger">Sim, excluir</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+@endsection
+@push('scripts')
+    <script type="text/javascript">
+        //tem que ser quando a página estiver carregada.
+        $(document).ready(function(){
+            $('#delete').on('shown.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var agencia_id = button.data('agencia_id');
+                var modal = $(this);
+                modal.find('.modal-body #agencia_id').val(agencia_id);
+            })
+        });
+    </script>
+
+@endpush

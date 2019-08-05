@@ -104,9 +104,9 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-      $cat = Categoria::find($id);
+      $cat = Categoria::find($request->categoria_id);
       $descricao = $cat->descricao;
 
       if (isset($cat)){

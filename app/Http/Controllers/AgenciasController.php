@@ -108,9 +108,9 @@ class AgenciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-        $agencia = Agencia::find($id);
+        $agencia = Agencia::find($request->agencia_id);
         $descricao = $agencia->descricao;
 
         if (isset($agencia)){

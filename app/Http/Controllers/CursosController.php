@@ -271,14 +271,28 @@ class CursosController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-        $curso = Curso::find($id);
+        $curso = Curso::find($request->curso_id);
         $titulo = $curso->titulo;
+
+        dd($curso);
 
         $this->authorize('delete', $curso);
 
         if (isset($curso)){
+
+            $unidades = Unidade::where('curso_id', $curso->id)->get();
+            foreach ($unidades as $unid){
+                $unid->curso_id = null;
+                $unid->save();
+            }
+
+            $ucump = UsuarioCursoUnidadeMaterialProva::where('curso_id', $curso->id)->get();
+            foreach ($ucump as $u){
+                $u->delete();
+            }
+
             $curso->delete();
             $request->session()->flash('excluida',
                 "Curso $titulo excluído com sucesso.");
@@ -462,6 +476,28 @@ class CursosController extends Controller
             "Obrigado por avaliar o Curos $curso->titulo.");
 
         return Redirect::to('cursos/' . $curso->id);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function buscar(Request $request)
+    {
+        $users = User::all();
+        $cursos = Curso::where('titulo', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('palavrasChave', 'LIKE', '%' . $request->search . '%')
+            ->get();
+
+        for ($i = 0; $i < count($cursos); $i++){
+            $array[$i] = $cursos[$i]->categoria_id;
+        }
+
+        $categorias = Categoria::whereIn('id', $array)->get();
+
+        return view('cursos.aluno.busca-cursos',
+            compact('cursos', 'users', 'categorias'));
+
     }
 
 }

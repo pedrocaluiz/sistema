@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "meus-cursos"])
+@extends('layouts.base', ["menu" => "meus-cursos", "current" => "andamento"])
 
 @section('header')
   @lang('messages.course')
@@ -18,6 +18,24 @@
 
     .box-title>h1{
       font-size: 35px;
+    }
+    .small-box h3 {
+        font-size: 25px;
+    }
+    .small-box>.inner {
+        height: 180px;
+    }
+
+    @media(max-width: 997px){
+        .small-box h3 {
+            font-size: 18px;
+        }
+        .small-box>.inner {
+            height: 70px;
+        }
+        p.descricao {
+            display: none;
+        }
     }
   </style>
 @endpush
@@ -39,7 +57,7 @@
               <div class="inner">
                 <h3>{{$a->titulo}}</h3>
 
-                <p>{{$a->descricao}}</p>
+                <p class="descricao">{{$a->descricao}}</p>
               </div>
               <div class="icon">
                 <i class="{{$a->icone}}"></i>

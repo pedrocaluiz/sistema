@@ -119,7 +119,10 @@
                                             <tr>
                                                 <td>{{$mat->id}}</td>
                                                 @foreach ($unidades as $unidade)
-                                                    @if($unidade->id == $mat->unidade_id)
+                                                    @if ($mat->unidade_id == null)
+                                                        <td style="text-decoration: line-through;">Sem Unidade Associada</td>
+                                                        @break
+                                                    @elseif($unidade->id == $mat->unidade_id)
                                                         <td>{{$unidade->titulo}}</td>
                                                     @endif
                                                 @endforeach
@@ -135,22 +138,33 @@
                                                     <td>Web</td>
                                                 @endif
                                                 <td>
-                                                    <a href="/materiais/instrutor/{{$mat->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
-                                                    <a href="/materiais/instrutor/{{$mat->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/materiais/instrutor/{{$mat->id}}"
-                                                       onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$mat->id}}').submit();">
-                                                        @lang('messages.delete')
-                                                    </a>
-                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/materiais/instrutor/{{$mat->id}}"
-                                                       onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$mat->id}}').submit();">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>
-                                                    <form id="delete-form-{{$mat->id}}" action="/materiais/instrutor/{{$mat->id}}" method="POST" style="display: none;">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                    </form>
+                                                    @php
+                                                        $auth = Auth::user();
+                                                        $adm = $auth->perfil->where('administrador', 1)->first();
+                                                    @endphp
+                                                    @if (($auth->id == $mat->usuarioAtualizacao) or isset($adm))
+                                                        <a href="/materiais/{{$mat->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
+                                                        <a href="/materiais/{{$mat->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
+                                                        <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
+                                                                data-material_id="{{$mat->id}}" id="excluir">
+                                                            @lang('messages.delete')
+                                                        </button>
+                                                        <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                                                data-material_id="{{$mat->id}}" id="excluir">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    @else
+                                                        <a class="btn btn=sm btn-primary acaoTxt" disabled="">@lang('messages.edit')</a>
+                                                        <a class="btn btn=sm btn-primary acaoIcon" disabled><i class="fa fa-edit" disabled></i></a>
+                                                        <button class="btn btn=sm btn-danger acaoTxt" disabled
+                                                                data-material_id="{{$mat->id}}" id="excluir">
+                                                            @lang('messages.delete')
+                                                        </button>
+                                                        <button class="btn btn=sm btn-danger acaoIcon" disabled
+                                                                data-material_id="{{$mat->id}}" id="excluir">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -185,7 +199,7 @@
                 </div>
                 <div class="box-footer d-flex justify-content-center">
                     <div class="col-md-2">
-                        <a href="{{route('materiais.instrutor.create')}}" type="button"  class="btn btn-primary botao" id="cadastro">
+                        <a href="{{route('materiais.create')}}" type="button"  class="btn btn-primary botao" id="cadastro">
                             <i class="fa fa-plus"></i> &nbsp;&nbsp;@lang('messages.material')
                         </a>
                     </div>
@@ -193,5 +207,45 @@
             </div>
         </div>
     </div>
+
+    <div class="modal modal-danger fade" tabindex="-1" id="delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Excluir Material</h4>
+                </div>
+                <form id="delete-form" action="{{route('materiais.destroy')}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-body">
+                        <p>Deseja realmente apagar esse registro?</p>
+                        <input type="hidden" name="material_id" id="material_id" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não, cancelar</button>
+                        <button type="submit" class="btn btn=sm btn-danger">Sim, excluir</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        //tem que ser quando a página estiver carregada.
+        $(document).ready(function(){
+            $('#delete').on('shown.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var material_id = button.data('material_id');
+                var modal = $(this);
+                modal.find('.modal-body #material_id').val(material_id);
+            })
+        });
+    </script>
+
+@endpush
 

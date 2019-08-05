@@ -15,7 +15,7 @@ class CreateQuestoesTable extends Migration
     {
         Schema::create('questoes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('unidade_id')->unsigned();
+            $table->bigInteger('unidade_id')->unsigned()->nullable()->default(null);
             $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('cascade');
             $table->longText('questao');
             $table->string('imagem')->nullable()->default(null);;

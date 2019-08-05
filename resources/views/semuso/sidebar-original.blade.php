@@ -205,7 +205,7 @@
                             <li @if(isset($current) && ($current == "unidades")) class="active"@endif>
                                 <a href="{{route('unidades')}}"><i class="fa fa-circle-o"></i> Unidades</a></li>
                             <li @if(isset($current) && ($current == "materiais")) class="active"@endif>
-                                <a href="{{route('materiais.instrutor')}}"><i class="fa fa-circle-o"></i> Materiais</a></li>
+                                <a href="{{route('materiais')}}"><i class="fa fa-circle-o"></i> Materiais</a></li>
                             <li @if(isset($current) && ($current == "questoes")) class="active"@endif>
                                 <a href="{{route('questoes')}}"><i class="fa fa-circle-o"></i> Questões</a></li>
                             <li @if(isset($current) && ($current == "avaliacoes")) class="active"@endif>
@@ -227,7 +227,7 @@
                         <li @if(isset($current) && ($current == "unidades")) class="active"@endif>
                           <a href="{{route('unidades.create')}}"><i class="fa fa-circle-o"></i> Unidade</a></li>
                         <li @if(isset($current) && ($current == "materiais")) class="active"@endif>
-                          <a href="{{route('materiais.instrutor.create')}}"><i class="fa fa-circle-o"></i> Material</a></li>
+                          <a href="{{route('materiais.create')}}"><i class="fa fa-circle-o"></i> Material</a></li>
                         <li @if(isset($current) && ($current == "questoes")) class="active"@endif>
                           <a href="{{route('questoes.create')}}"><i class="fa fa-circle-o"></i> Questão</a></li>
                       </ul>

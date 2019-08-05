@@ -15,7 +15,7 @@ class CreateRespostasTable extends Migration
     {
         Schema::create('respostas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('questao_id')->unsigned();
+            $table->bigInteger('questao_id')->unsigned()->nullable()->default(null);
             $table->foreign('questao_id')->references('id')->on('questoes')->onDelete('cascade');
             $table->longText('resposta');
             $table->integer('usuarioAtualizacao');

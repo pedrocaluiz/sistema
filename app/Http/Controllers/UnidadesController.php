@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Curso;
+use App\Model\Prova;
+use App\Model\ProvaQuestao;
 use App\Model\Questao;
 use App\Model\Resposta;
 use App\Model\TipoMaterial;
@@ -273,17 +275,45 @@ class UnidadesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
-    }
+        $unidade = Unidade::find($request->unidade_id);
+        $titulo = $unidade->titulo;
 
-    public function concluir(Request $request)
-    {
-        dd($request);
+        if (isset($unidade)){
+
+            $ucump = UsuarioCursoUnidadeMaterialProva::where('unidade_id', $unidade->id)->get();
+            foreach ($ucump as $u){
+                $u->delete();
+            }
+
+            $questoes = Questao::where('unidade_id', $unidade->id)->get();
+            foreach ($questoes as $q){
+                $q->unidade_id = null;
+                $q->save();
+            }
+
+            $materiais = UnidadeMaterial::where('unidade_id', $unidade->id)->get();
+            foreach ($materiais as $m){
+                $m->unidade_id = null;
+                $m->save();
+            }
+
+            $provas = Prova::where('unidade_id', $unidade->id)->get();
+            foreach ($provas as $p){
+                $p->unidade_id = null;
+                $p->save();
+            }
+
+            $unidade->delete();
+            $request->session()->flash('excluida',
+                "Unidade $titulo excluída com sucesso.");
+            return redirect('unidades');
+        }
+        return response('Unidade não encontrado', 404);
     }
 
     public function download($id)

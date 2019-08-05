@@ -125,7 +125,7 @@
               $('div#unidades>div').remove();
               for (i=0; i<unidades.length; i++) {
                   $('div#unidades').append(
-                      `<div class="col-lg-3 col-xs-6 flex-itens"><div class="small-box bg-white"><div class="inner"><h3>${unidades[i].id}</h3><p>${unidades[i].titulo}</p></div><div class="icon"><i class=""></i></div><a class="small-box-footer" href="/unidades/instrutor/${unidades[i].id}/edit" >Ordem: ${unidades[i].ordem}&nbsp;&nbsp;Editar <i class="fa fa-arrow-circle-right"></i></a></div></div>`);
+                      `<div class="col-lg-3 col-xs-6 flex-itens"><div class="small-box bg-white"><div class="inner"><h3>${unidades[i].id}</h3><p>${unidades[i].titulo}</p></div><div class="icon"><i class=""></i></div><a class="small-box-footer" href="/unidades/${unidades[i].id}/edit" >Ordem: ${unidades[i].ordem}&nbsp;&nbsp;Editar <i class="fa fa-arrow-circle-right"></i></a></div></div>`);
               }
               if (unidades.length > 0){
                   $('#unid-cadastrados').show();

@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "cursos"])
+@extends('layouts.base', ["current" => "todos-cursos"])
 
 @section('header')
   @lang('messages.course')
@@ -11,10 +11,12 @@
 @push('css')
   <style>
 
-    .icon>i{
-      font-size: 35px;
-      margin-top: 20px;
-    }
+      .flex-end>.icon{
+          font-size: 45px;
+      }
+      .flex-end{
+         margin-top: 15px;
+      }
 
     .box-title>h1{
       font-size: 35px;
@@ -23,6 +25,30 @@
       display: flex;
       justify-content: flex-end;
     }
+     .box-header{
+         display: flex;
+         justify-content: center;
+     }
+
+    .small-box h3 {
+        font-size: 25px;
+    }
+    .small-box>.inner {
+        height: 180px;
+    }
+
+    @media(max-width: 997px){
+        .small-box h3 {
+            font-size: 18px;
+        }
+        .small-box>.inner {
+            height: 70px;
+        }
+        p.descricao {
+            display: none;
+        }
+    }
+
   </style>
 @endpush
 
@@ -52,7 +78,7 @@
               <div class="inner">
                 <h3>{{$curso->titulo}}</h3>
 
-                <p>{{$curso->descricao}}</p>
+                <p class="descricao">{{$curso->descricao}}</p>
               </div>
               <div class="icon">
                 <i class="{{$curso->icone}}"></i>

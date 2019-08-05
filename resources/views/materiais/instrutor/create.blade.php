@@ -15,7 +15,7 @@
 @endpush
 
 @section('content')
-  <form method="POST" action="{{ route('materiais.instrutor.store') }}" enctype="multipart/form-data" class="cadastro">
+  <form method="POST" action="{{ route('materiais.store') }}" enctype="multipart/form-data" class="cadastro">
     @csrf
     <div class="row align-items-end">
       <div class="col-md-12">
@@ -265,7 +265,7 @@
 
               for (i=0; i<materiais.length; i++) {
                   $('div#materiais').append(
-                      `<div class="col-lg-2 col-xs-2"><div class="small-box bg-white"><div class="inner"><h3>${materiais[i].id}</h3><p>${materiais[i].descricao}</p></div><div class="icon"><i class=""></i></div><a class="small-box-footer" href="/materiais/instrutor/${materiais[i].id}/edit" >Ordem: ${materiais[i].ordem}&nbsp;&nbsp;Editar <i class="fa fa-arrow-circle-right"></i></a></div></div>`);
+                      `<div class="col-lg-2 col-xs-2"><div class="small-box bg-white"><div class="inner"><h3>${materiais[i].id}</h3><p>${materiais[i].descricao}</p></div><div class="icon"><i class=""></i></div><a class="small-box-footer" href="/materiais/${materiais[i].id}/edit" >Ordem: ${materiais[i].ordem}&nbsp;&nbsp;Editar <i class="fa fa-arrow-circle-right"></i></a></div></div>`);
 
               }
               console.log(materiais.length);

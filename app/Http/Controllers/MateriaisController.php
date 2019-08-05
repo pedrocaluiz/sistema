@@ -103,7 +103,7 @@ class MateriaisController extends Controller
             "Material(is) inserido(s) com sucesso.");
         DB::commit();
 
-        return redirect()->route('materiais.instrutor');
+        return redirect()->route('materiais');
     }
 
     /**
@@ -171,7 +171,7 @@ class MateriaisController extends Controller
             "Material $material->descricao alterado com sucesso.");
         DB::commit();
 
-        return redirect()->route('materiais.instrutor');
+        return redirect()->route('materiais');
     }
 
     /**
@@ -181,18 +181,24 @@ class MateriaisController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-        $material = UnidadeMaterial::find($id);
+        $material = UnidadeMaterial::find($request->material_id);
         $descricao = $material->descricao;
 
         if (isset($material)){
+
+            $ucump = UsuarioCursoUnidadeMaterialProva::where('material_id', $material->id)->get();
+            foreach ($ucump as $u){
+                $u->delete();
+            }
+
             $arquivo = $material->urlArquivo;
             Storage::disk('public')->delete($arquivo);
             $material->delete();
             $request->session()->flash('excluida',
                 "Material $descricao excluído com sucesso.");
-            return redirect()->route('materiais.instrutor');
+            return redirect()->route('materiais');
         }
         return response('Material não encontrado', 404);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Documento;
 use App\Model\TipoDocumento;
 use App\User;
 use Illuminate\Http\Request;
@@ -104,12 +105,19 @@ class TipoDocsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-        $tp = TipoDocumento::find($id);
+        $tp = TipoDocumento::find($request->tipodoc_id);
         $descricao = $tp->descricao;
 
         if (isset($tp)){
+
+            $documentos = Documento::where('tipoDoc_id', $tp->id)->get();
+            foreach ($documentos as $doc){
+                $doc->tipoDoc_id = null;
+                $doc->save();
+            }
+
             $tp->delete();
             $request->session()->flash('excluida',
                 "Tipo $descricao excluído com sucesso.");

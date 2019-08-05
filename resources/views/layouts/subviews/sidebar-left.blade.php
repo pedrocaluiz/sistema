@@ -12,31 +12,43 @@
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">CURSOS</li>
+            <li @if(isset($current) && ($current == "todos-cursos")) class="active"@endif>
+                <a href="{{route('todos-cursos')}}">
+                    <i class="fa fa-play-circle"></i> <span>Cursos</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-blue-gradient">inscreva-se</small>
+                    </span>
+                </a>
+            </li>
             @auth
                 @php $perfis = Auth::user()->perfil; @endphp
                 @foreach ($perfis as $perfil)
                     @if ($perfil->administrador == 1)
-                        <li class="header">ADMINISTRADOR</li>
 
-                        <li @if(isset($current) && ($current =="meus-cursos")) class="treeview active" @else class="treeview" @endif>
+                        <li class="header">ADMINISTRADOR</li>
+                        <li @if(isset($menu) && ($menu =="meus-cursos")) class="treeview active" @else class="treeview" @endif>
                             <a href="#">
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-book"></i>
                                 <span>Meus Cursos</span>
                                 <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{route('meus-cursos.andamento')}}"><i class="fa fa-circle-o text-yellow"></i> Em Andamento</a></li>
-                                <li><a href="{{route('meus-cursos.concluidos')}}"><i class="fa fa-circle-o text-red"></i> Concluídos</a></li>
-                                <li><a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
+                                <li @if(isset($current) && ($current == "andamento")) class="active"@endif>
+                                    <a href="{{route('meus-cursos.andamento')}}"><i class="fa fa-circle-o text-yellow"></i> Em Andamento</a></li>
+                                <li @if(isset($current) && ($current == "concluidos")) class="active"@endif>
+                                    <a href="{{route('meus-cursos.concluidos')}}"><i class="fa fa-circle-o text-red"></i> Concluídos</a></li>
+                                <li @if(isset($current) && ($current == "todos-meus-cursos")) class="active"@endif>
+                                    <a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
                             </ul>
                         </li>
 
 
                         <li @if(isset($menu) && ($menu == "listar")) class="treeview active" @else class="treeview" @endif>
                             <a href="#">
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-list-ol"></i>
                                 <span>Listar</span>
                                 <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -50,7 +62,7 @@
                                 <li @if(isset($current) && ($current == "unidades")) class="active"@endif>
                                     <a href="{{route('unidades')}}"><i class="fa fa-circle-o"></i> Unidades</a></li>
                                 <li @if(isset($current) && ($current == "materiais")) class="active"@endif>
-                                    <a href="{{route('materiais.instrutor')}}"><i class="fa fa-circle-o"></i> Materiais</a></li>
+                                    <a href="{{route('materiais')}}"><i class="fa fa-circle-o"></i> Materiais</a></li>
                                 <li @if(isset($current) && ($current == "questoes")) class="active"@endif>
                                     <a href="{{route('questoes')}}"><i class="fa fa-circle-o"></i> Questões</a></li>
                                 </br>
@@ -68,7 +80,7 @@
                         </li>
                         <li @if(isset($menu) && ($menu == "cadastrar")) class="treeview active" @else class="treeview" @endif>
                             <a href="#">
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-edit"></i>
                                 <span>Cadastrar</span>
                                 <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -82,7 +94,7 @@
                                 <li @if(isset($current) && ($current == "unidades")) class="active"@endif>
                                     <a href="{{route('unidades.create')}}"><i class="fa fa-circle-o"></i> Unidade</a></li>
                                 <li @if(isset($current) && ($current == "materiais")) class="active"@endif>
-                                    <a href="{{route('materiais.instrutor.create')}}"><i class="fa fa-circle-o"></i> Material</a></li>
+                                    <a href="{{route('materiais.create')}}"><i class="fa fa-circle-o"></i> Material</a></li>
                                 <li @if(isset($current) && ($current == "questoes")) class="active"@endif>
                                     <a href="{{route('questoes.create')}}"><i class="fa fa-circle-o"></i> Questão</a></li>
 
@@ -105,7 +117,7 @@
                             <li class="header">INSTRUTOR</li>
                             <li @if(isset($menu) && ($menu == "listar")) class="treeview active" @else class="treeview" @endif>
                                 <a href="#">
-                                    <i class="fa fa-files-o"></i>
+                                    <i class="fa fa-list-ol"></i>
                                     <span>Listar</span>
                                     <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -117,7 +129,7 @@
                                     <li @if(isset($current) && ($current == "unidades")) class="active"@endif>
                                         <a href="{{route('unidades')}}"><i class="fa fa-circle-o"></i> Unidades</a></li>
                                     <li @if(isset($current) && ($current == "materiais")) class="active"@endif>
-                                        <a href="{{route('materiais.instrutor')}}"><i class="fa fa-circle-o"></i> Materiais</a></li>
+                                        <a href="{{route('materiais')}}"><i class="fa fa-circle-o"></i> Materiais</a></li>
                                     <li @if(isset($current) && ($current == "questoes")) class="active"@endif>
                                         <a href="{{route('questoes')}}"><i class="fa fa-circle-o"></i> Questões</a></li>
                                     <li @if(isset($current) && ($current == "avaliacoes")) class="active"@endif>
@@ -127,7 +139,7 @@
                             </li>
                             <li @if(isset($menu) && ($menu == "cadastrar")) class="treeview active" @else class="treeview" @endif>
                                 <a href="#">
-                                    <i class="fa fa-files-o"></i>
+                                    <i class="fa fa-edit"></i>
                                     <span>Cadastrar</span>
                                     <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -139,7 +151,7 @@
                                     <li @if(isset($current) && ($current == "unidades")) class="active"@endif>
                                         <a href="{{route('unidades.create')}}"><i class="fa fa-circle-o"></i> Unidade</a></li>
                                     <li @if(isset($current) && ($current == "materiais")) class="active"@endif>
-                                        <a href="{{route('materiais.instrutor.create')}}"><i class="fa fa-circle-o"></i> Material</a></li>
+                                        <a href="{{route('materiais.create')}}"><i class="fa fa-circle-o"></i> Material</a></li>
                                     <li @if(isset($current) && ($current == "questoes")) class="active"@endif>
                                         <a href="{{route('questoes.create')}}"><i class="fa fa-circle-o"></i> Questão</a></li>
                                 </ul>
@@ -151,23 +163,26 @@
                         <li class="header">ALUNO</li>
                         <li @if(isset($current) && ($current =="meu-perfil")) class="active" @endif>
                             <a href="#{{asset('AdminLTE/pages/calendar.html')}}">
-                                <i class="fa fa-user"></i> <span>Meu Perfil</span>
+                                <i class="fa fa-user"></i> <span> Meu Perfil</span>
                                 <span class="pull-right-container">
                             </span>
                             </a>
                         </li>
-                        <li @if(isset($current) && ($current =="meus-cursos")) class="treeview active" @else class="treeview" @endif>
+                        <li @if(isset($menu) && ($menu =="meus-cursos")) class="treeview active" @else class="treeview" @endif>
                             <a href="#">
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-book"></i>
                                 <span>Meus Cursos</span>
                                 <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{route('meus-cursos.andamento')}}"><i class="fa fa-circle-o text-yellow"></i> Em Andamento</a></li>
-                                <li><a href="{{route('meus-cursos.concluidos')}}"><i class="fa fa-circle-o text-red"></i> Concluídos</a></li>
-                                <li><a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
+                                <li @if(isset($current) && ($current == "andamento")) class="active"@endif>
+                                    <a href="{{route('meus-cursos.andamento')}}"><i class="fa fa-circle-o text-yellow"></i> Em Andamento</a></li>
+                                <li @if(isset($current) && ($current == "concluidos")) class="active"@endif>
+                                    <a href="{{route('meus-cursos.concluidos')}}"><i class="fa fa-circle-o text-red"></i> Concluídos</a></li>
+                                <li @if(isset($current) && ($current == "todos-cursos")) class="active"@endif>
+                                    <a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
                             </ul>
                         </li>
                     @endif
@@ -175,6 +190,8 @@
                 @endforeach
             @endauth
             @guest
+
+
                 <li class="header">REGISTRAR</li>
 
                 <li >
@@ -193,6 +210,17 @@
                 </span>
                     </a>
                 </li>
+
+                <li class="header">CURSOS</li>
+                <li>
+                    <a href="{{route('todos-cursos')}}">
+                        <i class="fa fa-th"></i> <span>Cursos</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-green">inscreva-se</small>
+                        </span>
+                    </a>
+                </li>
+
             @endguest
         </ul>
     </section>

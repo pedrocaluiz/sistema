@@ -42,12 +42,11 @@ class QuestoesController extends Controller
         $adicionada = $request->session()->get('adicionada');
         $excluida = $request->session()->get('excluida');
         $alterada = $request->session()->get('alterada');
-
-
+        $warning = $request->session()->get('warning');
 
         return view('questoes.instrutor.questoes',
             compact('cursos', 'users', 'adicionada',
-                'excluida', 'alterada', 'unidades', 'questoes', 'respostas'
+                'excluida', 'alterada', 'unidades', 'questoes', 'respostas', 'warning'
             ));
     }
 
@@ -282,18 +281,31 @@ class QuestoesController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-        $questao = Questao::find($id);
+        $questao = Questao::find($request->questao_id);
         $id = $questao->id;
 
         $this->authorize('delete', $questao);
 
-        if (isset($curso)){
-            $curso->delete();
-            $request->session()->flash('excluida',
-                "Questão id:  $id excluída com sucesso.");
-            return redirect()->route('questoes');
+        if (isset($questao)){
+
+            $provas = ProvaQuestao::where('questao_id', $questao->id)->get();
+            if (!empty($provas->first())){
+                $request->session()->flash('warning',
+                    "Questão id:  $id não pode ser excluída, há Prova vinculada.");
+                return redirect()->route('questoes');
+            }else{
+                $respostas = Resposta::where('questao_id', $questao->id)->get();
+                foreach ($respostas as $resp){
+                    $resp->delete();
+                }
+
+                $questao->delete();
+                $request->session()->flash('excluida',
+                    "Questão id:  $id excluída com sucesso.");
+                return redirect()->route('questoes');
+            }
         }
         return response('Questão não encontrada', 404);
     }

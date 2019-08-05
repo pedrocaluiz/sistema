@@ -82,6 +82,16 @@
                                 </div>
                             </div>
                         @endif
+                        @if (!empty($warning))
+                            <div class="row" style="display: flex; justify-content: space-around">
+                                <div class="col-md-6">
+                                    <div class="alert alert-warning alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <h4><i class="icon fa fa-check"></i> {{$warning}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col-sm-12">
                                 @if(count($questoes) > 0)
@@ -119,34 +129,49 @@
                                             <tr>
                                                 <td>{{$q->id}}</td>
                                                 @foreach ($unidades as $unidade)
-                                                    @if ($unidade->id == $q->unidade_id)
+                                                    @if ($q->unidade_id == null)
+                                                        <td style="text-decoration: line-through;">Sem Unidade Associada</td>
+                                                        @break
+                                                    @elseif ($unidade->id == $q->unidade_id)
                                                         <td>{{$unidade->titulo}}</td>
                                                     @endif
                                                 @endforeach
                                                 <td>{{$q->questao}}</td>
                                                 @foreach ($respostas as $resp)
-                                                    @if ($resp->id == $q->respCorreta_id)
+                                                    @if ($q->respCorreta_id == null)
+                                                        <td style="text-decoration: line-through;">Sem Correta Associada</td>
+                                                        @break
+                                                    @elseif ($resp->id == $q->respCorreta_id)
                                                         <td>{{$resp->resposta}}</td>
                                                     @endif
                                                 @endforeach
                                                 <td>{{count($q->respostas)}}</td>
                                                 <td>
-                                                    <a href="/questoes/{{$q->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
-                                                    <a href="/questoes/{{$q->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn=sm btn-danger acaoTxt" href="/questoes/{{$q->id}}"
-                                                       onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$q->id}}').submit();">
-                                                        @lang('messages.delete')
-                                                    </a>
-                                                    <a class="btn btn=sm btn-danger acaoIcon"href="/questoes/{{$q->id}}"
-                                                       onclick="event.preventDefault();
-                                                               document.getElementById('delete-form-{{$q->id}}').submit();">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>
-                                                    <form id="delete-form-{{$q->id}}" action="/questoes/{{$q->id}}" method="POST" style="display: none;">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                    </form>
+                                                    @php
+                                                        $auth = Auth::user();
+                                                        $adm = $auth->perfil->where('administrador', 1)->first();
+                                                    @endphp
+                                                    @if (($auth->id == $q->usuarioAtualizacao) or isset($adm))
+                                                        <a href="/questoes/{{$q->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
+                                                        <a href="/questoes/{{$q->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
+                                                        <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
+                                                                data-questao_id="{{$q->id}}" id="excluir">
+                                                            @lang('messages.delete')
+                                                        </button>
+                                                        <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                                                data-questao_id="{{$q->id}}" id="excluir">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    @else
+                                                        <a class="btn btn=sm btn-primary acaoTxt" disabled="">@lang('messages.edit')</a>
+                                                        <a class="btn btn=sm btn-primary acaoIcon" disabled><i class="fa fa-edit" disabled></i></a>
+                                                        <button class="btn btn=sm btn-danger acaoTxt" disabled id="excluir">
+                                                            @lang('messages.delete')
+                                                        </button>
+                                                        <button class="btn btn=sm btn-danger acaoIcon" disabled id="excluir">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -189,5 +214,45 @@
             </div>
         </div>
     </div>
+
+    <div class="modal modal-danger fade" tabindex="-1" id="delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Excluir Questão</h4>
+                </div>
+                <form id="delete-form" action="{{route('questoes.destroy')}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-body">
+                        <p>Deseja realmente apagar esse registro?</p>
+                        <input type="hidden" name="questao_id" id="questao_id" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Não, cancelar</button>
+                        <button type="submit" class="btn btn=sm btn-danger">Sim, excluir</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        //tem que ser quando a página estiver carregada.
+        $(document).ready(function(){
+            $('#delete').on('shown.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var questao_id = button.data('questao_id');
+                var modal = $(this);
+                modal.find('.modal-body #questao_id').val(questao_id);
+            })
+        });
+    </script>
+
+@endpush
 

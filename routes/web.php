@@ -24,7 +24,7 @@ Route::prefix('agencias')->name('agencias')->middleware('auth')->group(function 
   Route::get('/', 'AgenciasController@index');
   Route::get('/create', 'AgenciasController@create')->name('.create');
   Route::post('/', 'AgenciasController@store')->name('.store');
-  Route::delete('/{id}', 'AgenciasController@destroy')->name('.destroy');
+  Route::delete('/destroy', 'AgenciasController@destroy')->name('.destroy');
   Route::get('/{id}/edit', 'AgenciasController@edit')->name('.edit');
   Route::put('/{id}', 'AgenciasController@update')->name('.update');
 });
@@ -33,7 +33,7 @@ Route::prefix('cargos')->name('cargos')->middleware('auth')->group(function () {
     Route::get('/', 'CargosController@index');
     Route::get('/create', 'CargosController@create')->name('.create');
     Route::post('/', 'CargosController@store')->name('.store');
-    Route::delete('/{id}', 'CargosController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'CargosController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'CargosController@edit')->name('.edit');
     Route::put('/{id}', 'CargosController@update')->name('.update');
 });
@@ -42,7 +42,7 @@ Route::prefix('categorias')->name('categorias')->middleware('auth')->group(funct
     Route::get('/', 'CategoriasController@index');
     Route::get('/create', 'CategoriasController@create')->name('.create');
     Route::post('/', 'CategoriasController@store')->name('.store');
-    Route::delete('/{id}', 'CategoriasController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'CategoriasController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'CategoriasController@edit')->name('.edit');
     Route::put('/{id}', 'CategoriasController@update')->name('.update');
 });
@@ -51,25 +51,17 @@ Route::prefix('funcoes')->name('funcoes')->middleware('auth')->group(function ()
     Route::get('/', 'FuncoesController@index');
     Route::get('/create', 'FuncoesController@create')->name('.create');
     Route::post('/', 'FuncoesController@store')->name('.store');
-    Route::delete('/{id}', 'FuncoesController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'FuncoesController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'FuncoesController@edit')->name('.edit');
     Route::put('/{id}', 'FuncoesController@update')->name('.update');
 });
 
-Route::prefix('perfis')->name('perfis')->middleware('auth')->group(function () {
-    Route::get('/', 'PerfisController@index');
-    Route::get('/create', 'PerfisController@create')->name('.create');
-    Route::post('/', 'PerfisController@store')->name('.store');
-    Route::delete('/{id}', 'PerfisController@destroy')->name('.destroy');
-    Route::get('/{id}/edit', 'PerfisController@edit')->name('.edit');
-    Route::put('/{id}', 'PerfisController@update')->name('.update');
-});
 
 Route::prefix('tipodoc')->name('tipodoc')->middleware('auth')->group(function () {
     Route::get('/', 'TipoDocsController@index');
     Route::get('/create', 'TipoDocsController@create')->name('.create');
     Route::post('/', 'TipoDocsController@store')->name('.store');
-    Route::delete('/{id}', 'TipoDocsController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'TipoDocsController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'TipoDocsController@edit')->name('.edit');
     Route::put('/{id}', 'TipoDocsController@update')->name('.update');
 });
@@ -78,7 +70,7 @@ Route::prefix('tipomat')->name('tipomat')->middleware('auth')->group(function ()
     Route::get('/', 'TipoMateriaisController@index');
     Route::get('/create', 'TipoMateriaisController@create')->name('.create');
     Route::post('/', 'TipoMateriaisController@store')->name('.store');
-    Route::delete('/{id}', 'TipoMateriaisController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'TipoMateriaisController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'TipoMateriaisController@edit')->name('.edit');
     Route::put('/{id}', 'TipoMateriaisController@update')->name('.update');
 });
@@ -88,12 +80,13 @@ Route::prefix('cursos')->name('cursos')->middleware('auth')->group(function () {
     Route::get('/create', 'CursosController@create')->name('.create');
     Route::post('/', 'CursosController@store')->name('.store');
     Route::get('/{id}', 'CursosController@show')->name('.show');
-    Route::delete('/{id}', 'CursosController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'CursosController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'CursosController@edit')->name('.edit');
     Route::put('/{id}', 'CursosController@update')->name('.update');
     Route::post('/{curso_id}/pdf', 'CursosController@certificadoCurso')->name('.pdf');
     Route::get('/{curso_id}/rating', 'CursosController@rating')->name('.rating');
     Route::post('/rating', 'CursosController@ratingSave')->name('.rating-save');
+    Route::post('/buscar', 'CursosController@buscar')->name('.buscar');
 
 });
 
@@ -106,16 +99,16 @@ Route::prefix('unidades')->name('unidades')->middleware('auth')->group(function 
     Route::get('/create', 'UnidadesController@create')->name('.create');
     Route::post('/', 'UnidadesController@store')->name('.store');
     Route::get('/{id}', 'UnidadesController@show')->name('.show');
-    Route::delete('/{id}', 'UnidadesController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'UnidadesController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'UnidadesController@edit')->name('.edit');
     Route::put('/{id}', 'UnidadesController@update')->name('.update');
 });
 
-Route::prefix('materiais/instrutor')->name('materiais.instrutor')->middleware('auth')->group(function () {
+Route::prefix('materiais')->name('materiais')->middleware('auth')->group(function () {
     Route::get('/', 'MateriaisController@index');
     Route::get('/create', 'MateriaisController@create')->name('.create');
     Route::post('/', 'MateriaisController@store')->name('.store');
-    Route::delete('/{id}', 'MateriaisController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'MateriaisController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'MateriaisController@edit')->name('.edit');
     Route::put('/{id}', 'MateriaisController@update')->name('.update');
 });
@@ -124,8 +117,7 @@ Route::prefix('questoes')->name('questoes')->middleware('auth')->group(function 
     Route::get('/', 'QuestoesController@index');
     Route::get('/create', 'QuestoesController@create')->name('.create');
     Route::post('/', 'QuestoesController@store')->name('.store');
-
-    Route::delete('/{id}', 'QuestoesController@destroy')->name('.destroy');
+    Route::delete('/destroy', 'QuestoesController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'QuestoesController@edit')->name('.edit');
     Route::put('/{id}', 'QuestoesController@update')->name('.update');
 });
@@ -150,17 +142,16 @@ Route::prefix('meus-cursos')->name('meus-cursos')->middleware('auth')->group(fun
 
 Route::get('/todos-cursos', 'CursosController@todosCursos')->name('todos-cursos')->middleware('auth');
 
-
-
-
 Route::prefix('usuarios')->name('usuarios')->middleware('auth')->group(function () {
     Route::get('/', 'UsersController@index');
     Route::get('/relatorio/{user_id}', 'UsersController@relatorioUser')->name('.relatorio.user');
     Route::get('/relatorio-pdf/{user_id}', 'UsersController@relatorioUserPdf')->name('.relatorio.pdf');
     Route::get('/relatorio/{user_id}/curso/{curso_id}', 'UsersController@relatorioCurso')->name('.relatorio.curso');
-    Route::post('/instrutor/{id}', 'UsersController@instrutor')->name('.instrutor')->middleware('auth');
-    Route::post('/aluno/{id}', 'UsersController@aluno')->name('.aluno')->middleware('auth');
-    Route::delete('/delete', 'UsersController@destroy')->name('.destroy')->middleware('auth');
+    Route::post('/instrutor/{id}', 'UsersController@instrutor')->name('.instrutor');
+    Route::post('/aluno/{id}', 'UsersController@aluno')->name('.aluno');
+    Route::delete('/delete', 'UsersController@destroy')->name('.destroy');
+    Route::get('/{id}/edit', 'UsersController@edit')->name('.edit');
+    Route::put('/{id}', 'UsersController@update')->name('.update');
 });
 
 
@@ -171,6 +162,7 @@ Route::get('/admin', function (){
 Route::get('/AdminLTE/index.html', function (){
     return redirect('admin');
 });
+
 
 
 

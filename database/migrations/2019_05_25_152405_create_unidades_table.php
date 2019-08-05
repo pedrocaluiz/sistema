@@ -18,7 +18,7 @@ class CreateUnidadesTable extends Migration
             $table->string('titulo');
             $table->integer('ordem')->default(1);
             $table->integer('usuarioAtualizacao');
-            $table->bigInteger('curso_id')->unsigned();
+            $table->bigInteger('curso_id')->unsigned()->nullable()->default(null);
             $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
             $table->timestamps();
         });

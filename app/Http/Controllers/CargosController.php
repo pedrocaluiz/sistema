@@ -104,12 +104,19 @@ class CargosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-        $cargo = Cargo::find($id);
+        $cargo = Cargo::find($request->cargo_id);
         $descricao = $cargo->descricao;
 
         if (isset($cargo)){
+
+            $users = User::where('cargo_id', $cargo->id)->get();
+            foreach ($users as $user){
+                $user->cargo_id = null;
+                $user->save();
+            }
+
             $cargo->delete();
             $request->session()->flash('excluida',
                 "Cargo $descricao excluída com sucesso.");

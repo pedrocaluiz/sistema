@@ -66,9 +66,9 @@
               <div class="row">
                 <div class="form-group col-md-9">
                   <label for="correta">@lang('messages.right-answer')</label>
-                  <input type="hidden" name="correta_id" value="{{$respCorreta[0]->id}}">
+                  <input type="hidden" name="correta_id" value="{{$respCorreta->first()->id}}">
                   <textarea rows="2" cols="50" name="correta" id="correta" class="form-control" required maxlength="500" style="resize: vertical"
-                      placeholder="{{$respCorreta[0]->resposta}}">{{$respCorreta[0]->resposta}}</textarea>
+                      placeholder="{{$respCorreta->first()->resposta}}">{{$respCorreta->first()->resposta}}</textarea>
                   <hr class="my-4">
                 </div>
               </div>

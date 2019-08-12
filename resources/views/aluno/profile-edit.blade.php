@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="email">@lang('messages.email')</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" disabled
                                        name="email" value="{{ $user->email }}" placeholder="{{ $user->email }}" required autocomplete="email">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="password">@lang('messages.password')</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="password_confirmation">@lang('messages.confirmation')</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="perfil_id">@lang('messages.profile')</label>

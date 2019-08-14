@@ -1,11 +1,11 @@
 @extends('layouts.base', ["current" => "questoes"])
 
 @section('header')
-  @lang('messages.course')
+  Avaliação
 @endsection
 
 @section('title')
-  @lang('messages.course')
+    Avaliação
 @endsection
 
 @push('css')
@@ -29,8 +29,8 @@
       <div class="box">
         <div class="box-header">
           <div class="box-title">
-            <h1>{{$curso[0]->titulo}}</h1>
-            <h2>{{$unidade->titulo}}</h2>
+              <h1><a href="/cursos/{{$curso[0]->id}}">{{$curso[0]->titulo}}</a></h1>
+            <h2><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></h2>
             <small>Método de avaliação: Nota mais alta. (Máx 10.00)</small>
           </div>
         </div>

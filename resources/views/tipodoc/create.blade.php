@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.types-doc')
+    <a href="{{route('tipodoc')}}"> @lang('messages.types-doc')</a>
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
           @csrf
           <div class="box-header">
             <h3 class="box-title">
-              @lang('messages.edit')
+              @lang('messages.create')
               @lang('messages.type-doc')
             </h3>
           </div>
@@ -27,11 +27,11 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="siglaDocumento">@lang('messages.initials')</label>
-                  <input type="text" class="form-control"  id="siglaDocumento" name="siglaDocumento" value="{{ old('siglaDocumento') }}" required>
+                  <input type="text" class="form-control"  id="siglaDocumento" name="siglaDocumento" value="{{ old('siglaDocumento') }}" required minlength="2" maxlength="10">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required>
+                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="80">
                 </div>
                 <input type="hidden" name="usuarioAtualizacao" value="{{Auth::user()->id}}">
               </div>

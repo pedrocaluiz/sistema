@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.agencies')
+    <a href="{{route('agencias')}}"> @lang('messages.agencies')</a>
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
           @csrf
           <div class="box-header">
             <h3 class="box-title">
-              @lang('messages.edit')
+              @lang('messages.create')
               @lang('messages.agency')
             </h3>
           </div>
@@ -26,19 +26,19 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="codigoUnidade">@lang('messages.code')</label>
-                  <input id="codigoUnidade" type="text" class="form-control d-4" name="codigoUnidade" value="{{ old('codigo') }}" required autofocus >
+                  <input id="codigoUnidade" type="text" class="form-control d-4" name="codigoUnidade" value="{{ old('codigo') }}" required autofocus minlength="4" maxlength="4" >
                 </div>
                 <div class="form-group col-md-3">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required>
+                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="40">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="SR">{{ __('SR') }}</label>
-                  <input type="text" class="form-control d-4"  id="SR" name="SR" value="{{ old('SR') }}" required >
+                  <input type="text" class="form-control d-4"  id="SR" name="SR" value="{{ old('SR') }}" required minlength="4" maxlength="4">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="DIRE">{{ __('DIRE') }}</label>
-                  <input type="text" class="form-control d-4"  id="DIRE" name="DIRE" value="{{ old('DIRE') }}" required >
+                  <input type="text" class="form-control d-4"  id="DIRE" name="DIRE" value="{{ old('DIRE') }}" required minlength="4" maxlength="4">
                 </div>
                 <input type="hidden" name="usuarioAtualizacao" value="{{Auth::user()->id}}">
               </div>

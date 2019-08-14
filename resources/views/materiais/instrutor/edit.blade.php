@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.materials')
+    <a href="{{route('materiais')}}"> @lang('messages.materials')</a>
 @endsection
 
 @push('css')
@@ -58,7 +58,8 @@
                       <div class="form-group col-md-2">
                         <label for="ordem">@lang('messages.order')</label>
                         <label for="ordem">@lang('messages.order')</label>
-                        <input id="ordem" type="text" class="form-control ordem" name="ordem" placeholder="{{$material->ordem}}" value="{{$material->ordem}}" required>
+                        <input id="ordem" type="text" class="form-control ordem" name="ordem"
+                               placeholder="{{$material->ordem}}" value="{{$material->ordem}}" required minlength="1" maxlength="2">
                       </div>
                       <div class="form-group col-md-2">
                         <label for="tipoMat_id">@lang('messages.type-mat')</label>
@@ -76,7 +77,8 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label for="descricaoMaterial">@lang('messages.description')</label>
-                        <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial" placeholder="{{ $material->descricao }}" value="{{ $material->descricao }}"required>
+                        <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial"
+                               placeholder="{{ $material->descricao }}" value="{{ $material->descricao }}"required minlength="3" maxlength="60">
                       </div>
                     </div>
                     <div class="row">
@@ -90,10 +92,10 @@
                       <div class="form-group col-md-4" id="URL1">
                         <!--add required no que for ser usado, remover do outro-->
                         <!--#pathMaterial { display: none; }-->
-                        <label class="pathMaterial1" for="pathMaterial1">Caminho</label>
-                        <input id="pathMaterial1" type="file" class="form-control-file pathMaterial1" name="pathMaterial">
+                        <label class="pathMaterial1" for="pathMaterial1">Arquivo</label>
+                        <input id="pathMaterial1" type="file" class="form-control-file pathMaterial1" name="pathMaterial" minlength="5" maxlength="191">
                         <small id="fileHelp" class="form-text text-muted pathMaterial1">Tamanho máximo 20MB.</small>
-                        <input type="hidden" class="pathMaterial1" name="urlMaterial" value="" style="display: none">
+                        <input type="hidden" class="pathMaterial1" name="urlMaterial" value="" style="display: none" minlength="5" maxlength="191">
                       </div>
                       @isset($user)
                       <!--Partials .. Atualizado Por.. -->
@@ -158,14 +160,14 @@
               $(seletorPath).remove();
               $(seletorUrl).append(
                   `<label class="urlMaterial${id}" for="urlMaterial${id}">@lang('messages.url')</label>
-                   <input id="urlMaterial${id}" type="text" class="form-control urlMaterial${id}" name="urlMaterial" required>`
+                   <input id="urlMaterial${id}" type="text" class="form-control urlMaterial${id}" name="urlMaterial" required minlength="5" maxlength="191">`
               );
 
           }else {
               $(seletorUrlMat).remove();
               $(seletorUrl).append(
                   `<label class="pathMaterial${id}" for="pathMaterial${id}">@lang('messages.path')</label>
-                  <input id="pathMaterial${id}" type="file" class="form-control-file pathMaterial${id}" name="pathMaterial">
+                  <input id="pathMaterial${id}" type="file" class="form-control-file pathMaterial${id}" name="pathMaterial" >
                   <small id="fileHelp" class="form-text text-muted pathMaterial${id}">Tamanho máximo 20MB.</small>
                   <input class="pathMaterial${id}" type="hidden" name="urlMaterial" value="" style="display: none">`
               );

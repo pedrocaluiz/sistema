@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.categories')
+  <a href="{{route('categorias')}}"> @lang('messages.categories')</a>
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
           @csrf
           <div class="box-header">
             <h3 class="box-title">
-              @lang('messages.edit')
+              @lang('messages.create')
               @lang('messages.category')
             </h3>
           </div>
@@ -26,12 +26,13 @@
               <div class="row">
                 <div class="form-group col-md-4">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required>
+                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="40">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="icone">@lang('messages.icon')</label>
-                  <input type="text" class="form-control icp icp-auto"  id="icone" name="icone" value="{{ old('icone') }}" placeholder="Ex: fa fa-chrome" required>
-                  <small id="fileHelp" class="form-text text-muted"> Para mais ícones <a href="{{asset('AdminLTE/pages/UI/icons.html')}}" target="_blank">aqui.</a> </small>
+                  <input type="text" class="form-control icp icp-auto"  id="icone" name="icone" value="{{ old('icone') }}"
+                         placeholder="Ex: fa fa-chrome" required minlength="3" maxlength="60">
+                  <small id="fileHelp" class="form-text text-muted"> Para mais ícones clique <a href="{{asset('AdminLTE/pages/UI/icons.html')}}" target="_blank">aqui.</a> </small>
                   <p><small id="fileHelp" class="form-text">Necessário incluir a classe "fa" ou "glyphicon" no início.</small></p>
                 </div>
                 <input type="hidden" name="usuarioAtualizacao" value="{{Auth::user()->id}}">

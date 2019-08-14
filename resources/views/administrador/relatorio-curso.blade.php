@@ -1,11 +1,11 @@
-@extends('layouts.base', ["current" => "relatorio-curso"])
+@extends('layouts.base', ["menu" => "listar", "current" => "usuarios"])
 
 @section('header')
-  @lang('messages.course')
+  @lang('messages.units')
 @endsection
 
 @section('title')
-  @lang('messages.course')
+  @lang('messages.units')
 @endsection
 
 @push('css')
@@ -129,7 +129,7 @@
                         <td>{{$unidade->titulo}}</td>
                         <td>
                         @if (empty($unidade->questoes[0]))
-                            Sem aval.
+                            Sem avaliação
                         @elseif (empty($notaUnidade)) 0.00
                           @else {{$notaUnidade}}
                         @endif

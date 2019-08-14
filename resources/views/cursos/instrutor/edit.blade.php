@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    @lang('messages.course')
+    <a href="{{route('cursos')}}"> @lang('messages.courses')</a>
 @endsection
 
 @push('css')
@@ -50,7 +50,7 @@
                         <div class="form-group col-md-4">
                             <label for="tituloCurso">@lang('messages.title')</label>
                             <input id="tituloCurso" type="text" class="form-control" name="tituloCurso"
-                                   placeholder="{{ $curso->titulo }}" value="{{ $curso->titulo }}" required autofocus>
+                                   placeholder="{{ $curso->titulo }}" value="{{ $curso->titulo }}" required autofocus minlength="3" maxlength="60">
                         </div>
                         <div class="form-group col-md-7">
                             <label for="descricaoCurso">@lang('messages.description')</label>
@@ -62,14 +62,14 @@
                         <div class="form-group col-md-3">
                             <label for="icone">@lang('messages.icon')</label>
                             <input type="text" class="form-control icp icp-auto"  id="icone" name="icone"
-                                   placeholder="{{ $curso->icone }}" value="{{ $curso->icone }}" required>
+                                   placeholder="{{ $curso->icone }}" value="{{ $curso->icone }}" required minlength="8" maxlength="60">
                             <small id="fileHelp" class="form-text text-muted"> Para mais ícones
                                 <a href="{{asset('AdminLTE/pages/UI/icons.html')}}" target="_blank">aqui.</a></small>
                             <p><small id="fileHelp" class="form-text">Necessário incluir a classe "fa" ou "glyphicon" no início.</small></p>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="palavrasChave-i">@lang('messages.keywords')</label>
-                            <input id="palavrasChave-i" type="text" class="form-control" name="palavrasChave-i" >
+                            <label for="palavrasChave-i">Palavra-Chave</label>
+                            <input id="palavrasChave-i" type="text" class="form-control" name="palavrasChave-i" minlength="3" maxlength="30">
                         </div>
                         <div class="form-group col-md-1">
                             <!--<label for="newkeyword">Adicionar</label>-->

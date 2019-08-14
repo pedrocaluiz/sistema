@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.functions')
+    <a href="{{route('funcoes')}}"> @lang('messages.functions')</a>
 @endsection
 
 @section('content')
@@ -27,15 +27,18 @@
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" placeholder="{{ $funcao->descricao }}" value="{{ $funcao->descricao }}" required>
+                  <input id="descricao" type="text" class="form-control" name="descricao"
+                         placeholder="{{ $funcao->descricao }}" value="{{ $funcao->descricao }}" required minlength="3" maxlength="60">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="valorFuncao">@lang('messages.vl-function')</label>
-                  <input type="text" class="form-control money" id="valorFuncao" name="valorFuncao" placeholder="{{ $funcao->valorFuncao }}" value="{{ $funcao->valorFuncao }}" required >
+                  <input type="text" class="form-control money" id="valorFuncao" name="valorFuncao"
+                         placeholder="{{ $funcao->valorFuncao }}" value="{{ $funcao->valorFuncao }}" required minlength="3" maxlength="9">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="pisoSalarial">@lang('messages.salary')</label>
-                <input type="text" class="form-control money" id="pisoSalarial" name="pisoSalarial" placeholder="{{ $funcao->pisoSalarial }}" value="{{ $funcao->pisoSalarial }}" required >
+                <input type="text" class="form-control money" id="pisoSalarial" name="pisoSalarial"
+                       placeholder="{{ $funcao->pisoSalarial }}" value="{{ $funcao->pisoSalarial }}" required minlength="3" maxlength="9">
                 </div>
                 @isset($user)
                   <!--Partials .. Atualizado Por.. -->

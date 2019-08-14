@@ -86,13 +86,23 @@ Route::prefix('cursos')->name('cursos')->middleware('auth')->group(function () {
     Route::post('/{curso_id}/pdf', 'CursosController@certificadoCurso')->name('.pdf');
     Route::get('/{curso_id}/rating', 'CursosController@rating')->name('.rating');
     Route::post('/rating', 'CursosController@ratingSave')->name('.rating-save');
-    Route::post('/buscar', 'CursosController@buscar')->name('.buscar');
 
 });
 
 Route::get('/cursos-administrador', 'CursosController@indexAdm')->name('cursos.index-adm')->middleware('auth');
 Route::post('/cursos/enable/{id}', 'CursosController@enable')->name('cursos.enable')->middleware('auth');
 Route::post('/cursos/disable/{id}', 'CursosController@disable')->name('cursos.disable')->middleware('auth');
+
+Route::get('/todos-cursos', 'CursosController@todosCursos')->name('todos-cursos');
+Route::post('/cursos/buscar', 'CursosController@buscar')->name('cursos.buscar');
+
+Route::prefix('meus-cursos')->name('meus-cursos')->middleware('auth')->group(function () {
+    Route::get('/', 'CursosController@meusCursos');
+    Route::get('/andamento', 'CursosController@andamento')->name('.andamento');
+    Route::get('/concluidos', 'CursosController@concluidos')->name('.concluidos');
+});
+
+
 
 Route::prefix('unidades')->name('unidades')->middleware('auth')->group(function () {
     Route::get('/', 'UnidadesController@index');
@@ -134,19 +144,14 @@ Route::post('/concluir/material', 'MateriaisController@concluir')->middleware('a
 Route::post('/inscrever/curso', 'CursosController@inscrever')->middleware('auth');
 Route::get('/download-material/{id}', 'UnidadesController@download')->middleware('auth');
 
-Route::prefix('meus-cursos')->name('meus-cursos')->middleware('auth')->group(function () {
-    Route::get('/', 'CursosController@meusCursos');
-    Route::get('/andamento', 'CursosController@andamento')->name('.andamento');
-    Route::get('/concluidos', 'CursosController@concluidos')->name('.concluidos');
-});
 
-Route::get('/todos-cursos', 'CursosController@todosCursos')->name('todos-cursos')->middleware('auth');
 
 Route::prefix('usuarios')->name('usuarios')->middleware('auth')->group(function () {
     Route::get('/', 'UsersController@index');
     Route::get('/relatorio/{user_id}', 'UsersController@relatorioUser')->name('.relatorio.user');
     Route::get('/relatorio-pdf/{user_id}', 'UsersController@relatorioUserPdf')->name('.relatorio.pdf');
     Route::get('/relatorio/{user_id}/curso/{curso_id}', 'UsersController@relatorioCurso')->name('.relatorio.curso');
+    Route::get('/meu-perfil/{user_id}', 'UsersController@meuPerfil')->name('.meu-perfil');
     Route::post('/instrutor/{id}', 'UsersController@instrutor')->name('.instrutor');
     Route::post('/aluno/{id}', 'UsersController@aluno')->name('.aluno');
     Route::delete('/delete', 'UsersController@destroy')->name('.destroy');

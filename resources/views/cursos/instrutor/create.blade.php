@@ -5,14 +5,8 @@
 @endsection
 
 @section('title')
-    @lang('messages.course')
+    <a href="{{route('cursos')}}"> @lang('messages.courses')</a>
 @endsection
-
-@push('css')
-    <style>
-
-    </style>
-@endpush
 
 @section('content')
     <form method="POST" action="{{ route('cursos.store') }}" enctype="multipart/form-data" class="cadastro">
@@ -45,25 +39,24 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="tituloCurso">@lang('messages.title')</label>
-                            <input id="tituloCurso" type="text" class="form-control" name="tituloCurso" value="{{ old('tituloCurso') }}" required autofocus>
+                            <input id="tituloCurso" type="text" class="form-control" name="tituloCurso" value="{{ old('tituloCurso') }}" required autofocus minlength="3" maxlength="60">
                         </div>
                         <div class="form-group col-md-7">
                             <label for="descricaoCurso">@lang('messages.description')</label>
-                            <textarea rows="2" cols="50" name="descricaoCurso" id="descricaoCurso" class="form-control" required maxlength="500" style="resize: vertical">
-                                At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-                            </textarea>
+                            <textarea rows="2" cols="50" name="descricaoCurso" id="descricaoCurso" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label for="icone">@lang('messages.icon')</label>
-                            <input type="text" class="form-control icp icp-auto"  id="icone" name="icone" value="{{ old('icone') }}" placeholder="Ex: fa fa-chrome" required>
+                            <input type="text" class="form-control icp icp-auto"  id="icone"
+                                   name="icone" value="{{ old('icone') }}" placeholder="Ex: fa fa-chrome" required minlength="8" maxlength="60">
                             <small id="fileHelp" class="form-text text-muted"> Para mais ícones <a href="{{asset('AdminLTE/pages/UI/icons.html')}}" target="_blank">aqui.</a> </small>
                             <p><small id="fileHelp" class="form-text">Necessário incluir a classe "fa" ou "glyphicon" no início.</small></p>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="palavrasChave-i">@lang('messages.keywords')</label>
-                            <input id="palavrasChave-i" type="text" class="form-control" name="palavrasChave-i" >
+                            <label for="palavrasChave-i"> Palavra-Chave</label>
+                            <input id="palavrasChave-i" type="text" class="form-control" name="palavrasChave-i" minlength="3" maxlength="30">
                         </div>
                         <div class="form-group col-md-1">
                             <!--<label for="newkeyword">Adicionar</label>-->
@@ -75,7 +68,7 @@
                             </button>
                         </div>
                         <div class="form-group col-md-5">
-                            <label for="palavrasChave">@lang('messages.description')</label>
+                            <label for="palavrasChave">@lang('messages.keywords')</label>
                             <textarea rows="2" cols="50" name="palavrasChave" id="palavrasChave" class="form-control" readonly maxlength="500" style="resize: vertical"></textarea>
                             <!--add PalavrasChave-->
                         </div>
@@ -95,11 +88,11 @@
                                 <div class="row">
                                     <div class="form-group col-md-2">
                                         <label for="ordem">@lang('messages.order')</label>
-                                        <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required>
+                                        <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required minlength="1" maxlength="2">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="tituloUnidades">@lang('messages.title')</label>
-                                        <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" required>
+                                        <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" required minlength="3" maxlength="60">
                                     </div>
                                 </div>
                             </fieldset>
@@ -176,11 +169,11 @@
                             <div class="row">
                                 <div class="form-group col-md-2">
                                   <label for="ordem">@lang('messages.order')</label>
-                                  <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required>
+                                  <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required minlength="1" maxlength="2">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="tituloUnidades">@lang('messages.title')</label>
-                                        <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" required>
+                                        <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" required minlength="3" maxlength="60">
                                     </div>
                                 <div class="form-group col-md-1">
                                     <button type="button" class="btn btn-primary botao" id="${a}" style="margin-top: 25px;" onclick="remover(this)">

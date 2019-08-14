@@ -1,4 +1,4 @@
-@extends('layouts.base', ["current" => "relatorio-user"])
+@extends('layouts.base', ["menu" => "listar", "current" => "usuarios"])
 
 @section('header')
   @lang('messages.courses')
@@ -143,7 +143,7 @@
                         <td>{{$curso->titulo}}</td>
                         <td>
                           @if ($ha_questoes == 0)
-                            Sem aval.
+                            Sem avaliação
                           @elseif (empty($notaCurso)) 0.00
                           @else {{$notaCurso}}
                           @endif

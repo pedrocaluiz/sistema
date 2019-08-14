@@ -35,7 +35,8 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="primeiroNome">@lang('messages.name')</label>
-                                <input id="primeiroNome" type="text" class="form-control @error('primeiroNome') is-invalid @enderror" name="primeiroNome" value="{{ old('primeiroNome') }}" required autofocus>
+                                <input id="primeiroNome" type="text" class="form-control @error('primeiroNome') is-invalid @enderror"
+                                       name="primeiroNome" value="{{ old('primeiroNome') }}" required autofocus minlength="3" maxlength="60">
                                 @error('primeiroNome')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -44,7 +45,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="ultimoNome">@lang('messages.lastname')</label>
-                                <input id="ultimoNome" type="text" class="form-control" name="ultimoNome" value="{{ old('ultimoNome') }}" required>
+                                <input id="ultimoNome" type="text" class="form-control" name="ultimoNome" value="{{ old('ultimoNome') }}" required minlength="3" maxlength="60">
                                 @error('ultimoNome')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -53,7 +54,8 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="dataNascimento">@lang('messages.birthday')</label>
-                                <input type="text" class="form-control pull-right datemask datepicker"  id="dataNascimento" name="dataNascimento" value="{{ old('dataNascimento') }}" placeholder="__/__/____" required>
+                                <input type="text" class="form-control pull-right datemask datepicker"  id="dataNascimento"
+                                       name="dataNascimento" value="{{ old('dataNascimento') }}" placeholder="__/__/____" required >
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="ativo">@lang('messages.enable')</label>
@@ -64,7 +66,8 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="email">@lang('messages.email')</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                       name="email" value="{{ old('email') }}" required autocomplete="email" minlength="8" maxlength="80">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -73,7 +76,8 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="password">@lang('messages.password')</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                                       name="password" required autocomplete="new-password" minlength="8" maxlength="60">
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -82,7 +86,8 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="password_confirmation">@lang('messages.confirmation')</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control"
+                                       name="password_confirmation" required autocomplete="new-password" minlength="8" maxlength="60">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="perfil_id">@lang('messages.profile')</label>
@@ -100,7 +105,8 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="dataAdmissao">@lang('messages.admission')</label>
-                                <input type="text" class="form-control pull-right datepicker datemask" id="dataAdmissao" name="dataAdmissao" value="{{ old('dataAdmissao') }}" placeholder="__/__/____" required>
+                                <input type="text" class="form-control pull-right datepicker datemask" id="dataAdmissao"
+                                       name="dataAdmissao" value="{{ old('dataAdmissao') }}" placeholder="__/__/____" required>
                             </div>
                         </div>
                         <div class="row">
@@ -136,7 +142,8 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="matricula">@lang('messages.enrolment')</label>
-                                <input id="matricula" type="text" class="form-control" name="matricula" value="{{ old('matricula') }}" placeholder="x999999-9" required >
+                                <input id="matricula" type="text" class="form-control" name="matricula"
+                                       value="{{ old('matricula') }}" placeholder="x999999-9" required minlength="9" maxlength="9">
                             </div>
                         </div>
                         <div class="row">
@@ -153,21 +160,22 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="endereco">@lang('messages.adress')</label>
-                                <input id="endereco" type="text" class="form-control" name="endereco" value="{{ old('endereco') }}" required>
+                                <input id="endereco" type="text" class="form-control"
+                                       name="endereco" value="{{ old('endereco') }}" required minlength="3" maxlength="80">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="numero">@lang('messages.number')</label>
-                                <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}" required>
+                                <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}" required minlength="1" maxlength="30">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="complemento">@lang('messages.complement')</label>
-                                <input id="complemento" type="text" class="form-control" name="complemento" value="{{ old('complemento') }}" required>
+                                <input id="complemento" type="text" class="form-control" name="complemento" value="{{ old('complemento') }}" maxlength="30">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="bairro">@lang('messages.neighborhood')</label>
-                                <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}" required>
+                                <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}" required minlength="3" maxlength="80">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="estado">@lang('messages.state')</label>
@@ -181,23 +189,25 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="municipio_id">@lang('messages.county')</label>
-                                <select class="form-control select2" id="municipio_id" name="municipio_id">
+                                <select class="form-control select2" id="municipio_id" name="municipio_id" >
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="CEP">@lang('messages.zip-code')</label>
-                                <input id="CEP" type="text" class="form-control" name="CEP" value="{{ old('CEP') }}" placeholder="99.999-999" required >
+                                <input id="CEP" type="text" class="form-control" name="CEP" value="{{ old('CEP') }}" placeholder="99.999-999" required minlength="10" maxlength="10">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="telefone">@lang('messages.phone-number')</label>
-                                <input id="telefone" type="text" class="form-control" name="telefone" value="{{ old('telefone') }}" placeholder="(99) 9999-9999" required  >
+                                <input id="telefone" type="text" class="form-control" name="telefone"
+                                       value="{{ old('telefone') }}" placeholder="(99) 9999-9999" required minlength="13" maxlength="13">
 
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="celular">@lang('messages.cell-number')</label>
-                                <input id="celular" type="text" class="form-control" name="celular" value="{{ old('celular') }}" placeholder="(99) 99999-9999" required >
+                                <input id="celular" type="text" class="form-control" name="celular"
+                                       value="{{ old('celular') }}" placeholder="(99) 99999-9999" required minlength="14" maxlength="14">
                             </div>
                         </div>
                     </fieldset>

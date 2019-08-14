@@ -19,6 +19,7 @@
                 <div class="box-body home-box">
                     @if(isset(Auth::user()->perfil[0]))
                         <h3>Você está logado como
+
                             @if (count(Auth::user()->perfil) > 1)
                                 @foreach(Auth::user()->perfil as $perfil)
                                     @if ($loop->last)

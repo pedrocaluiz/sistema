@@ -44,7 +44,8 @@
                     <h5 class="mb-4">@lang('messages.access')</h5>
                     <img src="{{asset('css/avatar-3.jpg')}}" class="img-radius mb-4" alt="User-Profile-Image">
                     <div class="form-group has-feedback">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-mail" required autocomplete="email" autofocus>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                               name="email" value="{{ old('email') }}" placeholder="E-mail" required autocomplete="email" autofocus minlength="8" maxlength="80">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -53,7 +54,8 @@
                         @enderror
                     </div>
                     <div class="form-group has-feedback">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Senha" required autocomplete="current-password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                               name="password" placeholder="Senha" required autocomplete="current-password" minlength="8" maxlength="60">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -63,18 +65,15 @@
                     </div>
 
                     <div class="form-group row">
-
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                 <label class="form-check-label" for="remember">
                                     {{ __('Manter conectado') }}
                                 </label>
-                            </div>
-
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary shadow-2 mb-4">{{ __('messages.login') }}</button>
-                    <p class="mb-0 text-muted">@lang('messages.login') <a href="/register">Registre-se</a></p>
+                    <p class="mb-0 text-muted">Não possui conta? <a href="/register">Registre-se</a></p>
                     {{--@if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}

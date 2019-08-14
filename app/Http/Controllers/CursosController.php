@@ -31,6 +31,7 @@ class CursosController extends Controller
     {
         $this->authorize('view', Curso::class);
 
+
         $categorias = Categoria::all();
         $cursos = Curso::all();
         $users = User::all();
@@ -161,7 +162,7 @@ class CursosController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $curso = Curso::find($id);
         $auth = Auth::user();
@@ -202,8 +203,11 @@ class CursosController extends Controller
                 $user_curso[0]->save();
             }
 
+            $adicionada = $request->session()->get('adicionada');
+            $alterada = $request->session()->get('alterada');
+
             return view('cursos.aluno.curso',
-                compact('curso', 'user', 'cat', 'user_curso', 'unidades'));
+                compact('curso', 'user', 'cat', 'user_curso', 'unidades', 'adicionada', 'alterada'));
         }else{
             return view('home');
         }
@@ -413,7 +417,7 @@ class CursosController extends Controller
             compact('concluidos'));
     }
 
-    public function certificadoCurso($curso_id)
+    public function certificadoCurso($curso_id, Request $request)
     {
         $auth = Auth::user();
         $curso = Curso::find($curso_id);
@@ -441,7 +445,9 @@ class CursosController extends Controller
             $pdf = PDF::loadView('certificado', $data)->setPaper('a4', 'landscape');
             return $pdf->stream($nomeArquivo . '.pdf');
         }else{
-            return redirect()->back();
+            $request->session()->flash('alterada',
+                "Você ainda não concluiu o Curso: $curso->titulo.");
+            return Redirect::to('cursos/' . $curso->id);
         }
         //return view('certificado', compact('auth', 'curso', 'instrutor'));
     }
@@ -473,7 +479,7 @@ class CursosController extends Controller
         $user_curso[0]->save();
 
         $request->session()->flash('adicionada',
-            "Obrigado por avaliar o Curos $curso->titulo.");
+            "Obrigado por avaliar o Curso $curso->titulo.");
 
         return Redirect::to('cursos/' . $curso->id);
     }

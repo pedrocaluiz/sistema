@@ -72,6 +72,7 @@ class MateriaisController extends Controller
     public function store(Request $request)
     {
         $unidade = Unidade::find($request->unidade_id);
+        $auth = Auth::user();
 
         DB::beginTransaction();
         //Arrays
@@ -98,6 +99,13 @@ class MateriaisController extends Controller
             $material->usuarioAtualizacao = $request->input('usuarioAtualizacao');
             $material->save();
         }
+
+        /*$ucump = UsuarioCursoUnidadeMaterialProva::where([
+            ['unidade_id', $unidade->id],
+            ['user_id', $auth->id],
+        ])->get();
+        $ucump[0]->dataConclusao = null;
+        $ucump[0]->save();*/
 
         $request->session()->flash('adicionada',
             "Material(is) inserido(s) com sucesso.");

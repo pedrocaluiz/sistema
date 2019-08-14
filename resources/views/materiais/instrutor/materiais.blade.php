@@ -89,7 +89,7 @@
                                         <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="ID: activate to sort column descending" style="width: 50px;">
+                                                aria-label="ID: activate to sort column descending" style="width: 30px;">
                                                 ID
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -97,7 +97,7 @@
                                                 Unidade
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Tipo Mat.: activate to sort column ascending" style="width: 245px;">
+                                                aria-label="Tipo Mat.: activate to sort column ascending" style="width: 50px;">
                                                 Tipo Mat.
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -105,7 +105,7 @@
                                                 Descrição
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Fonte: activate to sort column ascending" style="width: 245px;">
+                                                aria-label="Fonte: activate to sort column ascending" style="width: 50px;">
                                                 Fonte
                                             </th>
                                             <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"

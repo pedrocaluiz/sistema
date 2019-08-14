@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.questions')
+    <a href="{{route('questoes')}}"> @lang('messages.questions')</a>
 @endsection
 
 @push('css')
@@ -57,7 +57,7 @@
                       placeholder="{{$questao->questao}}">{{$questao->questao}}</textarea>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="imagem">@lang('messages.image')</label>
+                  <label for="imagem">Imagem</label>
                   <input id="imagem" type="file" class="form-control-file" name="imagem" >
                   <small id="fileHelp" class="form-text text-muted">Tamanho máximo 20MB.</small>
                 </div>

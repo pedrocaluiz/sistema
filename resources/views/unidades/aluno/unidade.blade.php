@@ -80,7 +80,6 @@
                 </div>
                 <div class="row flex-justify-center" style="margin: 30px">
                   <a class="btn btn=sm btn-primary" onclick="concluir();" href="/download-material/{{$mat->id}}"> Download</a>
-                  <a type="button" class="btn btn=sm btn-primary" onclick="concluir();" href="/storage/{{$mat->urlArquivo}}" target="_blank"> Ver online</a>
                 </div>
               @endif
             <!--pdf, doc, xls, ppt local-->
@@ -115,13 +114,16 @@
             <!--video web-->
               @if (($mat->material_id == 3))
                   <div class="row flex-justify-center" style="margin: 30px">
+                      <div class="icon"><i class="fa fa-external-link" style="font-size: 60px"></i></div>
+                  </div>
+                  <div class="row flex-justify-center" style="margin: 30px">
                     <a type="button" class="btn btn=sm btn-primary" onclick="concluir();" href="{{$mat->urlArquivo}}" target="_blank"> Visitar</a>
                   </div>
               @endif
             <!--link-->
               @if (($mat->material_id == 4) && ($mat->storage == 1))
                 <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                  <img src="/storage/{{$mat->urlArquivo}}" style="margin-bottom: 20px" onload="concluir();" >
+                    <img src="/storage/{{$mat->urlArquivo}}" style="margin-bottom: 20px" onload="concluir();" >
                 </div>
               @endif
             <!--imagem local-->

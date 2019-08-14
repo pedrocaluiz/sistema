@@ -1,11 +1,11 @@
-@extends('layouts.base', ["current" => "questoes"])
+@extends('layouts.base', ["current" => "avaliacao"])
 
 @section('header')
-  @lang('messages.questions')
+  Avaliação
 @endsection
 
 @section('title')
-  @lang('messages.questions')
+ Avaliação
 @endsection
 
 @push('css')
@@ -39,7 +39,7 @@
 
         <div class="box-header">
           <div class="box-title">
-            <h2>{{$unidade->titulo}}</h2>
+            <h2><a href="/provas/{{$unidade->id}}/lista">{{$unidade->titulo}}</a></h2>
             <small> {{$prova->tentativa}}ª tentativa</small>
           </div>
           <input type="hidden" name="prova_id" value="{{$prova->id}}">

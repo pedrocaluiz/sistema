@@ -17,7 +17,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Auth\Traits\RedirectsUsersTrait;
 use function Psy\debug;
+
 
 class RegisterController extends Controller
 {
@@ -74,9 +76,8 @@ class RegisterController extends Controller
         $municipios = Municipio::all();
         $estados = Estado::all();
         $perfis = Perfil::all();
-        $tiposDoc = TipoDocumento::all();
         return view('auth.register', compact(
-            'cargos', 'agencias', 'funcoes', 'municipios', 'estados', 'perfis', 'tiposDoc'));
+            'cargos', 'agencias', 'funcoes', 'municipios', 'estados', 'perfis'));
     }
 
 
@@ -89,7 +90,6 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-
         $path = $data['foto']->store('imagens', 'public');
 
         $usuario = User::create([
@@ -114,14 +114,6 @@ class RegisterController extends Controller
             'celular' => $data['celular'],
             'ativo' => $data['ativo'],
         ]);
-
-        $documento = new Documento();
-        $documento->tipoDoc_id = $data['tipodoc'];
-        $documento->user_id = $usuario->id;
-        $documento->estadoEmissor_id = $data['UF'];
-        $documento->numeroDocumento = $data['numeroDocumento'];
-        $documento->usuarioAtualizacao = $usuario->id;
-        $documento->save();
 
         $perfil = new PerfilUsuario();
         $perfil->perfil_id = $data['perfil_id'];

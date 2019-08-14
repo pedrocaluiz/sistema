@@ -17,7 +17,7 @@
           @csrf
           <div class="box-header">
             <h3 class="box-title">
-              Avalie o Curso
+              Avalie o <a href="/cursos/{{$curso->id}}">{{$curso->titulo}}</a>
             </h3>
           </div>
           <div class="box-body">
@@ -104,9 +104,9 @@
                 <div class="form-group col-md-6">
                   <label for="comentario">Comentário</label>
                     @if (isset($user_curso[0]))
-                        <textarea id="comentario" rows="2" cols="50" name="comentario" class="form-control"  required maxlength="500" style="resize: vertical">{{$user_curso[0]->comentario}}</textarea>
+                        <textarea id="comentario" rows="2" cols="50" name="comentario" class="form-control" maxlength="500" style="resize: vertical">{{$user_curso[0]->comentario}}</textarea>
                     @else
-                        <textarea id="comentario" rows="2" cols="50" name="comentario" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                        <textarea id="comentario" rows="2" cols="50" name="comentario" class="form-control" maxlength="500" style="resize: vertical"></textarea>
                     @endif
 
                 </div>

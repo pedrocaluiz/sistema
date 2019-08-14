@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Model\Curso;
+use App\Model\Municipio;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,10 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function documento()
+    public function municipio()
     {
-        return $this->hasMany(Documento::class);
+        return $this->belongsTo(Municipio::class);
     }
+
 
     public function cursos() {
         return $this->belongsToMany(Curso::class, 'usuario_curso_unidade_material_prova', 'user_id')->withPivot('dataConclusao', 'notaAval', 'created_at');

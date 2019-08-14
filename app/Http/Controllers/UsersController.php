@@ -40,59 +40,10 @@ class UsersController extends Controller
         $user = User::find($user_id);
         $cursos = $user->cursos;
 
+        $this->authorize('view', $user);
 
         if (count($cursos) > 0){ // se existe curso para esse usuario
-            foreach ($cursos as $curso){
-                $progresso = [];
-                $notaUnidade = [];
-                if (count($curso->unidades) > 0){ // se existe unidade nesse curso
-                    foreach ($curso->unidades as $unidade){
-                        $todosMateriais = $unidade->materiais;
-                        if (count($todosMateriais) > 0){ // se existe materiais para essa unidade
-                            for ($j = 0; $j < count($todosMateriais); $j++) {
-                                $array[$j] = $todosMateriais[$j]->id;
-                                /*
-                                 * 0 => id 12
-                                 * 1 => id 33
-                                 * */
-                            }
-                            $concluidos = "";
-                            $concluidos = UsuarioCursoUnidadeMaterialProva::
-                            whereIn('material_id', $array)
-                                ->where([
-                                    ['user_id', $user_id],
-                                    ['dataConclusao', '<>', NULL],])
-                                ->get();
-                        }
-                        if ((count($todosMateriais) > 0) && (isset($concluidos))){
-                            $soma = floor(count($concluidos) / count($todosMateriais) * 100);
-                            $progresso[$unidade->id] = $soma;
-                        }elseif ((count($todosMateriais) > 0) && (empty($concluidos))){
-                            $soma = 0;
-                            $progresso[$unidade->id] = $soma;
-                        }elseif (empty($unidade->usuario->where('id', $user_id)[0])) {
-                            $soma = 0;
-                            $progresso[$unidade->id] = $soma;
-                        }else{
-                            $soma = 100;
-                            $progresso[$unidade->id] = $soma;
-                        }
-
-                        if (!empty($unidade->usuario->where('id', $user_id)[0])){
-                            $nota = $unidade->usuario->where('id', $user_id)->first()->pivot->notaAval;
-                            if ($nota > 7) { $notaUnidade[$unidade->id] = 1; }else {$notaUnidade[$unidade->id] = 0;}
-                        }
-
-                        //dd($cursos[3]->unidades[2]->usuario->where('id', $user_id)->first()->pivot->notaAval);
-
-                    }
-                }
-                if (count($progresso) > 0){
-                    $progressoCurso[$curso->id] =  number_format(array_sum($progresso) / count($progresso), 2, ".", "") ;
-                }else {
-                    $progressoCurso[$curso->id] = 0.00;
-                }
-            }
+            $progressoCurso = $this->relatorio($user_id, $cursos);
 
             return view('administrador.relatorio-user',
                 compact('user', 'cursos', 'progressoCurso'));
@@ -106,6 +57,8 @@ class UsersController extends Controller
     {
         $user = User::find($user_id);
         $curso = Curso::find($curso_id);
+
+        $this->authorize('view', $user);
 
         if (count($curso->unidades) > 0){
             foreach ($curso->unidades as $unidade){
@@ -308,24 +261,107 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         DB::beginTransaction();
-        $curso = Curso::find($id);
+        $usuario = User::find($id);
 
-        $this->authorize('update', $curso);
-
-        $curso->categoria_id = $request->input('categoria_id');
-        $curso->titulo = $request->input('tituloCurso');
-        $curso->descricao = $request->input('descricaoCurso');
-        $curso->icone = $request->input('icone');
-        $curso->palavrasChave = $request->input('palavrasChave');
-        $curso->usuarioAtualizacao = $request->input('usuarioAtualizacao');
-        $curso->ativo = 0;
-        $curso->save();
-
+        $usuario->primeiroNome = $request->input('primeiroNome');
+        $usuario->ultimoNome = $request->input('ultimoNome');
+        if ($request->input('password') != null){
+            $usuario->password = Hash::make($request->input('ultimoNome'));
+        }
+        if ($request->input('foto') != null){
+            $path = $request->input('foto')->store('imagens', 'public');
+            $usuario->foto = $path;
+        }
+        $usuario->cargo_id = $request->input('cargo_id');
+        $usuario->funcao_id = $request->input('funcao_id');
+        $usuario->agencia_id = $request->input('agencia_id');
+        $usuario->matricula = $request->input('matricula');
+        if ($request->input('dataNascimento') != null){
+            $usuario->dataNascimento = $request->input('dataNascimento');
+        }
+        if ($request->input('dataAdmissao') != null){
+            $usuario->dataAdmissao = $request->input('dataAdmissao');
+        }
+        $usuario->endereco = $request->input('endereco');
+        $usuario->numero = $request->input('numero');
+        $usuario->complemento = $request->input('complemento');
+        $usuario->CEP = $request->input('CEP');
+        $usuario->municipio_id = $request->input('municipio_id');
+        $usuario->telefone = $request->input('telefone');
+        $usuario->celular = $request->input('celular');
+        $usuario->save();
         $request->session()->flash('alterada',
-            "Curso $curso->titulo alterado com sucesso.");
+            "Dados alterados com sucesso.");
         DB::commit();
+        return redirect()->route('meu-perfil');
+    }
 
-        return redirect()->route('cursos');
+    public function meuPerfil($user_id)
+    {
+        $user = User::find($user_id);
+        $this->authorize('view', $user);
+            return view('aluno.meu-perfil', compact('user'));
+    }
+
+    /**
+     * @param $user_id
+     * @param $cursos
+     * @return mixed
+     */
+    public function relatorio($user_id, $cursos)
+    {
+        foreach ($cursos as $curso) {
+            $progresso = [];
+            $notaUnidade = [];
+            if (count($curso->unidades) > 0) { // se existe unidade nesse curso
+                foreach ($curso->unidades as $unidade) {
+                    $todosMateriais = $unidade->materiais;
+                    if (count($todosMateriais) > 0) { // se existe materiais para essa unidade
+                        for ($j = 0; $j < count($todosMateriais); $j++) {
+                            $array[$j] = $todosMateriais[$j]->id;
+                        }
+                        $concluidos = "";
+                        $concluidos = UsuarioCursoUnidadeMaterialProva::
+                        whereIn('material_id', $array)
+                            ->where([
+                                ['user_id', $user_id],
+                                ['dataConclusao', '<>', NULL],])
+                            ->get();
+                    }
+                    if ((count($todosMateriais) > 0) && (isset($concluidos))) {
+                        $soma = floor(count($concluidos) / count($todosMateriais) * 100);
+                        $progresso[$unidade->id] = $soma;
+                    } elseif ((count($todosMateriais) > 0) && (empty($concluidos))) {
+                        $soma = 0;
+                        $progresso[$unidade->id] = $soma;
+                    } elseif (empty($unidade->usuario->where('id', $user_id)[0])) {
+                        $soma = 0;
+                        $progresso[$unidade->id] = $soma;
+                    } else {
+                        $soma = 100;
+                        $progresso[$unidade->id] = $soma;
+                    }
+
+                    if (!empty($unidade->usuario->where('id', $user_id)[0])) {
+                        $nota = $unidade->usuario->where('id', $user_id)->first()->pivot->notaAval;
+                        if ($nota > 7) {
+                            $notaUnidade[$unidade->id] = 1;
+                        } else {
+                            $notaUnidade[$unidade->id] = 0;
+                        }
+                    }
+
+                    //dd($cursos[3]->unidades[2]->usuario->where('id', $user_id)->first()->pivot->notaAval);
+
+                }
+            }
+            if (count($progresso) > 0) {
+                $progressoCurso[$curso->id] = number_format(array_sum($progresso) / count($progresso), 2, ".", "");
+            } else {
+                $progressoCurso[$curso->id] = 0.00;
+            }
+        }
+        return $progressoCurso;
     }
 
 }

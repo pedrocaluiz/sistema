@@ -45,7 +45,10 @@
     .progress{
       margin-bottom: 0 !important;
     }
-
+    .d-center{
+        display: flex;
+        justify-content: center;
+    }
 
   </style>
 @endpush
@@ -74,13 +77,6 @@
                   <h3 class="box-title">{{$curso->titulo}}</h3>
                 </div>
                 <!-- /.box-header -->
-
-                {{-- TODO
-                CONCLUIR UNIDADE SÓ QUANDO A PROVA TIVER SIDO APROVADA??
-                VERIFICAR SE HA QUESTOES CADASTRADAS PARA A UNIDADE,
-                  SE NÃO HOUVER, CONCLUIR SEM PROVA.
-                --}}
-
                 @php
                         //dd(empty($unidade->questoes[0]));
                 @endphp

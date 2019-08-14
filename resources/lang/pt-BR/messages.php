@@ -8,6 +8,7 @@ return [
     'delete' => 'Excluir',
     'edit' => 'Editar',
     'update' => 'Alterar',
+    'create' => 'Cadastrar',
     'informations' => 'Informações',
     'description' => 'Descrição',
     'code' => 'Código',

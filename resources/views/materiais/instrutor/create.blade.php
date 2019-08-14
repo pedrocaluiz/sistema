@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.materials')
+    <a href="{{route('materiais')}}"> @lang('messages.materials')</a>
 @endsection
 
 @push('css')
@@ -59,7 +59,7 @@
                     <div class="row">
                       <div class="form-group col-md-2">
                         <label for="ordem">@lang('messages.order')</label>
-                        <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required>
+                        <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required minlength="1" maxlength="2">
                       </div>
 
                       <div class="form-group col-md-2">
@@ -74,7 +74,7 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label for="descricaoMaterial">@lang('messages.description')</label>
-                        <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial[]" required>
+                        <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial[]" required minlength="3" maxlength="60">
                       </div>
                     </div>
                     <div class="row">
@@ -88,10 +88,10 @@
                       <div class="form-group col-md-4" id="URL1">
                         <!--add required no que for ser usado, remover do outro-->
                         <!--#pathMaterial { display: none; }-->
-                        <label class="pathMaterial1" for="pathMaterial1">Caminho</label>
+                        <label class="pathMaterial1" for="pathMaterial1">Arquivo</label>
                         <input id="pathMaterial1" type="file" class="form-control-file pathMaterial1" name="pathMaterial[]">
                         <small id="fileHelp" class="form-text text-muted pathMaterial1">Tamanho máximo 20MB.</small>
-                        <input type="hidden" class="pathMaterial1" name="urlMaterial[]" value="" style="display: none">
+                        <input type="hidden" class="pathMaterial1" name="urlMaterial[]" value="" style="display: none" minlength="5" maxlength="191">
                       </div>
                     </div>
                   </fieldset>
@@ -147,7 +147,7 @@
                   <div class="row">
                     <div class="form-group col-md-2">
                       <label for="ordem">@lang('messages.order')</label>
-                      <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required>
+                      <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required minlength="1" maxlength="2">
                     </div>
                     <div class="form-group col-md-2">
                       <label for="tipoMat_id">@lang('messages.type-mat')</label>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="form-group col-md-4">
                       <label for="descricaoMaterial">@lang('messages.description')</label>
-                      <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial[]" required>
+                      <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial[]" required minlength="3" maxlength="60">
                     </div>
                   </div>
                   <div class="row">
@@ -174,9 +174,9 @@
                     </div>
                     <div class="form-group col-md-4" id="URL${a}">
                       <label class="pathMaterial${a}" for="pathMaterial${a}">@lang('messages.path')</label>
-                      <input id="pathMaterial${a}" type="file" class="form-control-file pathMaterial${a}" name="pathMaterial[]">
+                      <input id="pathMaterial${a}" type="file" class="form-control-file pathMaterial${a}" name="pathMaterial[]" >
                       <small id="fileHelp" class="form-text text-muted pathMaterial${a}">Tamanho máximo 20MB.</small>
-                      <input class="pathMaterial${a}" type="hidden" name="urlMaterial[]" value="" style="display: none">
+                      <input class="pathMaterial${a}" type="hidden" name="urlMaterial[]" value="" style="display: none" minlength="5" maxlength="191">
                     </div>
                     <div class="form-group col-md-1">
                       <button type="button" class="btn btn-primary botao" id="${a}" style="margin-top: 25px;" onclick="remover(this)">

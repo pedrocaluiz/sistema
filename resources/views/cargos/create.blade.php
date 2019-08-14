@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.charges')
+  <a href="{{route('cargos')}}"> @lang('messages.charges')</a>
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
           @csrf
           <div class="box-header">
             <h3 class="box-title">
-              @lang('messages.edit')
+              @lang('messages.create')
               @lang('messages.office')
             </h3>
           </div>
@@ -27,11 +27,11 @@
               <div class="row">
                 <div class="form-group col-md-3">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required>
+                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="60">
                 </div>
                 <div class="form-group col-md-2">
-                  <label for="salarioBase">{@lang('messages.salary')</label>
-                  <input type="text" class="form-control money" id="salarioBase" name="salarioBase" value="{{ old('salarioBase') }}" required>
+                  <label for="salarioBase">@lang('messages.salary')</label>
+                  <input type="text" class="form-control money" id="salarioBase" name="salarioBase" value="{{ old('salarioBase') }}" required minlength="3" maxlength="9">
                 </div>
                 <input type="hidden" name="usuarioAtualizacao" value="{{Auth::user()->id}}">
               </div>

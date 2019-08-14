@@ -22,6 +22,15 @@
                 </a>
             </li>
             @auth
+                <li class="header">MEU PERFIL</li>
+                <li @if(isset($current) && ($current == "meu-perfil")) class="active"@endif>
+                    <a href="/usuarios/meu-perfil/{{Auth::user()->id}}">
+                        <i class="fa fa-user"></i> <span>Meu Perfil</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-green-gradient">ir</small>
+                        </span>
+                    </a>
+                </li>
                 @php $perfis = Auth::user()->perfil; @endphp
                 @foreach ($perfis as $perfil)
                     @if ($perfil->administrador == 1)
@@ -157,9 +166,10 @@
                                 </ul>
                             </li>
 
-        @endif
+                @endif
 
                     @if ($perfil->descricao == "Aluno")
+
                         <li class="header">ALUNO</li>
                         <li @if(isset($current) && ($current =="meu-perfil")) class="active" @endif>
                             <a href="#{{asset('AdminLTE/pages/calendar.html')}}">
@@ -211,15 +221,7 @@
                     </a>
                 </li>
 
-                <li class="header">CURSOS</li>
-                <li>
-                    <a href="{{route('todos-cursos')}}">
-                        <i class="fa fa-th"></i> <span>Cursos</span>
-                        <span class="pull-right-container">
-                            <small class="label pull-right bg-green">inscreva-se</small>
-                        </span>
-                    </a>
-                </li>
+
 
             @endguest
         </ul>

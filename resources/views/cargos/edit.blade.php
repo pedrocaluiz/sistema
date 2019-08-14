@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.charges')
+  <a href="{{route('cargos')}}"> @lang('messages.charges')</a>
 @endsection
 
 @section('content')
@@ -27,11 +27,13 @@
               <div class="row">
                 <div class="form-group col-md-3">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ $cargo->descricao }}" placeholder="{{ $cargo->descricao }}" required>
+                  <input id="descricao" type="text" class="form-control" name="descricao"
+                         value="{{ $cargo->descricao }}" placeholder="{{ $cargo->descricao }}" required minlength="3" maxlength="60">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="salarioBase">@lang('messages.salary')</label>
-                  <input type="text" class="form-control money" id="salarioBase" name="salarioBase" value="{{ $cargo->salarioBase }}" placeholder="{{ $cargo->salarioBase }}" required >
+                  <input type="text" class="form-control money" id="salarioBase" name="salarioBase"
+                         value="{{ $cargo->salarioBase }}" placeholder="{{ $cargo->salarioBase }}" required minlength="3" maxlength="9">
                 </div>
                 @isset($user)
                   <!--Partials .. Atualizado Por.. -->

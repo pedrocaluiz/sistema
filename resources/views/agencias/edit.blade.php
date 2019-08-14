@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.agencies')
+  <a href="{{route('agencias')}}"> @lang('messages.agencies')</a>
 @endsection
 
 @section('content')
@@ -28,19 +28,23 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="codigoUnidade">@lang('messages.code')</label>
-                  <input id="codigoUnidade" type="text" class="form-control d-4" name="codigoUnidade" placeholder="{{ $agencia->codigoUnidade }}" value="{{ $agencia->codigoUnidade }}" required autofocus>
+                  <input id="codigoUnidade" type="text" class="form-control d-4" name="codigoUnidade"
+                         placeholder="{{ $agencia->codigoUnidade }}" value="{{ $agencia->codigoUnidade }}" required autofocus minlength="4" maxlength="4">
                 </div>
                 <div class="form-group col-md-3">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" placeholder="{{ $agencia->descricao }}" value="{{ $agencia->descricao }}" required>
+                  <input id="descricao" type="text" class="form-control" name="descricao"
+                         placeholder="{{ $agencia->descricao }}" value="{{ $agencia->descricao }}" required minlength="3" maxlength="40">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="SR">{{ __('SR') }}</label>
-                  <input type="text" class="form-control d-4"  id="SR" name="SR" placeholder="{{ $agencia->SR }}" value="{{ $agencia->SR }}" required >
+                  <input type="text" class="form-control d-4"  id="SR" name="SR"
+                         placeholder="{{ $agencia->SR }}" value="{{ $agencia->SR }}" required minlength="4" maxlength="4">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="DIRE">{{ __('DIRE') }}</label>
-                  <input type="text" class="form-control d-4"  id="DIRE" name="DIRE" placeholder="{{ $agencia->DIRE }}" value="{{ $agencia->DIRE }}" required>
+                  <input type="text" class="form-control d-4"  id="DIRE" name="DIRE"
+                         placeholder="{{ $agencia->DIRE }}" value="{{ $agencia->DIRE }}" required minlength="4" maxlength="4">
                 </div>
                 @isset($user)
                   <!--Partials .. Atualizado Por.. -->

@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.unity')
+    <a href="{{route('unidades')}}"> @lang('messages.units')</a>
 @endsection
 
 @push('css')
@@ -74,11 +74,13 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="ordem">@lang('messages.order')</label>
-                  <input id="ordem" type="text" class="form-control ordem" name="ordem" placeholder="{{$unidade->ordem}}" value="{{$unidade->ordem}}" required>
+                  <input id="ordem" type="text" class="form-control ordem" name="ordem"
+                         placeholder="{{$unidade->ordem}}" value="{{$unidade->ordem}}" required minlength="1" maxlength="2">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="tituloUnidades">@lang('messages.title')</label>
-                  <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidade" placeholder="{{$unidade->titulo}}" value="{{$unidade->titulo}}"required>
+                  <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidade"
+                         placeholder="{{$unidade->titulo}}" value="{{$unidade->titulo}}"required minlength="3" maxlength="60">
                 </div>
               </div>
             </fieldset>

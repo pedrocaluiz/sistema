@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.types-doc')
+    <a href="{{route('tipodoc')}}"> @lang('messages.types-doc')</a>
 @endsection
 
 @section('content')
@@ -27,11 +27,13 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="siglaDocumento">@lang('messages.initials')</label>
-                  <input type="text" class="form-control"  id="siglaDocumento" name="siglaDocumento" placeholder="{{ $tp->siglaDocumento }}" value="{{ $tp->siglaDocumento }}" required>
+                  <input type="text" class="form-control"  id="siglaDocumento" name="siglaDocumento"
+                         placeholder="{{ $tp->siglaDocumento }}" value="{{ $tp->siglaDocumento }}" required minlength="2" maxlength="10">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" placeholder="{{ $tp->descricao }}" value="{{ $tp->descricao }}" required>
+                  <input id="descricao" type="text" class="form-control" name="descricao"
+                         placeholder="{{ $tp->descricao }}" value="{{ $tp->descricao }}" required minlength="3" maxlength="80">
                 </div>
                 @isset($user)
                   <!--Partials .. Atualizado Por.. -->

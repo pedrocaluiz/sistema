@@ -18,7 +18,9 @@ class UsersPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        if ($user->id == $model->id){
+            return true;
+        }
     }
 
     /**
@@ -43,8 +45,6 @@ class UsersPolicy
     {
         if ($user->id == $model->id){
             return true;
-        }else{
-            return false;
         }
     }
 

@@ -4,78 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/Traits/RedirectsUsersTrait.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/profile/estilo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/profile/flaticon.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/profile/magnific-popup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/profile/owl.carousel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/aluno/meu-perfil.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/401.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/403.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/404.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/408.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/500.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/501.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/503.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="View meu-perfil e correção da navegação.">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MateriaisController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MateriaisController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Municipio.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Municipio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/UsersPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/UsersPolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_25_152227_create_tipo_documentos_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_25_152425_create_documentos_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/TiposDocsSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/pt-BR/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/pt-BR/messages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/agencias/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agencias/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/agencias/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agencias/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/aluno/profile-edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/aluno/profile-edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cargos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cargos/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cargos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cargos/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/categorias/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categorias/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/categorias/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categorias/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/rating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/rating.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/instrutor/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/funcoes/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/funcoes/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/funcoes/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/funcoes/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/semuso/index2.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/head.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/header-nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/header-nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/user-search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/user-search.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/materiais.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/materiais.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/myPDF.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/semuso/myPDF.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/pre-questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/pre-questoes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/revisao.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/revisao.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/create1.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/semuso/create1.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tipodoc/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tipodoc/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tipodoc/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tipodoc/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/instrutor/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +47,6 @@
     </commandsHistory>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <excluded-from-favorite>
       <branch-storage>
         <map>
@@ -130,6 +60,8 @@
         </map>
       </branch-storage>
     </excluded-from-favorite>
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="8ed1a7f9-6cc5-4bec-9cad-3a0e1c21fdc0" />
@@ -393,7 +325,7 @@
       <workItem from="1565127954041" duration="1358000" />
       <workItem from="1565215732463" duration="7453000" />
       <workItem from="1565302005725" duration="7886000" />
-      <workItem from="1565731882711" duration="12191000" />
+      <workItem from="1565731882711" duration="12454000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -493,7 +425,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564968199653</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="View meu-perfil e correção da navegação.">
+      <created>1565748475112</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1565748475113</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -555,6 +494,7 @@
     <MESSAGE value="Tornar Instrutor, Publicar Cursos, sidebar." />
     <MESSAGE value="Modal delete usuários, relatório em pdf." />
     <MESSAGE value="Modal delete todas classes, destroy controllers." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modal delete todas classes, destroy controllers." />
+    <MESSAGE value="View meu-perfil e correção da navegação." />
+    <option name="LAST_COMMIT_MESSAGE" value="View meu-perfil e correção da navegação." />
   </component>
 </project>

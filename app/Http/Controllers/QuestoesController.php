@@ -407,13 +407,26 @@ class QuestoesController extends Controller
 
         for($i = 0; $i < count($curso->unidades); $i++){
             $questoes_unid[$i] = $curso->unidades[$i]->questoes;
-            $notaAval_unid[$i] = $curso->unidades[$i]->usuario->where('id', $auth->id)[0]->pivot->notaAval;
 
-            if ( (count($questoes_unid[$i]) <= 0 ) or ( $notaAval_unid[$i] > 7) ){
-                $aprovado[$i] = 1;
+            $where = UsuarioCursoUnidadeMaterialProva::where([
+                ['unidade_id', $curso->unidades[$i]->id],
+                ['user_id', $auth->id],
+            ])->get();
+
+            $notaAval_unid[$i] = $where->first();
+
+            if (isset($notaAval_unid[$i])){
+                if ((count($questoes_unid) <= 0 ) or ( $notaAval_unid[$i]->notaAval > 7) ){
+                    $aprovado[$i] = 1;
+                }else{
+                    $aprovado[$i] = 0;
+                }
             }else{
                 $aprovado[$i] = 0;
             }
+
+
+
         }
 
         if (count($aprovado) > 0){
@@ -422,7 +435,7 @@ class QuestoesController extends Controller
                 //concluir curso e atribuir nota
                 for($i = 0; $i < count($questoes_unid); $i++){
                     if ((count($questoes_unid[$i]) > 0) && ($aprovado[$i] == 1)){
-                        $nota_com_questoes[$i] = $notaAval_unid[$i];
+                        $nota_com_questoes[$i] = $notaAval_unid[$i]->notaAval;
                     }
                 }
                 $notaCurso = intval(array_sum($nota_com_questoes) / count($nota_com_questoes));
@@ -454,7 +467,10 @@ class QuestoesController extends Controller
             return Redirect::to('unidades/' . $unidade->id);
         }
 
-        $provas = Prova::where('unidade_id', $unidade->id)->get();
+        $provas = Prova::where([
+            ['unidade_id', $unidade->id],
+            ['user_id', $auth->id],
+            ])->get();
         $curso = Curso::where('id', $unidade->curso_id)->get();
 
         $prova_iniciada = Prova::where([
@@ -466,7 +482,6 @@ class QuestoesController extends Controller
         $todosMateriais = UnidadeMaterial::where([
             ['unidade_id', $unidade->id],])
             ->get();
-
         if ($todosMateriais->first()){
             for($i = 0; $i < count($todosMateriais); $i++){
                 $array[$i] = $todosMateriais[$i]->id;

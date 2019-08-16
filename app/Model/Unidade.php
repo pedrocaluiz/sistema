@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Unidade extends Model
 {

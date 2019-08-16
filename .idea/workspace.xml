@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="View meu-perfil e correção da navegação.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Unidade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Unidade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -325,7 +328,9 @@
       <workItem from="1565127954041" duration="1358000" />
       <workItem from="1565215732463" duration="7453000" />
       <workItem from="1565302005725" duration="7886000" />
-      <workItem from="1565731882711" duration="12454000" />
+      <workItem from="1565731882711" duration="12691000" />
+      <workItem from="1565818762992" duration="1535000" />
+      <workItem from="1565904224187" duration="8411000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -432,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565748475113</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="View meu-perfil e correção da navegação.">
+      <created>1565748731540</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1565748731540</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">

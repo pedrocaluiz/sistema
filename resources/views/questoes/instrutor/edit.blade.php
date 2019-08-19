@@ -98,14 +98,15 @@
                   <div class="form-group col-md-6"></div>
                   <div class="form-group col-md-2"></div>
               </div>-->
-              <div class="row">
-                <div class="form-group col-md-1">
-                  <button type="button" id="btnResp" class="btn btn-primary botao">
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </div>
+
             </fieldset>
+              <div class="row">
+                  <div class="form-group col-md-1">
+                      <button type="button" id="btnResp" class="btn btn-primary botao">
+                          <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+              </div>
 
             </div>
           <div class="box-footer">

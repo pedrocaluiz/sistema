@@ -47,7 +47,11 @@ class QuestoesPolicy
      */
     public function update(User $user, Questao $questao)
     {
-        //
+        foreach ($user->perfil as $perfil){
+            if (($perfil->descricao == "Instrutor") && ($user->id == $questao->usuarioAtualizacao)){
+                return true;
+            }
+        }
     }
 
     /**

@@ -34,6 +34,7 @@
                 <div class="form-group col-md-3">
                   <label for="curso_id">@lang('messages.course')</label>
                   <select class="form-control select2" id="curso_id" name="curso_id" onchange="carregarUnidades(this)" >
+                      <option value="" disabled selected></option>
                     @if(count($cursos) > 0)
                       @foreach ($cursos as $curso)
                         <option value="{{$curso->id}}">{{$curso->titulo}}</option>
@@ -43,51 +44,53 @@
                 </div>
                 <div class="form-group col-md-3">
                   <label for="unidade_id">@lang('messages.unity')</label>
-                  <select class="form-control select2" id="unidade_id" name="unidade_id"></select>
+                  <select class="form-control select2" id="unidade_id" name="unidade_id">
+                      <option value="" disabled selected></option>
+                  </select>
                 </div>
               </div>
             </fieldset>
             <fieldset id="respostas">
               <legend>@lang('messages.informations'):</legend>
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-8">
                   <label for="questao">@lang('messages.question')</label>
                   <textarea rows="2" cols="50" name="questao" id="questao" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="imagem">&lt;Imagem&gt;&lt;/Imagem&gt;</label>
+                    <label for="imagem">Imagem</label>
                   <input id="imagem" type="file" class="form-control-file" name="imagem" >
                   <small id="fileHelp" class="form-text text-muted">Tamanho máximo 20MB.</small>
                 </div>
               </div>
               <hr class="my-4">
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-9">
                   <label for="correta">@lang('messages.right-answer')</label>
                   <textarea rows="2" cols="50" name="correta" id="correta" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                   <hr class="my-4">
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-9">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
                   <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-9">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
                   <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-9">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
                   <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-9">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
                   <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
@@ -97,14 +100,15 @@
                   <div class="form-group col-md-6"></div>
                   <div class="form-group col-md-2"></div>
               </div>-->
-              <div class="row">
-                <div class="form-group col-md-1">
-                  <button type="button" id="btnResp" class="btn btn-primary botao">
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </div>
+
             </fieldset>
+              <div class="row">
+                  <div class="form-group col-md-1">
+                      <button type="button" id="btnResp" class="btn btn-primary botao">
+                          <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+              </div>
 
             </div>
           <div class="box-footer">
@@ -158,7 +162,7 @@
           $("#btnResp").click(function(){
               $("#respostas").append(
                   `<div class="row" id="${a}">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-9">
                       <label for="incorreta">@lang('messages.wrong-answer')</label>
                       <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                   </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Categoria;
+use App\Model\Curso;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -109,12 +110,25 @@ class CategoriasController extends Controller
       $cat = Categoria::find($request->categoria_id);
       $descricao = $cat->descricao;
 
+      //$this->authorize('delete', $cat);
+
       if (isset($cat)){
+
+        $cursos = Curso::where('categoria_id', $cat->id)->get();
+        foreach ($cursos as $curso){
+            $curso->categoria_id = null;
+            $curso->save();
+        }
+
         $cat->delete();
         $request->session()->flash('excluida',
           "Categoria $descricao excluída com sucesso.");
         return redirect('categorias');
       }
-      return response('Categoria não encontrada', 404);
+        return response('Categoria não encontrada', 404);
+
     }
+
+
+
 }

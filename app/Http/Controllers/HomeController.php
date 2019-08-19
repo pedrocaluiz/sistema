@@ -31,6 +31,7 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
@@ -46,6 +47,9 @@ class HomeController extends Controller
         $materiais = UnidadeMaterial::all();
         $unidades = Unidade::all();
         $questoes = Questao::all();
+
+        $this->authorize('view');
+
         return view('home',
             compact('users', 'agencias', 'cargos', 'categorias',
                 'funcoes', 'perfis', 'tipoDoc' ,'tipoMat',

@@ -74,7 +74,9 @@
     <div class="col-md-12 perfil">
         <section class="hero-section">
             <div class="container-fluid text-center">
-                <img src="/storage/{{$user->foto}}" alt="user-img" class="img-rounded">
+                @if ($user->foto != null)
+                    <img src="/storage/{{$user->foto}}" alt="user-img" class="img-rounded">
+                @endif
                 <div class="hero-text">
                     <h2>{{$user->primeiroNome}} {{$user->ultimoNome}}</h2>
                     <div class="row d-center">
@@ -89,11 +91,11 @@
                     <p>I’m a digital designer in love with photography, painting and<br>discovering new worlds and cultures.</p>
                 </div>
                 <div class="social-links">
-                    <a href=""><i class="fa fa-pinterest"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                    <a href=""><i class="fa fa-instagram"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
                 </div>
             </div>
         </section>

@@ -163,6 +163,8 @@
                                                         @csrf
                                                     </form>
                                                 @endif
+                                                    <a href="/cursos/{{$c->id}}/edit" class="btn btn=sm btn-primary acaoTxt"> @lang('messages.edit')</a>
+                                                    <a  href="/cursos/{{$c->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
                                                     <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
                                                             data-curso_id="{{$c->id}}" id="excluir">
                                                         @lang('messages.delete')

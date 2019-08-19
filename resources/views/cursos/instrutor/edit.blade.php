@@ -34,6 +34,7 @@
                         <div class="form-group col-md-3">
                             <label for="categoria_id">@lang('messages.categories')</label>
                             <select class="form-control select2" id="categoria_id" name="categoria_id" autofocus>
+                                <option value="" disabled selected></option>
                                 @if(count($cats) > 0)
                                     @foreach ($cats as $cat)
                                         @if ($cat->id == $curso->categoria_id)

@@ -33,7 +33,8 @@
             <div class="row">
               <div class="form-group col-md-3">
                 <label for="curso_id">@lang('messages.course')</label>
-                <select class="form-control select2" id="curso_id" name="curso_id" onchange="carregarUnidades(this)" >
+                <select class="form-control select2" id="curso_id" name="curso_id" onchange="carregarUnidades(this)" required>
+                    <option value="" disabled selected></option>
                   @if(count($cursos) > 0)
                     @foreach ($cursos as $curso)
                       <option value="{{$curso->id}}">{{$curso->titulo}}</option>
@@ -43,7 +44,9 @@
               </div>
               <div class="form-group col-md-3">
                 <label for="unidade_id">@lang('messages.unity')</label>
-                <select class="form-control select2" id="unidade_id" name="unidade_id" onchange="carregarMateriais(this)"></select>
+                <select class="form-control select2" id="unidade_id" name="unidade_id" onchange="carregarMateriais(this)" required>
+                    <option></option>
+                </select>
               </div>
             </div>
           </fieldset>

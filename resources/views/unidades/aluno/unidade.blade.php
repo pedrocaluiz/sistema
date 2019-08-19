@@ -34,6 +34,13 @@
     .btn-primary {
       margin: 5px;
     }
+    #overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
 
   </style>
 @endpush
@@ -93,13 +100,13 @@
               @endif
             <!--pdf, doc, xls, ppt web-->
               @if (($mat->material_id == 2) && ($mat->storage == 1))
-                <div class="row">
-                  <div class="video" >
-                    <video class="video" controls onclick="concluir();">
-                      <source src="/storage/{{$mat->urlArquivo}}" type="video/mp4">
-                    </video>
+                  <div class="row">
+                      <div class="video" >
+                          <video class="video" controls onclick="concluir();">
+                              <source src="/storage/{{$mat->urlArquivo}}" type="video/mp4">
+                          </video>
+                      </div>
                   </div>
-                </div>
               @endif
             <!--video local-->
               @if (($mat->material_id == 2) && ($mat->storage == 0))
@@ -282,7 +289,15 @@
             radioClass: 'iradio_flat-blue'
         });
         inscrever();
+
+        const vid = document.querySelector('video');
+
+        ['playing', 'pause', 'seeked', 'ended'].forEach(evento =>
+            vid.addEventListener(evento, e => concluir())
+        );
+
     });
+
 
 
 </script>

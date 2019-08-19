@@ -90,33 +90,34 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        $path = $data['foto']->store('imagens', 'public');
-
-        $usuario = User::create([
-            'primeiroNome' => $data['primeiroNome'],
-            'ultimoNome' => $data['ultimoNome'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'foto' => $path,
-            'cargo_id' => $data['cargo_id'],
-            'funcao_id' => $data['funcao_id'],
-            'agencia_id' => $data['agencia_id'],
-            'dataNascimento' => $data['dataNascimento'],
-            'matricula' => $data['matricula'],
-            'dataAdmissao' => $data['dataAdmissao'],
-            'endereco' => $data['endereco'],
-            'numero' => $data['numero'],
-            'complemento' => $data['complemento'],
-            'bairro' => $data['bairro'],
-            'CEP' => $data['CEP'],
-            'municipio_id' => $data['municipio_id'],
-            'telefone' => $data['telefone'],
-            'celular' => $data['celular'],
-            'ativo' => $data['ativo'],
-        ]);
+        $usuario = new User();
+        $usuario->primeiroNome = $data['primeiroNome'];
+        $usuario->ultimoNome = $data['ultimoNome'];
+        $usuario->email = $data['email'];
+        $usuario->password = Hash::make($data['password']);
+        if (isset($data['foto'])){
+            $path = $data['foto']->store('imagens', 'public');
+            $usuario->foto = $path;
+        }
+        $usuario->cargo_id = $data['cargo_id'];
+        $usuario->funcao_id = $data['funcao_id'];
+        $usuario->agencia_id = $data['agencia_id'];
+        $usuario->dataNascimento = $data['dataNascimento'];
+        $usuario->matricula = $data['matricula'];
+        $usuario->dataAdmissao = $data['dataAdmissao'];
+        $usuario->endereco = $data['endereco'];
+        $usuario->numero = $data['numero'];
+        $usuario->complemento = $data['complemento'];
+        $usuario->bairro = $data['bairro'];
+        $usuario->CEP = $data['CEP'];
+        $usuario->municipio_id = $data['municipio_id'];
+        $usuario->telefone = $data['telefone'];
+        $usuario->celular = $data['celular'];
+        $usuario->ativo = 1;
+        $usuario->save();
 
         $perfil = new PerfilUsuario();
-        $perfil->perfil_id = $data['perfil_id'];
+        $perfil->perfil_id = 3;
         $perfil->user_id = $usuario->id;
         $perfil->save();
 

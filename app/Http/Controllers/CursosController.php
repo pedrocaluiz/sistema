@@ -280,23 +280,18 @@ class CursosController extends Controller
         $curso = Curso::find($request->curso_id);
         $titulo = $curso->titulo;
 
-        dd($curso);
-
         $this->authorize('delete', $curso);
 
         if (isset($curso)){
-
             $unidades = Unidade::where('curso_id', $curso->id)->get();
             foreach ($unidades as $unid){
                 $unid->curso_id = null;
                 $unid->save();
             }
-
             $ucump = UsuarioCursoUnidadeMaterialProva::where('curso_id', $curso->id)->get();
             foreach ($ucump as $u){
                 $u->delete();
             }
-
             $curso->delete();
             $request->session()->flash('excluida',
                 "Curso $titulo excluído com sucesso.");

@@ -31,7 +31,9 @@
 <script type="text/javascript">
     $(function () {
         //Initialize Select2 Elements
-        $('.select2').select2();
+        $('.select2').select2({
+            placeholder: 'SELECIONE'
+        });
 
         //Icon Picker
         $('.icp-auto').iconpicker();
@@ -51,6 +53,7 @@
         $("#celular").mask("(00)00000-0000");
         $(".d-4").mask("0000");
         $(".ordem").mask("90");
+        $("#CEP").mask("99.999-999");
 
         $('#example1').DataTable({
             language: {

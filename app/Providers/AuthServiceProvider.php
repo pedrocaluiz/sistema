@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\HomeController;
 use App\Model\Curso;
 use App\Model\Questao;
 use App\Policies\CursosPolicy;
+use App\Policies\HomePolicy;
 use App\Policies\QuestoesPolicy;
 use App\Policies\UsersPolicy;
 use App\User;
@@ -24,7 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Model' => 'App\Policies\ModelPolicy',
         Curso::class => CursosPolicy::class,
         Questao::class => QuestoesPolicy::class,
-        User::class => UsersPolicy::class
+        User::class => UsersPolicy::class,
+        HomeController::class => HomePolicy::class,
     ];
 
     /**

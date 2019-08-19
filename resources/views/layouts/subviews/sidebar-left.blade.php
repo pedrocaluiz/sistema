@@ -10,49 +10,14 @@
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">CURSOS</li>
-            <li @if(isset($current) && ($current == "todos-cursos")) class="active"@endif>
-                <a href="{{route('todos-cursos')}}">
-                    <i class="fa fa-play-circle"></i> <span>Cursos</span>
-                    <span class="pull-right-container">
-                        <small class="label pull-right bg-blue-gradient">inscreva-se</small>
-                    </span>
-                </a>
-            </li>
+
             @auth
-                <li class="header">MEU PERFIL</li>
-                <li @if(isset($current) && ($current == "meu-perfil")) class="active"@endif>
-                    <a href="/usuarios/meu-perfil/{{Auth::user()->id}}">
-                        <i class="fa fa-user"></i> <span>Meu Perfil</span>
-                        <span class="pull-right-container">
-                            <small class="label pull-right bg-green-gradient">ir</small>
-                        </span>
-                    </a>
-                </li>
+
                 @php $perfis = Auth::user()->perfil; @endphp
                 @foreach ($perfis as $perfil)
                     @if ($perfil->administrador == 1)
 
                         <li class="header">ADMINISTRADOR</li>
-                        <li @if(isset($menu) && ($menu =="meus-cursos")) class="treeview active" @else class="treeview" @endif>
-                            <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Meus Cursos</span>
-                                <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li @if(isset($current) && ($current == "andamento")) class="active"@endif>
-                                    <a href="{{route('meus-cursos.andamento')}}"><i class="fa fa-circle-o text-yellow"></i> Em Andamento</a></li>
-                                <li @if(isset($current) && ($current == "concluidos")) class="active"@endif>
-                                    <a href="{{route('meus-cursos.concluidos')}}"><i class="fa fa-circle-o text-red"></i> Concluídos</a></li>
-                                <li @if(isset($current) && ($current == "todos-meus-cursos")) class="active"@endif>
-                                    <a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
-                            </ul>
-                        </li>
-
-
                         <li @if(isset($menu) && ($menu == "listar")) class="treeview active" @else class="treeview" @endif>
                             <a href="#">
                                 <i class="fa fa-list-ol"></i>
@@ -117,10 +82,19 @@
                             </ul>
                         </li>
 
-
+                    @break;
                     @endif
 
                     @if ($perfil->descricao == "Instrutor")
+                            <li class="header">MEU PERFIL</li>
+                            <li @if(isset($current) && ($current == "meu-perfil")) class="active"@endif>
+                                <a href="/usuarios/meu-perfil/{{Auth::user()->id}}">
+                                    <i class="fa fa-user"></i> <span>Meu Perfil</span>
+                                    <span class="pull-right-container">
+                                    <small class="label pull-right bg-green-gradient">ir</small>
+                                </span>
+                                </a>
+                            </li>
                             <li class="header">INSTRUTOR</li>
                             <li @if(isset($menu) && ($menu == "listar")) class="treeview active" @else class="treeview" @endif>
                                 <a href="#">
@@ -163,19 +137,42 @@
                                         <a href="{{route('questoes.create')}}"><i class="fa fa-circle-o"></i> Questão</a></li>
                                 </ul>
                             </li>
+                            <li class="header">ALUNO</li>
+
+                            <li @if(isset($menu) && ($menu =="meus-cursos")) class="treeview active" @else class="treeview" @endif>
+                                <a href="#">
+                                    <i class="fa fa-book"></i>
+                                    <span>Meus Cursos</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li @if(isset($current) && ($current == "andamento")) class="active"@endif>
+                                        <a href="{{route('meus-cursos.andamento')}}"><i class="fa fa-circle-o text-yellow"></i> Em Andamento</a></li>
+                                    <li @if(isset($current) && ($current == "concluidos")) class="active"@endif>
+                                        <a href="{{route('meus-cursos.concluidos')}}"><i class="fa fa-circle-o text-red"></i> Concluídos</a></li>
+                                    <li @if(isset($current) && ($current == "todos-cursos")) class="active"@endif>
+                                        <a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
+                                </ul>
+                            </li>
+                        @break;
 
                 @endif
 
                     @if ($perfil->descricao == "Aluno")
 
-                        <li class="header">ALUNO</li>
-                        <li @if(isset($current) && ($current =="meu-perfil")) class="active" @endif>
-                            <a href="#{{asset('AdminLTE/pages/calendar.html')}}">
-                                <i class="fa fa-user"></i> <span> Meu Perfil</span>
+
+                        <li class="header">MEU PERFIL</li>
+                        <li @if(isset($current) && ($current == "meu-perfil")) class="active"@endif>
+                            <a href="/usuarios/meu-perfil/{{Auth::user()->id}}">
+                                <i class="fa fa-user"></i> <span>Meu Perfil</span>
                                 <span class="pull-right-container">
-                            </span>
+                                    <small class="label pull-right bg-green-gradient">ir</small>
+                                </span>
                             </a>
                         </li>
+                        <li class="header">ALUNO</li>
                         <li @if(isset($menu) && ($menu =="meus-cursos")) class="treeview active" @else class="treeview" @endif>
                             <a href="#">
                                 <i class="fa fa-book"></i>

@@ -21,7 +21,7 @@
 <div class="row align-items-end">
     <div class="col-md-12">
         <div class="box">
-        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="cadastro">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="cadastro" id="myForm">
                 @csrf
             <div class="box-header">
                 <h3 class="box-title">
@@ -113,6 +113,7 @@
                             <div class="form-group col-md-3">
                                 <label for="agencia_id">@lang('messages.agency')</label>
                                 <select class="form-control select2" id="agencia_id" name="agencia_id" autofocus>
+                                    <option value="" disabled selected></option>
                                     @if(count($agencias) > 0)
                                         @foreach ($agencias as $agencia)
                                             <option value="{{$agencia->id}}">{{$agencia->descricao}}</option>
@@ -123,6 +124,7 @@
                             <div class="form-group col-md-3">
                                 <label for="cargo_id">@lang('messages.office')</label>
                                 <select class="form-control select2" id="cargo_id" name="cargo_id">
+                                    <option value="" disabled selected></option>
                                     @if(count($cargos) > 0)
                                         @foreach ($cargos as $cargo)
                                             <option value="{{$cargo->id}}">{{$cargo->descricao}}</option>
@@ -133,6 +135,7 @@
                             <div class="form-group col-md-4">
                                 <label for="funcao_id">@lang('messages.function')</label>
                                 <select class="form-control select2" id="funcao_id" name="funcao_id">
+                                    <option value="" disabled selected></option>
                                     @if(count($funcoes) > 0)
                                         @foreach ($funcoes as $funcao)
                                             <option value="{{$funcao->id}}">{{$funcao->descricao}}</option>
@@ -180,6 +183,7 @@
                             <div class="form-group col-md-2">
                                 <label for="estado">@lang('messages.state')</label>
                                 <select id="estado" class="form-control select2" name="estado" onchange="javascript:carregarMunicipios(this);">
+                                    <option value="" disabled selected></option>
                                     @if(count($estados) > 0)
                                         @foreach ($estados as $estado)
                                             <option value="{{$estado->id}}">{{$estado->sigla}}</option>
@@ -190,6 +194,7 @@
                             <div class="form-group col-md-3">
                                 <label for="municipio_id">@lang('messages.county')</label>
                                 <select class="form-control select2" id="municipio_id" name="municipio_id" >
+                                    <option value="" disabled selected></option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
@@ -313,7 +318,8 @@
         }
 
         $(function(){
-            carregarMunicipiosInicial();
+            //carregarMunicipiosInicial();
+            $('#myForm input').val("");
             $('input').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'

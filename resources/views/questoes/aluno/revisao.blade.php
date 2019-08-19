@@ -10,22 +10,63 @@
 
 @push('css')
   <style>
-    .questao {
-      border: 1px solid lightblue;
-      padding: 10px;
-      margin: 10px;
-      border-radius: 10px;
-    }
      .box-header{
        padding-left: 20px;
      }
-
     .correcao{
-
       padding: 10px;
-
       border-radius: 10px;
     }
+    .questao {
+        /*border: 1px solid lightblue;*/
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: stretch;
+    }
+    .box-header{
+        padding-left: 20px;
+    }
+    .col-md-3{
+        border: 1px solid black;
+        margin-right: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .col-md-9{
+        border: 1px solid black;
+        padding-bottom: 10px;
+        padding-left: 30px;
+    }
+    .alternativa{
+        margin-left: 10px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .row p{
+        margin: 20px;
+    }
+      .row-questao{
+          display: flex;
+          justify-content: space-between;
+          margin-left: -15px;
+      }
+      .alert{
+          padding: 0;
+          margin: 0;
+          width: 86px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 20px;
+      }
+     .alert .icon {
+         font-size: 40px;
+         margin: 0;
+     }
   </style>
   @endpush
 
@@ -50,23 +91,34 @@
             @foreach($quest_resp as $qr)
             <div class="row questao">
               <div class="col-md-3">
-
                   @foreach ($questoes as $questao)
                     @if ($questao->id == $qr->questao_id)
-                    <h4>{{$questao->id}}</h4>
-
-                <label for="respondida1">Respondida</label>
-                <input type="checkbox" class="icheckbox_flat-green" id="resp-{{$questao->id}}" disabled checked>
+                          <h2>Questão</h2>
+                          <h4>ID: {{$questao->id}}</h4>
               </div>
               <div class="col-md-9">
-                <div class="row">
-                  <h4>{{$questao->questao}}</h4>
-                  <p>Escolha uma alternativa</p>
+                <div class=" row-questao">
+                    <div>
+                        <h3>{{$questao->questao}}</h3>
+                        <p>Escolha uma alternativa</p>
+                    </div>
+                    @php
+                        $resp_q = $questao->respostas->whereIn('id', [$qr->resposta_id_1, $qr->resposta_id_2, $qr->resposta_id_3, $qr->resposta_id_4, $qr->resposta_id_5]);
+                        $respCorreta = $questao->respCorreta_id;
+                    @endphp
+                    @if ($qr->alternativaMarcada == $respCorreta)
+                        <div class="alert alert-success">
+                            <i class="icon fa fa-check"></i>
+                        </div>
+                    @else
+                        <div class="alert alert-danger">
+                            <i class="icon fa fa-times"></i>
+                        </div>
+                    @endif
+
+
                 </div>
-                @php
-                  $resp_q = $questao->respostas->whereIn('id', [$qr->resposta_id_1, $qr->resposta_id_2, $qr->resposta_id_3, $qr->resposta_id_4, $qr->resposta_id_5]);
-                  $respCorreta = $questao->respCorreta_id;
-                @endphp
+
                 @foreach ($resp_q as $resp)
                     @if ($resp->id == $qr->resposta_id_1)
                     <div class="row">
@@ -76,7 +128,7 @@
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label for="{{$questao->id}}">{{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">a. {{$resp->id}} -- {{$resp->resposta}}</label>
                     </div>
                     @endif
                 @endforeach
@@ -89,7 +141,7 @@
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label for="{{$questao->id}}">{{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">b. {{$resp->id}} -- {{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
@@ -102,7 +154,7 @@
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label for="{{$questao->id}}">{{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">c. {{$resp->id}} -- {{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
@@ -115,7 +167,7 @@
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label for="{{$questao->id}}">{{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">d. {{$resp->id}} -- {{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
@@ -128,7 +180,7 @@
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label for="{{$questao->id}}">{{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">e. {{$resp->id}} -- {{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
@@ -136,23 +188,7 @@
                 @endforeach
               </div>
             </div>
-            @if ($qr->alternativaMarcada == $respCorreta)
-                <div class="row correcao" >
-                  <div class="col-md-12">
-                    <div class="alert alert-success alert-dismissible">
-                      <h4><i class="icon fa fa-check"></i> Resposta Correta é {{$respostas->where('id', $respCorreta)->first()->id}} -- {{$respostas->where('id', $respCorreta)->first()->resposta}} </h4>
-                    </div>
-                  </div>
-                </div>
-            @else
-                <div class="row correcao" >
-                  <div class="col-md-12">
-                    <div class="alert alert-danger alert-dismissible">
-                      <h4><i class="icon fa fa-times"></i> Resposta Correta é {{$respostas->where('id', $respCorreta)->first()->id}} -- {{$respostas->where('id', $respCorreta)->first()->resposta}} </h4>
-                    </div>
-                  </div>
-                </div>
-            @endif
+
 
             @endforeach
           @endisset
@@ -177,14 +213,18 @@
 @push('scripts')
   <script type="text/javascript">
 
-      function respondida(input) {
+      /*function respondida(input) {
           console.log(input);
           var seletor = '#resp-' + input.id;
           console.log(seletor);
           $(seletor).attr("checked", "checked");
-      }
+      }*/
 
       $(function(){
+          $('input').iCheck({
+              checkboxClass: 'icheckbox_flat-blue',
+              radioClass: 'iradio_flat-blue'
+          });
       });
 
   </script>

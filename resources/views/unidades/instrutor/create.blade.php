@@ -49,6 +49,7 @@
                 <div class="form-group col-md-3">
                   <label for="curso_id">@lang('messages.course')</label>
                   <select class="form-control select2" id="curso_id" name="curso_id" onchange="carregarUnidades(this)">
+                      <option value="" disabled selected></option>
                     @if(count($cursos) > 0)
                       @foreach ($cursos as $curso)
                         <option value="{{$curso->id}}">{{$curso->titulo}}</option>

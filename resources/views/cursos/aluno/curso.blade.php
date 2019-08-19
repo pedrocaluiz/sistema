@@ -142,8 +142,7 @@
                     @foreach($unidade->materiais->sortBy('ordem') as $material)
                     <tr>
                       <td class="ordem">{{$material->ordem}}</td>
-                      <td>{{$material->descricao}}</td>
-
+                      <td><a href="/unidades/{{$unidade->id}}?page={{$loop->iteration}}">{{$material->descricao}}</a></td>
                       @forelse ($material->usuario->where('id', Auth::user()->id) as $user)
                         @if (empty($user->pivot->dataConclusao))
                           <!--Existe registro na tabela UCUMP, mas não existe registro no dataConclusao-->

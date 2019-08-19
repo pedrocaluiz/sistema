@@ -28,6 +28,7 @@
                         <div class="form-group col-md-3">
                             <label for="categoria_id">@lang('messages.categories')</label>
                             <select class="form-control select2" id="categoria_id" name="categoria_id" autofocus>
+                                <option value="" disabled selected></option>
                                 @if(count($cats) > 0)
                                     @foreach ($cats as $cat)
                                         <option value="{{$cat->id}}">{{$cat->descricao}}</option>
@@ -79,7 +80,7 @@
                 <div id="tabs" class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li><a data-toggle="tab"><i class="fa fa-plus" id="fa-plus"></i></a></li>
-                        <li class="active"><a href="#unidade1" data-toggle="tab" aria-expanded="true">Unidade1</a></li>
+                        <li class="active"><a href="#unidade1" data-toggle="tab" aria-expanded="true">Unidade</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="unidade1">
@@ -160,7 +161,7 @@
 
             $("#fa-plus").click(function(){
                 $(".nav-tabs").append(
-                        '<li id="'+a+'"><a href="#unidade'+a+'" data-toggle="tab" id="ui-id-'+a+'">Unidade'+a+'</a></li>'
+                        '<li id="'+a+'"><a href="#unidade'+a+'" data-toggle="tab" id="ui-id-'+a+'">Unidade</a></li>'
                 );
                 $(".tab-content").append(
                         `<div class="tab-pane" id="unidade${a}">
@@ -176,7 +177,7 @@
                                         <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" required minlength="3" maxlength="60">
                                     </div>
                                 <div class="form-group col-md-1">
-                                    <button type="button" class="btn btn-primary botao" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
+                                    <button type="button" class="btn btn-danger botao" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </div>

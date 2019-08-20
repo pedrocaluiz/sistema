@@ -3,22 +3,20 @@
 namespace App\Policies;
 
 use App\User;
-use App\Home;
+use App\Model\Agencia;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-
-class HomePolicy
+class AgenciasPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the home.
+     * Determine whether the user can view the agencia.
      *
      * @param \App\User $user
-     * @param \App\Home $home
      * @return mixed
      */
-    public function view(User $user)
+    public function administrador()
     {
         return false;
     }

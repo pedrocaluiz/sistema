@@ -1,11 +1,11 @@
 @extends('layouts.base', ["current" => "meu-perfil"])
 
 @section('header')
-    @lang('messages.users')
+    @lang('messages.user')
 @endsection
 
 @section('title')
-    @lang('messages.users')
+    @lang('messages.user')
 @endsection
 
 @push('css')
@@ -21,11 +21,12 @@
 <div class="row align-items-end">
     <div class="col-md-12">
         <div class="box">
-        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="cadastro">
-                @csrf
+        <form method="POST" action="/usuarios/{{$user->id}}" enctype="multipart/form-data" class="cadastro">
+            @method('PUT')
+            @csrf
             <div class="box-header">
                 <h3 class="box-title">
-                    @lang('messages.register')
+                    @lang('messages.edit')
                     @lang('messages.user')
                 </h3>
             </div>
@@ -56,7 +57,7 @@
                             <div class="form-group col-md-2">
                                 <label for="dataNascimento">@lang('messages.birthday')</label>
                                 <input type="text" class="form-control pull-right datemask datepicker"  id="dataNascimento"
-                                       name="dataNascimento" placeholder="__/__/____" required>
+                                       name="dataNascimento" placeholder="__/__/____" >
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="ativo">@lang('messages.enable')</label>
@@ -68,7 +69,7 @@
                             <div class="form-group col-md-4">
                                 <label for="email">@lang('messages.email')</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                       name="email" value="{{ $user->email }}" placeholder="{{ $user->email }}" required autocomplete="email">
+                                       name="email" value="{{ $user->email }}" placeholder="{{ $user->email }}" required autocomplete="email" disabled>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -77,7 +78,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="password">@lang('messages.password')</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -86,7 +87,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="password_confirmation">@lang('messages.confirmation')</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="perfil_id">@lang('messages.profile')</label>
@@ -103,7 +104,7 @@
                             <div class="form-group col-md-2">
                                 <label for="dataAdmissao">@lang('messages.admission')</label>
                                 <input type="text" class="form-control pull-right datepicker datemask" id="dataAdmissao"
-                                       name="dataAdmissao" placeholder="__/__/____" required>
+                                       name="dataAdmissao" placeholder="__/__/____" >
                             </div>
                         </div>
                         <div class="row">
@@ -158,7 +159,7 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="foto" class="rotulo">@lang('messages.image')</label>
-                                <input type="file" class="form-control-file" id="foto" name="foto" >
+                                <input type="file" class="form-control-file" id="foto" name="foto">
                                 <small id="fileHelp" class="form-text text-muted">Tamanho máximo 3MB.</small>
                             </div>
                         </div>
@@ -180,7 +181,7 @@
                             <div class="form-group col-md-2">
                                 <label for="complemento">@lang('messages.complement')</label>
                                 <input id="complemento" type="text" class="form-control" name="complemento"
-                                       value="{{ $user->complemento }}" placeholder="{{ $user->complemento }}" required>
+                                       value="{{ $user->complemento }}" placeholder="{{ $user->complemento }}" >
                             </div>
                         </div>
                         <div class="row">

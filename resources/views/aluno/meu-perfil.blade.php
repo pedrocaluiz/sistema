@@ -55,6 +55,10 @@
         justify-content: center;
     }
 
+    .img-rounded{
+        max-width: 900px;
+    }
+
 
 
   </style>
@@ -111,6 +115,11 @@
                                         <li><span>Local</span>{{$user->municipio->descricao}}, {{$user->municipio->estado->descricao}}</li>
                                     </ul>
                                 </div>
+                                <p class="d-center" style="max-width: 200px">
+                                    <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-info botao" type="submit">
+                                        Editar Perfil
+                                    </a>
+                                </p>
                             </div>
                             <div class="col-md-6">
                                 <div class="hero-info">

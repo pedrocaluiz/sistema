@@ -19,12 +19,15 @@ use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 
 class UsersController extends Controller
 {
     public function index(Request $request)
     {
+        $this->authorize('administrador');
         $users = User::all();
         $funcoes = Funcao::all();
         $adicionada = $request->session()->get('adicionada');
@@ -98,6 +101,7 @@ class UsersController extends Controller
 
     public function instrutor($id, Request $request)
     {
+        $this->authorize('administrar');
         $user = User::find($id);
         $perfil = $user->perfil->where('descricao', 'Instrutor')->first();
 
@@ -115,6 +119,7 @@ class UsersController extends Controller
 
     public function aluno($id, Request $request)
     {
+        $this->authorize('administrador');
         $user = User::find($id);
         $perfil = $user->perfil->where('descricao', 'Instrutor')->first();
 
@@ -131,6 +136,8 @@ class UsersController extends Controller
     {
         $user = User::find($user_id);
         $cursos = $user->cursos;
+
+        $this->authorize('view', $user);
 
             if (count($cursos) > 0){ // se existe curso para esse usuario
                 foreach ($cursos as $curso){
@@ -203,6 +210,8 @@ class UsersController extends Controller
         $user = User::find($request->user_id);
         $nome = $user->primeiroNome . ' ' . $user->ultimoNome;
 
+        $this->authorize('administrador');
+
         if (isset($user)){
 
             $documentos = Documento::where('user_id', $user->id)->get();
@@ -255,7 +264,7 @@ class UsersController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
     public function update(Request $request, $id)
@@ -263,13 +272,16 @@ class UsersController extends Controller
         DB::beginTransaction();
         $usuario = User::find($id);
 
+        $this->authorize('update', $usuario);
+
         $usuario->primeiroNome = $request->input('primeiroNome');
         $usuario->ultimoNome = $request->input('ultimoNome');
         if ($request->input('password') != null){
             $usuario->password = Hash::make($request->input('ultimoNome'));
         }
-        if ($request->input('foto') != null){
-            $path = $request->input('foto')->store('imagens', 'public');
+        if ($request->foto != null){
+            $path = $request->foto->store('imagens', 'public');
+
             $usuario->foto = $path;
         }
         $usuario->cargo_id = $request->input('cargo_id');
@@ -284,7 +296,9 @@ class UsersController extends Controller
         }
         $usuario->endereco = $request->input('endereco');
         $usuario->numero = $request->input('numero');
-        $usuario->complemento = $request->input('complemento');
+        if ($request->input('dataAdmissao') != null) {
+            $usuario->complemento = $request->input('complemento');
+        }
         $usuario->CEP = $request->input('CEP');
         $usuario->municipio_id = $request->input('municipio_id');
         $usuario->telefone = $request->input('telefone');
@@ -293,7 +307,8 @@ class UsersController extends Controller
         $request->session()->flash('alterada',
             "Dados alterados com sucesso.");
         DB::commit();
-        return redirect()->route('meu-perfil');
+
+        return Redirect::to('usuarios/meu-perfil/' . $usuario->id);
     }
 
     public function meuPerfil($user_id)

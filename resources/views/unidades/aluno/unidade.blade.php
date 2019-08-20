@@ -46,12 +46,10 @@
 @endpush
 
 @section('content')
+    @php $perfis = Auth::user()->perfil; @endphp
   <div class="row align-items-end">
     <div class="col-md-12">
     @if (isset($unidade, $user))
-
-
-
 
         <div class="box">
           <div class="box-header curso">
@@ -144,24 +142,31 @@
 
                   <div class="row flex-justify-center">
                     <div class="col-md-3 flex-justify-center">
-                    @forelse ($mat->usuario->where('id', Auth::user()->id) as $user)
-                      @if (empty($user->pivot->dataConclusao))
-                        <!--Existe registro na tabela UCUMP, mas não existe dataConclusao-->
-                          <span class="badge bg-yellow">Em andamento</span>
-                      @else
-                        <!--Existe registro na tabela UCUMP e dataConclusao checked-->
-                          <!--<input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido" checked >-->
-                          <span class="badge bg-green">Concluído</span>
-                      @endif
-                    @empty
-                      <!--Não existe registro na tabela UCUMP-->
-                        <span class="badge bg-red">Não iniciado</span>
-                    @endforelse
+
+
+                    @foreach ($perfis as $perfil)
+                        @if ($perfil->administrador == 1)
+                            @break;
+                            @else
+                            @forelse ($mat->usuario->where('id', Auth::user()->id) as $user)
+                              @if (empty($user->pivot->dataConclusao))
+                                <!--Existe registro na tabela UCUMP, mas não existe dataConclusao-->
+                                  <span class="badge bg-yellow">Em andamento</span>
+                              @else
+                                <!--Existe registro na tabela UCUMP e dataConclusao checked-->
+                                  <!--<input type="checkbox" class="icheckbox_flat-blue" name="concluido" id="concluido" checked >-->
+                                  <span class="badge bg-green">Concluído</span>
+                              @endif
+                            @empty
+                              <!--Não existe registro na tabela UCUMP-->
+                                <span class="badge bg-red">Não iniciado</span>
+                            @endforelse
+                        @endif
+                    @endforeach
                     </div>
                   </div>
 
                 @endforeach
-
             @endisset
           </form>
             <div class="row">
@@ -170,23 +175,27 @@
               </div>
             </div>
           </div>
-
-          @if (!empty($questoes[0]))
-            <div class="box-footer">
-              <div class="col-md-6" style="display: flex; justify-content: center">
-                <a type="button" href="/provas/{{$unidade->id}}/lista" id="atividade">
-                  Clique aqui para Avaliação de Aprendizagem
-                </a>
-              </div>
-            </div>
-          @else
-            <div class="box-footer">
-              <div class="col-md-6" style="display: flex; justify-content: center">
-                <p>Não há questões cadastradas para essa Unidade</p>
-              </div>
-            </div>
-          @endif
-
+            @foreach ($perfis as $perfil)
+                @if ($perfil->administrador == 1)
+                    @break;
+                @else
+                  @if (!empty($questoes[0]))
+                    <div class="box-footer">
+                      <div class="col-md-6" style="display: flex; justify-content: center">
+                        <a type="button" href="/provas/{{$unidade->id}}/lista" id="atividade">
+                          Clique aqui para Avaliação de Aprendizagem
+                        </a>
+                      </div>
+                    </div>
+                  @else
+                    <div class="box-footer">
+                      <div class="col-md-6" style="display: flex; justify-content: center">
+                        <p>Não há questões cadastradas para essa Unidade</p>
+                      </div>
+                    </div>
+                  @endif
+                @endif
+            @endforeach
 
         </div>
 

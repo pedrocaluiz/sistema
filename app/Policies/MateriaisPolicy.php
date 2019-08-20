@@ -3,18 +3,29 @@
 namespace App\Policies;
 
 use App\User;
-use App\Model\Questao;
+use App\Model\UnidadeMaterial;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class QuestoesPolicy
+class MateriaisPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the questao.
+     * Determine whether the user can view the agencia.
+     *
+     * @param \App\User $user
+     * @return mixed
+     */
+    public function administrador()
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can view the unidade material.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Questao  $questao
+     * @param  \App\Model\UnidadeMaterial  $unidadeMaterial
      * @return mixed
      */
     public function view(User $user)
@@ -27,7 +38,7 @@ class QuestoesPolicy
     }
 
     /**
-     * Determine whether the user can create questaos.
+     * Determine whether the user can create unidade materials.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -42,34 +53,35 @@ class QuestoesPolicy
     }
 
     /**
-     * Determine whether the user can update the questao.
+     * Determine whether the user can update the unidade material.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Questao  $questao
+     * @param  \App\Model\UnidadeMaterial  $unidadeMaterial
      * @return mixed
      */
-    public function update(User $user, Questao $questao)
+    public function update(User $user, UnidadeMaterial $unidadeMaterial)
     {
         foreach ($user->perfil as $perfil){
-            if (($perfil->descricao == "Instrutor") && ($user->id == $questao->usuarioAtualizacao)){
+            if (($perfil->descricao == "Instrutor") && ($user->id == $unidadeMaterial->usuarioAtualizacao)){
                 return true;
             }
         }
     }
 
     /**
-     * Determine whether the user can delete the questao.
+     * Determine whether the user can delete the curso.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Questao  $questao
+     * @param  \App\Model\Curso  $curso
      * @return mixed
      */
-    public function delete(User $user, Questao $questao)
+    public function delete(User $user, UnidadeMaterial $unidadeMaterial)
     {
         foreach ($user->perfil as $perfil){
-            if (($perfil->descricao == "Instrutor") && ($user->id == $questao->usuarioAtualizacao)){
+            if (($perfil->descricao == "Instrutor") && ($user->id == $unidadeMaterial->usuarioAtualizacao)){
                 return true;
             }
         }
     }
+
 }

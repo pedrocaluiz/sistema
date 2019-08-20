@@ -20,9 +20,11 @@ class MateriaisController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request)
     {
+        $this->authorize('view', UnidadeMaterial::class);
         $materiais = UnidadeMaterial::all();
         $unidades = Unidade::all();
         $users = User::all();
@@ -49,14 +51,14 @@ class MateriaisController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('create', UnidadeMaterial::class);
         $unidades = Unidade::all();
         $cursos = Curso::all();
         $tiposMat = TipoMaterial::all();
-
-
 
         return view('materiais.instrutor.create',
             compact('unidades', 'cursos', 'tiposMat'));
@@ -71,8 +73,8 @@ class MateriaisController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('update', UnidadeMaterial::class);
         $unidade = Unidade::find($request->unidade_id);
-        $auth = Auth::user();
 
         DB::beginTransaction();
         //Arrays
@@ -115,31 +117,20 @@ class MateriaisController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit($id)
     {
         $material = UnidadeMaterial::find($id);
+        $this->authorize('update', $material);
         $ordem = UnidadeMaterial::select('ordem')
             ->where('unidade_id', $material->unidade_id)
             ->orderBy('ordem', 'asc')
             ->get();
-
-        //dd($ordem);
 
         $unidades = Unidade::all();
         $tiposMat = TipoMaterial::all();
@@ -160,6 +151,9 @@ class MateriaisController extends Controller
     {
         DB::beginTransaction();
         $material = UnidadeMaterial::find($id);
+
+        $this->authorize('update', $material);
+
         $material->unidade_id = $request->input('unidade_id');
         $material->descricao = $request->input('descricaoMaterial');
         $material->material_id = $request->input('tipoMat_id');
@@ -188,10 +182,12 @@ class MateriaisController extends Controller
      * @param int $id
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Request $request)
     {
         $material = UnidadeMaterial::find($request->material_id);
+        $this->authorize('delete', $material);
         $descricao = $material->descricao;
 
         if (isset($material)){

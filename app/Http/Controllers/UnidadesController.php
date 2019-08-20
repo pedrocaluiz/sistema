@@ -25,9 +25,11 @@ class UnidadesController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request)
     {
+        $this->authorize('view', Unidade::class);
         $cursos = Curso::all();
         $unidades = Unidade::all();
         $users = User::all();
@@ -54,9 +56,11 @@ class UnidadesController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('create', Unidade::class);
         $unidades = Unidade::all();
         $cursos = Curso::all();
         return view('unidades.instrutor.create',
@@ -72,6 +76,7 @@ class UnidadesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Unidade::class);
         $curso = Curso::find($request->input('curso_id'));
         DB::beginTransaction();
 
@@ -226,12 +231,14 @@ class UnidadesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit($id)
     {
         $unidade = Unidade::find($id);
+        $this->authorize('update', $unidade);
         $ordem = Unidade::select('ordem')
             ->where('curso_id', $unidade->curso_id)
             ->orderBy('ordem', 'asc')
@@ -257,6 +264,7 @@ class UnidadesController extends Controller
         DB::beginTransaction();
 
         $unidade = Unidade::find($id);
+        $this->authorize('update', $unidade);
         $unidade->titulo = $request->input('tituloUnidade');
         $unidade->ordem = $request->input('ordem');
         $unidade->usuarioAtualizacao = $request->input('usuarioAtualizacao');
@@ -277,11 +285,13 @@ class UnidadesController extends Controller
      *
      * @param Request $request
      * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Request $request)
     {
         $unidade = Unidade::find($request->unidade_id);
         $titulo = $unidade->titulo;
+        $this->authorize('delete', $unidade);
 
         if (isset($unidade)){
 

@@ -85,6 +85,7 @@ Route::prefix('cursos')->name('cursos')->middleware('auth')->group(function () {
     Route::put('/{id}', 'CursosController@update')->name('.update');
     Route::post('/{curso_id}/pdf', 'CursosController@certificadoCurso')->name('.pdf');
     Route::get('/{curso_id}/rating', 'CursosController@rating')->name('.rating');
+    Route::get('/{curso_id}/ratings', 'CursosController@ratings')->name('.ratings');
     Route::post('/rating', 'CursosController@ratingSave')->name('.rating-save');
 
 });

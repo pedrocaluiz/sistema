@@ -3,21 +3,21 @@
 namespace App\Policies;
 
 use App\User;
-use App\Model\Questao;
+use App\Model\Unidade;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class QuestoesPolicy
+class UnidadePolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the questao.
+     * Determine whether the user can view the unidade.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Questao  $questao
+     * @param  \App\Model\Unidade  $unidade
      * @return mixed
      */
-    public function view(User $user)
+    public function view(User $user, Unidade $unidade)
     {
         foreach ($user->perfil as $perfil){
             if ($perfil->descricao == "Instrutor"){
@@ -27,7 +27,7 @@ class QuestoesPolicy
     }
 
     /**
-     * Determine whether the user can create questaos.
+     * Determine whether the user can create unidades.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -42,32 +42,32 @@ class QuestoesPolicy
     }
 
     /**
-     * Determine whether the user can update the questao.
+     * Determine whether the user can update the unidade.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Questao  $questao
+     * @param  \App\Model\Unidade  $unidade
      * @return mixed
      */
-    public function update(User $user, Questao $questao)
+    public function update(User $user, Unidade $unidade)
     {
         foreach ($user->perfil as $perfil){
-            if (($perfil->descricao == "Instrutor") && ($user->id == $questao->usuarioAtualizacao)){
+            if (($perfil->descricao == "Instrutor") && ($user->id == $unidade->usuarioAtualizacao)){
                 return true;
             }
         }
     }
 
     /**
-     * Determine whether the user can delete the questao.
+     * Determine whether the user can delete the unidade.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Questao  $questao
+     * @param  \App\Model\Unidade  $unidade
      * @return mixed
      */
-    public function delete(User $user, Questao $questao)
+    public function delete(User $user, Unidade $unidade)
     {
         foreach ($user->perfil as $perfil){
-            if (($perfil->descricao == "Instrutor") && ($user->id == $questao->usuarioAtualizacao)){
+            if (($perfil->descricao == "Instrutor") && ($user->id == $unidade->usuarioAtualizacao)){
                 return true;
             }
         }

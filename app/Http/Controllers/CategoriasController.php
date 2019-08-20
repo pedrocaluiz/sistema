@@ -14,9 +14,11 @@ class CategoriasController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request)
     {
+        $this->authorize('administrador');
         $cats = Categoria::all();
         $users = User::all();
         $adicionada = $request->session()->get('adicionada');
@@ -30,20 +32,24 @@ class CategoriasController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('administrador');
       return view('categorias.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
     {
+        $this->authorize('administrador');
       $cat = Categoria::create($request->all());
       $request->session()->flash('adicionada',
         "Categoria $cat->descricao inserida com sucesso.");
@@ -51,24 +57,15 @@ class CategoriasController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit($id)
     {
+        $this->authorize('administrador');
       $cat = Categoria::find($id);
       $user = User::find($cat->usuarioAtualizacao);
       return view('categorias.edit',
@@ -85,6 +82,7 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('administrador');
       DB::beginTransaction();
           $cat = Categoria::find($id);
           $cat->descricao = $request->input('descricao');
@@ -102,18 +100,17 @@ class CategoriasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Request $request)
     {
+        $this->authorize('administrador');
       $cat = Categoria::find($request->categoria_id);
       $descricao = $cat->descricao;
 
-      //$this->authorize('delete', $cat);
-
       if (isset($cat)){
-
         $cursos = Curso::where('categoria_id', $cat->id)->get();
         foreach ($cursos as $curso){
             $curso->categoria_id = null;

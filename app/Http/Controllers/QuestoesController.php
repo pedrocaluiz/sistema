@@ -58,6 +58,7 @@ class QuestoesController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Questao::class);
         $unidades = Unidade::all();
         $cursos = Curso::all();
 

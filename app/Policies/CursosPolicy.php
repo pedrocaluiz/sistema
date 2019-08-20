@@ -11,6 +11,17 @@ class CursosPolicy
     use HandlesAuthorization;
 
     /**
+     * Determine whether the user can view the agencia.
+     *
+     * @param \App\User $user
+     * @return mixed
+     */
+    public function administrador()
+    {
+        return false;
+    }
+
+    /**
      * Determine whether the user can view the curso.
      *
      * @param  \App\User  $user
@@ -19,7 +30,6 @@ class CursosPolicy
      */
     public function view(User $user)
     {
-        //dd($user->perfil[0]->descricao);
         foreach ($user->perfil as $perfil){
             if ($perfil->descricao == "Instrutor"){
                 return true;
@@ -35,7 +45,6 @@ class CursosPolicy
      */
     public function create(User $user)
     {
-        //dd($user->perfil[0]->descricao);
         foreach ($user->perfil as $perfil){
             if ($perfil->descricao == "Instrutor"){
                 return true;
@@ -75,13 +84,6 @@ class CursosPolicy
         }
     }
 
-    /**
-     * Determine whether the user can delete the curso.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Model\Curso  $curso
-     * @return mixed
-     */
     public function matriculado(User $user, Curso $curso)
     {
         $matriculas = $curso->usuario;

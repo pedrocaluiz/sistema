@@ -68,7 +68,15 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        @php $perfis = Auth::user()->perfil; @endphp
+                        @foreach ($perfis as $perfil)
+                            @if ($perfil->administrador == 1)
+                                <a href="{{ url('/home') }}">Home</a>
+                                @break;
+                            @else
+                                <a href="{{ url('/meus-cursos') }}">Meus Cursos</a>
+                            @endif
+                        @endforeach
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -81,17 +89,17 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    PC Treinamentos
                 </div>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel.com/docs">Laravel</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://blog.laravel.com">Blog</a>
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://github.com/pedrocaluiz/tcc">GitHub</a>
                 </div>
             </div>
         </div>

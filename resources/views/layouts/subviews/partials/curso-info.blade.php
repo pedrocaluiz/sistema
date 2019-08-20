@@ -40,23 +40,40 @@
         </div>
         <div class="box-footer">
             <div class="col-md-2" id="inscrito">
-                @if (isset($user_curso[0]))
-                  <p class="d-center"><strong>Você já está inscrito</strong></p>
-                  <p class="d-center">
-                        <button class="btn btn=sm btn-danger botao" type="submit">
-                            <i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;Certificado
-                        </button>
-                  </p>
-                    <p class="d-center">
-                        <a href="/cursos/{{$curso->id}}/rating" class="btn btn=sm btn-info botao" type="submit">
-                            Avalie o Curso
-                        </a>
-                    </p>
-                @else
-                    <button type="button" class="btn btn-primary botao" id="btnInscrever" onclick="inscrever()">
-                        <i class="fa fa-plus"></i> &nbsp;&nbsp;Inscrever-se
-                    </button>
-                @endif
+
+                @php $perfis = Auth::user()->perfil; @endphp
+                @foreach ($perfis as $perfil)
+                    @if ($perfil->administrador == 1)
+                        <p class="d-center">
+                            <a href="/cursos/{{$curso->id}}/ratings" class="btn btn=sm btn-info botao" type="submit">
+                                Avaliações do Curso
+                            </a>
+                        </p>
+                        @break;
+                    @else
+                        @if (isset($user_curso[0]))
+                            <p class="d-center"><strong>Você já está inscrito</strong></p>
+                            <p class="d-center">
+                                <button class="btn btn=sm btn-danger botao" type="submit">
+                                    <i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;Certificado
+                                </button>
+                            </p>
+                            <p class="d-center">
+                                <a href="/cursos/{{$curso->id}}/rating" class="btn btn=sm btn-info botao" type="submit">
+                                    Avalie o Curso
+                                </a>
+                            </p>
+                        @else
+                            <button type="button" class="btn btn-primary botao" id="btnInscrever" onclick="inscrever()">
+                                <i class="fa fa-plus"></i> &nbsp;&nbsp;Inscrever-se
+                            </button>
+                        @endif
+                    @endif
+                @endforeach
+
+
+
+
 
             </div>
         </div>

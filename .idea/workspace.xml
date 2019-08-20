@@ -5,30 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Policies/HomePolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Policies/AgenciasPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Policies/CargosPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Policies/CategoriasPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Policies/FuncoesPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Policies/MateriaisPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Policies/UnidadePolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/administrador/ratings.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgenciasController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CargosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CargosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoriasController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FuncoesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FuncoesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MateriaisController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MateriaisController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UnidadesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UnidadesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/CursosPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/CursosPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/HomePolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/HomePolicy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Policies/QuestoesPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/QuestoesPolicy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Policies/UsersPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/UsersPolicy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/cursos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/profile/estilo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/profile/estilo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/aluno/meu-perfil.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/aluno/meu-perfil.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/aluno/profile-edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/aluno/profile-edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/instrutor/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/scripts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/revisao.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/revisao.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/header-nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/header-nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/instrutor/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +202,7 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Blade" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/administrador" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -203,19 +214,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\aluno" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\errors" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\cursos\aluno" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
       <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\cursos-instrutor\instrutor" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\aluno" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\errors" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\cursos\aluno" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -352,7 +363,8 @@
       <workItem from="1565904224187" duration="8479000" />
       <workItem from="1565994263182" duration="3292000" />
       <workItem from="1566054061943" duration="13662000" />
-      <workItem from="1566177889611" duration="3918000" />
+      <workItem from="1566177889611" duration="4189000" />
+      <workItem from="1566249822857" duration="13389000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -473,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565923628123</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Correções prova, lista prova, foto, selecionar, link material, etc.">
+      <created>1566182607470</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1566182607470</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -537,6 +556,7 @@
     <MESSAGE value="Modal delete todas classes, destroy controllers." />
     <MESSAGE value="View meu-perfil e correção da navegação." />
     <MESSAGE value="Correção Lista Provas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correção Lista Provas." />
+    <MESSAGE value="Correções prova, lista prova, foto, selecionar, link material, etc." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correções prova, lista prova, foto, selecionar, link material, etc." />
   </component>
 </project>

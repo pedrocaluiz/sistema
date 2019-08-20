@@ -13,9 +13,11 @@ class CargosController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request)
     {
+        $this->authorize('administrador');
         $cargos = Cargo::all();
         $users = User::all();
         $adicionada = $request->session()->get('adicionada');
@@ -29,20 +31,24 @@ class CargosController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('administrador');
         return view('cargos.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
     {
+        $this->authorize('administrador');
         $cargo = Cargo::create($request->all());
         $request->session()->flash('adicionada',
             "Cargo $cargo->descricao inserido com sucesso.");
@@ -50,24 +56,15 @@ class CargosController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit($id)
     {
+        $this->authorize('administrador');
         $cargo = Cargo::find($id);
         $user = User::find($cargo->usuarioAtualizacao);
         return view('cargos.edit',
@@ -84,6 +81,7 @@ class CargosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('administrador');
         DB::beginTransaction();
             $cargo = Cargo::find($id);
             $cargo->descricao = $request->input('descricao');
@@ -101,11 +99,13 @@ class CargosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Request $request)
     {
+        $this->authorize('administrador');
         $cargo = Cargo::find($request->cargo_id);
         $descricao = $cargo->descricao;
 

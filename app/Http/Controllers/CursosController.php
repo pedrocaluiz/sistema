@@ -54,7 +54,7 @@ class CursosController extends Controller
      */
     public function indexAdm(Request $request)
     {
-        //$this->authorize('administrador', Curso::class);
+        $this->authorize('administrador');
         $categorias = Categoria::all();
         $cursos = Curso::all();
         $users = User::all();
@@ -71,6 +71,7 @@ class CursosController extends Controller
 
     public function enable($id, Request $request)
     {
+        $this->authorize('administrador');
         $curso = Curso::find($id);
 
         if ($curso->ativo == 0){
@@ -86,6 +87,7 @@ class CursosController extends Controller
 
     public function disable($id, Request $request)
     {
+        $this->authorize('administrador');
         $curso = Curso::find($id);
 
         if ($curso->ativo == 1){
@@ -444,7 +446,6 @@ class CursosController extends Controller
                 "Você ainda não concluiu o Curso: $curso->titulo.");
             return Redirect::to('cursos/' . $curso->id);
         }
-        //return view('certificado', compact('auth', 'curso', 'instrutor'));
     }
 
     public function rating($curso_id)
@@ -469,14 +470,27 @@ class CursosController extends Controller
             ['curso_id', $curso->id],
         ])->get();
 
-        $user_curso[0]->rating = $request->rating;
-        $user_curso[0]->comentario = $request->comentario;
-        $user_curso[0]->save();
-
+        if (isset($user_curso[0])){
+            $user_curso[0]->rating = $request->rating;
+            $user_curso[0]->comentario = $request->comentario;
+            $user_curso[0]->save();
+        }
         $request->session()->flash('adicionada',
             "Obrigado por avaliar o Curso $curso->titulo.");
 
         return Redirect::to('cursos/' . $curso->id);
+    }
+
+    public function ratings($curso_id)
+    {
+        $curso = Curso::find($curso_id);
+        $users = User::all();
+        $ratings = UsuarioCursoUnidadeMaterialProva::where([
+            ['curso_id', $curso->id],
+            ['rating', '<>', null],
+        ])->get();
+
+        return view('administrador.ratings', compact('curso', 'ratings', 'users'));
     }
 
     /**

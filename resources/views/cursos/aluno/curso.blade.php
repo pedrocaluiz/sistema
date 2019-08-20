@@ -54,6 +54,7 @@
 @endpush
 
 @section('content')
+    @php $perfis = Auth::user()->perfil; @endphp
   <div class="row align-items-end">
     <div class="col-md-12">
     @if (isset($curso, $cat, $user, $user_curso))
@@ -77,110 +78,133 @@
                   <h3 class="box-title">{{$curso->titulo}}</h3>
                 </div>
                 <!-- /.box-header -->
-                @php
-                        //dd(empty($unidade->questoes[0]));
-                @endphp
 
-                <div class="box-body">
-                  <table class="table table-bordered table-striped">
-                    <tbody><tr>
-                      <th class="ordem">{{$unidade->id}}</th>
-                      <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
-                      @forelse ($unidade->usuario->where('id', Auth::user()->id) as $user)
-                        @if (empty($user->pivot->dataConclusao))
-                          @if (count($unidade->materiais) > 0)
-                          <th class="progresso">
-                            <div class="progress progress-xs progress-striped active" >
-                              <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
-                            </div>
-                          </th>
-                          <th class="percent">
-                            <span class="badge bg-yellow">Em andamento</span>
-                          </th>
+                  @foreach ($perfis as $perfil)
+                      @if ($perfil->administrador == 1)
+                          <div class="box-body">
+                              <table class="table table-bordered table-striped">
+                                  <tbody>
+                                  <tr>
+                                      <th class="ordem">{{$unidade->id}}</th>
+                                      <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
+                                  </tr>
+                          @break;
+                      @else
+                          <div class="box-body">
+                              <table class="table table-bordered table-striped">
+                                  <tbody>
+                                  <tr>
+                                      <th class="ordem">{{$unidade->id}}</th>
+                                      <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
+                                      @forelse ($unidade->usuario->where('id', Auth::user()->id) as $user)
+                                          @if (empty($user->pivot->dataConclusao))
+                                              @if (count($unidade->materiais) > 0)
+                                                  <th class="progresso">
+                                                      <div class="progress progress-xs progress-striped active" >
+                                                          <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
+                                                      </div>
+                                                  </th>
+                                                  <th class="percent">
+                                                      <span class="badge bg-yellow">Em andamento</span>
+                                                  </th>
+                                              @else
+                                                  <th class="progresso">
+                                                      <div class="progress progress-xs progress-striped active" >
+                                                          <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
+                                                      </div>
+                                                  </th>
+                                                  <th class="percent">
+                                                      <span class="badge bg-light-blue">Falta Avaliação*</span>
+                                                  </th>
+                                              @endif
+                                          @elseif (($unidade->provas->max('notaAval') > 7) or (empty($unidade->questoes[0])))
+                                              <th class="progresso">
+                                                  <div class="progress progress-xs progress-striped active" >
+                                                      <div class="progress-bar progress-bar-green" style="width: 100%"></div>
+                                                  </div>
+                                              </th>
+                                              <th class="percent">
+                                                  <span class="badge bg-green">Concluído</span>
+                                              </th>
+                                          @else
+                                              <th class="progresso">
+                                                  <div class="progress progress-xs progress-striped active" >
+                                                      <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
+                                                  </div>
+                                              </th>
+                                              <th class="percent">
+                                                  <span class="badge bg-light-blue">Falta Avaliação*</span>
+                                              </th>
+                                          @endif
+                                      @empty
+                                          <th class="progresso">
+                                              <div class="progress progress-xs progress-striped active" >
+                                                  <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
+                                              </div>
+                                          </th>
+                                          <th class="percent">
+                                              <span class="badge bg-red">Não iniciado</span>
+                                          </th>
+                                      @endforelse
+                                  </tr>
+                      @endif
+                  @endforeach
+
+
+                      @php $perfis = Auth::user()->perfil; @endphp
+                      @foreach ($perfis as $perfil)
+                          @if ($perfil->administrador == 1)
+                              @foreach($unidade->materiais->sortBy('ordem') as $material)
+                                  <tr>
+                                      <td class="ordem">{{$material->ordem}}</td>
+                                      <td><a href="/unidades/{{$unidade->id}}?page={{$loop->iteration}}">{{$material->descricao}}</a></td>
+                                  </tr>
+                              @endforeach
+                          @break;
                           @else
-                          <th class="progresso">
-                            <div class="progress progress-xs progress-striped active" >
-                              <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
-                            </div>
-                          </th>
-                          <th class="percent">
-                            <span class="badge bg-light-blue">Falta Avaliação*</span>
-                          </th>
+                              @foreach($unidade->materiais->sortBy('ordem') as $material)
+                                  <tr>
+                                      <td class="ordem">{{$material->ordem}}</td>
+                                      <td><a href="/unidades/{{$unidade->id}}?page={{$loop->iteration}}">{{$material->descricao}}</a></td>
+                                  @forelse ($material->usuario->where('id', Auth::user()->id) as $user)
+                                      @if (empty($user->pivot->dataConclusao))
+                                          <!--Existe registro na tabela UCUMP, mas não existe registro no dataConclusao-->
+                                              <td class="progresso">
+                                                  <div class="progress progress-xs progress-striped active" >
+                                                      <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="percent">
+                                                  <span class="badge bg-yellow">Em andamento</span>
+                                              </td>
+
+                                      @else
+                                          <!--Existe registro na tabela UCUMP e dataConclusao-->
+                                              <td class="progresso">
+                                                  <div class="progress progress-xs progress-striped active" >
+                                                      <div class="progress-bar progress-bar-green" style="width: 100%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="percent">
+                                                  <span class="badge bg-green">Concluído</span>
+                                              </td>
+                                      @endif
+                                  @empty
+                                      <!--Não existe registro na tabela UCUMP-->
+                                          <td class="progresso">
+                                              <div class="progress progress-xs progress-striped active" >
+                                                  <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
+                                              </div>
+                                          </td>
+                                          <td class="percent">
+                                              <span class="badge bg-red">Não iniciado</span>
+                                          </td>
+                                      @endforelse
+
+                                  </tr>
+                              @endforeach
                           @endif
-                        @elseif (($unidade->provas->max('notaAval') > 7) or (empty($unidade->questoes[0])))
-                          <th class="progresso">
-                            <div class="progress progress-xs progress-striped active" >
-                              <div class="progress-bar progress-bar-green" style="width: 100%"></div>
-                            </div>
-                          </th>
-                          <th class="percent">
-                            <span class="badge bg-green">Concluído</span>
-                          </th>
-                        @else
-                          <th class="progresso">
-                            <div class="progress progress-xs progress-striped active" >
-                              <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
-                            </div>
-                          </th>
-                          <th class="percent">
-                            <span class="badge bg-light-blue">Falta Avaliação*</span>
-                          </th>
-                        @endif
-                      @empty
-                        <th class="progresso">
-                          <div class="progress progress-xs progress-striped active" >
-                            <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
-                          </div>
-                        </th>
-                        <th class="percent">
-                          <span class="badge bg-red">Não iniciado</span>
-                        </th>
-                      @endforelse
-
-                    </tr>
-
-                    @foreach($unidade->materiais->sortBy('ordem') as $material)
-                    <tr>
-                      <td class="ordem">{{$material->ordem}}</td>
-                      <td><a href="/unidades/{{$unidade->id}}?page={{$loop->iteration}}">{{$material->descricao}}</a></td>
-                      @forelse ($material->usuario->where('id', Auth::user()->id) as $user)
-                        @if (empty($user->pivot->dataConclusao))
-                          <!--Existe registro na tabela UCUMP, mas não existe registro no dataConclusao-->
-                          <td class="progresso">
-                            <div class="progress progress-xs progress-striped active" >
-                              <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
-                            </div>
-                          </td>
-                          <td class="percent">
-                            <span class="badge bg-yellow">Em andamento</span>
-                          </td>
-
-                        @else
-                          <!--Existe registro na tabela UCUMP e dataConclusao-->
-                          <td class="progresso">
-                            <div class="progress progress-xs progress-striped active" >
-                              <div class="progress-bar progress-bar-green" style="width: 100%"></div>
-                            </div>
-                          </td>
-                          <td class="percent">
-                            <span class="badge bg-green">Concluído</span>
-                          </td>
-                        @endif
-                      @empty
-                      <!--Não existe registro na tabela UCUMP-->
-                        <td class="progresso">
-                          <div class="progress progress-xs progress-striped active" >
-                            <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
-                          </div>
-                        </td>
-                        <td class="percent">
-                          <span class="badge bg-red">Não iniciado</span>
-                        </td>
-                      @endforelse
-
-                    </tr>
-                    @endforeach
-
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

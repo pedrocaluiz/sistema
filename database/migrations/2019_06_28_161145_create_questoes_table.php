@@ -19,9 +19,7 @@ class CreateQuestoesTable extends Migration
             $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('cascade');
             $table->longText('questao');
             $table->string('imagem')->nullable()->default(null);;
-
             $table->integer('respCorreta_id')->unsigned()->nullable()->default(null);
-
             $table->boolean('ativo')->nullable()->default(true);
             $table->integer('usuarioAtualizacao');
             $table->timestamps();

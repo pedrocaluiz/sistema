@@ -22,6 +22,9 @@
         .mb-4{
             margin-bottom: 1.5rem!important;
         }
+        #senha{
+            font-size: 13px;
+        }
     </STYLE>
 
     <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js" charset="UTF-8"></script>
@@ -73,12 +76,10 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary shadow-2 mb-4">{{ __('messages.login') }}</button>
-                    <p class="mb-0 text-muted">Não possui conta? <a href="/register">Registre-se</a></p>
-                    {{--@if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                    @endif--}}
+                    <p class="mb-0 text-muted">Não possui conta? <a href="{{ route('register') }}">Registre-se</a></p>
+                    @if (Route::has('password.request'))
+                        <a id="senha" href="{{ route('password.request') }}">Esqueceu sua senha? </a>
+                    @endif
                 </form>
             </div>
         </div>

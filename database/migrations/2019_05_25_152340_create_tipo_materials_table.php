@@ -17,8 +17,6 @@ class CreateTipoMaterialsTable extends Migration
             $table->bigIncrements('id');
             $table->string('descricao');
             $table->string('icone');
-            $table->integer('usuarioAtualizacao');
-            $table->timestamps();
         });
     }
 

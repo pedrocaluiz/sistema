@@ -8,6 +8,8 @@ class TipoMaterial extends Model
 {
     protected  $table = 'tipo_materiais';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'descricao', 'icone', 'usuarioAtualizacao',
     ];

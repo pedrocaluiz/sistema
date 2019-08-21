@@ -1,11 +1,40 @@
-@extends('layouts.app')
+@includeIf('layouts.subviews.head')
+<head>
+    <title>Verificar E-mail</title>
 
-@section('content')
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+    <STYLE>
+        .card {
+            background-color: white;
+            position: relative;
+            z-index:2;
+        }
+        .card .card-body {
+            padding: 30px 25px;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .justify-content-center{
+            display: flex;
+            justify-content: center;
+        }
+        .mb-0{
+            margin-top: 30px;
+        }
+    </STYLE>
+</head>
+
+<body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">Recuperar Senha</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -18,7 +47,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Endereço de E-mail</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -34,7 +63,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                    Enviar Link de Recuperação.
                                 </button>
                             </div>
                         </div>
@@ -44,4 +73,4 @@
         </div>
     </div>
 </div>
-@endsection
+</body>

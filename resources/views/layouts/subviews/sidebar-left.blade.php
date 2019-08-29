@@ -40,8 +40,6 @@
                                 </br>
                                 <li @if(isset($current) && ($current == "usuarios")) class="active"@endif>
                                     <a href="{{route('usuarios')}}"><i class="fa fa-circle-o"></i> Usuários</a></li>
-                                <li @if(isset($current) && ($current == "tipodoc")) class="active"@endif>
-                                    <a href="{{route('tipodoc')}}"><i class="fa fa-circle-o"></i> Tipo de Docs.</a></li>
                                 <li @if(isset($current) && ($current == "agencias")) class="active"@endif>
                                     <a href="{{route('agencias')}}"><i class="fa fa-circle-o"></i> Agências</a></li>
                                 <li @if(isset($current) && ($current == "cargos")) class="active"@endif>
@@ -71,8 +69,6 @@
                                     <a href="{{route('questoes.create')}}"><i class="fa fa-circle-o"></i> Questão</a></li>
 
                                 </br>
-                                <li @if(isset($current) && ($current == "tipodoc")) class="active"@endif>
-                                    <a href="{{route('tipodoc.create')}}"><i class="fa fa-circle-o"></i> Tipo de Docs.</a></li>
                                 <li @if(isset($current) && ($current == "agencias")) class="active"@endif>
                                     <a href="{{route('agencias.create')}}"><i class="fa fa-circle-o"></i> Agências</a></li>
                                 <li @if(isset($current) && ($current == "cargos")) class="active"@endif>

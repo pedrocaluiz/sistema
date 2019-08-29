@@ -145,7 +145,7 @@
 
 
                     @foreach ($perfis as $perfil)
-                        @if ($perfil->administrador == 1)
+                        @if ($perfil->administrador == 1 or Auth::user()->id == $unidade->usuarioAtualizacao)
                             @break;
                             @else
                             @forelse ($mat->usuario->where('id', Auth::user()->id) as $user)
@@ -176,7 +176,7 @@
             </div>
           </div>
             @foreach ($perfis as $perfil)
-                @if ($perfil->administrador == 1)
+                @if ($perfil->administrador == 1 or Auth::user()->id == $unidade->usuarioAtualizacao)
                     @break;
                 @else
                   @if (!empty($questoes[0]))

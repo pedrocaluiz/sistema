@@ -52,9 +52,6 @@
                             <a class="nav-link" href="#">{{ __('Categorias') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Tipo Doc.') }}</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#">{{ __('Tipo Mat.') }}</a>
                         </li>
 

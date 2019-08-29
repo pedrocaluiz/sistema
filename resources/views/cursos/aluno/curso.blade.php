@@ -80,7 +80,7 @@
                 <!-- /.box-header -->
 
                   @foreach ($perfis as $perfil)
-                      @if ($perfil->administrador == 1)
+                      @if ($perfil->administrador == 1 or Auth::user()->id == $curso->usuarioAtualizacao)
                           <div class="box-body">
                               <table class="table table-bordered table-striped">
                                   <tbody>
@@ -147,13 +147,14 @@
                                           </th>
                                       @endforelse
                                   </tr>
+                                  @break;
                       @endif
                   @endforeach
 
 
                       @php $perfis = Auth::user()->perfil; @endphp
                       @foreach ($perfis as $perfil)
-                          @if ($perfil->administrador == 1)
+                          @if ($perfil->administrador == 1 or Auth::user()->id == $curso->usuarioAtualizacao)
                               @foreach($unidade->materiais->sortBy('ordem') as $material)
                                   <tr>
                                       <td class="ordem">{{$material->ordem}}</td>
@@ -203,6 +204,7 @@
 
                                   </tr>
                               @endforeach
+                              @break;
                           @endif
                       @endforeach
                     </tbody>

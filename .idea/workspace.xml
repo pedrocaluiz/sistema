@@ -4,19 +4,28 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
+    <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="Login, reset password, verify email.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/TipoMaterial.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/TipoMaterial.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_25_152340_create_tipo_materials_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_25_152340_create_tipo_materials_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_28_161145_create_questoes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_28_161145_create_questoes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TipoDocsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/cursos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cursos/instrutor/cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/instrutor/cursos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tipodoc/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/semuso/tipodoc/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tipodoc/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/semuso/tipodoc/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tipodoc/tipodoc.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/semuso/tipodoc/tipodoc.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -191,19 +200,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\cursos-instrutor\instrutor" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
       <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\aluno" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\errors" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\cursos\aluno" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\cursos-instrutor\instrutor" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -342,7 +351,17 @@
       <workItem from="1566054061943" duration="13662000" />
       <workItem from="1566177889611" duration="4189000" />
       <workItem from="1566249822857" duration="13509000" />
-      <workItem from="1566329365083" duration="10212000" />
+      <workItem from="1566329365083" duration="10459000" />
+      <workItem from="1566353719259" duration="14000" />
+      <workItem from="1566422657065" duration="3197000" />
+      <workItem from="1566472824720" duration="1015000" />
+      <workItem from="1566510416032" duration="1011000" />
+      <workItem from="1566592694217" duration="1204000" />
+      <workItem from="1566646928277" duration="1178000" />
+      <workItem from="1566855020875" duration="2407000" />
+      <workItem from="1566945055865" duration="3337000" />
+      <workItem from="1567029697215" duration="186000" />
+      <workItem from="1567035896794" duration="2820000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -477,7 +496,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566267384785</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Login, reset password, verify email.">
+      <created>1566351986319</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1566351986319</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -543,6 +569,7 @@
     <MESSAGE value="Correção Lista Provas." />
     <MESSAGE value="Correções prova, lista prova, foto, selecionar, link material, etc." />
     <MESSAGE value="Policies, curso e unidade para administrador, lista de comentários Curso, editar perfil usuário." />
-    <option name="LAST_COMMIT_MESSAGE" value="Policies, curso e unidade para administrador, lista de comentários Curso, editar perfil usuário." />
+    <MESSAGE value="Login, reset password, verify email." />
+    <option name="LAST_COMMIT_MESSAGE" value="Login, reset password, verify email." />
   </component>
 </project>

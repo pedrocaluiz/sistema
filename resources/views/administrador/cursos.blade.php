@@ -42,6 +42,10 @@
                 display: none;
             }
         }
+        .td-flex {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 
 @endpush
@@ -93,23 +97,23 @@
                                                 ID
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Categoria: activate to sort column ascending" style="width: 245px;">
+                                                aria-label="Categoria: activate to sort column ascending" >
                                                 Categoria
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Título.: activate to sort column ascending" style="width: 245px;">
+                                                aria-label="Título.: activate to sort column ascending" >
                                                 Título
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ícone: activate to sort column ascending" style="width: 245px;">
+                                                aria-label="Ícone: activate to sort column ascending" >
                                                 Ícone
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Instrutor: activate to sort column ascending" style="width: 245px;">
+                                                aria-label="Instrutor: activate to sort column ascending" >
                                                 Instrutor
                                             </th>
                                             <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ações: activate to sort column ascending" style="width: 245px;">
+                                                aria-label="Ações: activate to sort column ascending" >
                                                 Ações
                                             </th>
                                         </tr>
@@ -126,7 +130,7 @@
                                                         <td>{{$categoria->descricao}}</td>
                                                     @endif
                                                 @endforeach
-                                                <td>{{$c->titulo}}</td>
+                                                <td class="td-flex">{{$c->titulo}}  <a href="/cursos/{{$c->id}}">Ir <i class="fa fa-level-up"></i></a></td>
                                                 <td><i class="{{$c->icone}}"></i></td>
                                                 @foreach ($users as $user)
                                                     @if($user->id == $c->usuarioAtualizacao)

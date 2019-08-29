@@ -461,6 +461,7 @@ class QuestoesController extends Controller
     {
         $auth = Auth::user();
         $unidade = Unidade::find($id);
+        $nao_concluidos = 0;
 
         $perguntas = Questao::where('unidade_id', $unidade->id)->get();
 
@@ -483,6 +484,7 @@ class QuestoesController extends Controller
         $todosMateriais = UnidadeMaterial::where([
             ['unidade_id', $unidade->id],])
             ->get();
+
         if ($todosMateriais->first()){
             for($i = 0; $i < count($todosMateriais); $i++){
                 $array[$i] = $todosMateriais[$i]->id;
@@ -507,8 +509,6 @@ class QuestoesController extends Controller
                 compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos'));
 
         }
-
-        $nao_concluidos = 0;
 
         return view('questoes.aluno.pre-questoes',
             compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos'));

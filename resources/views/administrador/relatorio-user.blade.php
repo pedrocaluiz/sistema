@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.courses')
+  {{$user->primeiroNome}} {{$user->ultimoNome}}
 @endsection
 
 @push('css')

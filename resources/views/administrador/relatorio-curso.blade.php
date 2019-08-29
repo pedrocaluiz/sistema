@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.units')
+    {{$curso->titulo}}
 @endsection
 
 @push('css')

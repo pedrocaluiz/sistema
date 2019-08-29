@@ -43,7 +43,7 @@
 
                 @php $perfis = Auth::user()->perfil; @endphp
                 @foreach ($perfis as $perfil)
-                    @if ($perfil->administrador == 1)
+                    @if ($perfil->administrador == 1 or Auth::user()->id == $curso->usuarioAtualizacao)
                         <p class="d-center">
                             <a href="/cursos/{{$curso->id}}/ratings" class="btn btn=sm btn-info botao" type="submit">
                                 Avaliações do Curso
@@ -63,10 +63,12 @@
                                     Avalie o Curso
                                 </a>
                             </p>
+                            @break;
                         @else
                             <button type="button" class="btn btn-primary botao" id="btnInscrever" onclick="inscrever()">
                                 <i class="fa fa-plus"></i> &nbsp;&nbsp;Inscrever-se
                             </button>
+                            @break;
                         @endif
                     @endif
                 @endforeach

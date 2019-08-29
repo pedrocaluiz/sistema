@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Model\Agencia;
 use App\Model\Cargo;
 use App\Model\Curso;
-use App\Model\Documento;
 use App\Model\Estado;
 use App\Model\Funcao;
 use App\Model\Municipio;
 use App\Model\Perfil;
 use App\Model\PerfilUsuario;
-use App\Model\TipoDocumento;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
@@ -214,11 +212,6 @@ class UsersController extends Controller
 
         if (isset($user)){
 
-            $documentos = Documento::where('user_id', $user->id)->get();
-            foreach ($documentos as $doc){
-                $doc->delete();
-            }
-
             $ucump = UsuarioCursoUnidadeMaterialProva::where('user_id', $user->id)->get();
             foreach ($ucump as $u){
                 $u->delete();
@@ -246,7 +239,6 @@ class UsersController extends Controller
         $municipios = Municipio::all();
         $estados = Estado::all();
         $perfis = Perfil::all();
-        $tiposDoc = TipoDocumento::all();
         $user = User::find($id);
         $municipio = Municipio::find($user->municipio_id);
         $estado = Estado::find($municipio->estado_id);
@@ -255,7 +247,7 @@ class UsersController extends Controller
 
         return view('aluno.profile-edit', compact(
             'cargos', 'agencias', 'funcoes', 'municipios', 'municipio',
-            'estados', 'estado', 'perfis', 'tiposDoc', 'user'));
+            'estados', 'estado', 'perfis', 'user'));
 
     }
 

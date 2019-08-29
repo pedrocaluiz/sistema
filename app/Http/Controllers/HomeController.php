@@ -9,7 +9,7 @@ use App\Model\Curso;
 use App\Model\Funcao;
 use App\Model\Perfil;
 use App\Model\Questao;
-use App\Model\TipoDocumento;
+
 use App\Model\TipoMaterial;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
@@ -40,9 +40,6 @@ class HomeController extends Controller
         $cargos = Cargo::all();
         $categorias = Categoria::all();
         $funcoes = Funcao::all();
-        $perfis = Perfil::all();
-        $tipoDoc = TipoDocumento::all();
-        $tipoMat = TipoMaterial::all();
         $cursos = Curso::all();
         $materiais = UnidadeMaterial::all();
         $unidades = Unidade::all();
@@ -52,8 +49,7 @@ class HomeController extends Controller
 
         return view('home',
             compact('users', 'agencias', 'cargos', 'categorias',
-                'funcoes', 'perfis', 'tipoDoc' ,'tipoMat',
-                'cursos', 'materiais', 'unidades', 'questoes'
+                'funcoes', 'cursos', 'materiais', 'unidades', 'questoes'
             ));
     }
 }

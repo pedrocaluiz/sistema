@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Model\Agencia;
 use App\Model\Cargo;
-use App\Model\Documento;
 use App\Model\Estado;
 use App\Model\Funcao;
 use App\Model\Municipio;
 use App\Model\Perfil;
-use App\Model\TipoDocumento;
 use App\Model\PerfilUsuario;
 use App\User;
 use App\Http\Controllers\Controller;

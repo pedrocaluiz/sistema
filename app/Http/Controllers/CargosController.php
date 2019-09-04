@@ -49,6 +49,7 @@ class CargosController extends Controller
     public function store(Request $request)
     {
         $this->authorize('administrador');
+
         $cargo = Cargo::create($request->all());
         $request->session()->flash('adicionada',
             "Cargo $cargo->descricao inserido com sucesso.");
@@ -83,6 +84,7 @@ class CargosController extends Controller
     {
         $this->authorize('administrador');
         DB::beginTransaction();
+
             $cargo = Cargo::find($id);
             $cargo->descricao = $request->input('descricao');
             $cargo->salarioBase = $request->input('salarioBase');

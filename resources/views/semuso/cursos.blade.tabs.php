@@ -16,7 +16,7 @@
 
 @section('content')
 <div class="row align-items-end">
-    
+
     <div class="col-md-12">
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="form-group col-md-2">
                                     <label for="ordem">@lang('messages.order')</label>
-                                    <select class="form-control select2" id="ordem" name="ordem">
+                                    <select class="form-control " id="ordem" name="ordem">
                                             <option value="1">1</option>
                                             <!--add Mais <option> quando add mais Unidades-->
                                     </select>
@@ -42,13 +42,13 @@
                                 </div>
                             </div>
                         </fieldset>
-        
+
                         <fieldset >
                             <legend>@lang('messages.informations'):</legend>
                             <div class="row">
                                 <div class="form-group col-md-2">
                                     <label for="tipoMat_id">@lang('messages.type-mat')</label>
-                                    <select class="form-control select2" id="tipoMat_id" name="tipoMat_id[]">
+                                    <select class="form-control " id="tipoMat_id" name="tipoMat_id[]">
                                         @if(count($tiposMat) > 0)
                                             @foreach ($tiposMat as $tipoMat)
                                                 <option value="{{$tipoMat->id}}">{{$tipoMat->descricao}}</option>
@@ -64,7 +64,7 @@
                             <div class="row">
                                 <div class="form-group col-md-2">
                                     <label for="storage">@lang('messages.source')</label>
-                                    <select class="form-control select2" id="storage" name="storage[]" onchange="local(this)">
+                                    <select class="form-control " id="storage" name="storage[]" onchange="local(this)">
                                         <option value="1">Local</option>
                                         <option value="0">Web</option>
                                     </select>
@@ -85,12 +85,12 @@
                                 </div>
                             </div>
                         </fieldset>
-                        
+
                         <fieldset id="respostas">
                             <legend>@lang('messages.informations'):</legend>
-        
-        
-        
+
+
+
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="questao">@lang('messages.question')</label>
@@ -114,10 +114,10 @@
                                     <hr class="my-4">
                                 </div>
                             </div>
-        
-        
-        
-        
+
+
+
+
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="incorreta">@lang('messages.wrong-answer')</label>
@@ -150,7 +150,7 @@
                                     </textarea>
                                 </div>
                             </div>
-        
+
                             <!--<div hidden class="row">
                                 <div class="form-group col-md-6"></div>
                                 <div class="form-group col-md-2"></div>
@@ -183,13 +183,13 @@
                                 </div>
                             </div>
                         </fieldset>
-        
+
                         <fieldset >
                             <legend>@lang('messages.informations'):</legend>
                             <div class="row">
                                 <div class="form-group col-md-2">
                                     <label for="tipoMat_id">@lang('messages.type-mat')</label>
-                                    <select class="form-control select2" id="tipoMat_id" name="tipoMat_id[]">
+                                    <select class="form-control " id="tipoMat_id" name="tipoMat_id[]">
                                         @if(count($tiposMat) > 0)
                                             @foreach ($tiposMat as $tipoMat)
                                                 <option value="{{$tipoMat->id}}">{{$tipoMat->descricao}}</option>
@@ -205,7 +205,7 @@
                             <div class="row">
                                 <div class="form-group col-md-2">
                                     <label for="storage">@lang('messages.source')</label>
-                                    <select class="form-control select2" id="storage" name="storage[]" onchange="local(this)">
+                                    <select class="form-control " id="storage" name="storage[]" onchange="local(this)">
                                         <option value="1">Local</option>
                                         <option value="0">Web</option>
                                     </select>
@@ -226,12 +226,12 @@
                                 </div>
                             </div>
                         </fieldset>
-                        
+
                         <fieldset id="respostas">
                             <legend>@lang('messages.informations'):</legend>
-        
-        
-        
+
+
+
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="questao">@lang('messages.question')</label>
@@ -255,10 +255,10 @@
                                     <hr class="my-4">
                                 </div>
                             </div>
-        
-        
-        
-        
+
+
+
+
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="incorreta">@lang('messages.wrong-answer')</label>
@@ -291,7 +291,7 @@
                                     </textarea>
                                 </div>
                             </div>
-        
+
                             <!--<div hidden class="row">
                                 <div class="form-group col-md-6"></div>
                                 <div class="form-group col-md-2"></div>

@@ -49,7 +49,7 @@
                                 Avaliações do Curso
                             </a>
                         </p>
-                        @break;
+                        @break
                     @else
                         @if (isset($user_curso[0]))
                             <p class="d-center"><strong>Você já está inscrito</strong></p>
@@ -63,12 +63,12 @@
                                     Avalie o Curso
                                 </a>
                             </p>
-                            @break;
+                            @break
                         @else
                             <button type="button" class="btn btn-primary botao" id="btnInscrever" onclick="inscrever()">
                                 <i class="fa fa-plus"></i> &nbsp;&nbsp;Inscrever-se
                             </button>
-                            @break;
+                            @break
                         @endif
                     @endif
                 @endforeach

@@ -131,6 +131,7 @@ class CursosController extends Controller
         $this->authorize('create', Curso::class);
 
         DB::beginTransaction();
+
         $curso = new Curso();
         $curso->categoria_id = $request->input('categoria_id');
         $curso->titulo = $request->input('tituloCurso');

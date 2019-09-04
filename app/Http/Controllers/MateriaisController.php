@@ -158,10 +158,11 @@ class MateriaisController extends Controller
         $material->descricao = $request->input('descricaoMaterial');
         $material->material_id = $request->input('tipoMat_id');
         $material->storage = $request->input('storage');
+        $material->ordem = $request->input('ordem');
 
         if ($request->urlMaterial != null) {
             $material->urlArquivo = $request->urlMaterial;
-        } else if ($request->storage == 1) {
+        } else if ($request->storage == 1 and $request->pathMaterial != null) {
             $pathMat = $request->pathMaterial->store('material', 'public');
             $material->urlArquivo = $pathMat;
         }

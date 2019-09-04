@@ -78,7 +78,7 @@
                             </ul>
                         </li>
 
-                    @break;
+                    @break
                     @endif
 
                     @if ($perfil->descricao == "Instrutor")
@@ -152,7 +152,7 @@
                                         <a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
                                 </ul>
                             </li>
-                        @break;
+                        @break
 
                 @endif
 

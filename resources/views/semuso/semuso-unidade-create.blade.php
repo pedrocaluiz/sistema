@@ -36,7 +36,7 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="tipoMat_id">@lang('messages.type-mat')</label>
-                  <select class="form-control select2" id="tipoMat_id" name="tipoMat_id[]">
+                  <select class="form-control " id="tipoMat_id" name="tipoMat_id[]">
                     @if(count($tiposMat) > 0)
                       @foreach ($tiposMat as $tipoMat)
                         <option value="{{$tipoMat->id}}">{{$tipoMat->descricao}}</option>
@@ -52,7 +52,7 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="storage">@lang('messages.source')</label>
-                  <select class="form-control select2" id="storage" name="storage[]" onchange="local(this)">
+                  <select class="form-control " id="storage" name="storage[]" onchange="local(this)">
                     <option value="1">Local</option>
                     <option value="0">Web</option>
                   </select>

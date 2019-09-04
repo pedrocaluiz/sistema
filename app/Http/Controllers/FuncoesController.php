@@ -50,6 +50,7 @@ class FuncoesController extends Controller
     public function store(Request $request)
     {
         $this->authorize('administrador');
+
         $funcao = Funcao::create($request->all());
         $request->session()->flash('adicionada',
             "Função $funcao->descricao inserida com sucesso.");
@@ -84,6 +85,7 @@ class FuncoesController extends Controller
     {
         $this->authorize('administrador');
         DB::beginTransaction();
+
             $funcao = Funcao::find($id);
             $funcao->descricao = $request->input('descricao');
             $funcao->valorFuncao = $request->input('valorFuncao');

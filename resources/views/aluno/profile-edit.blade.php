@@ -91,7 +91,8 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="perfil_id">@lang('messages.profile')</label>
-                                <select class="form-control select2" id="perfil_id" name="perfil_id" disabled>
+                                <select class="form-control " id="perfil_id" name="perfil_id" disabled>
+                                    <option value="" disabled selected>SELECIONE</option>
                                     @if(count($perfis) > 0)
                                         @foreach ($perfis as $p)
                                             @if ($p->id == $user->perfil->first()->id)
@@ -110,7 +111,8 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="agencia_id">@lang('messages.agency')</label>
-                                <select class="form-control select2" id="agencia_id" name="agencia_id" autofocus>
+                                <select class="form-control " id="agencia_id" name="agencia_id" autofocus>
+                                    <option value="" disabled selected>SELECIONE</option>
                                     @if(count($agencias) > 0)
                                         @foreach ($agencias as $agencia)
                                             @if ($agencia->id == $user->agencia_id)
@@ -124,7 +126,8 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="cargo_id">@lang('messages.office')</label>
-                                <select class="form-control select2" id="cargo_id" name="cargo_id">
+                                <select class="form-control " id="cargo_id" name="cargo_id">
+                                    <option value="" disabled selected>SELECIONE</option>
                                     @if(count($cargos) > 0)
                                         @foreach ($cargos as $cargo)
                                             @if ($cargo->id == $user->cargo_id)
@@ -138,7 +141,8 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="funcao_id">@lang('messages.function')</label>
-                                <select class="form-control select2" id="funcao_id" name="funcao_id">
+                                <select class="form-control " id="funcao_id" name="funcao_id">
+                                    <option value="" disabled selected>SELECIONE</option>
                                     @if(count($funcoes) > 0)
                                         @foreach ($funcoes as $funcao)
                                             @if ($funcao->id == $user->funcao_id)
@@ -192,7 +196,8 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="estado">@lang('messages.state')</label>
-                                <select id="estado" class="form-control select2" name="estado" onchange="carregarMunicipios(this);">
+                                <select id="estado" class="form-control " name="estado" onchange="carregarMunicipios(this);">
+                                    <option value="" disabled selected>SELECIONE</option>
                                     @if(count($estados) > 0)
                                         @foreach ($estados as $e)
                                             @if ($e->id == $estado->id)
@@ -207,7 +212,8 @@
                             <div class="form-group col-md-3">
                                 <input type="hidden" id="cidade" value="{{$municipio->id}}">
                                 <label for="municipio_id">@lang('messages.county')</label>
-                                <select class="form-control select2" id="municipio_id" name="municipio_id">
+                                <select class="form-control " id="municipio_id" name="municipio_id">
+                                    <option value="" disabled selected>SELECIONE</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">

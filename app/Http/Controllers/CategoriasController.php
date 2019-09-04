@@ -50,6 +50,7 @@ class CategoriasController extends Controller
     public function store(Request $request)
     {
         $this->authorize('administrador');
+
       $cat = Categoria::create($request->all());
       $request->session()->flash('adicionada',
         "Categoria $cat->descricao inserida com sucesso.");
@@ -84,6 +85,7 @@ class CategoriasController extends Controller
     {
         $this->authorize('administrador');
       DB::beginTransaction();
+
           $cat = Categoria::find($id);
           $cat->descricao = $request->input('descricao');
           $cat->icone = $request->input('icone');

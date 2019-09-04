@@ -111,6 +111,19 @@
                     @endforelse
             </fieldset>
           </div>
+          @php $perfis = Auth::user()->perfil; //dd($perfis[1]->administrador) @endphp
+          @foreach ($perfis as $perfil)
+              @if ($perfil->administrador != 1 and Auth::user()->id != $curso->usuarioAtualizacao)
+                  <div class="box-footer d-flex justify-content-center">
+                      <div class="col-md-2">
+                          <a href="/cursos/{{$curso->id}}/rating" type="button" class="btn btn-primary botao" id="cadastro">
+                              Comentar
+                          </a>
+                      </div>
+                  </div>
+                  @break
+              @endif
+          @endforeach
       </div>
     </div>
   </div>

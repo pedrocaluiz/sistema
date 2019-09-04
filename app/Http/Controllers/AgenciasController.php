@@ -50,6 +50,7 @@ class AgenciasController extends Controller
     public function store(Request $request)
     {
         $this->authorize('administrador');
+
         $agencia = Agencia::create($request->all());
         $request->session()->flash('adicionada',
             "Agência $agencia->descricao inserida com sucesso.");
@@ -84,6 +85,7 @@ class AgenciasController extends Controller
     {
         $this->authorize('administrador');
         DB::beginTransaction();
+
             $agencia = Agencia::find($id);
             $agencia->codigoUnidade = $request->input('codigoUnidade');
             $agencia->descricao = $request->input('descricao');

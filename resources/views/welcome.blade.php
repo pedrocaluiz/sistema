@@ -72,7 +72,7 @@
                         @foreach ($perfis as $perfil)
                             @if ($perfil->administrador == 1)
                                 <a href="{{ url('/home') }}">Home</a>
-                                @break;
+                                @break
                             @else
                                 <a href="{{ url('/meus-cursos') }}">Meus Cursos</a>
                             @endif

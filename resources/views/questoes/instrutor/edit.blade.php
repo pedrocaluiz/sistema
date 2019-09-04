@@ -34,7 +34,8 @@
               <div class="row">
                 <div class="form-group col-md-3">
                   <label for="unidade_id">@lang('messages.unity')</label>
-                  <select class="form-control select2" id="unidade_id" name="unidade_id">
+                  <select class="form-control " id="unidade_id" name="unidade_id">
+                      <option value="" disabled selected>SELECIONE</option>
                     @if(count($unidades) > 0)
                       @foreach ($unidades as $unidade)
                         @if ($unidade->id == $questao->unidade_id)

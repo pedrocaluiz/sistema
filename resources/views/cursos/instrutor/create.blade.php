@@ -27,8 +27,8 @@
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label for="categoria_id">@lang('messages.categories')</label>
-                            <select class="form-control select2" id="categoria_id" name="categoria_id" autofocus>
-                                <option value="" disabled selected></option>
+                            <select class="form-control " id="categoria_id" name="categoria_id" autofocus required>
+                                <option value="" disabled selected>SELECIONE</option>
                                 @if(count($cats) > 0)
                                     @foreach ($cats as $cat)
                                         <option value="{{$cat->id}}">{{$cat->descricao}}</option>

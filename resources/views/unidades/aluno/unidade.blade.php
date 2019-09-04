@@ -146,7 +146,7 @@
 
                     @foreach ($perfis as $perfil)
                         @if ($perfil->administrador == 1 or Auth::user()->id == $unidade->usuarioAtualizacao)
-                            @break;
+                            @break
                             @else
                             @forelse ($mat->usuario->where('id', Auth::user()->id) as $user)
                               @if (empty($user->pivot->dataConclusao))
@@ -177,7 +177,7 @@
           </div>
             @foreach ($perfis as $perfil)
                 @if ($perfil->administrador == 1 or Auth::user()->id == $unidade->usuarioAtualizacao)
-                    @break;
+                    @break
                 @else
                   @if (!empty($questoes[0]))
                     <div class="box-footer">

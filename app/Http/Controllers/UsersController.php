@@ -10,6 +10,7 @@ use App\Model\Funcao;
 use App\Model\Municipio;
 use App\Model\Perfil;
 use App\Model\PerfilUsuario;
+use App\Model\Prova;
 use App\Model\Unidade;
 use App\Model\UnidadeMaterial;
 use App\Model\UsuarioCursoUnidadeMaterialProva;
@@ -18,7 +19,9 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 
 class UsersController extends Controller
@@ -211,12 +214,20 @@ class UsersController extends Controller
         $this->authorize('administrador');
 
         if (isset($user)){
-
+            $prova = Prova::where('user_id', $user->id)->get();
+            if (($prova->first())) {
+                $request->session()->flash('excluida',
+                    "Há provas vinculadas ao Usuário $nome, exclusão cancelada.");
+                return redirect()->back();
+            }
             $ucump = UsuarioCursoUnidadeMaterialProva::where('user_id', $user->id)->get();
             foreach ($ucump as $u){
                 $u->delete();
             }
-
+            $perfis = PerfilUsuario::where('user_id', $user->id)->get();
+            foreach ($perfis as $perfil){
+                $perfil->delete();
+            }
             $user->delete();
             $request->session()->flash('excluida',
                 "Usuário $nome excluído com sucesso.");
@@ -269,11 +280,10 @@ class UsersController extends Controller
         $usuario->primeiroNome = $request->input('primeiroNome');
         $usuario->ultimoNome = $request->input('ultimoNome');
         if ($request->input('password') != null){
-            $usuario->password = Hash::make($request->input('ultimoNome'));
+            $usuario->password = Hash::make($request->input('password'));
         }
         if ($request->foto != null){
             $path = $request->foto->store('imagens', 'public');
-
             $usuario->foto = $path;
         }
         $usuario->cargo_id = $request->input('cargo_id');
@@ -281,21 +291,30 @@ class UsersController extends Controller
         $usuario->agencia_id = $request->input('agencia_id');
         $usuario->matricula = $request->input('matricula');
         if ($request->input('dataNascimento') != null){
-            $usuario->dataNascimento = $request->input('dataNascimento');
+            $dataNascimento = $request->input('dataNascimento');
+            $dataP = explode('/', $dataNascimento);
+            $dataNoFormatoParaOBranco = $dataP[2].'-'.$dataP[1].'-'.$dataP[0];
+            $usuario->dataNascimento = $dataNoFormatoParaOBranco;
         }
         if ($request->input('dataAdmissao') != null){
-            $usuario->dataAdmissao = $request->input('dataAdmissao');
+            $dataAdmissao = $request->input('dataAdmissao');
+            $dataP = explode('/', $dataAdmissao);
+            $dataNoFormatoParaOBranco = $dataP[2].'-'.$dataP[1].'-'.$dataP[0];
+            $usuario->dataAdmissao = $dataNoFormatoParaOBranco;
         }
         $usuario->endereco = $request->input('endereco');
         $usuario->numero = $request->input('numero');
-        if ($request->input('dataAdmissao') != null) {
+        if ($request->input('complemento') != null) {
             $usuario->complemento = $request->input('complemento');
         }
         $usuario->CEP = $request->input('CEP');
+        $usuario->bairro = $request->input('bairro');
         $usuario->municipio_id = $request->input('municipio_id');
         $usuario->telefone = $request->input('telefone');
         $usuario->celular = $request->input('celular');
         $usuario->save();
+
+
         $request->session()->flash('alterada',
             "Dados alterados com sucesso.");
         DB::commit();

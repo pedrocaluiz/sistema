@@ -88,7 +88,7 @@
                                       <th class="ordem">{{$unidade->id}}</th>
                                       <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
                                   </tr>
-                          @break;
+                          @break
                       @else
                           <div class="box-body">
                               <table class="table table-bordered table-striped">
@@ -147,7 +147,7 @@
                                           </th>
                                       @endforelse
                                   </tr>
-                                  @break;
+                                  @break
                       @endif
                   @endforeach
 
@@ -161,7 +161,7 @@
                                       <td><a href="/unidades/{{$unidade->id}}?page={{$loop->iteration}}">{{$material->descricao}}</a></td>
                                   </tr>
                               @endforeach
-                          @break;
+                          @break
                           @else
                               @foreach($unidade->materiais->sortBy('ordem') as $material)
                                   <tr>
@@ -204,7 +204,7 @@
 
                                   </tr>
                               @endforeach
-                              @break;
+                              @break
                           @endif
                       @endforeach
                     </tbody>

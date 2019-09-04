@@ -32,7 +32,8 @@
             <div class="row">
               <div class="form-group col-md-3">
                 <label for="unidade_id">@lang('messages.unity')</label>
-                <select class="form-control select2" id="unidade_id" name="unidade_id" onchange="carregarMateriais(this)">
+                <select class="form-control " id="unidade_id" name="unidade_id" onchange="carregarMateriais(this)">
+                    <option value="" disabled selected>SELECIONE</option>
                   @if(count($unidades) > 0)
                     @foreach ($unidades as $u)
                       @if ($u->id == $material->unidade_id)
@@ -64,6 +65,7 @@
                       <div class="form-group col-md-2">
                         <label for="tipoMat_id">@lang('messages.type-mat')</label>
                         <select class="form-control" id="tipoMat_id" name="tipoMat_id">
+                            <option value="" disabled selected>SELECIONE</option>
                           @if(count($tiposMat) > 0)
                             @foreach ($tiposMat as $tipoMat)
                               @if ($tipoMat->id == $material->material_id)

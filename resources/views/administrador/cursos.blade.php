@@ -14,15 +14,15 @@
         /*parte mobile*/
         @media(max-width: 997px){
 
-            table#example1 td:nth-child(1), td:nth-child(5) {
+            table#example1 td:nth-child(1), td:nth-child(2), td:nth-child(4) {
                 display: none;
             }
 
-            thead th:nth-child(1), th:nth-child(5) {
+            thead th:nth-child(1), th:nth-child(2), th:nth-child(4) {
                 display: none;
             }
 
-            tfoot th:nth-child(1), th:nth-child(5) {
+            tfoot th:nth-child(1), th:nth-child(2), th:nth-child(4) {
                 display: none;
             }
         }
@@ -30,15 +30,15 @@
         /*parte mobile usuarios*/
         @media(max-width: 1335px){
 
-            table#example1 td:nth-child(3){
+            table#example1 td:nth-child(5){
                 display: none;
             }
 
-            thead th:nth-child(3){
+            thead th:nth-child(5){
                 display: none;
             }
 
-            tfoot th:nth-child(3){
+            tfoot th:nth-child(5){
                 display: none;
             }
         }
@@ -92,30 +92,12 @@
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="ID: activate to sort column descending" style="width: 50px;">
-                                                ID
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Categoria: activate to sort column ascending" >
-                                                Categoria
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Título.: activate to sort column ascending" >
-                                                Título
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ícone: activate to sort column ascending" >
-                                                Ícone
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Instrutor: activate to sort column ascending" >
-                                                Instrutor
-                                            </th>
-                                            <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ações: activate to sort column ascending" >
-                                                Ações
-                                            </th>
+                                            <th style="width: 50px;">ID</th>
+                                            <th>Categoria</th>
+                                            <th>Título</th>
+                                            <th>Ícone</th>
+                                            <th>Instrutor</th>
+                                            <th id="acoes3">Ações</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -137,7 +119,7 @@
                                                         <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
                                                     @endif
                                                 @endforeach
-                                                <td>
+                                                <td id="data-acoes">
                                                 @if ($c->ativo == 0)
                                                     <a class="btn btn=sm btn-success acaoTxt" href="/cursos/enable/{{$c->id}}" style="min-width: 80px"
                                                        onclick="event.preventDefault();
@@ -183,24 +165,12 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th rowspan="1" colspan="1">
-                                                ID
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Categoria
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Título
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Ícone
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Instrutor
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Ações
-                                            </th>
+                                            <th>ID</th>
+                                            <th>Categoria</th>
+                                            <th>Título</th>
+                                            <th>Ícone</th>
+                                            <th>Instrutor</th>
+                                            <th>Ações</th>
                                         </tr>
                                         </tfoot>
                                     </table>

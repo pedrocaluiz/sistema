@@ -9,15 +9,15 @@
     /*parte mobile*/
     @media(max-width: 997px){
 
-      table#example1 td:nth-child(4){
+      table#example1 td:nth-child(3), td:nth-child(4){
         display: none;
       }
 
-      thead th:nth-child(4) {
+      thead th:nth-child(3), th:nth-child(4) {
         display: none;
       }
 
-      tfoot th:nth-child(4) {
+      tfoot th:nth-child(3), th:nth-child(4) {
         display: none;
       }
     }
@@ -86,26 +86,11 @@
                   <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
-                      <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                          aria-label="ID: activate to sort column descending" style="width: 50px;">
-                        ID
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Descrição: activate to sort column ascending" style="width: 245px;">
-                        Descrição
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Ícone: activate to sort column ascending" style="width: 60px;">
-                        Ícone
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Usuário Atualização: activate to sort column ascending" style="width: 245px;">
-                        Usuário Atualização
-                      </th>
-                      <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Ações: activate to sort column ascending" style="width: 245px;">
-                        Ações
-                      </th>
+                      <th>ID</th>
+                      <th>Descrição</th>
+                      <th>Ícone</th>
+                      <th>Usuário Atualização</th>
+                      <th id="acoes">Ações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -119,7 +104,7 @@
                             <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
                           @endif
                         @endforeach
-                        <td>
+                        <td id="data-acoes">
                           <a href="/categorias/{{$cat->id}}/edit" class="btn btn=sm btn-primary acaoTxt">@lang('messages.edit')</a>
                           <a href="/categorias/{{$cat->id}}/edit" class="btn btn=sm btn-primary acaoIcon"><i class="fa fa-edit"></i></a>
                             <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
@@ -135,21 +120,11 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                      <th rowspan="1" colspan="1">
-                        ID
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Descrição
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Ícone
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Usuário Atualização
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Ações
-                      </th>
+                      <th>ID</th>
+                      <th>Descrição</th>
+                      <th>Ícone</th>
+                      <th>Usuário Atualização</th>
+                      <th>Ações</th>
                     </tr>
                     </tfoot>
                   </table>

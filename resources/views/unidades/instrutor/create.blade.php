@@ -65,11 +65,11 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="ordem">@lang('messages.order')</label>
-                  <input id="ordem" type="text" class="form-control ordem" name="ordem" required minlength="1" maxlength="2">
+                  <input id="ordem" type="text" class="form-control ordem" name="ordem" placeholder="Ordem da Unidade" required minlength="1" maxlength="2">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="tituloUnidades">@lang('messages.title')</label>
-                  <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidade" required minlength="3" maxlength="60">
+                  <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidade" placeholder="Digite o Título da Unidade" required minlength="3" maxlength="60">
                 </div>
               </div>
             </fieldset>

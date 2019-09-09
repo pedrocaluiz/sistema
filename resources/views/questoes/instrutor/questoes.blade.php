@@ -98,30 +98,12 @@
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="ID: activate to sort column descending" >
-                                                ID
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Curso: activate to sort column ascending" >
-                                                Unidade
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Unidade: activate to sort column ascending" >
-                                                Questão
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ícone: activate to sort column ascending" >
-                                                Resp. Correta
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Qtde Respostas: activate to sort column ascending" >
-                                                Qtde Incorretas
-                                            </th>
-                                            <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ações: activate to sort column ascending" >
-                                                Ações
-                                            </th>
+                                            <th>ID</th>
+                                            <th>Unidade</th>
+                                            <th>Questão</th>
+                                            <th>Resp. Correta</th>
+                                            <th>Qtde Incorretas</th>
+                                            <th id="acoes">Ações</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -146,7 +128,7 @@
                                                     @endif
                                                 @endforeach
                                                 <td>{{count($q->respostas)}}</td>
-                                                <td>
+                                                <td id="data-acoes">
                                                     @php
                                                         $auth = Auth::user();
                                                         $adm = $auth->perfil->where('administrador', 1)->first();
@@ -178,24 +160,12 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th rowspan="1" colspan="1">
-                                                ID
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Unidade
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Questão
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Resp. Correta
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Qtde Incorretas
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Ações
-                                            </th>
+                                            <th>ID</th>
+                                            <th>Unidade</th>
+                                            <th>Questão</th>
+                                            <th>Resp. Correta</th>
+                                            <th>Qtde Incorretas</th>
+                                            <th>Ações</th>
                                         </tr>
                                         </tfoot>
                                     </table>

@@ -94,31 +94,12 @@
                   <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
-                      <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                          id="id" aria-label="ID: activate to sort column descending" >
-                        ID
-                      </th>
-                      <th id="nome" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Nome: activate to sort column ascending" >
-                        Nome
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="E-mail: activate to sort column ascending" >
-                        E-mail
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Matrícula: activate to sort column ascending" >
-                        Matrícula
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Função: activate to sort column ascending" >
-                        Função
-                      </th>
-                      <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Ação: activate to sort column ascending" >
-                        Ação
-                      </th>
-                      </th>
+                      <th>ID</th>
+                      <th id="nome">Nome</th>
+                      <th>E-mail</th>
+                      <th>Matrícula</th>
+                      <th>Função</th>
+                      <th id="acoes3">Ação</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -138,7 +119,7 @@
                              @endif
                           @endforeach
                         @endif
-                        <td>
+                        <td id="data-acoes">
                           <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoTxt">Relatório</a>
                           <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoIcon"><i class="fa fa-list-ul"></i></a>
 
@@ -186,24 +167,12 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                      <th rowspan="1" colspan="1">
-                        ID
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Nome
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        E-mail
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Matrícula
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Função
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Ações
-                      </th>
+                      <th>ID</th>
+                      <th>Nome</th>
+                      <th>E-mail</th>
+                      <th>Matrícula</th>
+                      <th>Função</th>
+                      <th>Ações</th>
                     </tr>
                     </tfoot>
                   </table>

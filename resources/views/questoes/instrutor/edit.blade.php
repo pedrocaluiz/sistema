@@ -34,7 +34,7 @@
               <div class="row">
                 <div class="form-group col-md-3">
                   <label for="unidade_id">@lang('messages.unity')</label>
-                  <select class="form-control " id="unidade_id" name="unidade_id">
+                  <select class="form-control " id="unidade_id" name="unidade_id" required>
                       <option value="" disabled selected>SELECIONE</option>
                     @if(count($unidades) > 0)
                       @foreach ($unidades as $unidade)
@@ -165,7 +165,7 @@
                   `<div class="row resp" id="${a}">
                   <div class="form-group col-md-9">
                       <label for="incorreta">@lang('messages.wrong-answer')</label>
-                      <textarea id="incorreta" rows="2" cols="50" name="novas_incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                      <textarea id="incorreta" rows="2" cols="50" name="novas_incorretas[]" placeholder="Digite uma Resposta Incorreta" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                   </div>
                   <div class="form-group col-md-1">
                       <button type="button" class="btn btn-danger botao novo" id="${a}" style="margin-top: 25px;" onclick="remover(this)">

@@ -50,6 +50,49 @@
         justify-content: center;
     }
 
+    #inscrito {
+        min-width: 150px;
+    }
+    .flex-end>.icon{
+        font-size: 45px;
+    }
+    .box-title>h1{
+        font-size: 35px;
+    }
+    .flex-end{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 15px;
+    }
+    .box-header{
+        display: flex;
+        justify-content: center;
+    }
+
+    /*parte mobile*/
+    @media(max-width: 997px){
+
+        table#table-materiais td:nth-child(3) {
+            display: none;
+        }
+
+        table#table-materiais th:nth-child(3) {
+            display: none;
+        }
+    }
+
+    /*parte mobile usuarios*/
+    @media(max-width: 1135px){
+
+        table#table-materiais td:nth-child(1){
+            display: none;
+        }
+
+        table#table-materiais th:nth-child(1) {
+            display: none;
+        }
+    }
+
   </style>
 @endpush
 
@@ -76,6 +119,7 @@
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title">{{$curso->titulo}}</h3>
+
                 </div>
                 <!-- /.box-header -->
 
@@ -91,7 +135,7 @@
                           @break
                       @else
                           <div class="box-body">
-                              <table class="table table-bordered table-striped">
+                              <table id="table-materiais" class="table table-bordered table-striped">
                                   <tbody>
                                   <tr>
                                       <th class="ordem">{{$unidade->id}}</th>

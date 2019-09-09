@@ -94,31 +94,12 @@
                   <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
-                      <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                          id="id" aria-label="ID: activate to sort column descending" >
-                        ID
-                      </th>
-                      <th id="nome" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Curso: activate to sort column ascending" >
-                        Curso
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Nota Curso: activate to sort column ascending" >
-                        Nota Curso
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Progresso: activate to sort column ascending" >
-                        Progresso
-                      </th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Status: activate to sort column ascending" >
-                        Status
-                      </th>
-                      <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                          aria-label="Ação: activate to sort column ascending" >
-                        Ação
-                      </th>
-                      </th>
+                      <th>ID</th>
+                      <th id="nome">Curso</th>
+                      <th>Nota Curso</th>
+                      <th>Progresso</th>
+                      <th>Status</th>
+                      <th id="acoes1">Ação</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -206,24 +187,12 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                      <th rowspan="1" colspan="1">
-                        ID
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Curso
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Nota Curso
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Progresso
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Status
-                      </th>
-                      <th rowspan="1" colspan="1">
-                        Ações
-                      </th>
+                      <th>ID</th>
+                      <th>Curso</th>
+                      <th>Nota Curso</th>
+                      <th>Progresso</th>
+                      <th>Status</th>
+                      <th>Ações</th>
                     </tr>
                     </tfoot>
                   </table>

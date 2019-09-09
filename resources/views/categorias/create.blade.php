@@ -26,7 +26,7 @@
               <div class="row">
                 <div class="form-group col-md-4">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="40">
+                  <input id="descricao" type="text" class="form-control" placeholder="Digite a Descrição da Categoria" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="40">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="icone">@lang('messages.icon')</label>

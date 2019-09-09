@@ -14,10 +14,9 @@ class UnidadePolicy
      * Determine whether the user can view the unidade.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Unidade  $unidade
      * @return mixed
      */
-    public function view(User $user, Unidade $unidade)
+    public function view(User $user)
     {
         foreach ($user->perfil as $perfil){
             if ($perfil->descricao == "Instrutor"){

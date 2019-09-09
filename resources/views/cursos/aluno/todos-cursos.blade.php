@@ -14,9 +14,6 @@
       .flex-end>.icon{
           font-size: 45px;
       }
-      .flex-end{
-         margin-top: 15px;
-      }
 
     .box-title>h1{
       font-size: 35px;
@@ -24,6 +21,7 @@
     .flex-end{
       display: flex;
       justify-content: flex-end;
+      margin-top: 15px;
     }
      .box-header{
          display: flex;

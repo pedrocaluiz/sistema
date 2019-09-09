@@ -65,6 +65,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'min:8', 'max:80', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'max:60', 'confirmed'],
         ]);
+
     }
 
     public function showRegistrationForm()

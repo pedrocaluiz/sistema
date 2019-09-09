@@ -27,11 +27,11 @@
               <div class="row">
                 <div class="form-group col-md-3">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="60">
+                  <input id="descricao" type="text" class="form-control" name="descricao" placeholder="Digite a Descrição do Cargo" value="{{ old('descricao') }}" required minlength="3" maxlength="60">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="salarioBase">@lang('messages.salary')</label>
-                  <input type="text" class="form-control money" id="salarioBase" name="salarioBase" value="{{ old('salarioBase') }}" required minlength="3" maxlength="9">
+                  <input type="text" class="form-control money" id="salarioBase" name="salarioBase" placeholder="Digite o Salário Base" value="{{ old('salarioBase') }}" required minlength="3" maxlength="9">
                 </div>
                 <input type="hidden" name="usuarioAtualizacao" value="{{Auth::user()->id}}">
               </div>

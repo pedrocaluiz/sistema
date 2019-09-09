@@ -116,9 +116,9 @@
               </div>
             </fieldset>
           </div>
-        @php $perfil = Auth::user()->perfil; dd($perfil); @endphp
+        @php $perfis = Auth::user()->perfil; @endphp
         @foreach ($perfis as $perfil)
-            @if ($perfil->administrador == 1 or Auth::user()->id == $curso->usuarioAtualizacao)
+            @if ($perfil->administrador != 1 and Auth::user()->id != $curso->usuarioAtualizacao)
               <div class="box-footer d-flex justify-content-center">
                 <div class="col-md-2">
                   <button type="submit" class="btn btn-primary botao" id="cadastro">

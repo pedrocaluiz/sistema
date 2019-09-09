@@ -12,11 +12,9 @@
         <ul class="sidebar-menu" data-widget="tree">
 
             @auth
-
                 @php $perfis = Auth::user()->perfil; @endphp
                 @foreach ($perfis as $perfil)
                     @if ($perfil->administrador == 1)
-
                         <li class="header">ADMINISTRADOR</li>
                         <li @if(isset($menu) && ($menu == "listar")) class="treeview active" @else class="treeview" @endif>
                             <a href="#">
@@ -109,9 +107,6 @@
                                         <a href="{{route('materiais')}}"><i class="fa fa-circle-o"></i> Materiais</a></li>
                                     <li @if(isset($current) && ($current == "questoes")) class="active"@endif>
                                         <a href="{{route('questoes')}}"><i class="fa fa-circle-o"></i> Questões</a></li>
-                                    <li @if(isset($current) && ($current == "avaliacoes")) class="active"@endif>
-                                        <a href="#"><i class="fa fa-circle-o"></i> Avaliações</a></li>
-
                                 </ul>
                             </li>
                             <li @if(isset($menu) && ($menu == "cadastrar")) class="treeview active" @else class="treeview" @endif>
@@ -191,10 +186,7 @@
                 @endforeach
             @endauth
             @guest
-
-
                 <li class="header">REGISTRAR</li>
-
                 <li >
                     <a href="{{route('login')}}">
                         <i class="fa fa-user"></i> <span> Entrar</span>
@@ -202,7 +194,6 @@
                 </span>
                     </a>
                 </li>
-
                 <li @if(isset($current) && ($current =="register")) class="treeview active" @else class="treeview" @endif>
                     <a href="{{route('register')}}">
                         <i class="fa fa-user-plus"></i> <span> Registre-se</span>

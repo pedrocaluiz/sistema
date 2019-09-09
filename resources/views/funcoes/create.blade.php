@@ -27,15 +27,15 @@
               <div class="row">
                 <div class="form-group col-md-5">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="60">
+                  <input id="descricao" type="text" class="form-control" name="descricao" placeholder="Digite a Descrição da Função" value="{{ old('descricao') }}" required minlength="3" maxlength="60">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="valorFuncao">@lang('messages.vl-function')</label>
-                  <input type="text" class="form-control money" id="valorFuncao" name="valorFuncao" value="{{ old('valorFuncao') }}" required minlength="3" maxlength="9">
+                  <input type="text" class="form-control money" id="valorFuncao" name="valorFuncao" placeholder="Digite o Valor da Função" value="{{ old('valorFuncao') }}" required minlength="3" maxlength="9">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="pisoSalarial">@lang('messages.salary')</label>
-                  <input type="text" class="form-control money" id="pisoSalarial" name="pisoSalarial" value="{{ old('pisoSalarial') }}" required minlength="3" maxlength="9">
+                  <input type="text" class="form-control money" id="pisoSalarial" name="pisoSalarial" placeholder="Digite o Salário Base" value="{{ old('pisoSalarial') }}" required minlength="3" maxlength="9">
                 </div>
                 <input type="hidden" name="usuarioAtualizacao" value="{{Auth::user()->id}}">
               </div>

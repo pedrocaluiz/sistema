@@ -62,7 +62,7 @@
                     <div class="row">
                       <div class="form-group col-md-2">
                         <label for="ordem">@lang('messages.order')</label>
-                        <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required minlength="1" maxlength="2">
+                        <input id="ordem" type="text" class="form-control ordem" name="ordem[]" placeholder="Ordem do Material" required minlength="1" maxlength="2">
                       </div>
 
                       <div class="form-group col-md-2">
@@ -78,7 +78,7 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label for="descricaoMaterial">@lang('messages.description')</label>
-                        <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial[]" required minlength="3" maxlength="60">
+                        <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial[]" placeholder="Digite a Descrição do Material" required minlength="3" maxlength="60">
                       </div>
                     </div>
                     <div class="row">
@@ -149,7 +149,7 @@
                       <div class="row">
                         <div class="form-group col-md-2">
                           <label for="ordem">@lang('messages.order')</label>
-                          <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required minlength="1" maxlength="2">
+                          <input id="ordem" type="text" class="form-control ordem" name="ordem[]" placeholder="Ordem do Material" required minlength="1" maxlength="2">
                         </div>
                         <div class="form-group col-md-2">
                           <label for="tipoMat_id">@lang('messages.type-mat')</label>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="form-group col-md-4">
                           <label for="descricaoMaterial">@lang('messages.description')</label>
-                          <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial[]" required minlength="3" maxlength="60">
+                          <input id="descricaoMaterial" type="text" class="form-control" name="descricaoMaterial[]" placeholder="Digite a Descrição do Material" required minlength="3" maxlength="60">
                         </div>
                       </div>
                       <div class="row">

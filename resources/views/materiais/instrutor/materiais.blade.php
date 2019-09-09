@@ -88,30 +88,12 @@
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="ID: activate to sort column descending" style="width: 30px;">
-                                                ID
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Unidade: activate to sort column ascending" style="width: 245px;">
-                                                Unidade
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Tipo Mat.: activate to sort column ascending" style="width: 50px;">
-                                                Tipo Mat.
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Descrição: activate to sort column ascending" style="width: 245px;">
-                                                Descrição
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Fonte: activate to sort column ascending" style="width: 50px;">
-                                                Fonte
-                                            </th>
-                                            <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ações: activate to sort column ascending" style="width: 245px;">
-                                                Ações
-                                            </th>
+                                            <th style="width: 50px">ID</th>
+                                            <th>Unidade</th>
+                                            <th>Tipo Mat.</th>
+                                            <th>Descrição</th>
+                                            <th>Fonte</th>
+                                            <th id="acoes">Ações</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -137,7 +119,7 @@
                                                 @else
                                                     <td>Web</td>
                                                 @endif
-                                                <td>
+                                                <td id="data-acoes">
                                                     @php
                                                         $auth = Auth::user();
                                                         $adm = $auth->perfil->where('administrador', 1)->first();
@@ -171,24 +153,12 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th rowspan="1" colspan="1">
-                                                ID
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Unidade
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Tipo Mat.
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Descrição
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Fonte
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Ações
-                                            </th>
+                                            <th>ID</th>
+                                            <th>Unidade</th>
+                                            <th>Tipo Mat.</th>
+                                            <th>Descrição</th>
+                                            <th>Fonte</th>
+                                            <th>Ações</th>
                                         </tr>
                                         </tfoot>
                                     </table>

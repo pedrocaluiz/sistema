@@ -22,12 +22,18 @@
     @endif
     <div class="box">
         <div class="box-header curso">
-
-            <i class="{{$curso->icone}}"></i>
-            <h1 class="box-title">{{$curso->titulo}}</h1>
+            <div class="col-md-6">
+                <div class="box-title">
+                    <h1>{{$curso->titulo}}</h1>
+                </div>
+            </div>
+            <div class="col-md-6 flex-end">
+                <div class="icon">
+                    <i class="{{$curso->icone}}"></i>
+                </div>
+            </div>
         </div>
         <div class="box-body box-curso">
-
             <h2>{{$curso->descricao}}</h2>
             <div class="row" style="margin-top: 40px">
                 <div class="col-md-12" style="display: flex; justify-content: space-between">

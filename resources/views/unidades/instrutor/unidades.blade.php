@@ -14,15 +14,15 @@
         /*parte mobile*/
         @media(max-width: 997px){
 
-            table#example1 td:nth-child(1), td:nth-child(5) {
+            table#example1 td:nth-child(1), td:nth-child(4), td:nth-child(5) {
                 display: none;
             }
 
-            thead th:nth-child(1), th:nth-child(5) {
+            thead th:nth-child(1), th:nth-child(4), th:nth-child(5) {
                 display: none;
             }
 
-            tfoot th:nth-child(1), th:nth-child(5) {
+            tfoot th:nth-child(1), th:nth-child(4), th:nth-child(5) {
                 display: none;
             }
         }
@@ -42,9 +42,6 @@
                 display: none;
             }
         }
-
-
-
     </style>
 
 @endpush
@@ -91,30 +88,12 @@
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="ID: activate to sort column descending" style="width: 50px;">
-                                                ID
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Unidade: activate to sort column ascending" style="width: 245px;">
-                                                Curso
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Título: activate to sort column ascending" style="width: 245px;">
-                                                Título
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ordem: activate to sort column ascending" style="width: 245px;">
-                                                Ordem
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Usuário Atualização: activate to sort column ascending" style="width: 245px;">
-                                                Usuário Atualização
-                                            </th>
-                                            <th id="acoes" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                                aria-label="Ações: activate to sort column ascending" style="width: 245px;">
-                                                Ações
-                                            </th>
+                                            <th style="width: 50px;">ID</th>
+                                            <th>Curso</th>
+                                            <th>Título</th>
+                                            <th>Ordem</th>
+                                            <th>Usuário Atualização</th>
+                                            <th id="acoes">Ações</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -136,7 +115,7 @@
                                                         <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
                                                     @endif
                                                 @endforeach
-                                                <td>
+                                                <td id="data-acoes">
                                                     @php
                                                         $auth = Auth::user();
                                                         $adm = $auth->perfil->where('administrador', 1)->first();
@@ -170,24 +149,12 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th rowspan="1" colspan="1">
-                                                ID
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Cursos
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Título
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Ordem
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Usuário Atualização
-                                            </th>
-                                            <th rowspan="1" colspan="1">
-                                                Ações
-                                            </th>
+                                            <th>ID</th>
+                                            <th>Cursos</th>
+                                            <th>Título</th>
+                                            <th>Ordem</th>
+                                            <th>Usuário Atualização</th>
+                                            <th>Ações</th>
                                         </tr>
                                         </tfoot>
                                     </table>

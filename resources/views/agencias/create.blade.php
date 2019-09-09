@@ -26,19 +26,19 @@
               <div class="row">
                 <div class="form-group col-md-2">
                   <label for="codigoUnidade">@lang('messages.code')</label>
-                  <input id="codigoUnidade" type="text" class="form-control d-4" name="codigoUnidade" value="{{ old('codigo') }}" required autofocus minlength="4" maxlength="4" >
+                  <input id="codigoUnidade" type="text" class="form-control d-4" name="codigoUnidade" placeholder="Digite o Código da Agência" value="{{ old('codigo') }}" required autofocus minlength="4" maxlength="4" >
                 </div>
                 <div class="form-group col-md-3">
                   <label for="descricao">@lang('messages.description')</label>
-                  <input id="descricao" type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required minlength="3" maxlength="40">
+                  <input id="descricao" type="text" class="form-control" name="descricao" placeholder="Digite a Descrição da Agência" value="{{ old('descricao') }}" required minlength="3" maxlength="40">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="SR">{{ __('SR') }}</label>
-                  <input type="text" class="form-control d-4"  id="SR" name="SR" value="{{ old('SR') }}" required minlength="4" maxlength="4">
+                  <input type="text" class="form-control d-4"  id="SR" name="SR" placeholder="Digite o Código da SR" value="{{ old('SR') }}" required minlength="4" maxlength="4">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="DIRE">{{ __('DIRE') }}</label>
-                  <input type="text" class="form-control d-4"  id="DIRE" name="DIRE" value="{{ old('DIRE') }}" required minlength="4" maxlength="4">
+                  <input type="text" class="form-control d-4"  id="DIRE" name="DIRE" placeholder="Digite o Código da DIRE" value="{{ old('DIRE') }}" required minlength="4" maxlength="4">
                 </div>
                 <input type="hidden" name="usuarioAtualizacao" value="{{Auth::user()->id}}">
               </div>

@@ -8,6 +8,43 @@
     <a href="{{route('cursos')}}"> @lang('messages.courses')</a>
 @endsection
 
+@push('css')
+
+
+    <style>
+        .add-rem-keyword {
+            margin-top: 25px;
+        }
+        .newkeyword1 {
+            width: 40px;
+        }
+        .newkeyword2 {
+            margin-right: 30px;
+        }
+        .botao2 {
+            width: 37px;
+        }
+        @media(max-width: 997px){
+            .add-rem-keyword {
+                width: 100%;
+                margin-top: 0;
+            }
+            .newkeyword1 {
+                width: 100%;
+            }
+            .newkeyword2 {
+                margin-right: 0;
+            }
+            .botao2 {
+                width: 100%;
+            }
+        }
+
+
+    </style>
+@endpush
+
+
 @section('content')
     <form method="POST" action="{{ route('cursos.store') }}" enctype="multipart/form-data" class="cadastro">
         @csrf
@@ -40,11 +77,13 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="tituloCurso">@lang('messages.title')</label>
-                            <input id="tituloCurso" type="text" class="form-control" name="tituloCurso" value="{{ old('tituloCurso') }}" required autofocus minlength="3" maxlength="60">
+                            <input id="tituloCurso" type="text" class="form-control" name="tituloCurso" value="{{ old('tituloCurso') }}"
+                                   placeholder="Digite o Título do Curso" required autofocus minlength="3" maxlength="60">
                         </div>
                         <div class="form-group col-md-7">
                             <label for="descricaoCurso">@lang('messages.description')</label>
-                            <textarea rows="2" cols="50" name="descricaoCurso" id="descricaoCurso" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
+                            <textarea rows="2" cols="50" name="descricaoCurso" id="descricaoCurso" class="form-control"
+                                      placeholder="Digite a Descrição do Curso" required maxlength="500" style="resize: vertical"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -57,14 +96,16 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="palavrasChave-i"> Palavra-Chave</label>
-                            <input id="palavrasChave-i" type="text" class="form-control" name="palavrasChave-i" minlength="3" maxlength="30">
+                            <input id="palavrasChave-i" type="text" class="form-control" placeholder="Digite uma palavra e adicione" name="palavrasChave-i" minlength="3" maxlength="30">
                         </div>
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-1 newkeyword1">
                             <!--<label for="newkeyword">Adicionar</label>-->
-                            <button type="button" class="btn btn-primary" id="newkeyword" style="margin-top: 25px">
+                            <button type="button" class="btn btn-primary add-rem-keyword" id="newkeyword" >
                                 <i class="fa fa-plus"></i>
                             </button>
-                            <button type="button" class="btn btn-danger" id="deletekeyword" style="margin-top: 25px">
+                        </div>
+                        <div class="form-group col-md-1 newkeyword2">
+                            <button type="button" class="btn btn-danger add-rem-keyword" id="deletekeyword" >
                                 <i class="fa fa-trash"></i>
                             </button>
                         </div>
@@ -89,11 +130,11 @@
                                 <div class="row">
                                     <div class="form-group col-md-2">
                                         <label for="ordem">@lang('messages.order')</label>
-                                        <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required minlength="1" maxlength="2">
+                                        <input id="ordem" type="text" class="form-control ordem" name="ordem[]" placeholder="Ordem da Unidade" required minlength="1" maxlength="2">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="tituloUnidades">@lang('messages.title')</label>
-                                        <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" required minlength="3" maxlength="60">
+                                        <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" placeholder="Digite o Título da Unidade" required minlength="3" maxlength="60">
                                     </div>
                                 </div>
                             </fieldset>
@@ -170,14 +211,14 @@
                             <div class="row">
                                 <div class="form-group col-md-2">
                                   <label for="ordem">@lang('messages.order')</label>
-                                  <input id="ordem" type="text" class="form-control ordem" name="ordem[]" required minlength="1" maxlength="2">
+                                  <input id="ordem" type="text" class="form-control ordem" name="ordem[]" placeholder="Ordem da Unidade" required minlength="1" maxlength="2">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="tituloUnidades">@lang('messages.title')</label>
-                                        <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" required minlength="3" maxlength="60">
+                                        <input id="tituloUnidades" type="text" class="form-control" name="tituloUnidades[]" placeholder="Digite o Título da Unidade" required minlength="3" maxlength="60">
                                     </div>
                                 <div class="form-group col-md-1">
-                                    <button type="button" class="btn btn-danger botao" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
+                                    <button type="button" class="btn btn-danger botao botao2" id="${a}" style="margin-top: 25px;" onclick="remover(this)">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </div>

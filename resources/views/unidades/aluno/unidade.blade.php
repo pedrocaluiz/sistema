@@ -18,9 +18,18 @@
       justify-content: center;
     }
     .video {
-      width: 852px;
-      height: 480px;
+        max-width: 852px;
+        max-height: 480px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
     }
+
+    /*.video{
+        width: 980px;
+        height: 550px;
+        margin: 0 auto 20px auto;
+    }*/
     #descricao {
       font-size: 30px;
     }
@@ -108,7 +117,7 @@
               @endif
             <!--video local-->
               @if (($mat->material_id == 2) && ($mat->storage == 0))
-                  <div class="row">
+                  <div class="row" style="display: flex; justify-content: center">
                     <div class="video">
                       <iframe id="player" class="video" src="{{$mat->urlArquivo}}?enablejsapi=1" frameborder="0"
                               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -134,7 +143,7 @@
             <!--imagem local-->
               @if (($mat->material_id == 4) && ($mat->storage == 0))
                 <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                  <img src="{{$mat->urlArquivo}}" style="margin-bottom: 20px" onload="concluir();" >
+                  <img src="{{$mat->urlArquivo}}" style="margin-bottom: 20px; max-width: 100%" onload="concluir();" >
                 </div>
               @endif
             <!--imagem web-->
@@ -145,9 +154,7 @@
 
 
                     @foreach ($perfis as $perfil)
-                        @if ($perfil->administrador == 1 or Auth::user()->id == $unidade->usuarioAtualizacao)
-                            @break
-                            @else
+                        @if ($perfil->administrador != 1 and Auth::user()->id != $unidade->usuarioAtualizacao)
                             @forelse ($mat->usuario->where('id', Auth::user()->id) as $user)
                               @if (empty($user->pivot->dataConclusao))
                                 <!--Existe registro na tabela UCUMP, mas não existe dataConclusao-->
@@ -161,6 +168,7 @@
                               <!--Não existe registro na tabela UCUMP-->
                                 <span class="badge bg-red">Não iniciado</span>
                             @endforelse
+                        @break
                         @endif
                     @endforeach
                     </div>
@@ -176,9 +184,7 @@
             </div>
           </div>
             @foreach ($perfis as $perfil)
-                @if ($perfil->administrador == 1 or Auth::user()->id == $unidade->usuarioAtualizacao)
-                    @break
-                @else
+                @if ($perfil->administrador != 1 and Auth::user()->id != $unidade->usuarioAtualizacao)
                   @if (!empty($questoes[0]))
                     <div class="box-footer">
                       <div class="col-md-6" style="display: flex; justify-content: center">
@@ -194,6 +200,7 @@
                       </div>
                     </div>
                   @endif
+                  @break
                 @endif
             @endforeach
 

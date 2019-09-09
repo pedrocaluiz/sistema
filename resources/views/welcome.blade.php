@@ -61,6 +61,17 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            @media(max-width: 997px){
+                .title {
+                    font-size: 40px;
+                }
+            }
+
+            .links > a {
+                font-size: 10px;
+            }
+
         </style>
     </head>
     <body>

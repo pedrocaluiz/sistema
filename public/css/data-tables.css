@@ -6,6 +6,7 @@
 
 .acaoIcon {
     display: none;
+    width: 37px;
 }
 
 #acoes {
@@ -24,6 +25,7 @@ table.dataTable {
     min-width: 100% !important;
 }
 
+
 /*parte mobile*/
 
 @media(max-width: 997px) {
@@ -41,6 +43,25 @@ table.dataTable {
     }
 
     #acoes {
-        min-width: 108px !important;
+        min-width: 80px !important;
+        width: 80px !important;
     }
+
+    #acoes1 {
+        min-width: 40px !important;
+        width: 40px !important;
+    }
+
+    #acoes3 {
+        width: 102px !important;
+        min-width: 102px !important;
+    }
+
+    #data-acoes {
+        text-align: center;
+        width: 102px !important;
+        min-width: 102px !important;
+    }
+
+
 }

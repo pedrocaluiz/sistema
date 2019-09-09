@@ -501,9 +501,14 @@ class CursosController extends Controller
     public function buscar(Request $request)
     {
         $users = User::all();
-        $cursos = Curso::where('titulo', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('palavrasChave', 'LIKE', '%' . $request->search . '%')
-            ->get();
+
+        if ($request->search != null){
+            $cursos = Curso::where('titulo', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('palavrasChave', 'LIKE', '%' . $request->search . '%')
+                ->get();
+        }else{
+            $cursos = Curso::all();
+        }
 
         for ($i = 0; $i < count($cursos); $i++){
             $array[$i] = $cursos[$i]->categoria_id;

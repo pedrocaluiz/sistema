@@ -33,7 +33,7 @@
               <div class="row">
                 <div class="form-group col-md-3">
                   <label for="curso_id">@lang('messages.course')</label>
-                  <select class="form-control " id="curso_id" name="curso_id" onchange="carregarUnidades(this)" >
+                  <select class="form-control " id="curso_id" name="curso_id" onchange="carregarUnidades(this)" required >
                       <option value="" disabled selected>SELECIONE</option>
                     @if(count($cursos) > 0)
                       @foreach ($cursos as $curso)
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group col-md-3">
                   <label for="unidade_id">@lang('messages.unity')</label>
-                  <select class="form-control " id="unidade_id" name="unidade_id">
+                  <select class="form-control " id="unidade_id" name="unidade_id" required>
                       <option value="" disabled selected>SELECIONE</option>
                   </select>
                 </div>
@@ -55,7 +55,7 @@
               <div class="row">
                 <div class="form-group col-md-8">
                   <label for="questao">@lang('messages.question')</label>
-                  <textarea rows="2" cols="50" name="questao" id="questao" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
+                  <textarea rows="2" cols="50" name="questao" placeholder="Digite a Questão" id="questao" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="imagem">Imagem</label>
@@ -67,32 +67,32 @@
               <div class="row">
                 <div class="form-group col-md-9">
                   <label for="correta">@lang('messages.right-answer')</label>
-                  <textarea rows="2" cols="50" name="correta" id="correta" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
+                  <textarea rows="2" cols="50" name="correta" placeholder="Digite a Resposta Correta" id="correta" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                   <hr class="my-4">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-9">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
-                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
+                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" placeholder="Digite uma Resposta Incorreta" class="form-control" required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-9">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
-                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" placeholder="Digite uma Resposta Incorreta" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-9">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
-                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" placeholder="Digite uma Resposta Incorreta" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-9">
                   <label for="incorreta">@lang('messages.wrong-answer')</label>
-                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                  <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" placeholder="Digite uma Resposta Incorreta" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                 </div>
               </div>
 
@@ -164,7 +164,7 @@
                   `<div class="row" id="${a}">
                   <div class="form-group col-md-9">
                       <label for="incorreta">@lang('messages.wrong-answer')</label>
-                      <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
+                      <textarea id="incorreta" rows="2" cols="50" name="incorretas[]" placeholder="Digite uma Resposta Incorreta" class="form-control"  required maxlength="500" style="resize: vertical"></textarea>
                   </div>
                   <div class="form-group col-md-1">
                       <button type="button" class="btn btn-danger botao novo" id="${a}" style="margin-top: 25px;" onclick="remover(this)">

@@ -11,57 +11,7 @@
 @push('css')
 <!-- CSS HERE -->
 
-  <style>
-    /*parte mobile*/
 
-
-    @media(max-width: 997px){
-
-        table#example1 td:nth-child(3), td:nth-child(4) {
-            display: none;
-        }
-
-        thead th:nth-child(3), th:nth-child(4) {
-            display: none;
-        }
-
-        tfoot th:nth-child(3), th:nth-child(4) {
-            display: none;
-        }
-
-        #nome {
-            width: 60% !important;
-        }
-    }
-
-    /*parte mobile*/
-    @media(max-width: 1335px){
-
-        table#example1 td:nth-child(3), td:nth-child(5) {
-            display: none;
-        }
-
-        thead th:nth-child(3), th:nth-child(5) {
-            display: none;
-        }
-
-        tfoot th:nth-child(3), th:nth-child(5) {
-            display: none;
-        }
-    }
-
-    .d-center{
-        display: flex;
-        justify-content: center;
-    }
-
-    .img-rounded{
-        max-width: 900px;
-    }
-
-
-
-  </style>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i,700" rel="stylesheet">
@@ -71,6 +21,44 @@
 <link rel="stylesheet" href="{{asset('css/profile/owl.carousel.css')}}">
 <link rel="stylesheet" href="{{asset('css/profile/magnific-popup.css')}}">
 <link rel="stylesheet" href="{{asset('css/profile/estilo.css')}}">
+
+<style>
+    /*parte mobile*/
+
+    .d-center{
+        display: flex;
+        justify-content: center;
+    }
+
+    .img-rounded{
+        max-width: 100%;
+    }
+
+    @media(max-width: 997px){
+
+        .hero-text h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+        }
+
+        .social-links a {
+            font-size: 30px;
+            margin-right: 15px;
+        }
+
+        .hero-info ul li {
+            font-size: 20px;
+        }
+
+        #nome {
+            width: 60% !important;
+        }
+    }
+</style>
 @endpush
 
 @section('content')
@@ -84,9 +72,9 @@
                 <div class="hero-text">
                     <h2>{{$user->primeiroNome}} {{$user->ultimoNome}}</h2>
                     <div class="row d-center">
-                        <div class="col-md-2">
+                        <div class="col-md-2" style="min-width: 230px">
                             <p class="d-center">
-                                <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info botao" type="submit">
+                                <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info botao" type="submit" style="width: 200px">
                                     Relatório
                                 </a>
                             </p>
@@ -111,12 +99,12 @@
                             <div class="col-md-6">
                                 <div class="hero-info mb-4 mb-md-0">
                                     <ul>
-                                        <li><span>Data de Nascimento</span>{{date('d-m-Y', strtotime($user->dataNascimento)) }}</li>
-                                        <li><span>Local</span>{{$user->municipio->descricao}}, {{$user->municipio->estado->descricao}}</li>
+                                        <li>Data de Nascimento: {{date('d-m-Y', strtotime($user->dataNascimento)) }}</li>
+                                        <li>Local: {{$user->municipio->descricao}}, {{$user->municipio->estado->descricao}}</li>
                                     </ul>
                                 </div>
                                 <p class="d-center" style="max-width: 200px">
-                                    <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-info botao" type="submit">
+                                    <a href="/usuarios/{{$user->id}}/edit" class="btn btn=sm btn-info botao" type="submit" style="width: 200px">
                                         Editar Perfil
                                     </a>
                                 </p>
@@ -124,9 +112,9 @@
                             <div class="col-md-6">
                                 <div class="hero-info">
                                     <ul>
-                                        <li><span>E-mail</span>{{$user->email}}</li>
-                                        <li><span>Phone </span>+55 {{$user->telefone}}</li>
-                                        <li><span>Celular </span>+55 {{$user->celular}}</li>
+                                        <li>E-mail: {{$user->email}}</li>
+                                        <li>Phone: +55 {{$user->telefone}}</li>
+                                        <li>Celular: +55 {{$user->celular}}</li>
                                     </ul>
                                 </div>
                             </div>

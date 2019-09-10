@@ -23,15 +23,8 @@
         display: flex;
         justify-content: center;
         margin-bottom: 20px;
-    }
-
-    /*.video{
-        width: 980px;
-        height: 550px;
-        margin: 0 auto 20px auto;
-    }*/
-    #descricao {
-      font-size: 30px;
+        width: 852px;
+        height: 480px;
     }
     .flex-justify-center {
       display: flex;
@@ -51,6 +44,40 @@
         bottom: 0;
     }
 
+    @media (max-width: 1200px) {
+        .video{
+            width: 426px;
+            height: 240px;
+        }
+    }
+
+    /*parte mobile*/
+    @media(max-width: 997px){
+        .box-body h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .box-header h1{
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .box-body p {
+            font-size: 15px;
+        }
+
+        #descricao {
+            font-size: 25px;
+        }
+
+        .d-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+
   </style>
 @endpush
 
@@ -62,11 +89,11 @@
 
         <div class="box">
           <div class="box-header curso">
-            <h1 class="box-title">{{$unidade->titulo}}</h1>
+            <h1>{{$unidade->titulo}}</h1>
           </div>
           <div class="box-body">
             <div class="row">
-              <div class="col-md-12" style="display: flex; justify-content: flex-end">
+              <div class="col-md-12 d-flex" style="display: flex; justify-content: flex-end">
                 <p>Instrutor do Curso: <strong>{{ $user->primeiroNome }} {{ $user->ultimoNome }}</strong></p>
 
               </div>
@@ -107,22 +134,32 @@
               @endif
             <!--pdf, doc, xls, ppt web-->
               @if (($mat->material_id == 2) && ($mat->storage == 1))
-                  <div class="row">
+                  {{--<div class="row">
                       <div class="video" >
                           <video class="video" controls onclick="concluir();">
                               <source src="/storage/{{$mat->urlArquivo}}" type="video/mp4">
                           </video>
                       </div>
+                  </div>--}}
+                  <div class="embed-responsive embed-responsive-16by9">
+                      <video class="video" controls onclick="concluir();">
+                          <source src="/storage/{{$mat->urlArquivo}}" type="video/mp4">
+                      </video>
                   </div>
               @endif
             <!--video local-->
               @if (($mat->material_id == 2) && ($mat->storage == 0))
-                  <div class="row" style="display: flex; justify-content: center">
+                  {{--<div class="row" style="display: flex; justify-content: center">
                     <div class="video">
                       <iframe id="player" class="video" src="{{$mat->urlArquivo}}?enablejsapi=1" frameborder="0"
                               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                       </iframe>
                     </div>
+                  </div>--}}
+                  <div class="embed-responsive embed-responsive-16by9">
+                      <iframe id="player" class="video" src="{{$mat->urlArquivo}}?enablejsapi=1" frameborder="0"
+                              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                      </iframe>
                   </div>
               @endif
             <!--video web-->
@@ -137,13 +174,13 @@
             <!--link-->
               @if (($mat->material_id == 4) && ($mat->storage == 1))
                 <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                    <img src="/storage/{{$mat->urlArquivo}}" style="margin-bottom: 20px" onload="concluir();" >
+                    <img src="/storage/{{$mat->urlArquivo}}" style="margin-bottom: 20px; max-width: 100%; height: auto;" onload="concluir();" >
                 </div>
               @endif
             <!--imagem local-->
               @if (($mat->material_id == 4) && ($mat->storage == 0))
                 <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                  <img src="{{$mat->urlArquivo}}" style="margin-bottom: 20px; max-width: 100%" onload="concluir();" >
+                  <img src="{{$mat->urlArquivo}}" style="margin-bottom: 20px; max-width: 100%; height: auto;" onload="concluir();" >
                 </div>
               @endif
             <!--imagem web-->

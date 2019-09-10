@@ -36,7 +36,7 @@
         <div class="box-body box-curso">
             <h2>{{$curso->descricao}}</h2>
             <div class="row" style="margin-top: 40px">
-                <div class="col-md-12" style="display: flex; justify-content: space-between">
+                <div class="col-md-12 d-flex" style="display: flex; justify-content: space-between">
                     <p>Categoria do Curso: <strong>{{$cat->descricao}}</strong></p>
                     <p>Instrutor do Curso: <strong>{{ $user->primeiroNome }} {{ $user->ultimoNome }}</strong></p>
                 </div>

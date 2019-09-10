@@ -7,43 +7,9 @@
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/UnidadePolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/UnidadePolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/data-tables.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/data-tables.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/cursos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/usuarios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/usuarios.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/agencias/agencias.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agencias/agencias.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/agencias/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agencias/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/aluno/meu-perfil.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/aluno/meu-perfil.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cargos/cargos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cargos/cargos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cargos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cargos/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/categorias/categorias.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categorias/categorias.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/categorias/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categorias/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/rating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/rating.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/todos-cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/todos-cursos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/instrutor/cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/instrutor/cursos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/funcoes/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/funcoes/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/funcoes/funcoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/funcoes/funcoes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/header-nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/header-nav.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/materiais.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/materiais.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/questoes.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/instrutor/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/instrutor/unidades.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/instrutor/unidades.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -391,7 +357,9 @@
       <workItem from="1567778105674" duration="1306000" />
       <workItem from="1567799625304" duration="1184000" />
       <workItem from="1567894086776" duration="4949000" />
-      <workItem from="1567991776224" duration="2160000" />
+      <workItem from="1567991776224" duration="2231000" />
+      <workItem from="1568032182227" duration="1071000" />
+      <workItem from="1568069487440" duration="4290000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -547,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567561574828</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Placeholders">
+      <created>1567994003868</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1567994003868</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -616,6 +591,7 @@
     <MESSAGE value="Login, reset password, verify email." />
     <MESSAGE value="Correções tela de cursos, lista de cursos." />
     <MESSAGE value="Correções" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correções" />
+    <MESSAGE value="Placeholders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Placeholders" />
   </component>
 </project>

@@ -26,6 +26,10 @@ use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
+    /*public function AuthRouteAPI(Request $request){
+        return $request->user();
+    }*/
+
     public function index(Request $request)
     {
         $this->authorize('administrador');

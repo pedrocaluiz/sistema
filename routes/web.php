@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+})->name('welcome');*/
 
 Auth::routes();
 
@@ -161,13 +161,13 @@ Route::prefix('usuarios')->name('usuarios')->middleware('auth')->group(function 
 });
 
 
-Route::get('/admin', function (){
+/*Route::get('/admin', function (){
     return view('adminlte');
-});
+});*/
 
-Route::get('/AdminLTE/index.html', function (){
+/*Route::get('/AdminLTE/index.html', function (){
     return redirect('admin');
-});
+});*/
 
 
 

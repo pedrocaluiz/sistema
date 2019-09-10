@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.18 on 2019-05-27 21:32:49.
+ * Generated for Laravel 5.8.35 on 2019-09-10 20:16:20.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -349,6 +349,18 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Foundation\Application $instance */
                         return $instance->isLocal();
+        }
+        
+        /**
+         * Determine if application is in production environment.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function isProduction()
+        {
+                        /** @var \Illuminate\Foundation\Application $instance */
+                        return $instance->isProduction();
         }
         
         /**
@@ -1375,7 +1387,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Set the globally available instance of the container.
+         * Get the globally available instance of the container.
          *
          * @return static 
          * @static 
@@ -1469,7 +1481,7 @@ namespace Illuminate\Support\Facades {
          * Run the console application.
          *
          * @param \Symfony\Component\Console\Input\InputInterface $input
-         * @param \Symfony\Component\Console\Output\OutputInterface $output
+         * @param \Symfony\Component\Console\Output\OutputInterface|null $output
          * @return int 
          * @static 
          */ 
@@ -1529,7 +1541,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $command
          * @param array $parameters
-         * @param \Symfony\Component\Console\Output\OutputInterface $outputBuffer
+         * @param \Symfony\Component\Console\Output\OutputInterface|null $outputBuffer
          * @return int 
          * @throws \Symfony\Component\Console\Exception\CommandNotFoundException
          * @static 
@@ -1624,7 +1636,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Attempt to get the guard from the local cache.
          *
-         * @param string $name
+         * @param string|null $name
          * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard 
          * @static 
          */ 
@@ -2253,7 +2265,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Compile the view at the given path.
          *
-         * @param string $path
+         * @param string|null $path
          * @return void 
          * @static 
          */ 
@@ -2371,7 +2383,7 @@ namespace Illuminate\Support\Facades {
          * Register a component alias directive.
          *
          * @param string $path
-         * @param string $alias
+         * @param string|null $alias
          * @return void 
          * @static 
          */ 
@@ -2385,7 +2397,7 @@ namespace Illuminate\Support\Facades {
          * Register an include alias directive.
          *
          * @param string $path
-         * @param string $alias
+         * @param string|null $alias
          * @return void 
          * @static 
          */ 
@@ -2552,7 +2564,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get a driver instance.
          *
-         * @param string $driver
+         * @param string|null $driver
          * @return mixed 
          * @static 
          */ 
@@ -3571,8 +3583,8 @@ namespace Illuminate\Support\Facades {
          * @param string $name
          * @param string $value
          * @param int $minutes
-         * @param string $path
-         * @param string $domain
+         * @param string|null $path
+         * @param string|null $domain
          * @param bool|null $secure
          * @param bool $httpOnly
          * @param bool $raw
@@ -3591,8 +3603,8 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $name
          * @param string $value
-         * @param string $path
-         * @param string $domain
+         * @param string|null $path
+         * @param string|null $domain
          * @param bool|null $secure
          * @param bool $httpOnly
          * @param bool $raw
@@ -3610,8 +3622,8 @@ namespace Illuminate\Support\Facades {
          * Expire the given cookie.
          *
          * @param string $name
-         * @param string $path
-         * @param string $domain
+         * @param string|null $path
+         * @param string|null $domain
          * @return \Symfony\Component\HttpFoundation\Cookie 
          * @static 
          */ 
@@ -3680,7 +3692,7 @@ namespace Illuminate\Support\Facades {
          * @param string $path
          * @param string $domain
          * @param bool $secure
-         * @param string $sameSite
+         * @param string|null $sameSite
          * @return \Illuminate\Cookie\CookieJar 
          * @static 
          */ 
@@ -3807,7 +3819,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Decrypt the given value.
          *
-         * @param mixed $payload
+         * @param string $payload
          * @param bool $unserialize
          * @return mixed 
          * @throws \Illuminate\Contracts\Encryption\DecryptException
@@ -3858,7 +3870,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get a database connection instance.
          *
-         * @param string $name
+         * @param string|null $name
          * @return \Illuminate\Database\Connection 
          * @static 
          */ 
@@ -3871,7 +3883,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Disconnect from the given database and remove from local cache.
          *
-         * @param string $name
+         * @param string|null $name
          * @return void 
          * @static 
          */ 
@@ -3884,7 +3896,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Disconnect from the given database.
          *
-         * @param string $name
+         * @param string|null $name
          * @return void 
          * @static 
          */ 
@@ -3897,7 +3909,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Reconnect to the given database.
          *
-         * @param string $name
+         * @param string|null $name
          * @return \Illuminate\Database\Connection 
          * @static 
          */ 
@@ -5242,7 +5254,7 @@ namespace Illuminate\Support\Facades {
          * Get or set UNIX mode of a file or directory.
          *
          * @param string $path
-         * @param int $mode
+         * @param int|null $mode
          * @return mixed 
          * @static 
          */ 
@@ -5554,7 +5566,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $directory
          * @param string $destination
-         * @param int $options
+         * @param int|null $options
          * @return bool 
          * @static 
          */ 
@@ -6112,7 +6124,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param array $replace
-         * @param string $locale
+         * @param string|null $locale
          * @return string|array 
          * @static 
          */ 
@@ -6143,7 +6155,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param array $replace
-         * @param string $locale
+         * @param string|null $locale
          * @return string|array 
          * @static 
          */ 
@@ -6159,7 +6171,7 @@ namespace Illuminate\Support\Facades {
          * @param string $key
          * @param int|array|\Countable $number
          * @param array $replace
-         * @param string $locale
+         * @param string|null $locale
          * @return string 
          * @static 
          */ 
@@ -6175,7 +6187,7 @@ namespace Illuminate\Support\Facades {
          * @param string $key
          * @param int|array|\Countable $number
          * @param array $replace
-         * @param string $locale
+         * @param string|null $locale
          * @return string 
          * @static 
          */ 
@@ -6431,118 +6443,6 @@ namespace Illuminate\Support\Facades {
     class Log {
         
         /**
-         * Adds a log record at the DEBUG level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function debug($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addDebug($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the INFO level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function info($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addInfo($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the NOTICE level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function notice($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addNotice($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the WARNING level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function warning($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addWarning($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the ERROR level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function error($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addError($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the CRITICAL level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function critical($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addCritical($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the ALERT level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function alert($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addAlert($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the EMERGENCY level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function emergency($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addEmergency($message, $context);
-        }
-        
-        /**
          * Create a new, on-demand aggregate logger instance.
          *
          * @param array $channels
@@ -6619,6 +6519,129 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Log\LogManager $instance */
                         return $instance->extend($driver, $callback);
+        }
+        
+        /**
+         * System is unusable.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function emergency($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->emergency($message, $context);
+        }
+        
+        /**
+         * Action must be taken immediately.
+         * 
+         * Example: Entire website down, database unavailable, etc. This should
+         * trigger the SMS alerts and wake you up.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function alert($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->alert($message, $context);
+        }
+        
+        /**
+         * Critical conditions.
+         * 
+         * Example: Application component unavailable, unexpected exception.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function critical($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->critical($message, $context);
+        }
+        
+        /**
+         * Runtime errors that do not require immediate action but should typically
+         * be logged and monitored.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function error($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->error($message, $context);
+        }
+        
+        /**
+         * Exceptional occurrences that are not errors.
+         * 
+         * Example: Use of deprecated APIs, poor use of an API, undesirable things
+         * that are not necessarily wrong.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function warning($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->warning($message, $context);
+        }
+        
+        /**
+         * Normal but significant events.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function notice($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->notice($message, $context);
+        }
+        
+        /**
+         * Interesting events.
+         * 
+         * Example: User logs in, SQL logs.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function info($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->info($message, $context);
+        }
+        
+        /**
+         * Detailed debug information.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function debug($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->debug($message, $context);
         }
         
         /**
@@ -6789,7 +6812,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string|array|\Illuminate\Contracts\Mail\Mailable $view
          * @param array $data
-         * @param \Closure|string $callback
+         * @param \Closure|string|null $callback
          * @return void 
          * @static 
          */ 
@@ -7535,7 +7558,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the driver is connected.
          *
-         * @param string $name
+         * @param string|null $name
          * @return bool 
          * @static 
          */ 
@@ -7548,7 +7571,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Resolve a queue connection instance.
          *
-         * @param string $name
+         * @param string|null $name
          * @return \Illuminate\Contracts\Queue\Queue 
          * @static 
          */ 
@@ -7614,7 +7637,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the full name for the given connection.
          *
-         * @param string $connection
+         * @param string|null $connection
          * @return string 
          * @static 
          */ 
@@ -7736,7 +7759,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the size of the queue.
          *
-         * @param string $queue
+         * @param string|null $queue
          * @return int 
          * @static 
          */ 
@@ -7751,7 +7774,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $job
          * @param mixed $data
-         * @param string $queue
+         * @param string|null $queue
          * @return mixed 
          * @static 
          */ 
@@ -7765,7 +7788,7 @@ namespace Illuminate\Support\Facades {
          * Push a raw payload onto the queue.
          *
          * @param string $payload
-         * @param string $queue
+         * @param string|null $queue
          * @param array $options
          * @return mixed 
          * @static 
@@ -7782,7 +7805,7 @@ namespace Illuminate\Support\Facades {
          * @param \DateTimeInterface|\DateInterval|int $delay
          * @param string $job
          * @param mixed $data
-         * @param string $queue
+         * @param string|null $queue
          * @return mixed 
          * @static 
          */ 
@@ -7826,7 +7849,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Pop the next job off of the queue.
          *
-         * @param string $queue
+         * @param string|null $queue
          * @return \Illuminate\Contracts\Queue\Job|null 
          * @static 
          */ 
@@ -7841,7 +7864,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param array $jobs
          * @param mixed $data
-         * @param string $queue
+         * @param string|null $queue
          * @return mixed 
          * @static 
          */ 
@@ -8000,7 +8023,7 @@ namespace Illuminate\Support\Facades {
          * @param string $path
          * @param int $status
          * @param array $headers
-         * @param bool $secure
+         * @param bool|null $secure
          * @return \Illuminate\Http\RedirectResponse 
          * @static 
          */ 
@@ -8016,7 +8039,7 @@ namespace Illuminate\Support\Facades {
          * @param string $default
          * @param int $status
          * @param array $headers
-         * @param bool $secure
+         * @param bool|null $secure
          * @return \Illuminate\Http\RedirectResponse 
          * @static 
          */ 
@@ -8045,7 +8068,7 @@ namespace Illuminate\Support\Facades {
          * @param string $path
          * @param int $status
          * @param array $headers
-         * @param bool $secure
+         * @param bool|null $secure
          * @return \Illuminate\Http\RedirectResponse 
          * @static 
          */ 
@@ -8492,7 +8515,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the JSON payload for the request.
          *
-         * @param string $key
+         * @param string|null $key
          * @param mixed $default
          * @return \Symfony\Component\HttpFoundation\ParameterBag|mixed 
          * @static 
@@ -9036,10 +9059,14 @@ namespace Illuminate\Support\Facades {
          * header value is a comma+space separated list of IP addresses, the left-most
          * being the original client, and each successive proxy that passed the request
          * adding the IP address where it received the request from.
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-For",
+         * ("Client-Ip" for instance), configure it via the $trustedHeaderSet
+         * argument of the Request::setTrustedProxies() method instead.
          *
          * @return string|null The client IP address
          * @see getClientIps()
-         * @see http://en.wikipedia.org/wiki/X-Forwarded-For
+         * @see https://wikipedia.org/wiki/X-Forwarded-For
          * @static 
          */ 
         public static function getClientIp()
@@ -9733,7 +9760,7 @@ namespace Illuminate\Support\Facades {
          * It works if your JavaScript library sets an X-Requested-With HTTP header.
          * It is known to work with common JavaScript frameworks:
          *
-         * @see http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
+         * @see https://wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
          * @return bool true if the request is an XMLHttpRequest, false otherwise
          * @static 
          */ 
@@ -9887,7 +9914,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Retrieve an old input item.
          *
-         * @param string $key
+         * @param string|null $key
          * @param string|array|null $default
          * @return string|array 
          * @static 
@@ -9951,7 +9978,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Retrieve a server variable from the request.
          *
-         * @param string $key
+         * @param string|null $key
          * @param string|array|null $default
          * @return string|array|null 
          * @static 
@@ -9978,7 +10005,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Retrieve a header from the request.
          *
-         * @param string $key
+         * @param string|null $key
          * @param string|array|null $default
          * @return string|array|null 
          * @static 
@@ -10081,7 +10108,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get all of the input and files for the request.
          *
-         * @param array|mixed $keys
+         * @param array|mixed|null $keys
          * @return array 
          * @static 
          */ 
@@ -10134,7 +10161,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Retrieve a query string item from the request.
          *
-         * @param string $key
+         * @param string|null $key
          * @param string|array|null $default
          * @return string|array|null 
          * @static 
@@ -10148,7 +10175,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Retrieve a request payload item from the request.
          *
-         * @param string $key
+         * @param string|null $key
          * @param string|array|null $default
          * @return string|array|null 
          * @static 
@@ -10175,7 +10202,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Retrieve a cookie from the request.
          *
-         * @param string $key
+         * @param string|null $key
          * @param string|array|null $default
          * @return string|array|null 
          * @static 
@@ -10214,7 +10241,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Retrieve a file from the request.
          *
-         * @param string $key
+         * @param string|null $key
          * @param mixed $default
          * @return \Illuminate\Http\UploadedFile|\Illuminate\Http\UploadedFile[]|array|null 
          * @static 
@@ -11175,7 +11202,7 @@ namespace Illuminate\Support\Facades {
          * Get a route parameter for the current route.
          *
          * @param string $key
-         * @param string $default
+         * @param string|null $default
          * @return mixed 
          * @static 
          */ 
@@ -11858,13 +11885,13 @@ namespace Illuminate\Support\Facades {
         /**
          * Save the session data to storage.
          *
-         * @return bool 
+         * @return void 
          * @static 
          */ 
         public static function save()
         {
                         /** @var \Illuminate\Session\Store $instance */
-                        return $instance->save();
+                        $instance->save();
         }
         
         /**
@@ -11889,6 +11916,19 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Session\Store $instance */
                         return $instance->all();
+        }
+        
+        /**
+         * Get a subset of the session data.
+         *
+         * @param array $keys
+         * @return array 
+         * @static 
+         */ 
+        public static function only($keys)
+        {
+                        /** @var \Illuminate\Session\Store $instance */
+                        return $instance->only($keys);
         }
         
         /**
@@ -11935,7 +11975,7 @@ namespace Illuminate\Support\Facades {
          * Get the value of a given key and then forget it.
          *
          * @param string $key
-         * @param string $default
+         * @param string|null $default
          * @return mixed 
          * @static 
          */ 
@@ -11948,7 +11988,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the session contains old input.
          *
-         * @param string $key
+         * @param string|null $key
          * @return bool 
          * @static 
          */ 
@@ -11961,7 +12001,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the requested item from the flashed input array.
          *
-         * @param string $key
+         * @param string|null $key
          * @param mixed $default
          * @return mixed 
          * @static 
@@ -12383,7 +12423,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get a filesystem instance.
          *
-         * @param string $name
+         * @param string|null $name
          * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */ 
@@ -12396,7 +12436,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get a filesystem instance.
          *
-         * @param string $name
+         * @param string|null $name
          * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */ 
@@ -13160,7 +13200,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $name
          * @param array $parameters
-         * @param \DateTimeInterface|\DateInterval|int $expiration
+         * @param \DateTimeInterface|\DateInterval|int|null $expiration
          * @param bool $absolute
          * @return string 
          * @static 
@@ -13250,7 +13290,7 @@ namespace Illuminate\Support\Facades {
          * Get the base URL for the request.
          *
          * @param string $scheme
-         * @param string $root
+         * @param string|null $root
          * @return string 
          * @static 
          */ 
@@ -13540,7 +13580,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $rule
          * @param \Closure|string $extension
-         * @param string $message
+         * @param string|null $message
          * @return void 
          * @static 
          */ 
@@ -13555,7 +13595,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $rule
          * @param \Closure|string $extension
-         * @param string $message
+         * @param string|null $message
          * @return void 
          * @static 
          */ 
@@ -13570,7 +13610,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $rule
          * @param \Closure|string $extension
-         * @param string $message
+         * @param string|null $message
          * @return void 
          * @static 
          */ 
@@ -13762,7 +13802,7 @@ namespace Illuminate\Support\Facades {
          * Add a piece of shared data to the environment.
          *
          * @param array|string $key
-         * @param mixed $value
+         * @param mixed|null $value
          * @return mixed 
          * @static 
          */ 
@@ -13868,7 +13908,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $extension
          * @param string $engine
-         * @param \Closure $resolver
+         * @param \Closure|null $resolver
          * @return void 
          * @static 
          */ 
@@ -14093,6 +14133,20 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Get the first view that actually exists from the given list, and start a component.
+         *
+         * @param array $names
+         * @param array $data
+         * @return void 
+         * @static 
+         */ 
+        public static function startComponentFirst($names, $data = array())
+        {
+                        /** @var \Illuminate\View\Factory $instance */
+                        $instance->startComponentFirst($names, $data);
+        }
+        
+        /**
          * Render the current component.
          *
          * @return string 
@@ -14307,7 +14361,7 @@ namespace Illuminate\Support\Facades {
          * Get the contents of a section.
          *
          * @param string $name
-         * @param string $default
+         * @param string|null $default
          * @return mixed 
          * @static 
          */ 
@@ -14526,6 +14580,175 @@ namespace Illuminate\Support {
      *
      */ 
     class Str {
+         
+    }
+ 
+}
+
+namespace Barryvdh\DomPDF { 
+
+    /**
+     * 
+     *
+     */ 
+    class Facade {
+        
+        /**
+         * Get the DomPDF instance
+         *
+         * @return \Barryvdh\DomPDF\Dompdf 
+         * @static 
+         */ 
+        public static function getDomPDF()
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->getDomPDF();
+        }
+        
+        /**
+         * Set the paper size (default A4)
+         *
+         * @param string $paper
+         * @param string $orientation
+         * @return \Barryvdh\DomPDF\PDF 
+         * @static 
+         */ 
+        public static function setPaper($paper, $orientation = 'portrait')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setPaper($paper, $orientation);
+        }
+        
+        /**
+         * Show or hide warnings
+         *
+         * @param bool $warnings
+         * @return \Barryvdh\DomPDF\PDF 
+         * @static 
+         */ 
+        public static function setWarnings($warnings)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setWarnings($warnings);
+        }
+        
+        /**
+         * Load a HTML string
+         *
+         * @param string $string
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */ 
+        public static function loadHTML($string, $encoding = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadHTML($string, $encoding);
+        }
+        
+        /**
+         * Load a HTML file
+         *
+         * @param string $file
+         * @return static 
+         * @static 
+         */ 
+        public static function loadFile($file)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadFile($file);
+        }
+        
+        /**
+         * Load a View and convert to HTML
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */ 
+        public static function loadView($view, $data = array(), $mergeData = array(), $encoding = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadView($view, $data, $mergeData, $encoding);
+        }
+        
+        /**
+         * Set/Change an option in DomPdf
+         *
+         * @param array $options
+         * @return static 
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setOptions($options);
+        }
+        
+        /**
+         * Output the PDF as a string.
+         *
+         * @return string The rendered PDF as string
+         * @static 
+         */ 
+        public static function output()
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->output();
+        }
+        
+        /**
+         * Save the PDF to a file
+         *
+         * @param $filename
+         * @return static 
+         * @static 
+         */ 
+        public static function save($filename)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->save($filename);
+        }
+        
+        /**
+         * Make the PDF downloadable by the user
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */ 
+        public static function download($filename = 'document.pdf')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->download($filename);
+        }
+        
+        /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */ 
+        public static function stream($filename = 'document.pdf')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->stream($filename);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setEncryption($password)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setEncryption($password);
+        }
          
     }
  
@@ -15224,7 +15447,7 @@ namespace  {
              *
              * @param mixed $value
              * @param callable $callback
-             * @param callable $default
+             * @param callable|null $default
              * @return mixed|$this 
              * @static 
              */ 
@@ -15252,7 +15475,7 @@ namespace  {
              *
              * @param mixed $value
              * @param callable $callback
-             * @param callable $default
+             * @param callable|null $default
              * @return mixed|$this 
              * @static 
              */ 
@@ -15265,7 +15488,7 @@ namespace  {
             /**
              * Add a relationship count / exists condition to the query.
              *
-             * @param string $relation
+             * @param string|\Illuminate\Database\Eloquent\Relations\Relation $relation
              * @param string $operator
              * @param int $count
              * @param string $boolean
@@ -15380,6 +15603,134 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->orWhereDoesntHave($relation, $callback);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query.
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param string $operator
+             * @param int $count
+             * @param string $boolean
+             * @param \Closure|null $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function hasMorph($relation, $types, $operator = '>=', $count = 1, $boolean = 'and', $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->hasMorph($relation, $types, $operator, $count, $boolean, $callback);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with an "or".
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param string $operator
+             * @param int $count
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orHasMorph($relation, $types, $operator = '>=', $count = 1)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orHasMorph($relation, $types, $operator, $count);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query.
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param string $boolean
+             * @param \Closure|null $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function doesntHaveMorph($relation, $types, $boolean = 'and', $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->doesntHaveMorph($relation, $types, $boolean, $callback);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with an "or".
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orDoesntHaveMorph($relation, $types)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orDoesntHaveMorph($relation, $types);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with where clauses.
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param \Closure|null $callback
+             * @param string $operator
+             * @param int $count
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function whereHasMorph($relation, $types, $callback = null, $operator = '>=', $count = 1)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->whereHasMorph($relation, $types, $callback, $operator, $count);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with where clauses and an "or".
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param \Closure $callback
+             * @param string $operator
+             * @param int $count
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereHasMorph($relation, $types, $callback = null, $operator = '>=', $count = 1)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orWhereHasMorph($relation, $types, $callback, $operator, $count);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with where clauses.
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param \Closure|null $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function whereDoesntHaveMorph($relation, $types, $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->whereDoesntHaveMorph($relation, $types, $callback);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with where clauses and an "or".
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param \Closure $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereDoesntHaveMorph($relation, $types, $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orWhereDoesntHaveMorph($relation, $types, $callback);
             }
          
             /**
@@ -15869,16 +16220,16 @@ namespace  {
             /**
              * Add a "where null" clause to the query.
              *
-             * @param string $column
+             * @param string|array $columns
              * @param string $boolean
              * @param bool $not
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
-            public static function whereNull($column, $boolean = 'and', $not = false)
+            public static function whereNull($columns, $boolean = 'and', $not = false)
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
-                                return $instance->whereNull($column, $boolean, $not);
+                                return $instance->whereNull($columns, $boolean, $not);
             }
          
             /**
@@ -15985,7 +16336,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string $value
+             * @param \DateTimeInterface|string|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
@@ -16001,7 +16352,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string $value
+             * @param \DateTimeInterface|string|null $value
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
              */ 
@@ -16016,7 +16367,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string $value
+             * @param \DateTimeInterface|string|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
@@ -16032,7 +16383,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string $value
+             * @param \DateTimeInterface|string|null $value
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
              */ 
@@ -16047,7 +16398,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string $value
+             * @param \DateTimeInterface|string|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
@@ -16063,7 +16414,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string $value
+             * @param \DateTimeInterface|string|null $value
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
              */ 
@@ -16078,7 +16429,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string $value
+             * @param \DateTimeInterface|string|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
@@ -16094,7 +16445,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string $value
+             * @param \DateTimeInterface|string|null $value
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
              */ 
@@ -16109,7 +16460,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string|int $value
+             * @param \DateTimeInterface|string|int|null $value
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
@@ -16125,7 +16476,7 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param \DateTimeInterface|string|int $value
+             * @param \DateTimeInterface|string|int|null $value
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
              */ 
@@ -16371,7 +16722,7 @@ namespace  {
              * Handles dynamic "where" clauses to the query.
              *
              * @param string $method
-             * @param string $parameters
+             * @param array $parameters
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -16868,6 +17219,19 @@ namespace  {
             }
          
             /**
+             * Insert a new record into the database while ignoring errors.
+             *
+             * @param array $values
+             * @return int 
+             * @static 
+             */ 
+            public static function insertOrIgnore($values)
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->insertOrIgnore($values);
+            }
+         
+            /**
              * Insert a new record and get the value of the primary key.
              *
              * @param array $values
@@ -17066,13 +17430,13 @@ namespace  {
             /**
              * Dump the current SQL and bindings.
              *
-             * @return void 
+             * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
             public static function dump()
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
-                                $instance->dump();
+                                return $instance->dump();
             }
          
             /**
@@ -17183,6 +17547,8 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class PDF extends \Barryvdh\DomPDF\Facade {}
  
 }
 

@@ -11,11 +11,9 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');*/
+Route::get('/', 'UsersController@welcome')->name('welcome');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
@@ -57,7 +55,7 @@ Route::prefix('funcoes')->name('funcoes')->middleware('auth')->group(function ()
 });
 
 
-Route::prefix('tipodoc')->name('tipodoc')->middleware('auth')->group(function () {
+/*Route::prefix('tipodoc')->name('tipodoc')->middleware('auth')->group(function () {
     Route::get('/', 'TipoDocsController@index');
     Route::get('/create', 'TipoDocsController@create')->name('.create');
     Route::post('/', 'TipoDocsController@store')->name('.store');
@@ -73,7 +71,7 @@ Route::prefix('tipomat')->name('tipomat')->middleware('auth')->group(function ()
     Route::delete('/destroy', 'TipoMateriaisController@destroy')->name('.destroy');
     Route::get('/{id}/edit', 'TipoMateriaisController@edit')->name('.edit');
     Route::put('/{id}', 'TipoMateriaisController@update')->name('.update');
-});
+});*/
 
 Route::prefix('cursos')->name('cursos')->middleware('auth')->group(function () {
     Route::get('/', 'CursosController@index');
@@ -160,15 +158,15 @@ Route::prefix('usuarios')->name('usuarios')->middleware('auth')->group(function 
     Route::put('/{id}', 'UsersController@update')->name('.update');
 });
 
-
-/*Route::get('/admin', function (){
+/*
+Route::get('/admin', function (){
     return view('adminlte');
-});*/
+});
 
-/*Route::get('/AdminLTE/index.html', function (){
+Route::get('/AdminLTE/index.html', function (){
     return redirect('admin');
-});*/
-
+});
+*/
 
 
 

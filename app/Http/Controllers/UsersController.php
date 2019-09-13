@@ -30,6 +30,10 @@ class UsersController extends Controller
         return $request->user();
     }*/
 
+    public function welcome(){
+        return view('welcome');
+    }
+
     public function index(Request $request)
     {
         $this->authorize('administrador');

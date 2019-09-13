@@ -21,7 +21,7 @@
 <div class="row align-items-end">
     <div class="col-md-12">
         <div class="box">
-        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="cadastro" id="myForm">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="cadastro">
                 @csrf
             <div class="box-header">
                 <h3 class="box-title">
@@ -319,7 +319,6 @@
 
         $(function(){
             //carregarMunicipiosInicial();
-            $('#myForm input').val("");
             $('input').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'

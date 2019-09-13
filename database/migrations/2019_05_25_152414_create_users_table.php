@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->date('dataAdmissao');
             $table->string('endereco');
             $table->string('numero');
-            $table->string('complemento');
+            $table->string('complemento')->nullable()->default(null);
             $table->string('bairro');
             $table->string('CEP', 10);
             $table->bigInteger('municipio_id')->unsigned();

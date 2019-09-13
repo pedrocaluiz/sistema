@@ -5,13 +5,15 @@ namespace App;
 use App\Model\Curso;
 use App\Model\Municipio;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmail ;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract ;
+use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Model\Perfil;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmailContract
 {
     use Notifiable;
+    use MustVerifyEmail;
 
     /**
      * The attributes that are mass assignable.

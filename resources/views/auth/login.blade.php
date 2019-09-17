@@ -4,7 +4,7 @@
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/adminLTE/fontawesome.all.css')}}">
     <!-- animation css -->
     <link rel="stylesheet" href="{{asset('css/animate.min.css')}}">
     <!-- vendor css -->

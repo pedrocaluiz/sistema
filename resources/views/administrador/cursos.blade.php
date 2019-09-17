@@ -25,6 +25,19 @@
             tfoot th:nth-child(1), th:nth-child(2), th:nth-child(4) {
                 display: none;
             }
+
+
+
+        }
+
+        @media (max-width: 1100px) {
+            .acaoTxt {
+                display: none;
+            }
+
+            .acaoIcon {
+                display: inline-block;
+            }
         }
 
         /*parte mobile usuarios*/

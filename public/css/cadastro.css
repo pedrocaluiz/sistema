@@ -19,6 +19,7 @@ fieldset legend{
     width: 100%;
     font-size: medium;
     height: 34px;
+    min-width: 165px;
 }
 
 .form-control:focus{

@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/cadastro.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/cadastro.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/cursos.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -175,7 +179,7 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Blade" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/auth" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -187,19 +191,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sistemaTCC" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\config" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
       <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
       <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
-      <recent name="C:\xampp\htdocs\sistemaTCC" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\config" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -365,7 +369,8 @@
       <workItem from="1568069487440" duration="7315000" />
       <workItem from="1568123572708" duration="1205000" />
       <workItem from="1568154888929" duration="9414000" />
-      <workItem from="1568328129921" duration="1740000" />
+      <workItem from="1568328129921" duration="5722000" />
+      <workItem from="1568673263821" duration="2552000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -556,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568332949320</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Heroku">
+      <created>1568333400100</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1568333400100</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">

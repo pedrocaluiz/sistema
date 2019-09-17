@@ -225,6 +225,10 @@ class CursosController extends Controller
      */
     public function edit($id)
     {
+
+
+
+
         $cats = Categoria::all();
         $curso = Curso::find($id);
         $user = User::find($curso->usuarioAtualizacao);
@@ -267,7 +271,16 @@ class CursosController extends Controller
             "Curso $curso->titulo alterado com sucesso.");
         DB::commit();
 
+        $perfil = Auth::user()->perfil->where('administrador', 1);
+
+        if (count($perfil) > 0 ){
+            return redirect()->route('cursos.index-adm');
+        }
         return redirect()->route('cursos');
+
+
+
+
     }
 
     /**

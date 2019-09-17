@@ -1,5 +1,6 @@
 @extends('layouts.base')
 
+
 @section('content')
 <section class="content">
     <!-- Small boxes (Stat box) -->

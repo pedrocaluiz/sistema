@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FuncoesSeeder::class);
         $this->call(PerfisSeeder::class);
         $this->call(TipoMatSeeder::class);
-        $this->call(TiposDocsSeeder::class);
         $this->call(PerfilUsuarioSeeder::class);
     }
 }

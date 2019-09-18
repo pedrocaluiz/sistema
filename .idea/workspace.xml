@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/seeds/munic" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/CargosSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CargosSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/FuncoesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/FuncoesSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/TipoMatSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/TipoMatSeeder.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -371,7 +371,8 @@
       <workItem from="1568154888929" duration="9414000" />
       <workItem from="1568328129921" duration="5722000" />
       <workItem from="1568673263821" duration="8682000" />
-      <workItem from="1568759850887" duration="4850000" />
+      <workItem from="1568759850887" duration="8125000" />
+      <workItem from="1568768984722" duration="1187000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -611,7 +612,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568764711784</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="DB seed">
+      <created>1568765337991</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1568765337991</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +658,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões." />
     <MESSAGE value="Criação de políticas de acesso aos Cursos." />
     <MESSAGE value="Inclusão de arquivos, git add, exceto a pasta AdminLTE." />
     <MESSAGE value="Página de listar e editar Questões, QuestõesPolicy." />
@@ -675,6 +682,7 @@
     <MESSAGE value="Heroku" />
     <MESSAGE value="AdminLTE" />
     <MESSAGE value="Mudanças no Head, alteração dos arquivos AdminLTE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mudanças no Head, alteração dos arquivos AdminLTE" />
+    <MESSAGE value="DB seed" />
+    <option name="LAST_COMMIT_MESSAGE" value="DB seed" />
   </component>
 </project>

@@ -12,19 +12,19 @@ class TipoMatSeeder extends Seeder
     public function run()
     {
         DB::table('tipo_materiais')->insert([
-            'descricao' => 'pdf', 
+            'descricao' => 'pdf',
             'icone' => 'fa fa-file-pdf-o',
             'usuarioAtualizacao' => 1]);
         DB::table('tipo_materiais')->insert([
-            'descricao' => 'video', 
+            'descricao' => 'video',
             'icone' => 'fa fa-file-movie-o',
             'usuarioAtualizacao' => 1]);
         DB::table('tipo_materiais')->insert([
-            'descricao' => 'link', 
+            'descricao' => 'link',
             'icone' => 'fa fa-external-link',
             'usuarioAtualizacao' => 1]);
         DB::table('tipo_materiais')->insert([
-            'descricao' => 'imagem', 
+            'descricao' => 'imagem',
             'icone' => 'fa fa-file-image-o',
             'usuarioAtualizacao' => 1]);
         DB::table('tipo_materiais')->insert([

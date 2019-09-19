@@ -20,11 +20,8 @@
     .video {
         max-width: 852px;
         max-height: 480px;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-        width: 852px;
-        height: 480px;
+        margin: 0 auto;
+
     }
     .flex-justify-center {
       display: flex;
@@ -44,12 +41,12 @@
         bottom: 0;
     }
 
-    @media (max-width: 1200px) {
+    /*@media (max-width: 1200px) {
         .video{
             width: 426px;
             height: 240px;
         }
-    }
+    }*/
 
     /*parte mobile*/
     @media(max-width: 997px){
@@ -141,11 +138,16 @@
                           </video>
                       </div>
                   </div>--}}
+
+
+              <div class="video">
                   <div class="embed-responsive embed-responsive-16by9">
                       <video class="video" controls onclick="concluir();">
-                          <source src="/storage/{{$mat->urlArquivo}}" type="video/mp4">
+                          <source src="{{Storage::disk('dropbox')->url($mat->urlArquivo)}}" type="video/mp4">
                       </video>
                   </div>
+              </div>
+
               @endif
             <!--video local-->
               @if (($mat->material_id == 2) && ($mat->storage == 0))
@@ -156,11 +158,13 @@
                       </iframe>
                     </div>
                   </div>--}}
+                <div class="video">
                   <div class="embed-responsive embed-responsive-16by9">
                       <iframe id="player" class="video" src="{{$mat->urlArquivo}}?enablejsapi=1" frameborder="0"
                               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                       </iframe>
                   </div>
+                </div>
               @endif
             <!--video web-->
               @if (($mat->material_id == 3))
@@ -174,7 +178,7 @@
             <!--link-->
               @if (($mat->material_id == 4) && ($mat->storage == 1))
                 <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                    <img src="/storage/{{$mat->urlArquivo}}" style="margin-bottom: 20px; max-width: 100%; height: auto;" onload="concluir();" >
+                    <img src="{{Storage::disk('dropbox')->url($mat->urlArquivo)}}" style="margin-bottom: 20px; max-width: 100%; height: auto;" onload="concluir();" >
                 </div>
               @endif
             <!--imagem local-->

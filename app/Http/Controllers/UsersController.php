@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 
 class UsersController extends Controller
@@ -291,7 +292,7 @@ class UsersController extends Controller
             $usuario->password = Hash::make($request->input('password'));
         }
         if ($request->foto != null){
-            $path = $request->foto->store('imagens', 'public');
+            $path = Storage::disk('dropbox')->put('imagens', $request->foto);
             $usuario->foto = $path;
         }
         $usuario->cargo_id = $request->input('cargo_id');

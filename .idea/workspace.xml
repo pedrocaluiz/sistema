@@ -5,9 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sistemaTCC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sistemaTCC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/TipoMatSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/TipoMatSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MateriaisController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MateriaisController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UnidadesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UnidadesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/aluno/meu-perfil.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/aluno/meu-perfil.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/aluno/profile-edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/aluno/profile-edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/header-nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/header-nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/user-search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/user-search.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -165,6 +182,14 @@
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
       <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/spatie/dropbox-api" />
+      <path value="$PROJECT_DIR$/vendor/spatie/flysystem-dropbox" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/graham-campbell/guzzle-factory" />
     </include_path>
   </component>
   <component name="ProjectId" id="1OiIJeIxaEqhXzt6ZSWdKHwmwAE" />
@@ -189,19 +214,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sistemaTCC\public\css\adminLTE" />
       <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
       <recent name="C:\xampp\htdocs\sistemaTCC" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
       <recent name="C:\xampp\htdocs\sistemaTCC\config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -370,7 +395,8 @@
       <workItem from="1568328129921" duration="5722000" />
       <workItem from="1568673263821" duration="8682000" />
       <workItem from="1568759850887" duration="8125000" />
-      <workItem from="1568768984722" duration="1706000" />
+      <workItem from="1568768984722" duration="3337000" />
+      <workItem from="1568845065405" duration="9915000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -624,7 +650,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568770366471</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="DB seed, TipoMateriais">
+      <created>1568770840851</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1568770840851</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -663,7 +696,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Inclusão de arquivos, git add, exceto a pasta AdminLTE." />
     <MESSAGE value="Página de listar e editar Questões, QuestõesPolicy." />
     <MESSAGE value="Criada página para acompanhar progresso do curso.&#10;Pensando em prova_questão_resposta." />
     <MESSAGE value="Questões, Respostas, ProvaQuestao" />
@@ -688,6 +720,7 @@
     <MESSAGE value="Mudanças no Head, alteração dos arquivos AdminLTE" />
     <MESSAGE value="DB seed" />
     <MESSAGE value="DB seed, estados, municipios, users" />
-    <option name="LAST_COMMIT_MESSAGE" value="DB seed, estados, municipios, users" />
+    <MESSAGE value="DB seed, TipoMateriais" />
+    <option name="LAST_COMMIT_MESSAGE" value="DB seed, TipoMateriais" />
   </component>
 </project>

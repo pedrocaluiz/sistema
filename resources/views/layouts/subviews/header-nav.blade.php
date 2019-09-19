@@ -220,7 +220,7 @@
                 <li class="dropdown user user-menu" >
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         @if (Auth::user()->foto != null)
-                            <img src="/storage/{{Auth::user()->foto}}" class="user-image" alt="User Image">
+                            <img src="{{Storage::disk('dropbox')->url(Auth::user()->foto)}}" class="user-image" alt="User Image">
                         @else
                             <img src="{{asset('css/avatar-3.jpg')}}" class="user-image" alt="User Image">
                         @endif
@@ -233,7 +233,7 @@
                         <!-- User image -->
                         <li class="user-header">
                             @if (Auth::user()->foto != null)
-                                <img src="/storage/{{Auth::user()->foto}}" class="img-radius mb-4" alt="User Image">
+                                <img src="{{Storage::disk('dropbox')->url(Auth::user()->foto)}}" class="img-radius mb-4" alt="User Image">
                             @else
                                 <img src="{{asset('css/avatar-3.jpg')}}" class="img-radius mb-4" alt="User Image">
                             @endif

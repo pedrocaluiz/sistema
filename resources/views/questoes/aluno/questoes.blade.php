@@ -76,7 +76,7 @@
                 <div class="row">
                   <h3>{{$questao->questao}}</h3>
                     @if ($questao->imagem != null)
-                        <img src="/storage/{{$questao->imagem}}" alt="imagem da questão {{$questao->id}}" class="img-responsive" >
+                        <img src="{{Storage::disk('dropbox')->url($questao->imagem)}}" alt="imagem da questão {{$questao->id}}" class="img-responsive" >
                     @endif
                   <p>Escolha uma alternativa</p>
                 </div>

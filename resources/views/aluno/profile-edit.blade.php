@@ -308,7 +308,6 @@
                 var cidade = $('#cidade').val();
                 var selectMunicipio = $('#municipio_id')
                 selectMunicipio.val(cidade);
-                selectMunicipio.select2().trigger('change');
 
             })
         }

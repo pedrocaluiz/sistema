@@ -93,7 +93,8 @@ class MateriaisController extends Controller
                 if ($request->urlMaterial[$i] != null) {
                     $material->urlArquivo = $request->urlMaterial[$i];
                 } else if ($request->storage[$i] == 1) {
-                    $pathMat = $files[$arrayFiles]->store('material', 'public');
+                    //$pathMat = $files[$arrayFiles]->store('material', 'public');
+                    $pathMat = Storage::disk('dropbox')->put('material', $files[$arrayFiles]);
                     $material->urlArquivo = $pathMat;
                     $arrayFiles++;
                 }
@@ -163,7 +164,8 @@ class MateriaisController extends Controller
         if ($request->urlMaterial != null) {
             $material->urlArquivo = $request->urlMaterial;
         } else if ($request->storage == 1 and $request->pathMaterial != null) {
-            $pathMat = $request->pathMaterial->store('material', 'public');
+            $pathMat = Storage::disk('dropbox')->put('material', $request->pathMaterial);
+                //$request->pathMaterial->store('material', 'public');
             $material->urlArquivo = $pathMat;
         }
 
@@ -199,7 +201,7 @@ class MateriaisController extends Controller
             }
 
             $arquivo = $material->urlArquivo;
-            Storage::disk('public')->delete($arquivo);
+            Storage::disk('dropbox')->delete($arquivo);
             $material->delete();
             $request->session()->flash('excluida',
                 "Material $descricao excluído com sucesso.");

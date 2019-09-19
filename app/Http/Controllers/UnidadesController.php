@@ -330,8 +330,9 @@ class UnidadesController extends Controller
     {
         $material = UnidadeMaterial::find($id);
         if (isset($material)){
-            $path = Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($material->urlArquivo);
-            return response()->download($path);
+            return Storage::download($material->urlArquivo);
+            //$path = Storage::disk('dropbox')->getDriver()->getAdapter()->applyPathPrefix($material->urlArquivo);
+            //return response()->download($path);
         }
         return redirect()->back();
     }

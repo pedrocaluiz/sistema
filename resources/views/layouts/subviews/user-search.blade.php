@@ -3,7 +3,7 @@
     @auth
     <div class="pull-left image">
         @if (Auth::user()->foto != null)
-            <img src="/storage/{{Auth::user()->foto}}" class="img-circle" alt="User Image">
+            <img src="{{Storage::disk('dropbox')->url(Auth::user()->foto)}}" class="img-circle" alt="User Image">
         @else
             <img src="{{asset('css/avatar-3.jpg')}}" class="img-circle" alt="User Image">
         @endif

@@ -67,7 +67,9 @@
         <section class="hero-section">
             <div class="container-fluid text-center">
                 @if ($user->foto != null)
-                    <img src="/storage/{{$user->foto}}" alt="user-img" class="img-rounded">
+                    <img src="{{Storage::disk('dropbox')->url($user->foto)}}" alt="user-img" class="img-rounded">
+                @else
+                    <img src="{{asset('css/avatar-3.jpg')}}" class="img-rounded" alt="user-img">
                 @endif
                 <div class="hero-text">
                     <h2>{{$user->primeiroNome}} {{$user->ultimoNome}}</h2>

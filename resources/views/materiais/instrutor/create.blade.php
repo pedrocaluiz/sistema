@@ -83,7 +83,7 @@
                     </div>
                     <div class="row">
                       <div class="form-group col-md-2">
-                        <label for="storage1">@lang('messages.source')</label>
+                        <label for="storage">@lang('messages.source')</label>
                         <select class="form-control" id="1" name="storage[]" onchange="local(this)">
                           <option value="1">Local</option>
                           <option value="0">Web</option>

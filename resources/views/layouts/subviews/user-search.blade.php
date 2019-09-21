@@ -9,7 +9,7 @@
         @endif
     </div>
     <div class="pull-left info">
-        <a href="/usuarios/meu-perfil/{{Auth::user()->id}}" style="font-size: 20px">
+        <a href="/usuarios/meu-perfil/{{Auth::user()->id}}" style="font-size: 17px; max-width: 100%">
             {{ Auth::user()->primeiroNome }}
             {{  Auth::user()->ultimoNome }}
         </a>

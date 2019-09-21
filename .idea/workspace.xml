@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/seeds/CursosSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/UnidadesSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/CategoriasSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CategoriasSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/user-search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/user-search.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -383,7 +379,7 @@
       <workItem from="1568759850887" duration="8125000" />
       <workItem from="1568768984722" duration="3337000" />
       <workItem from="1568845065405" duration="14271000" />
-      <workItem from="1569085967345" duration="1070000" />
+      <workItem from="1569085967345" duration="1588000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -672,7 +668,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568858481960</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="DB:seed Cursos, Unidades">
+      <created>1569087253230</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1569087253230</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,7 +714,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Lista de Provas, Revisão de Provas." />
     <MESSAGE value="Meus Cursos, Todos os Cursos, Sidebar Aluno e Instrutor." />
     <MESSAGE value="Mostrar materiais, download, relatório de usuários." />
     <MESSAGE value="Certificado pdf Gerado." />
@@ -736,6 +738,7 @@
     <MESSAGE value="Storage DROPBOX" />
     <MESSAGE value="DB:Seed, foto = null" />
     <MESSAGE value="DB:Seed, perfilUsurario, senha usuarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="DB:Seed, perfilUsurario, senha usuarios" />
+    <MESSAGE value="DB:seed Cursos, Unidades" />
+    <option name="LAST_COMMIT_MESSAGE" value="DB:seed Cursos, Unidades" />
   </component>
 </project>

@@ -16,15 +16,15 @@
 
     @media(max-width: 997px){
 
-        table#example1 td:nth-child(3), td:nth-child(4) {
+        table#example1 td:nth-child(3) {
             display: none;
         }
 
-        thead th:nth-child(3), th:nth-child(4) {
+        thead th:nth-child(3) {
             display: none;
         }
 
-        tfoot th:nth-child(3), th:nth-child(4) {
+        tfoot th:nth-child(3) {
             display: none;
         }
 
@@ -36,15 +36,15 @@
     /*parte mobile*/
     @media(max-width: 1335px){
 
-        table#example1 td:nth-child(3), td:nth-child(5) {
+        table#example1 td:nth-child(1), td:nth-child(4) {
             display: none;
         }
 
-        thead th:nth-child(3), th:nth-child(5) {
+        thead th:nth-child(1), th:nth-child(4) {
             display: none;
         }
 
-        tfoot th:nth-child(3), th:nth-child(5) {
+        tfoot th:nth-child(1), th:nth-child(4) {
             display: none;
         }
     }

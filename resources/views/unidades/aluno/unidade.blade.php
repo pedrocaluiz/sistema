@@ -90,7 +90,7 @@
           </div>
           <div class="box-body">
             <div class="row">
-              <div class="col-md-12 d-flex" style="display: flex; justify-content: flex-end">
+              <div class="col-md-12 d-flex" style="display: flex; justify-content: flex-end; margin-left: 5px; margin-right: 5px;">
                 <p>Instrutor do Curso: <strong>{{ $user->primeiroNome }} {{ $user->ultimoNome }}</strong></p>
 
               </div>
@@ -104,7 +104,7 @@
             @isset($materiais)
 
                 @foreach($materiais as $mat)
-                  <div class="row" style="display: flex; justify-content: center; margin-top: 40px">
+                  <div class="row" style="display: flex; justify-content: center; margin: 20px 10px">
                     <p id="descricao">Descrição: <strong>{{ $mat->descricao }}</strong></p>
 
                   </div>

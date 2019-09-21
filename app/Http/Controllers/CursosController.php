@@ -171,7 +171,20 @@ class CursosController extends Controller
         $auth = Auth::user();
         $data = Carbon::now()->toDateTimeString();
 
-        if (isset($curso) and ($curso->ativo == 1)){
+        if ($auth->id == $curso->usuarioAtualizacao or count($auth->perfil->where('administrador', 1)) > 1){
+            $matricula = UsuarioCursoUnidadeMaterialProva::where([
+                ['curso_id', $request->curso_id],
+                ['user_id', $auth->id],
+            ])->get();
+            if (!isset($matricula[0])) {
+                $user_curso = new UsuarioCursoUnidadeMaterialProva();
+                $user_curso->user_id = $auth->id;
+                $user_curso->curso_id = $request->curso_id;
+                $user_curso->save();
+            }//se não existir registro para esse UserMaterial e ele for ADM ou o Instrutor do Curso, cria um registro
+        }
+
+        if (isset($curso) and ($curso->ativo == 1) or ($auth->id == $curso->usuarioAtualizacao)){
             $user = User::find($curso->usuarioAtualizacao);
             $cat = Categoria::find($curso->categoria_id);
             $user_curso = UsuarioCursoUnidadeMaterialProva::where([
@@ -212,7 +225,7 @@ class CursosController extends Controller
             return view('cursos.aluno.curso',
                 compact('curso', 'user', 'cat', 'user_curso', 'unidades', 'adicionada', 'alterada'));
         }else{
-            return view('home');
+            return redirect()->route('todos-cursos');
         }
     }
 
@@ -225,9 +238,6 @@ class CursosController extends Controller
      */
     public function edit($id)
     {
-
-
-
 
         $cats = Categoria::all();
         $curso = Curso::find($id);
@@ -385,10 +395,11 @@ class CursosController extends Controller
 
     public function todosCursos()
     {
-        $cursos = Curso::all();
+        //$cursos = Curso::where('ativo', 1)->get();
+        //dd($cursos);
         $categorias = Categoria::all();
         return view('cursos.aluno.todos-cursos',
-            compact('cursos', 'categorias'));
+            compact( 'categorias'));
     }
 
     public function andamento()

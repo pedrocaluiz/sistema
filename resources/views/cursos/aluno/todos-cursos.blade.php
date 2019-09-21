@@ -54,6 +54,7 @@
 
 
 @foreach($categorias as $categoria)
+    @if (count($categoria->cursos->where('ativo', 1)) > 0)
   <div class="box box-primary">
     <div class="box-header with-border">
       <div class="col-md-6">
@@ -69,7 +70,7 @@
     </div>
     <div class="box-body">
       <div class="row" id="row">
-        @forelse($categoria->cursos as $curso)
+        @foreach($categoria->cursos->where('ativo', 1) as $curso)
           <div class="col-lg-6 col-xs-12" >
             <!-- small box -->
             <div class="small-box teste" >
@@ -84,7 +85,7 @@
               <a href="/cursos/{{$curso->id}}" class="small-box-footer">Mais detalhes <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        @empty
+        {{--@empty
           <div class="col-lg-12 col-xs-12" >
             <!-- small box -->
             <div class="small-box bg-white" >
@@ -98,109 +99,15 @@
               </div>
               <div class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></div>
             </div>
-          </div>
-        @endforelse
+          </div>--}}
+        @endforeach
       </div>
     </div>
   </div>
+    @endif
 @endforeach
 
 
-@endsection
-
-@section('teste')
-  <div class="row align-items-end">
-    @forelse($cursos as $curso)
-      <div class="col-md-4">
-        <div class="box box-widget widget-user-2">
-          <!-- Add the bg color to the header using any of the bg-* classes -->
-          <div class="widget-user-header bg-yellow">
-            <div class="widget-user-image">
-              <img class="img-circle" src="{{asset('AdminLTE/dist/img/user7-128x128.jpg')}}" alt="User Avatar">
-            </div>
-            <!-- /.widget-user-image -->
-            <h3 class="widget-user-username">{{$curso->titulo}}</h3>
-            <h5 class="widget-user-desc">{{$curso->descricao}}</h5>
-          </div>
-          <div class="box-footer no-padding">
-            <ul class="nav nav-stacked" style="width: 100%">
-              @foreach($curso->unidades as $unidade)
-                <li><a href="#">{{$unidade->id}} <span class="pull-right badge bg-blue">31</span></a></li>
-                <li><a href="#">{{$unidade->titulo}} <span class="pull-right badge bg-aqua">5</span></a></li>
-              @endforeach
-            </ul>
-          </div>
-        </div>
-      </div>
-    @empty
-    @endforelse
-  </div>
-  <div class="row">
-    <div class="col-lg-4 col-xs-8">
-      <!-- small box -->
-      <div id="teste" class="small-box">
-        <div class="inner">
-          <h3>150</h3>
-
-          <p>New Orders</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-bag"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-
-    <!-- ./col -->
-    <div class="col-lg-4 col-xs-8">
-      <!-- small box -->
-      <div class="small-box bg-green">
-        <div class="inner">
-          <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-          <p>Bounce Rate</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-stats-bars"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-4 col-xs-8">
-      <!-- small box -->
-      <div class="small-box bg-yellow bg-aqua bg-green bg-navy bg-blue bg-light bg-olive bg-orange bg-red">
-
-
-
-        <div class="inner">
-          <h3>44</h3>
-
-          <p>User Registrations</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-person-add"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-4 col-xs-8">
-      <!-- small box -->
-      <div class="small-box bg-red">
-        <div class="inner">
-          <h3>65</h3>
-
-          <p>Unique Visitors</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-pie-graph"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-  </div>
 @endsection
 
 

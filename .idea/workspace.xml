@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/seeds/QuestoesSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/RespostasSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/EstadosSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/EstadosSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UnidadesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UnidadesSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/todos-cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/todos-cursos.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,19 +202,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sistemaTCC\public\css\adminLTE" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
-      <recent name="C:\xampp\htdocs\sistemaTCC" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\config" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
       <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
       <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sistemaTCC\public\css\adminLTE" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
+      <recent name="C:\xampp\htdocs\sistemaTCC" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -381,7 +385,7 @@
       <workItem from="1568759850887" duration="8125000" />
       <workItem from="1568768984722" duration="3337000" />
       <workItem from="1568845065405" duration="14271000" />
-      <workItem from="1569085967345" duration="2100000" />
+      <workItem from="1569085967345" duration="5143000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -684,7 +688,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569087697384</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="DB:seed Cursos, Unidades">
+      <created>1569088092889</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1569088092889</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

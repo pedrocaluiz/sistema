@@ -129,7 +129,7 @@
   </div>
 
 
-  @if (isset($user_curso[0]))
+  {{--@if (isset($user_curso[0]))--}}
   <div class="row align-items-end">
     <div class="col-md-12">
       @if (isset($unidades, $user_curso[0] ))
@@ -280,10 +280,10 @@
             </div>
           @endforeach
         </div>
-      @endif
+        @endif
     </div>
   </div>
-  @endif
+  {{--@endif--}}
 @endsection
 
 

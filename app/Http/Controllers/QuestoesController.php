@@ -161,7 +161,7 @@ class QuestoesController extends Controller
 
         //entra aqui se não houver nenhuma prova concluída e nenhuma em andamento
         if (!isset($prova_concluida[0]) && (!isset($prova_iniciada[0])) ){
-            $prova = $this->criarProva($unidade, $auth, 1);
+            $prova = $this->criarProva($unidade, $auth, 0);
             $quest_resp = ProvaQuestao::where('prova_id', $prova->id)->get();
             $questoes = Questao::where('unidade_id', $prova->unidade_id)->get();
             $respostas = Resposta::all();
@@ -328,7 +328,7 @@ class QuestoesController extends Controller
         $questoes_random = Questao::with('respostas')
             ->where('unidade_id', $unidade->id)
             ->inRandomOrder()
-            ->limit(3)
+            ->limit(5)
             ->get();
 
         foreach ($questoes_random as $questao) {

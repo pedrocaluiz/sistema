@@ -73,7 +73,7 @@ class MateriaisController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('update', UnidadeMaterial::class);
+        $this->authorize('create', UnidadeMaterial::class);
         $unidade = Unidade::find($request->unidade_id);
 
         DB::beginTransaction();

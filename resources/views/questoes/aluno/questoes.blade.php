@@ -35,13 +35,27 @@
         padding-left: 30px;
       }
       .alternativa{
-          margin-left: 10px;
           font-weight: 500;
-          margin-bottom: 10px;
+          margin-left: 40px;
+          margin-bottom: 20px;
+          max-width: 90%;
       }
-      .row p{
-          margin: 20px;
+      .d-flex {
+          display: flex;
       }
+    @media(max-width: 640px) {
+        .alternativa{
+            max-width: 80%;
+            margin-left: 10px;
+        }
+        .questao {
+            display: flex;
+            flex-direction: column;
+        }
+        .col-md-3 {
+            margin-right: 0;
+        }
+    }
 
   </style>
   @endpush
@@ -85,45 +99,45 @@
                 @endphp
                 @foreach ($resp_q as $resp)
                     @if ($resp->id == $qr->resposta_id_1)
-                    <div class="row">
+                    <div class="row d-flex">
                       <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$resp->id}}" onclick="respondida(this)" required>
-                      <label class="alternativa" for="{{$resp->id}}">a. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$resp->id}}">a. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                     @endif
                 @endforeach
 
                 @foreach ($resp_q as $resp)
                   @if ($resp->id == $qr->resposta_id_2)
-                    <div class="row">
+                    <div class="row d-flex">
                       <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$resp->id}}" onclick="respondida(this)" required>
-                      <label class="alternativa" for="{{$resp->id}}">b. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$resp->id}}">b. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
 
                 @foreach ($resp_q as $resp)
                   @if ($resp->id == $qr->resposta_id_3)
-                    <div class="row">
+                    <div class="row d-flex">
                       <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$resp->id}}" onclick="respondida(this)" required>
-                      <label class="alternativa" for="{{$resp->id}}">c. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$resp->id}}">c. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
 
                 @foreach ($resp_q as $resp)
                   @if ($resp->id == $qr->resposta_id_4)
-                    <div class="row">
+                    <div class="row d-flex">
                       <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$resp->id}}" onclick="respondida(this)" required>
-                      <label class="alternativa" for="{{$resp->id}}">d. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$resp->id}}">d. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
 
                 @foreach ($resp_q as $resp)
                   @if ($resp->id == $qr->resposta_id_5)
-                    <div class="row">
+                    <div class="row d-flex">
                       <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$resp->id}}" onclick="respondida(this)" required>
-                      <label class="alternativa" for="{{$resp->id}}">e. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$resp->id}}">e. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach

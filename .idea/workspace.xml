@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/seeds/QuestoesSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/RespostasSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/MateriaisSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MateriaisController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MateriaisController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_25_152406_create_unidade_materials_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_25_152406_create_unidade_materials_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/todos-cursos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/todos-cursos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/revisao.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/revisao.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -385,7 +387,7 @@
       <workItem from="1568759850887" duration="8125000" />
       <workItem from="1568768984722" duration="3337000" />
       <workItem from="1568845065405" duration="14271000" />
-      <workItem from="1569085967345" duration="5143000" />
+      <workItem from="1569085967345" duration="10772000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -695,7 +697,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569088092889</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="DB:seed Questoes, Respostas">
+      <created>1569093087015</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1569093087015</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,7 +743,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Meus Cursos, Todos os Cursos, Sidebar Aluno e Instrutor." />
     <MESSAGE value="Mostrar materiais, download, relatório de usuários." />
     <MESSAGE value="Certificado pdf Gerado." />
     <MESSAGE value="Concluir Unidade, Curso, Nota Curso, views de relatórios.&#10;Certificado com 70% aval. e 100% de vídeos.&#10;View avaliação de qualidade do curso." />
@@ -759,6 +767,7 @@
     <MESSAGE value="DB:Seed, foto = null" />
     <MESSAGE value="DB:Seed, perfilUsurario, senha usuarios" />
     <MESSAGE value="DB:seed Cursos, Unidades" />
-    <option name="LAST_COMMIT_MESSAGE" value="DB:seed Cursos, Unidades" />
+    <MESSAGE value="DB:seed Questoes, Respostas" />
+    <option name="LAST_COMMIT_MESSAGE" value="DB:seed Questoes, Respostas" />
   </component>
 </project>

@@ -179,7 +179,7 @@ class CursosController extends Controller
             if (!isset($matricula[0])) {
                 $user_curso = new UsuarioCursoUnidadeMaterialProva();
                 $user_curso->user_id = $auth->id;
-                $user_curso->curso_id = $request->curso_id;
+                $user_curso->curso_id = $curso->id;
                 $user_curso->save();
             }//se não existir registro para esse UserMaterial e ele for ADM ou o Instrutor do Curso, cria um registro
         }

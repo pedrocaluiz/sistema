@@ -42,9 +42,10 @@
         padding-left: 30px;
     }
     .alternativa{
-        margin-left: 10px;
         font-weight: 500;
-        margin-bottom: 10px;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        max-width: 90%;
     }
     .row p{
         margin: 20px;
@@ -56,17 +57,39 @@
       }
       .alert{
           padding: 0;
-          margin: 0;
+          margin-bottom: 0;
+          margin-left: 10px;
           width: 86px;
           display: flex;
           justify-content: center;
           align-items: center;
           margin-top: 20px;
+          max-height: 100px;
       }
      .alert .icon {
          font-size: 40px;
          margin: 0;
      }
+      .h3-questao {
+          max-width: 80%;
+      }
+     .d-flex {
+         display: flex;
+     }
+     @media(max-width: 640px) {
+        .alternativa{
+            max-width: 80%;
+            margin-left: 10px;
+        }
+         .questao {
+             display: flex;
+             flex-direction: column;
+         }
+         .col-md-3 {
+             margin-right: 0;
+         }
+     }
+
   </style>
   @endpush
 
@@ -98,7 +121,7 @@
               </div>
               <div class="col-md-9">
                 <div class=" row-questao">
-                    <div>
+                    <div class="h3-questao">
                         <h3>{{$questao->questao}}</h3>
                         <p>Escolha uma alternativa</p>
                     </div>
@@ -121,66 +144,66 @@
 
                 @foreach ($resp_q as $resp)
                     @if ($resp->id == $qr->resposta_id_1)
-                    <div class="row">
+                    <div class="row d-flex">
                       @php @endphp
                       @if ( $qr->alternativaMarcada == $resp->id )
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled checked>
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label class="alternativa" for="{{$questao->id}}">a. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">a. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                     @endif
                 @endforeach
 
                 @foreach ($resp_q as $resp)
                   @if ($resp->id == $qr->resposta_id_2)
-                    <div class="row">
+                    <div class="row d-flex">
                       @if ( $qr->alternativaMarcada == $resp->id )
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled checked>
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label class="alternativa" for="{{$questao->id}}">b. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">b. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
 
                 @foreach ($resp_q as $resp)
                   @if ($resp->id == $qr->resposta_id_3)
-                    <div class="row">
+                    <div class="row d-flex">
                       @if ( $qr->alternativaMarcada == $resp->id )
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled checked>
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label class="alternativa" for="{{$questao->id}}">c. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">c. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
 
                 @foreach ($resp_q as $resp)
                   @if ($resp->id == $qr->resposta_id_4)
-                    <div class="row">
+                    <div class="row d-flex">
                       @if ( $qr->alternativaMarcada == $resp->id )
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled checked>
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label class="alternativa" for="{{$questao->id}}">d. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">d. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach
 
                 @foreach ($resp_q as $resp)
                   @if ($resp->id == $qr->resposta_id_5)
-                    <div class="row">
+                    <div class="row d-flex">
                       @if ( $qr->alternativaMarcada == $resp->id )
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled checked>
                       @else
                         <input type="radio" class="icheckbox_flat-blue" value="{{$resp->id}}" name="{{$questao->id}}" id="{{$questao->id}}" onclick="respondida(this)" disabled>
                       @endif
-                      <label class="alternativa" for="{{$questao->id}}">e. {{$resp->id}} -- {{$resp->resposta}}</label>
+                      <label class="alternativa" for="{{$questao->id}}">e. &nbsp;&nbsp;&nbsp;&nbsp;{{$resp->resposta}}</label>
                     </div>
                   @endif
                 @endforeach

@@ -20,7 +20,7 @@ class CreateUnidadeMaterialsTable extends Migration
             $table->bigInteger('material_id')->unsigned();
             $table->foreign('material_id')->references('id')->on('tipo_materiais');
             $table->string('descricao');
-            $table->string('urlArquivo');
+            $table->string('urlArquivo')->nullable()->default(null);
             $table->boolean('storage')->default('0');
             $table->integer('ordem')->default(1);
             $table->integer('usuarioAtualizacao');

@@ -7,9 +7,7 @@
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -382,7 +380,8 @@
       <workItem from="1568759850887" duration="8125000" />
       <workItem from="1568768984722" duration="3337000" />
       <workItem from="1568845065405" duration="14271000" />
-      <workItem from="1569085967345" duration="13282000" />
+      <workItem from="1569085967345" duration="13956000" />
+      <workItem from="1569171057162" duration="2191000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -713,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569103481861</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Correções responsivo Mobile.">
+      <created>1569105194740</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1569105194740</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -752,7 +758,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Certificado pdf Gerado." />
     <MESSAGE value="Concluir Unidade, Curso, Nota Curso, views de relatórios.&#10;Certificado com 70% aval. e 100% de vídeos.&#10;View avaliação de qualidade do curso." />
     <MESSAGE value="Tornar Instrutor, Publicar Cursos, sidebar." />
     <MESSAGE value="Modal delete usuários, relatório em pdf." />
@@ -777,6 +782,7 @@
     <MESSAGE value="DB:seed Cursos, Unidades" />
     <MESSAGE value="DB:seed Questoes, Respostas" />
     <MESSAGE value="DB:seed Materiais" />
-    <option name="LAST_COMMIT_MESSAGE" value="DB:seed Materiais" />
+    <MESSAGE value="Correções responsivo Mobile." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correções responsivo Mobile." />
   </component>
 </project>

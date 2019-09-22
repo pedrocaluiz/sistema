@@ -363,7 +363,6 @@ class QuestoesController extends Controller
     {
         $auth = Auth::user();
         $data = Carbon::now()->toDateTimeString();
-
         $quest_resp = ProvaQuestao::where('prova_id', $request->prova_id)->get();
 
         DB::beginTransaction();
@@ -379,8 +378,6 @@ class QuestoesController extends Controller
             $resp->save();
         }
 
-        //soma $quest_resp->sum('notaQuestao');
-        //contador $quest_resp->count();
         $notaAval = $quest_resp->avg('notaQuestao');
 
         $prova = Prova::find($request->prova_id);
@@ -417,7 +414,7 @@ class QuestoesController extends Controller
             $notaAval_unid[$i] = $where->first();
 
             if (isset($notaAval_unid[$i])){
-                if ((count($questoes_unid) <= 0 ) or ( $notaAval_unid[$i]->notaAval > 7) ){
+                if ((count($questoes_unid[$i]) <= 0 ) or ( $notaAval_unid[$i]->notaAval > 7) ){
                     $aprovado[$i] = 1;
                 }else{
                     $aprovado[$i] = 0;
@@ -425,10 +422,9 @@ class QuestoesController extends Controller
             }else{
                 $aprovado[$i] = 0;
             }
-
-
-
         }
+
+        //dd($notaAval_unid, $aprovado, $questoes_unid);
 
         if (count($aprovado) > 0){
             $aprovado_curso = intval(array_sum($aprovado) / count($aprovado));

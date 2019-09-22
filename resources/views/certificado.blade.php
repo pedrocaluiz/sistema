@@ -32,13 +32,13 @@
       <span style="font-size:45px"><b>{{$auth->primeiroNome}} {{$auth->ultimoNome}}</b></span><br/><br/>
       <span style="font-size:15px"><i>Concluiu o curso online</i></span> <br/><br/>
       <span style="font-size:30px">{{$curso->titulo}}</span> <br/><br/><br/><br/>
-      @if ($curso->usuario->where('id', $auth->id)[0]->pivot->notaAval > 0)
-        <span style="font-size:15px">Nota de Aprovação <b>{{$curso->usuario->where('id', $auth->id)[0]->pivot->notaAval}}</b></span> <br/><br/>
+      @if ($curso->usuario->where('id', $auth->id)->first()->pivot->notaAval > 0)
+        <span style="font-size:15px">Nota de Aprovação <b>{{$curso->usuario->where('id', $auth->id)->first()->pivot->notaAval}}</b></span> <br/><br/>
       @else
         <span style="font-size:15px">Curso sem avaliação </span> <br/><br/>
       @endif
-      <span style="font-size:15px"><i>Com início em </i></span><strong>{{date('d-m-Y', strtotime($curso->usuario->where('id', $auth->id)[0]->pivot->created_at))}}</strong>
-      <span style="font-size:15px"><i>e conluído em </i></span><strong>{{date('d-m-Y', strtotime($curso->usuario->where('id', $auth->id)[0]->pivot->dataConclusao))}}</strong><br/><br/><br/><br/>
+      <span style="font-size:15px"><i>Com início em </i></span><strong>{{date('d-m-Y', strtotime($curso->usuario->where('id', $auth->id)->first()->pivot->created_at))}}</strong>
+      <span style="font-size:15px"><i>e conluído em </i></span><strong>{{date('d-m-Y', strtotime($curso->usuario->where('id', $auth->id)->first()->pivot->dataConclusao))}}</strong><br/><br/><br/><br/>
       <table style="margin-top:40px;float:left">
         <tr>
           <td ><span><i>{{$instrutor->primeiroNome}} {{$instrutor->ultimoNome}}</i></span></td>

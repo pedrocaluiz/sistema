@@ -30,6 +30,9 @@
     .flex-justify-center>label {
       margin-right: 10px;
     }
+    .flex-justify-center>span{
+        margin-top: 20px;
+    }
     .btn-primary {
       margin: 5px;
     }
@@ -178,7 +181,7 @@
             <!--link-->
               @if (($mat->material_id == 4) && ($mat->storage == 1))
                 <div class="row" style="display: flex; justify-content: center; margin-top: 20px">
-                    <img src="{{Storage::disk('dropbox')->url($mat->urlArquivo)}}" style="margin-bottom: 20px; max-width: 100%; height: auto;" onload="concluir();" >
+                    <img src="{{Storage::disk('dropbox')->url($mat->urlArquivo)}}" style="margin-bottom: 20px; max-width: 90%; height: auto;" onload="concluir();" >
                 </div>
               @endif
             <!--imagem local-->

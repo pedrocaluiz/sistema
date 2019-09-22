@@ -7,7 +7,8 @@
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/certificado-pdf.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/semuso/certificado-pdf.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -197,19 +198,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
-      <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sistemaTCC\public\css\adminLTE" />
       <recent name="C:\xampp\htdocs\sistemaTCC\public\css" />
       <recent name="C:\xampp\htdocs\sistemaTCC" />
       <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
       <recent name="C:\xampp\htdocs\sistemaTCC\config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\semuso" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\auth" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\public\css\profile" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\resources\views\administrador" />
+      <recent name="C:\xampp\htdocs\sistemaTCC\app\Model" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -381,7 +382,7 @@
       <workItem from="1568768984722" duration="3337000" />
       <workItem from="1568845065405" duration="14271000" />
       <workItem from="1569085967345" duration="13956000" />
-      <workItem from="1569171057162" duration="2191000" />
+      <workItem from="1569171057162" duration="2994000" />
     </task>
     <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
       <created>1562625935732</created>
@@ -719,7 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569105194740</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Correção Certifica do PDF.">
+      <created>1569173430104</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1569173430104</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -758,7 +766,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Concluir Unidade, Curso, Nota Curso, views de relatórios.&#10;Certificado com 70% aval. e 100% de vídeos.&#10;View avaliação de qualidade do curso." />
     <MESSAGE value="Tornar Instrutor, Publicar Cursos, sidebar." />
     <MESSAGE value="Modal delete usuários, relatório em pdf." />
     <MESSAGE value="Modal delete todas classes, destroy controllers." />
@@ -783,6 +790,7 @@
     <MESSAGE value="DB:seed Questoes, Respostas" />
     <MESSAGE value="DB:seed Materiais" />
     <MESSAGE value="Correções responsivo Mobile." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correções responsivo Mobile." />
+    <MESSAGE value="Correção Certifica do PDF." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção Certifica do PDF." />
   </component>
 </project>

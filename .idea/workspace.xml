@@ -7,8 +7,16 @@
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/certificado-pdf.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/semuso/certificado-pdf.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/CursosSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CursosSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UsersSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/scripts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/instrutor/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/unidades/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/instrutor/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/unidades/instrutor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/instrutor/edit.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -382,14 +390,8 @@
       <workItem from="1568768984722" duration="3337000" />
       <workItem from="1568845065405" duration="14271000" />
       <workItem from="1569085967345" duration="13956000" />
-      <workItem from="1569171057162" duration="2994000" />
-    </task>
-    <task id="LOCAL-00001" summary="Novas páginas de create/edit/lista, cursos, unidades, materiais, questões.">
-      <created>1562625935732</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1562625935732</updated>
+      <workItem from="1569171057162" duration="5107000" />
+      <workItem from="1569192979867" duration="2689000" />
     </task>
     <task id="LOCAL-00002" summary="Criação de políticas de acesso aos Cursos.">
       <created>1562816374014</created>
@@ -727,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569173430104</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Correção IMG, span, tela Unidade Aluno">
+      <created>1569174106645</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1569174106645</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +775,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Tornar Instrutor, Publicar Cursos, sidebar." />
     <MESSAGE value="Modal delete usuários, relatório em pdf." />
     <MESSAGE value="Modal delete todas classes, destroy controllers." />
     <MESSAGE value="View meu-perfil e correção da navegação." />
@@ -791,6 +799,7 @@
     <MESSAGE value="DB:seed Materiais" />
     <MESSAGE value="Correções responsivo Mobile." />
     <MESSAGE value="Correção Certifica do PDF." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correção Certifica do PDF." />
+    <MESSAGE value="Correção IMG, span, tela Unidade Aluno" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção IMG, span, tela Unidade Aluno" />
   </component>
 </project>

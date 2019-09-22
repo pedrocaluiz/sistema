@@ -14,7 +14,7 @@ class UsersSeeder extends Seeder
         DB::table('users')->insert([
             'primeiroNome' => 'Pedro',
             'ultimoNome' => 'Administrador',
-            'email' => 'adminsitrador@adm.com',
+            'email' => 'administrador@adm.com',
             'email_verified_at' => null,
             'password' => '$2y$10$Dvx9U4dBPD.0wJ5Jug1CEuhG4KFWlua2xVaLEV4.SMh5F6kLdi3O2',
             'foto' => null,

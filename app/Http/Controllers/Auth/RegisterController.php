@@ -91,6 +91,16 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
+
+        $dataAdmissao = $data['dataAdmissao'];
+        $dataP = explode('/', $dataAdmissao);
+        $dataAdmNoFormatoParaOBranco = $dataP[2].'-'.$dataP[1].'-'.$dataP[0];
+
+        $dataNascimento = $data['dataNascimento'];
+        $dataP2 = explode('/', $dataNascimento);
+        $dataNascNoFormatoParaOBranco = $dataP2[2].'-'.$dataP2[1].'-'.$dataP2[0];
+
+
         $usuario = new User();
         $usuario->primeiroNome = $data['primeiroNome'];
         $usuario->ultimoNome = $data['ultimoNome'];
@@ -103,9 +113,9 @@ class RegisterController extends Controller
         $usuario->cargo_id = $data['cargo_id'];
         $usuario->funcao_id = $data['funcao_id'];
         $usuario->agencia_id = $data['agencia_id'];
-        $usuario->dataNascimento = $data['dataNascimento'];
+        $usuario->dataNascimento = $dataNascNoFormatoParaOBranco;
         $usuario->matricula = $data['matricula'];
-        $usuario->dataAdmissao = $data['dataAdmissao'];
+        $usuario->dataAdmissao = $dataAdmNoFormatoParaOBranco;
         $usuario->endereco = $data['endereco'];
         $usuario->numero = $data['numero'];
         $usuario->complemento = $data['complemento'];

@@ -48,7 +48,7 @@
         });
 
         $(".money").mask("999990.00", {reverse: true});
-        $("#matricula").mask("c000000-0", {translation: {'c': {pattern: /[a-z]/}}});
+        $("#matricula").mask("c000000-0", {translation: {'c': {pattern: /[a-zA-Z]/}}});
         $("#telefone").mask("(00)0000-0000");
         $("#celular").mask("(00)00000-0000");
         $(".d-4").mask("0000");

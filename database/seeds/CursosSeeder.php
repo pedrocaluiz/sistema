@@ -18,7 +18,7 @@ class CursosSeeder extends Seeder
             'icone' => 'glyphicon glyphicon-signal',
             'palavrasChave' => 'Rede de Computadores; Infraestrutura de Redes de Computadores; Servidor web Linux/Apache; Segurança de Servidores Web;',
             'ativo' => 1,
-            'usuarioAtualizacao' => 1,
+            'usuarioAtualizacao' => 2,
         ]);
         DB::table('cursos')->insert([
             'categoria_id' => 5,
@@ -27,7 +27,7 @@ class CursosSeeder extends Seeder
             'icone' => 'fa fa-internet-explorer',
             'palavrasChave' => 'Aplicações Web; Introdução; Otimização de Sites para Buscas;',
             'ativo' => 1,
-            'usuarioAtualizacao' => 1,
+            'usuarioAtualizacao' => 2,
         ]);
         DB::table('cursos')->insert([
             'categoria_id' => 5,
@@ -36,7 +36,7 @@ class CursosSeeder extends Seeder
             'icone' => 'fa fa-internet-explorer',
             'palavrasChave' => 'Aplicações Web; Análise e métricas;',
             'ativo' => 1,
-            'usuarioAtualizacao' => 1,
+            'usuarioAtualizacao' => 2,
         ]);
         DB::table('cursos')->insert([
             'categoria_id' => 5,
@@ -45,7 +45,7 @@ class CursosSeeder extends Seeder
             'icone' => 'fa fa-internet-explorer',
             'palavrasChave' => 'Aplicações Web; Conceitos de Gerência de Configuração; Processo de Gerência de Configuração; Gerência de Configuração no MPS.Br; Ferramentas de Gerência de Configuração; Atividade Prática;',
             'ativo' => 1,
-            'usuarioAtualizacao' => 1,
+            'usuarioAtualizacao' => 2,
         ]);
         DB::table('cursos')->insert([
             'categoria_id' => 5,
@@ -54,7 +54,7 @@ class CursosSeeder extends Seeder
             'icone' => 'fa fa-internet-explorer',
             'palavrasChave' => 'Aplicações Web; Introdução aos Testes de Software; Níveis e Tipos de Testes de Software; Processo de Testes de Software; Casos de Testes de Software; Atividade Prática;',
             'ativo' => 1,
-            'usuarioAtualizacao' => 1,
+            'usuarioAtualizacao' => 2,
         ]);
         DB::table('cursos')->insert([
             'categoria_id' => 4,
@@ -63,7 +63,7 @@ class CursosSeeder extends Seeder
             'icone' => 'fa fa-windows',
             'palavrasChave' => 'Tecnologia da Informação; Arquitetura da Web; JavaScript; Bibliotecas;',
             'ativo' => 1,
-            'usuarioAtualizacao' => 1,
+            'usuarioAtualizacao' => 2,
         ]);
         DB::table('cursos')->insert([
             'categoria_id' => 4,
@@ -72,7 +72,7 @@ class CursosSeeder extends Seeder
             'icone' => 'fa fa-windows',
             'palavrasChave' => 'Tecnologia da Informação; Introdução ao PHP; Construção de aplicações Web com PHP; Frameworks back-end;',
             'ativo' => 1,
-            'usuarioAtualizacao' => 1,
+            'usuarioAtualizacao' => 2,
         ]);
         DB::table('cursos')->insert([
             'categoria_id' => 4,
@@ -81,7 +81,7 @@ class CursosSeeder extends Seeder
             'icone' => 'fa fa-windows',
             'palavrasChave' => 'Tecnologia da Informação; APIs de dados da HTML5;',
             'ativo' => 1,
-            'usuarioAtualizacao' => 1,
+            'usuarioAtualizacao' => 2,
         ]);
     }
 }

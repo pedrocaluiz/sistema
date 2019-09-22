@@ -53,15 +53,24 @@
                   <label for="curso_id">@lang('messages.course')</label>
                   <select class="form-control " id="curso_id" name="curso_id" onchange="carregarUnidades(this)">
                       <option value="" disabled selected>SELECIONE</option>
-                    @if(count($cursos) > 0)
-                      @foreach ($cursos as $curso)
-                        @if ($curso->id == $unidade->curso_id)
-                          <option value="{{$curso->id}}" selected>{{$curso->titulo}}</option>
-                        @else
-                          <option value="{{$curso->id}}">{{$curso->titulo}}</option>
-                        @endif
-                      @endforeach
-                    @endif
+                      @php $perfil = Auth::user()->perfil->where('administrador', 1);@endphp
+                      @if (count($cursos) > 0 and count($perfil) > 0)
+                          @foreach ($cursos as $curso)
+                              @if ($curso->id == $unidade->curso_id)
+                                  <option value="{{$curso->id}}" selected>{{$curso->titulo}}</option>
+                              @else
+                                  <option value="{{$curso->id}}">{{$curso->titulo}}</option>
+                              @endif
+                          @endforeach
+                      @elseif (count($cursos) > 0)
+                          @foreach ($cursos->where('usuarioAtualizacao', Auth::user()->id) as $curso)
+                              @if ($curso->id == $unidade->curso_id)
+                                  <option value="{{$curso->id}}" selected>{{$curso->titulo}}</option>
+                              @else
+                                  <option value="{{$curso->id}}">{{$curso->titulo}}</option>
+                              @endif
+                          @endforeach
+                      @endif
                   </select>
                 </div>
               </div>

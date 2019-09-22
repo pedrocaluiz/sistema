@@ -36,15 +36,24 @@
                   <label for="unidade_id">@lang('messages.unity')</label>
                   <select class="form-control " id="unidade_id" name="unidade_id" required>
                       <option value="" disabled selected>SELECIONE</option>
-                    @if(count($unidades) > 0)
-                      @foreach ($unidades as $unidade)
-                        @if ($unidade->id == $questao->unidade_id)
-                          <option value="{{$unidade->id}}" selected>{{$unidade->titulo}}</option>
-                        @else
-                          <option value="{{$unidade->id}}">{{$unidade->titulo}}</option>
-                        @endif
-                      @endforeach
-                    @endif
+                      @php $perfil = Auth::user()->perfil->where('administrador', 1);@endphp
+                      @if(count($unidades) > 0 and count($perfil) > 0)
+                          @foreach ($unidades as $unidade)
+                              @if ($unidade->id == $questao->unidade_id)
+                                  <option value="{{$unidade->id}}" selected>{{$unidade->titulo}}</option>
+                              @else
+                                  <option value="{{$unidade->id}}">{{$unidade->titulo}}</option>
+                              @endif
+                          @endforeach
+                      @elseif(count($unidades) > 0)
+                          @foreach ($unidades->where('usuarioAtualizacao', Auth::user()->id) as $unidade)
+                              @if ($unidade->id == $questao->unidade_id)
+                                  <option value="{{$unidade->id}}" selected>{{$unidade->titulo}}</option>
+                              @else
+                                  <option value="{{$unidade->id}}">{{$unidade->titulo}}</option>
+                              @endif
+                          @endforeach
+                      @endif
                   </select>
                 </div>
               </div>

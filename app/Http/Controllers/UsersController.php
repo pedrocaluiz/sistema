@@ -400,7 +400,6 @@ class UsersController extends Controller
             }
         }
 
-        dd($progresso, $progressoCurso);
 
         return $progressoCurso;
     }

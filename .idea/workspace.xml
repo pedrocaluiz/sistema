@@ -7,11 +7,6 @@
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UnidadesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UnidadesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/TipoMatSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/TipoMatSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/rating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/rating.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -387,14 +382,7 @@
       <workItem from="1569085967345" duration="13956000" />
       <workItem from="1569171057162" duration="5107000" />
       <workItem from="1569192979867" duration="3385000" />
-      <workItem from="1569886713453" duration="4959000" />
-    </task>
-    <task id="LOCAL-00003" summary="Inclusão de arquivos, git add, exceto a pasta AdminLTE.">
-      <created>1562817288742</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1562817288742</updated>
+      <workItem from="1569886713453" duration="5586000" />
     </task>
     <task id="LOCAL-00004" summary="Página de listar e editar Questões, QuestõesPolicy.">
       <created>1562897905876</created>
@@ -732,7 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569195782986</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Correção progresso Curso.">
+      <created>1569892964146</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1569892964147</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -772,7 +767,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Modal delete todas classes, destroy controllers." />
     <MESSAGE value="View meu-perfil e correção da navegação." />
     <MESSAGE value="Correção Lista Provas." />
     <MESSAGE value="Correções prova, lista prova, foto, selecionar, link material, etc." />
@@ -797,6 +791,7 @@
     <MESSAGE value="Correção Certifica do PDF." />
     <MESSAGE value="Correção IMG, span, tela Unidade Aluno" />
     <MESSAGE value="Correções, Criar e Editar, Unidade, Material, Questões.&#10;Correção dataAdmissao e dataNascimento do Registrar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correções, Criar e Editar, Unidade, Material, Questões.&#10;Correção dataAdmissao e dataNascimento do Registrar." />
+    <MESSAGE value="Correção progresso Curso." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção progresso Curso." />
   </component>
 </project>

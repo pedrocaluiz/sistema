@@ -108,6 +108,7 @@ class UnidadesController extends Controller
         //se não estiver, redirecionar para a página do curso correspondente.
         $auth = Auth::user();
         $unidade = Unidade::find($id);
+        $curso = Curso::find($unidade->curso_id);
         $tipoMat = TipoMaterial::all();
         $data = Carbon::now()->toDateTimeString();
         $user_curso = UsuarioCursoUnidadeMaterialProva::where([
@@ -222,7 +223,7 @@ class UnidadesController extends Controller
             }
 
             return view('unidades.aluno.unidade',
-                compact('unidade', 'user', 'auth', 'materiais', 'tipoMat', 'questoes'));
+                compact('unidade', 'user', 'auth', 'materiais', 'tipoMat', 'questoes', 'curso'));
         }else {
             return view('home');
         }

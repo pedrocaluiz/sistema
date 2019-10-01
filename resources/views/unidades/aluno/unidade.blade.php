@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-  @lang('messages.unity')
+  <a href="/cursos/{{$curso->id}}"> {{$curso->titulo}}</a>
 @endsection
 
 @push('css')

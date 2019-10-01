@@ -17,7 +17,7 @@
           @csrf
           <div class="box-header">
             <h3 class="box-title">
-              Avalie o <a href="/cursos/{{$curso->id}}">{{$curso->titulo}}</a>
+              Avalie o Curso <a href="/cursos/{{$curso->id}}">{{$curso->titulo}}</a>
             </h3>
           </div>
           <div class="box-body">

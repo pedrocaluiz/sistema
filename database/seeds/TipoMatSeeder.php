@@ -32,8 +32,5 @@ class TipoMatSeeder extends Seeder
         DB::table('tipo_materiais')->insert([
             'descricao' => 'ppt',
             'icone' => 'fa fa-file-powerpoint-o']);
-        DB::table('tipo_materiais')->insert([
-            'descricao' => 'audio',
-            'icone' => 'fa fa-file-audio-o']);
     }
 }

@@ -363,13 +363,16 @@ class UsersController extends Controller
                                 ['dataConclusao', '<>', NULL],])
                             ->get();
                     }
+
+
+
                     if ((count($todosMateriais) > 0) && (isset($concluidos))) {
                         $soma = floor(count($concluidos) / count($todosMateriais) * 100);
                         $progresso[$unidade->id] = $soma;
                     } elseif ((count($todosMateriais) > 0) && (empty($concluidos))) {
                         $soma = 0;
                         $progresso[$unidade->id] = $soma;
-                    } elseif (empty($unidade->usuario->where('id', $user_id)[0])) {
+                    } elseif (empty($unidade->usuario->where('id', $user_id)->first())) {
                         $soma = 0;
                         $progresso[$unidade->id] = $soma;
                     } else {
@@ -377,7 +380,7 @@ class UsersController extends Controller
                         $progresso[$unidade->id] = $soma;
                     }
 
-                    if (!empty($unidade->usuario->where('id', $user_id)[0])) {
+                    if (!empty($unidade->usuario->where('id', $user_id)->first())) {
                         $nota = $unidade->usuario->where('id', $user_id)->first()->pivot->notaAval;
                         if ($nota > 7) {
                             $notaUnidade[$unidade->id] = 1;
@@ -396,6 +399,9 @@ class UsersController extends Controller
                 $progressoCurso[$curso->id] = 0.00;
             }
         }
+
+        dd($progresso, $progressoCurso);
+
         return $progressoCurso;
     }
 

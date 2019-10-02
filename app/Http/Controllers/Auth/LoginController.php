@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/meus-cursos';
+    protected $redirectTo = '/todos-cursos';
 
 
 

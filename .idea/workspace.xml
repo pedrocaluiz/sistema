@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/QuestoesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/QuestoesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/RespostasSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/RespostasSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/munic" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -390,13 +384,7 @@
       <workItem from="1569192979867" duration="3385000" />
       <workItem from="1569886713453" duration="5819000" />
       <workItem from="1569973962878" duration="2898000" />
-    </task>
-    <task id="LOCAL-00005" summary="Criada página para acompanhar progresso do curso.&#10;Pensando em prova_questão_resposta.">
-      <created>1563329596792</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1563329596792</updated>
+      <workItem from="1570023088006" duration="268000" />
     </task>
     <task id="LOCAL-00006" summary="Questões, Respostas, ProvaQuestao">
       <created>1563418934238</created>
@@ -734,7 +722,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569894040045</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Questões e respostas Seeder">
+      <created>1570023158127</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1570023158127</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +769,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="View meu-perfil e correção da navegação." />
     <MESSAGE value="Correção Lista Provas." />
     <MESSAGE value="Correções prova, lista prova, foto, selecionar, link material, etc." />
     <MESSAGE value="Policies, curso e unidade para administrador, lista de comentários Curso, editar perfil usuário." />
@@ -799,6 +793,7 @@
     <MESSAGE value="Correção IMG, span, tela Unidade Aluno" />
     <MESSAGE value="Correções, Criar e Editar, Unidade, Material, Questões.&#10;Correção dataAdmissao e dataNascimento do Registrar." />
     <MESSAGE value="Correção progresso Curso." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correção progresso Curso." />
+    <MESSAGE value="Questões e respostas Seeder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Questões e respostas Seeder" />
   </component>
 </project>

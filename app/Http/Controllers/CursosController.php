@@ -171,59 +171,63 @@ class CursosController extends Controller
         $auth = Auth::user();
         $data = Carbon::now()->toDateTimeString();
 
-        if ($auth->id == $curso->usuarioAtualizacao or count($auth->perfil->where('administrador', 1)) > 1){
-            $matricula = UsuarioCursoUnidadeMaterialProva::where([
-                ['curso_id', $request->curso_id],
-                ['user_id', $auth->id],
-            ])->get();
-            if (!isset($matricula[0])) {
-                $user_curso = new UsuarioCursoUnidadeMaterialProva();
-                $user_curso->user_id = $auth->id;
-                $user_curso->curso_id = $curso->id;
-                $user_curso->save();
-            }//se não existir registro para esse UserMaterial e ele for ADM ou o Instrutor do Curso, cria um registro
-        }
 
-        if (isset($curso) and ($curso->ativo == 1) or ($auth->id == $curso->usuarioAtualizacao)){
-            $user = User::find($curso->usuarioAtualizacao);
-            $cat = Categoria::find($curso->categoria_id);
-            $user_curso = UsuarioCursoUnidadeMaterialProva::where([
-                ['curso_id', $curso->id],
-                ['user_id', $auth->id],
-            ])->get();
-
-            $unidades = $curso->unidades->sortBy('ordem');
-
-            //verificando se há unidades e se estão concluidas
-            if (count($unidades) > 0) {
-                for ($i = 0; $i < count($unidades); $i++) {
-                    $array[$i] = $unidades[$i]->id;
-                }
-                $concluidas = UsuarioCursoUnidadeMaterialProva::
-                    whereIn('unidade_id', $array)
-                    ->where([
-                        ['user_id', $auth->id],
-                        ['dataConclusao', '<>', NULL],])
-                    ->get();
+        if (isset($curso)){
+            if ($auth->id == $curso->usuarioAtualizacao or count($auth->perfil->where('administrador', 1)) > 1){
+                $matricula = UsuarioCursoUnidadeMaterialProva::where([
+                    ['curso_id', $request->curso_id],
+                    ['user_id', $auth->id],
+                ])->get();
+                if (!isset($matricula[0])) {
+                    $user_curso = new UsuarioCursoUnidadeMaterialProva();
+                    $user_curso->user_id = $auth->id;
+                    $user_curso->curso_id = $curso->id;
+                    $user_curso->save();
+                }//se não existir registro para esse UserMaterial e ele for ADM ou o Instrutor do Curso, cria um registro
             }
+            if (($curso->ativo == 1) or ($auth->id == $curso->usuarioAtualizacao)){
+                $user = User::find($curso->usuarioAtualizacao);
+                $cat = Categoria::find($curso->categoria_id);
+                $user_curso = UsuarioCursoUnidadeMaterialProva::where([
+                    ['curso_id', $curso->id],
+                    ['user_id', $auth->id],
+                ])->get();
 
-            if (!empty($user_curso[0])){
-                if (count($unidades) <= 0){
-                    $user_curso[0]->dataConclusao = $data;
-                }elseif (count($concluidas) > 0){
-                    $status = intval(count($concluidas) / count($unidades));
-                    if ($status >= 1){
-                        $user_curso[0]->dataConclusao = $data;
+                $unidades = $curso->unidades->sortBy('ordem');
+
+                //verificando se há unidades e se estão concluidas
+                if (count($unidades) > 0) {
+                    for ($i = 0; $i < count($unidades); $i++) {
+                        $array[$i] = $unidades[$i]->id;
                     }
+                    $concluidas = UsuarioCursoUnidadeMaterialProva::
+                    whereIn('unidade_id', $array)
+                        ->where([
+                            ['user_id', $auth->id],
+                            ['dataConclusao', '<>', NULL],])
+                        ->get();
                 }
-                $user_curso[0]->save();
+
+                if (!empty($user_curso[0])){
+                    if (count($unidades) <= 0){
+                        $user_curso[0]->dataConclusao = $data;
+                    }elseif (count($concluidas) > 0){
+                        $status = intval(count($concluidas) / count($unidades));
+                        if ($status >= 1){
+                            $user_curso[0]->dataConclusao = $data;
+                        }
+                    }
+                    $user_curso[0]->save();
+                }
+
+                $adicionada = $request->session()->get('adicionada');
+                $alterada = $request->session()->get('alterada');
+
+                return view('cursos.aluno.curso',
+                    compact('curso', 'user', 'cat', 'user_curso', 'unidades', 'adicionada', 'alterada'));
+            }else{
+                return redirect()->route('todos-cursos');
             }
-
-            $adicionada = $request->session()->get('adicionada');
-            $alterada = $request->session()->get('alterada');
-
-            return view('cursos.aluno.curso',
-                compact('curso', 'user', 'cat', 'user_curso', 'unidades', 'adicionada', 'alterada'));
         }else{
             return redirect()->route('todos-cursos');
         }

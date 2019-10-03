@@ -82,7 +82,7 @@
 @endpush
 
 @section('content')
-    @php $perfis = Auth::user()->perfil; @endphp
+    @php $adm = Auth::user()->perfil->where('administrador', 1)->first(); @endphp
   <div class="row align-items-end">
     <div class="col-md-12">
     @if (isset($unidade, $user))
@@ -195,10 +195,7 @@
 
                   <div class="row flex-justify-center">
                     <div class="col-md-3 flex-justify-center">
-
-
-                    @foreach ($perfis as $perfil)
-                        @if ($perfil->administrador != 1 and Auth::user()->id != $unidade->usuarioAtualizacao)
+                        @if (empty($adm) and Auth::user()->id != $unidade->usuarioAtualizacao)
                             @forelse ($mat->usuario->where('id', Auth::user()->id) as $user)
                               @if (empty($user->pivot->dataConclusao))
                                 <!--Existe registro na tabela UCUMP, mas não existe dataConclusao-->
@@ -212,12 +209,9 @@
                               <!--Não existe registro na tabela UCUMP-->
                                 <span class="badge bg-red">Não iniciado</span>
                             @endforelse
-                        @break
                         @endif
-                    @endforeach
                     </div>
                   </div>
-
                 @endforeach
             @endisset
           </form>
@@ -227,9 +221,8 @@
               </div>
             </div>
           </div>
-            @foreach ($perfis as $perfil)
-                @if ($perfil->administrador != 1 and Auth::user()->id != $unidade->usuarioAtualizacao)
-                  @if (!empty($questoes[0]))
+            @if (empty($adm) and Auth::user()->id != $unidade->usuarioAtualizacao)
+                  @if (!empty($questoes->first()))
                     <div class="box-footer">
                       <div class="col-md-6" style="display: flex; justify-content: center">
                         <a type="button" href="/provas/{{$unidade->id}}/lista" id="atividade">
@@ -244,10 +237,7 @@
                       </div>
                     </div>
                   @endif
-                  @break
                 @endif
-            @endforeach
-
         </div>
 
 

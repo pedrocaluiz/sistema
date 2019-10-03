@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/partials/curso-info.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -386,21 +391,7 @@
       <workItem from="1569192979867" duration="3385000" />
       <workItem from="1569886713453" duration="5819000" />
       <workItem from="1569973962878" duration="2898000" />
-      <workItem from="1570023088006" duration="789000" />
-    </task>
-    <task id="LOCAL-00007" summary="Lista de Provas, Revisão de Provas.">
-      <created>1563849695901</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1563849695901</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Meus Cursos, Todos os Cursos, Sidebar Aluno e Instrutor.">
-      <created>1563935783880</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1563935783881</updated>
+      <workItem from="1570023088006" duration="7912000" />
     </task>
     <task id="LOCAL-00009" summary="Mostrar materiais, download, relatório de usuários.">
       <created>1564021131134</created>
@@ -731,7 +722,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570023363540</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Redirect todos-cursos">
+      <created>1570023895626</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1570023895626</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Materiais Seeder">
+      <created>1570024988464</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1570024988464</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -771,8 +776,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Correção Lista Provas." />
-    <MESSAGE value="Correções prova, lista prova, foto, selecionar, link material, etc." />
     <MESSAGE value="Policies, curso e unidade para administrador, lista de comentários Curso, editar perfil usuário." />
     <MESSAGE value="Login, reset password, verify email." />
     <MESSAGE value="Correções tela de cursos, lista de cursos." />
@@ -796,6 +799,8 @@
     <MESSAGE value="Correções, Criar e Editar, Unidade, Material, Questões.&#10;Correção dataAdmissao e dataNascimento do Registrar." />
     <MESSAGE value="Correção progresso Curso." />
     <MESSAGE value="Questões e respostas Seeder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Questões e respostas Seeder" />
+    <MESSAGE value="Redirect todos-cursos" />
+    <MESSAGE value="Materiais Seeder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Materiais Seeder" />
   </component>
 </project>

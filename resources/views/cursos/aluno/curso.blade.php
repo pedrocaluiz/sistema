@@ -118,21 +118,21 @@
 @endpush
 
 @section('content')
-    @php $perfis = Auth::user()->perfil; @endphp
+    @php $adm = Auth::user()->perfil->where('administrador', 1)->first();@endphp
   <div class="row align-items-end">
     <div class="col-md-12">
-    @if (isset($curso, $cat, $user, $user_curso))
+    @if (isset($curso, $cat, $user))
       <!--Partials .. Curso INFO.. -->
         @includeIf('layouts.subviews.partials.curso-info')
       @endif
     </div>
   </div>
 
-
+@if (!empty($user_curso->first()) or isset($adm) or Auth::user()->id == $curso->usuarioAtualizacao)
   {{--@if (isset($user_curso[0]))--}}
   <div class="row align-items-end">
     <div class="col-md-12">
-      @if (isset($unidades, $user_curso[0] ))
+      @if (isset($unidades))
         <div class="row">
 
           @foreach ($unidades as $unidade)
@@ -140,56 +140,34 @@
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title">{{$curso->titulo}}</h3>
-
                 </div>
                 <!-- /.box-header -->
 
-                  @foreach ($perfis as $perfil)
-                      @if ($perfil->administrador == 1 or Auth::user()->id == $curso->usuarioAtualizacao)
-                          <div class="box-body">
-                              <table class="table table-bordered table-striped">
-                                  <tbody>
-                                  <tr>
-                                      <th class="ordem">{{$unidade->id}}</th>
-                                      <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
-                                  </tr>
-                          @break
-                      @else
-                          <div class="box-body">
-                              <table id="table-materiais" class="table table-bordered table-striped">
-                                  <tbody>
-                                  <tr>
-                                      <th class="ordem">{{$unidade->id}}</th>
-                                      <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
-                                      @forelse ($unidade->usuario->where('id', Auth::user()->id) as $user)
-                                          @if (empty($user->pivot->dataConclusao))
-                                              @if (count($unidade->materiais) > 0)
-                                                  <th class="progresso">
-                                                      <div class="progress progress-xs progress-striped active" >
-                                                          <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
-                                                      </div>
-                                                  </th>
-                                                  <th class="percent">
-                                                      <span class="badge bg-yellow">Em andamento</span>
-                                                  </th>
-                                              @else
-                                                  <th class="progresso">
-                                                      <div class="progress progress-xs progress-striped active" >
-                                                          <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
-                                                      </div>
-                                                  </th>
-                                                  <th class="percent">
-                                                      <span class="badge bg-light-blue">Falta Avaliação*</span>
-                                                  </th>
-                                              @endif
-                                          @elseif (($unidade->provas->max('notaAval') > 7) or (empty($unidade->questoes[0])))
+                  @if (isset($adm) or Auth::user()->id == $curso->usuarioAtualizacao)
+                      <div class="box-body">
+                          <table class="table table-bordered table-striped">
+                              <tbody>
+                              <tr>
+                                  <th class="ordem">{{$unidade->id}}</th>
+                                  <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
+                              </tr>
+                  @elseif (!empty($user_curso->first()))
+                      <div class="box-body">
+                          <table id="table-materiais" class="table table-bordered table-striped">
+                              <tbody>
+                              <tr>
+                                  <th class="ordem">{{$unidade->id}}</th>
+                                  <th><a href="/unidades/{{$unidade->id}}">{{$unidade->titulo}}</a></th>
+                                  @forelse ($unidade->usuario->where('id', Auth::user()->id) as $user)
+                                      @if (empty($user->pivot->dataConclusao))
+                                          @if (count($unidade->materiais) > 0)
                                               <th class="progresso">
                                                   <div class="progress progress-xs progress-striped active" >
-                                                      <div class="progress-bar progress-bar-green" style="width: 100%"></div>
+                                                      <div class="progress-bar progress-bar-yellow" style="width: 66%"></div>
                                                   </div>
                                               </th>
                                               <th class="percent">
-                                                  <span class="badge bg-green">Concluído</span>
+                                                  <span class="badge bg-yellow">Em andamento</span>
                                               </th>
                                           @else
                                               <th class="progresso">
@@ -201,33 +179,46 @@
                                                   <span class="badge bg-light-blue">Falta Avaliação*</span>
                                               </th>
                                           @endif
-                                      @empty
+                                      @elseif (($unidade->provas->max('notaAval') > 7) or (empty($unidade->questoes->first())))
                                           <th class="progresso">
                                               <div class="progress progress-xs progress-striped active" >
-                                                  <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
+                                                  <div class="progress-bar progress-bar-green" style="width: 100%"></div>
                                               </div>
                                           </th>
                                           <th class="percent">
-                                              <span class="badge bg-red">Não iniciado</span>
+                                              <span class="badge bg-green">Concluído</span>
                                           </th>
-                                      @endforelse
-                                  </tr>
-                                  @break
-                      @endif
-                  @endforeach
-
-
-                      @php $perfis = Auth::user()->perfil; @endphp
-                      @foreach ($perfis as $perfil)
-                          @if ($perfil->administrador == 1 or Auth::user()->id == $curso->usuarioAtualizacao)
+                                      @else
+                                          <th class="progresso">
+                                              <div class="progress progress-xs progress-striped active" >
+                                                  <div class="progress-bar progress-bar-light-blue" style="width: 100%"></div>
+                                              </div>
+                                          </th>
+                                          <th class="percent">
+                                              <span class="badge bg-light-blue">Falta Avaliação*</span>
+                                          </th>
+                                      @endif
+                                  @empty
+                                      <th class="progresso">
+                                          <div class="progress progress-xs progress-striped active" >
+                                              <div class="progress-bar progress-bar-danger" style="width: 33%"></div>
+                                          </div>
+                                      </th>
+                                      <th class="percent">
+                                          <span class="badge bg-red">Não iniciado</span>
+                                      </th>
+                                  @endforelse
+                              </tr>
+                  @endif
+                      @php $adm = Auth::user()->perfil->where('administrador', 1)->first();@endphp
+                          @if (isset($adm) or Auth::user()->id == $curso->usuarioAtualizacao)
                               @foreach($unidade->materiais->sortBy('ordem') as $material)
                                   <tr>
                                       <td class="ordem">{{$material->ordem}}</td>
                                       <td><a href="/unidades/{{$unidade->id}}?page={{$loop->iteration}}">{{$material->descricao}}</a></td>
                                   </tr>
                               @endforeach
-                          @break
-                          @else
+                          @elseif (!empty($user_curso->first()))
                               @foreach($unidade->materiais->sortBy('ordem') as $material)
                                   <tr>
                                       <td class="ordem">{{$material->ordem}}</td>
@@ -266,12 +257,9 @@
                                               <span class="badge bg-red">Não iniciado</span>
                                           </td>
                                       @endforelse
-
                                   </tr>
                               @endforeach
-                              @break
                           @endif
-                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -283,7 +271,7 @@
         @endif
     </div>
   </div>
-  {{--@endif--}}
+  @endif
 @endsection
 
 
@@ -300,7 +288,7 @@
           event.preventDefault();
       });
 
-      function inscrever() {
+      /*function inscrever() {
           dados = {
               curso_id: $("#curso_id").val()
           };
@@ -333,7 +321,7 @@
                    </div>`
               );
           });
-      }
+      }*/
 
   </script>
 @endpush

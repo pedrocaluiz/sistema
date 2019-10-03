@@ -46,16 +46,13 @@
         </div>
         <div class="box-footer">
             <div class="col-md-2" id="inscrito">
-
-                @php $perfis = Auth::user()->perfil; @endphp
-                @foreach ($perfis as $perfil)
-                    @if ($perfil->administrador == 1 or Auth::user()->id == $curso->usuarioAtualizacao)
+                @php $adm = Auth::user()->perfil->where('administrador', 1)->first(); @endphp
+                    @if (isset($adm) or Auth::user()->id == $curso->usuarioAtualizacao)
                         <p class="d-center">
                             <a href="/cursos/{{$curso->id}}/ratings" class="btn btn=sm btn-info botao" type="submit">
                                 Avaliações do Curso
                             </a>
                         </p>
-                        @break
                     @else
                         @if (isset($user_curso[0]))
                             <p class="d-center"><strong>Você já está inscrito</strong></p>
@@ -69,20 +66,12 @@
                                     Avalie o Curso
                                 </a>
                             </p>
-                            @break
                         @else
-                            <button type="button" class="btn btn-primary botao" id="btnInscrever" onclick="inscrever()">
+                            <a type="button" href="/inscrever/curso/{{$curso->id}}" class="btn btn-primary botao" id="btnInscrever">
                                 <i class="fa fa-plus"></i> &nbsp;&nbsp;Inscrever-se
-                            </button>
-                            @break
+                            </a>
                         @endif
                     @endif
-                @endforeach
-
-
-
-
-
             </div>
         </div>
     </div>

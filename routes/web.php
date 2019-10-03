@@ -140,7 +140,7 @@ Route::prefix('provas')->name('provas')->middleware('auth')->group(function () {
 
 Route::post('/inscrever/material', 'MateriaisController@inscrever')->middleware('auth');
 Route::post('/concluir/material', 'MateriaisController@concluir')->middleware('auth');
-Route::post('/inscrever/curso', 'CursosController@inscrever')->middleware('auth');
+Route::get('/inscrever/curso/{id}', 'CursosController@inscrever')->middleware('auth');
 Route::get('/download-material/{id}', 'UnidadesController@download')->middleware('auth');
 
 

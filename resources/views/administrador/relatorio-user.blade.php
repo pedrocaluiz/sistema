@@ -137,7 +137,7 @@
                             @if ($progressoCurso[$curso->id] == 100)
                                 <td class="progresso">
                                   <div class="progress progress-xs progress-striped active" >
-                                    <div class="progress-bar progress-bar-light-blue" style="width: {{$progressoCurso[$curso->id]}}%"></div>
+                                    <div title="{{$progressoCurso[$curso->id]}}%" class="progress-bar progress-bar-light-blue" style="width: {{$progressoCurso[$curso->id]}}%"></div>
                                   </div>
                                 </td>
                                 <td><span class="badge bg-blue">Falta Avaliação*</span></td>
@@ -145,7 +145,7 @@
                               <td class="progresso">
                                 <div class="progress progress-xs progress-striped active" >
                                   @if ($progressoCurso[$curso->id] > 5)
-                                    <div class="progress-bar progress-bar-yellow" style="width: {{$progressoCurso[$curso->id]}}%"></div>
+                                    <div title="{{$progressoCurso[$curso->id]}}%" class="progress-bar progress-bar-yellow" style="width: {{$progressoCurso[$curso->id]}}%"></div>
                                   @else
                                     <div class="progress-bar progress-bar-yellow" style="width: 5%"></div>
                                   @endif
@@ -157,7 +157,7 @@
                               <!--Existe registro na tabela UCUMP e dataConclusao checked-->
                               <td class="progresso">
                                 <div class="progress progress-xs progress-striped active" >
-                                  <div class="progress-bar progress-bar-green" style="width: {{$progressoCurso[$curso->id]}}%"></div>
+                                  <div title="{{$progressoCurso[$curso->id]}}%" class="progress-bar progress-bar-green" style="width: {{$progressoCurso[$curso->id]}}%"></div>
                                 </div>
                               </td>
                               <td><span class="badge bg-green">Aprovado</span></td>
@@ -165,7 +165,7 @@
                             <!--Existe registro na tabela UCUMP e dataConclusao checked-->
                             <td class="progresso">
                               <div class="progress progress-xs progress-striped active" >
-                                <div class="progress-bar progress-bar-light-blue" style="width: {{$progressoCurso[$curso->id]}}%"></div>
+                                <div title="{{$progressoCurso[$curso->id]}}%" class="progress-bar progress-bar-light-blue" style="width: {{$progressoCurso[$curso->id]}}%"></div>
                               </div>
                             </td>
                             <td><span class="badge bg-blue">Falta Avaliação*</span></td>

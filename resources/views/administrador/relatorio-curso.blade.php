@@ -150,7 +150,7 @@
                                 @else
                                   <td class="progresso">
                                     <div class="progress progress-xs progress-striped active" >
-                                      <div class="progress-bar progress-bar-yellow" style="width: {{$progresso[$unidade->id]}}%"></div>
+                                      <div title="{{$progresso[$unidade->id]}}%" class="progress-bar progress-bar-yellow" style="width: {{$progresso[$unidade->id]}}%"></div>
                                     </div>
                                   </td>
                                   <td><span class="badge bg-yellow">Em Andamento</span></td>
@@ -158,7 +158,7 @@
                             @else
                                 <td class="progresso">
                                   <div class="progress progress-xs progress-striped active" >
-                                    <div class="progress-bar progress-bar-light-blue" style="width: {{$progresso[$unidade->id]}}%"></div>
+                                    <div title="{{$progresso[$unidade->id]}}%" class="progress-bar progress-bar-light-blue" style="width: {{$progresso[$unidade->id]}}%"></div>
                                   </div>
                                 </td>
                                 <td><span class="badge bg-blue">Falta Avaliação*</span></td>
@@ -168,7 +168,7 @@
                             <!--Existe registro na tabela UCUMP e dataConclusao checked-->
                               <td class="progresso">
                                 <div class="progress progress-xs progress-striped active" >
-                                  <div class="progress-bar progress-bar-green" style="width: {{$progresso[$unidade->id]}}%"></div>
+                                  <div title="{{$progresso[$unidade->id]}}%" class="progress-bar progress-bar-green" style="width: {{$progresso[$unidade->id]}}%"></div>
                                 </div>
                               </td>
                               <td><span class="badge bg-green">Concluída</span></td>
@@ -177,7 +177,7 @@
                             <!--Existe registro na tabela UCUMP e dataConclusao checked-->
                               <td class="progresso">
                                 <div class="progress progress-xs progress-striped active" >
-                                  <div class="progress-bar progress-bar-light-blue" style="width: {{$progresso[$unidade->id]}}%"></div>
+                                  <div title="{{$progresso[$unidade->id]}}%" class="progress-bar progress-bar-light-blue" style="width: {{$progresso[$unidade->id]}}%"></div>
                                 </div>
                               </td>
                               <td><span class="badge bg-blue">Falta Avaliação*</span></td>

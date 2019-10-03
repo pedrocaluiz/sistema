@@ -330,24 +330,28 @@ class CursosController extends Controller
         return response('Curso não encontrado', 404);
     }
 
-    public function inscrever(Request $request)
+    public function inscrever($id)
     {
         $auth = Auth::user();
-        $matricula = UsuarioCursoUnidadeMaterialProva::where([
-            ['curso_id', $request->curso_id],
-            ['user_id', $auth->id],
-        ])->get();
+        $curso = Curso::find($id);
 
-        //se não existir registro para esse UserMaterial, cria um registro
-        if (!isset($matricula[0])){
-            $user_curso = new UsuarioCursoUnidadeMaterialProva();
-            $user_curso->user_id = $auth->id;
-            $user_curso->curso_id = $request->curso_id;
-            $user_curso->save();
+        if (isset($curso)){
+            $matricula = UsuarioCursoUnidadeMaterialProva::where([
+                ['curso_id', $curso->id],
+                ['user_id', $auth->id],
+            ])->get();
 
-            return json_encode($user_curso);
+            //se não existir registro para esse UserMaterial, cria um registro
+            if (empty($matricula->first())){
+                $user_curso = new UsuarioCursoUnidadeMaterialProva();
+                $user_curso->user_id = $auth->id;
+                $user_curso->curso_id = $curso->id;
+                $user_curso->save();
+            }
+            return Redirect::to('cursos/' . $curso->id);
+        }else{
+            return redirect()->route('todos-cursos');
         }
-        return json_encode($matricula);
     }
 
     public function meusCursos()

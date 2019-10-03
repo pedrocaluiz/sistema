@@ -107,7 +107,7 @@ class RegisterController extends Controller
         $usuario->email = $data['email'];
         $usuario->password = Hash::make($data['password']);
         if (isset($data['foto'])){
-            $path = $data['foto']->store('imagens', 'public');
+            $path = Storage::disk('dropbox')->put('imagens', $data['foto']);
             $usuario->foto = $path;
         }
         $usuario->cargo_id = $data['cargo_id'];

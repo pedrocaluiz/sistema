@@ -333,22 +333,24 @@ class QuestoesController extends Controller
 
         foreach ($questoes_random as $questao) {
             $correta = Arr::first($questao->respostas->where('id', $questao->respCorreta_id));
-            $incorretas = $questao->respostas()->whereNotIn('id', [$correta->id])->inRandomOrder()->limit(2)->get();
-            $respostas_salvas = [
-                0 => $incorretas[0],
-                1 => $incorretas[1],
-                2 => $correta
-            ];
+            $incorretas = $questao->respostas()->whereNotIn('id', [$correta->id])->inRandomOrder()->limit(3)->get();
+            if (isset($incorretas[0]) and isset($incorretas[1]) and isset($incorretas[2])){
+                    $respostas_salvas = [
+                        0 => $incorretas[0],
+                        1 => $incorretas[1],
+                        2 => $incorretas[2],
+                        3 => $correta
+                    ];
+            }
             shuffle($respostas_salvas);
-
             $prova_questao = new ProvaQuestao();
             $prova_questao->prova_id = $prova->id;
             $prova_questao->questao_id = $questao->id;
             if (isset($respostas_salvas[0])) $prova_questao->resposta_id_1 = $respostas_salvas[0]->id;
             if (isset($respostas_salvas[1])) $prova_questao->resposta_id_2 = $respostas_salvas[1]->id;
             if (isset($respostas_salvas[2])) $prova_questao->resposta_id_3 = $respostas_salvas[2]->id;
-            if (isset($respostas_salvas[3])) $prova_questao->resposta_id_3 = $respostas_salvas[3]->id;
-            if (isset($respostas_salvas[4])) $prova_questao->resposta_id_3 = $respostas_salvas[4]->id;
+            if (isset($respostas_salvas[3])) $prova_questao->resposta_id_4 = $respostas_salvas[3]->id;
+            if (isset($respostas_salvas[4])) $prova_questao->resposta_id_5 = $respostas_salvas[4]->id;
             $prova_questao->save();
         }
         return ($prova);
@@ -499,15 +501,19 @@ class QuestoesController extends Controller
                 }else{
                     $nao_concluidos = 1;
                 }
+            }else{
+                $nao_concluidos = 1;
             }
 
+            //dd($todosMateriais, $concluidos, $status, $nao_concluidos);
+
             return view('questoes.aluno.pre-questoes',
-                compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos'));
+                compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos', 'perguntas'));
 
         }
 
         return view('questoes.aluno.pre-questoes',
-            compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos'));
+            compact('provas', 'unidade', 'curso', 'prova_iniciada', 'nao_concluidos', 'perguntas'));
     }
 
     /**

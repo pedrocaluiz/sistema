@@ -76,10 +76,14 @@
      .d-flex {
          display: flex;
      }
+     @media(max-width: 1200px) {
+         .alternativa{
+             max-width: 75%;
+         }
+     }
      @media(max-width: 640px) {
         .alternativa{
-            max-width: 80%;
-            margin-left: 10px;
+            max-width: 70%;
         }
          .questao {
              display: flex;

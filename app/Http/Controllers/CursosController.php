@@ -461,7 +461,7 @@ class CursosController extends Controller
 
         foreach ($curso->unidades as $unidade){
             $questoes = $unidade->questoes;
-            if (count($questoes) > 0){
+            if (count($questoes) >= 3){
                 $ha_questoes = 1;
                 break;
             }else{

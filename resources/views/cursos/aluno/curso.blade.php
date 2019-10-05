@@ -179,7 +179,7 @@
                                                   <span class="badge bg-light-blue">Falta Avaliação*</span>
                                               </th>
                                           @endif
-                                      @elseif (($unidade->provas->max('notaAval') > 7) or (empty($unidade->questoes->first())))
+                                      @elseif (($unidade->provas->max('notaAval') > 7) or (count($unidade->questoes) <= 3))
                                           <th class="progresso">
                                               <div class="progress progress-xs progress-striped active" >
                                                   <div class="progress-bar progress-bar-green" style="width: 100%"></div>

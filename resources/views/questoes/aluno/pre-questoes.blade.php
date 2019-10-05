@@ -98,7 +98,7 @@
           <div class="col-md-2">
 
 
-            @if ($nao_concluidos == 0)
+            @if ($nao_concluidos == 0 and count($perguntas) >= 3)
                 @if (isset($prova_iniciada[0]))
                 <a type="button" href="/provas/{{$unidade->id}}"  class="btn btn-primary botao" id="cadastro">
                   <i class="fa fa-check-square"></i> &nbsp;&nbsp;Finalizar Tentativa

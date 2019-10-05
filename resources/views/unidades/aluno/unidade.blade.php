@@ -222,7 +222,7 @@
             </div>
           </div>
             @if (empty($adm) and Auth::user()->id != $unidade->usuarioAtualizacao)
-                  @if (!empty($questoes->first()))
+                  @if (count($questoes) >= 3))
                     <div class="box-footer">
                       <div class="col-md-6" style="display: flex; justify-content: center">
                         <a type="button" href="/provas/{{$unidade->id}}/lista" id="atividade">
@@ -233,18 +233,12 @@
                   @else
                     <div class="box-footer">
                       <div class="col-md-6" style="display: flex; justify-content: center">
-                        <p>Não há questões cadastradas para essa Unidade</p>
+                        <p>Não há avaliação para essa Unidade</p>
                       </div>
                     </div>
                   @endif
                 @endif
         </div>
-
-
-
-
-
-
       @endif
     </div>
   </div>

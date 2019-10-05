@@ -7,6 +7,15 @@
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CursosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestoesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-curso.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/relatorio-user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cursos/aluno/curso.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/pre-questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/pre-questoes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/questoes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questoes/aluno/revisao.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questoes/aluno/revisao.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/unidades/aluno/unidade.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -384,14 +393,8 @@
       <workItem from="1569192979867" duration="3385000" />
       <workItem from="1569886713453" duration="5819000" />
       <workItem from="1569973962878" duration="2898000" />
-      <workItem from="1570023088006" duration="8867000" />
-    </task>
-    <task id="LOCAL-00010" summary="Certificado pdf Gerado.">
-      <created>1564453213088</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1564453213089</updated>
+      <workItem from="1570023088006" duration="9372000" />
+      <workItem from="1570285263627" duration="4015000" />
     </task>
     <task id="LOCAL-00011" summary="Concluir Unidade, Curso, Nota Curso, views de relatórios.&#10;Certificado com 70% aval. e 100% de vídeos.&#10;View avaliação de qualidade do curso.">
       <created>1564540523514</created>
@@ -729,7 +732,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570066476124</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Correção Storage-&gt;Dropbox Imagem de Perfil.">
+      <created>1570067612231</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1570067612231</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,7 +779,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Login, reset password, verify email." />
     <MESSAGE value="Correções tela de cursos, lista de cursos." />
     <MESSAGE value="Correções" />
     <MESSAGE value="Placeholders" />
@@ -794,6 +803,7 @@
     <MESSAGE value="Redirect todos-cursos" />
     <MESSAGE value="Materiais Seeder" />
     <MESSAGE value="Correções Curso, Curso-info, Unidade, recarregar inscrever-se" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correções Curso, Curso-info, Unidade, recarregar inscrever-se" />
+    <MESSAGE value="Correção Storage-&gt;Dropbox Imagem de Perfil." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção Storage-&gt;Dropbox Imagem de Perfil." />
   </component>
 </project>

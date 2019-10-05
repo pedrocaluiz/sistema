@@ -111,7 +111,7 @@
                       }
                         foreach ($curso->unidades as $unidade){
                             $questoes = $unidade->questoes;
-                            if (count($questoes) > 0){
+                            if (count($questoes) >= 3){
                                 $ha_questoes = 1;
                                 break;
                             }else{
@@ -123,7 +123,7 @@
                         <td>{{$curso->id}}</td>
                         <td>{{$curso->titulo}}</td>
                         <td>
-                          @if ($ha_questoes == 0)
+                          @if ($ha_questoes < 3)
                             Sem avaliação
                           @elseif (empty($notaCurso)) 0.00
                           @else {{$notaCurso}}

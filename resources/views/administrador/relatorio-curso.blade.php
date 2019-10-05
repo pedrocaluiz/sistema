@@ -163,7 +163,7 @@
                                 </td>
                                 <td><span class="badge bg-blue">Falta Avaliação*</span></td>
                             @endif
-                          @elseif (($unidade->provas->max('notaAval') > 7) or (empty($unidade->questoes[0])))
+                          @elseif (($unidade->provas->max('notaAval') > 7) or (count($unidade->questoes) <= 3))
 
                             <!--Existe registro na tabela UCUMP e dataConclusao checked-->
                               <td class="progresso">

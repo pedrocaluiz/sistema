@@ -104,65 +104,102 @@
                     </thead>
                     <tbody>
                     @foreach ($users as $user)
-                      <tr>
-                        <td>{{$user->id}}</td>
-                        <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->matricula}}</td>
-                        @if (isset($funcoes))
-                          @foreach ($funcoes as $funcao)
-                              @if ($user->funcao_id == null)
-                                <td style="text-decoration: line-through;">Sem Função</td>
-                                @break
-                              @elseif ($funcao->id == $user->funcao_id)
-                                <td>{{$funcao->descricao}}</td>
-                             @endif
-                          @endforeach
-                        @endif
-                        <td id="data-acoes">
-                          <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoTxt">Relatório</a>
-                          <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoIcon"><i class="fa fa-list-ul"></i></a>
+                        @php $adm = $user->perfil->where('administrador', 1)->first();@endphp
+
+                          <tr>
+                            <td>{{$user->id}}</td>
+                            <td>{{$user->primeiroNome}} {{$user->ultimoNome}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->matricula}}</td>
+                            @if (isset($funcoes))
+                              @foreach ($funcoes as $funcao)
+                                  @if ($user->funcao_id == null)
+                                    <td style="text-decoration: line-through;">Sem Função</td>
+                                    @break
+                                  @elseif ($funcao->id == $user->funcao_id)
+                                    <td>{{$funcao->descricao}}</td>
+                                 @endif
+                              @endforeach
+                            @endif
+                        @if (!isset($adm))
+                            <td id="data-acoes">
+                              <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoTxt">Relatório</a>
+                              <a href="/usuarios/relatorio/{{$user->id}}" class="btn btn=sm btn-info acaoIcon"><i class="fa fa-list-ul"></i></a>
 
                                 @php $perfil = $user->perfil->where('descricao', 'Instrutor')->first(); @endphp
-                            @if (empty($perfil))
-                                <a class="btn btn=sm btn-success acaoTxt "href="/usuarios/instrutor/{{$user->id}}" style="min-width: 124px"
-                                   onclick="event.preventDefault();
-                                       document.getElementById('instrutor-form-{{$user->id}}').submit();">
-                                    Tornar Instrutor
-                                </a>
-                                <a class="btn btn=sm btn-success acaoIcon "href="/usuarios/instrutor/{{$user->id}}"
-                                   onclick="event.preventDefault();
-                                       document.getElementById('instrutor-form-{{$user->id}}').submit();">
-                                    <i class="fa fa-mortar-board"></i>
-                                </a>
-                                <form id="instrutor-form-{{$user->id}}" action="/usuarios/instrutor/{{$user->id}}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            @else
-                                <a class="btn btn=sm btn-warning acaoTxt "href="/usuarios/aluno/{{$user->id}}" style="min-width: 124px"
-                                   onclick="event.preventDefault();
-                                       document.getElementById('aluno-form-{{$user->id}}').submit();">
-                                    Remov. Instrutor
-                                </a>
-                                <a class="btn btn=sm btn-warning acaoIcon "href="/usuarios/aluno/{{$user->id}}"
-                                   onclick="event.preventDefault();
-                                       document.getElementById('aluno-form-{{$user->id}}').submit();">
-                                    <i class="fa fa-mortar-board"></i>
-                                </a>
-                                <form id="aluno-form-{{$user->id}}" action="/usuarios/aluno/{{$user->id}}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            @endif
+                                @if (empty($perfil))
+                                    <a class="btn btn=sm btn-success acaoTxt "href="/usuarios/instrutor/{{$user->id}}" style="min-width: 124px"
+                                       onclick="event.preventDefault();
+                                           document.getElementById('instrutor-form-{{$user->id}}').submit();">
+                                        Tornar Instrutor
+                                    </a>
+                                    <a class="btn btn=sm btn-success acaoIcon "href="/usuarios/instrutor/{{$user->id}}"
+                                       onclick="event.preventDefault();
+                                           document.getElementById('instrutor-form-{{$user->id}}').submit();">
+                                        <i class="fa fa-mortar-board"></i>
+                                    </a>
+                                    <form id="instrutor-form-{{$user->id}}" action="/usuarios/instrutor/{{$user->id}}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                @else
+                                    <a class="btn btn=sm btn-warning acaoTxt "href="/usuarios/aluno/{{$user->id}}" style="min-width: 124px"
+                                       onclick="event.preventDefault();
+                                           document.getElementById('aluno-form-{{$user->id}}').submit();">
+                                        Remov. Instrutor
+                                    </a>
+                                    <a class="btn btn=sm btn-warning acaoIcon "href="/usuarios/aluno/{{$user->id}}"
+                                       onclick="event.preventDefault();
+                                           document.getElementById('aluno-form-{{$user->id}}').submit();">
+                                        <i class="fa fa-mortar-board"></i>
+                                    </a>
+                                    <form id="aluno-form-{{$user->id}}" action="/usuarios/aluno/{{$user->id}}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                @endif
 
-                            <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
-                                data-user_id="{{$user->id}}" id="excluir">
-                               <i class="fa fa-trash"></i>
-                            </button>
-                            <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                <button class="btn btn=sm btn-danger acaoTxt" data-toggle="modal" data-target="#delete"
                                     data-user_id="{{$user->id}}" id="excluir">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
+                                   <i class="fa fa-trash"></i>
+                                </button>
+                                <button class="btn btn=sm btn-danger acaoIcon" data-toggle="modal" data-target="#delete"
+                                        data-user_id="{{$user->id}}" id="excluir">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        @else
+                            <td>
+                                  @php $perfil = $user->perfil->where('descricao', 'Instrutor')->first(); @endphp
+                                  @if (empty($perfil))
+                                      <a class="btn btn=sm btn-success acaoTxt "href="/usuarios/instrutor/{{$user->id}}" style="min-width: 124px"
+                                         onclick="event.preventDefault();
+                                             document.getElementById('instrutor-form-{{$user->id}}').submit();">
+                                          Tornar Instrutor
+                                      </a>
+                                      <a class="btn btn=sm btn-success acaoIcon "href="/usuarios/instrutor/{{$user->id}}"
+                                         onclick="event.preventDefault();
+                                             document.getElementById('instrutor-form-{{$user->id}}').submit();">
+                                          <i class="fa fa-mortar-board"></i>
+                                      </a>
+                                      <form id="instrutor-form-{{$user->id}}" action="/usuarios/instrutor/{{$user->id}}" method="POST" style="display: none;">
+                                          @csrf
+                                      </form>
+                                  @else
+                                      <a class="btn btn=sm btn-warning acaoTxt "href="/usuarios/aluno/{{$user->id}}" style="min-width: 124px"
+                                         onclick="event.preventDefault();
+                                             document.getElementById('aluno-form-{{$user->id}}').submit();">
+                                          Remov. Instrutor
+                                      </a>
+                                      <a class="btn btn=sm btn-warning acaoIcon "href="/usuarios/aluno/{{$user->id}}"
+                                         onclick="event.preventDefault();
+                                             document.getElementById('aluno-form-{{$user->id}}').submit();">
+                                          <i class="fa fa-mortar-board"></i>
+                                      </a>
+                                      <form id="aluno-form-{{$user->id}}" action="/usuarios/aluno/{{$user->id}}" method="POST" style="display: none;">
+                                          @csrf
+                                      </form>
+                            </td>
+                        @endif
+                        @endif
                     @endforeach
                     </tbody>
                     <tfoot>

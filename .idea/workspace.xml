@@ -7,7 +7,7 @@
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/materiais/instrutor/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/administrador/usuarios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/usuarios.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -386,14 +386,10 @@
       <workItem from="1569886713453" duration="5819000" />
       <workItem from="1569973962878" duration="2898000" />
       <workItem from="1570023088006" duration="9372000" />
-      <workItem from="1570285263627" duration="5948000" />
-    </task>
-    <task id="LOCAL-00012" summary="Tornar Instrutor, Publicar Cursos, sidebar.">
-      <created>1564626286672</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1564626286672</updated>
+      <workItem from="1570285263627" duration="7583000" />
+      <workItem from="1571361270484" duration="390000" />
+      <workItem from="1571694883964" duration="1373000" />
+      <workItem from="1571831116526" duration="1305000" />
     </task>
     <task id="LOCAL-00013" summary="Modal delete usuários, relatório em pdf.">
       <created>1564711633088</created>
@@ -731,7 +727,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570289645680</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="upload_max_filesize">
+      <created>1570291664941</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1570291664941</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -771,7 +774,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Correções" />
     <MESSAGE value="Placeholders" />
     <MESSAGE value="Heroku" />
     <MESSAGE value="AdminLTE" />
@@ -796,6 +798,7 @@
     <MESSAGE value="Correções Curso, Curso-info, Unidade, recarregar inscrever-se" />
     <MESSAGE value="Correção Storage-&gt;Dropbox Imagem de Perfil." />
     <MESSAGE value="Correções Provas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correções Provas" />
+    <MESSAGE value="upload_max_filesize" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload_max_filesize" />
   </component>
 </project>

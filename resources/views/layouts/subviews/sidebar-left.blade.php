@@ -75,6 +75,15 @@
                                     <a href="{{route('funcoes.create')}}"><i class="fa fa-circle-o"></i> Funções</a></li>
                             </ul>
                         </li>
+                        <li class="header">CURSOS</li>
+                        <li @if(isset($current) && ($current == "todos-cursos")) class="active"@endif>
+                            <a href="{{route('todos-cursos')}}">
+                                <i class="fa fa-th"></i> <span>Todos os Cursos</span>
+                                <span class="pull-right-container">
+                                <small class="label pull-right bg-green-gradient">ir</small>
+                            </span>
+                            </a>
+                        </li>
 
                     @break
                     @endif
@@ -147,6 +156,14 @@
                                         <a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
                                 </ul>
                             </li>
+                            <li @if(isset($current) && ($current == "todos-cursos")) class="active"@endif>
+                                <a href="{{route('todos-cursos')}}">
+                                    <i class="fa fa-th"></i> <span>Todos os Cursos</span>
+                                    <span class="pull-right-container">
+                                <small class="label pull-right bg-green-gradient">ir</small>
+                            </span>
+                                </a>
+                            </li>
                         @break
 
                 @endif
@@ -180,6 +197,14 @@
                                 <li @if(isset($current) && ($current == "todos-cursos")) class="active"@endif>
                                     <a href="{{route('meus-cursos')}}"><i class="fa fa-circle-o text-aqua"></i> Todos</a></li>
                             </ul>
+                        </li>
+                        <li @if(isset($current) && ($current == "todos-cursos")) class="active"@endif>
+                            <a href="{{route('todos-cursos')}}">
+                                <i class="fa fa-th"></i> <span>Todos os Cursos</span>
+                                <span class="pull-right-container">
+                                <small class="label pull-right bg-green-gradient">ir</small>
+                            </span>
+                            </a>
                         </li>
                     @endif
 

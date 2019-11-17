@@ -27,7 +27,9 @@
         }
     </STYLE>
 
-    <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js" charset="UTF-8"></script>
+
+
+    <script src="{{asset('js/main.js')}}"></script>
 </head>
 
 

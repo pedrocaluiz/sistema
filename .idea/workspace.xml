@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/sidebar-left.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -389,14 +390,8 @@
       <workItem from="1570285263627" duration="7583000" />
       <workItem from="1571361270484" duration="390000" />
       <workItem from="1571694883964" duration="1373000" />
-      <workItem from="1571831116526" duration="2119000" />
-    </task>
-    <task id="LOCAL-00014" summary="Modal delete todas classes, destroy controllers.">
-      <created>1564968199653</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1564968199653</updated>
+      <workItem from="1571831116526" duration="2948000" />
+      <workItem from="1574012470510" duration="153000" />
     </task>
     <task id="LOCAL-00015" summary="View meu-perfil e correção da navegação.">
       <created>1565748475112</created>
@@ -734,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571872417385</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Sidebar &quot;Todos-Cursos&quot; incluída.">
+      <created>1571873230374</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1571873230374</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +776,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Heroku" />
     <MESSAGE value="AdminLTE" />
     <MESSAGE value="Mudanças no Head, alteração dos arquivos AdminLTE" />
     <MESSAGE value="DB seed" />
@@ -799,6 +800,7 @@
     <MESSAGE value="Correções Provas" />
     <MESSAGE value="upload_max_filesize" />
     <MESSAGE value="Página Usuários, retirado botão excluir &quot;administrador&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Página Usuários, retirado botão excluir &quot;administrador&quot;" />
+    <MESSAGE value="Sidebar &quot;Todos-Cursos&quot; incluída." />
+    <option name="LAST_COMMIT_MESSAGE" value="Sidebar &quot;Todos-Cursos&quot; incluída." />
   </component>
 </project>

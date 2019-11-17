@@ -35,7 +35,7 @@
                     <li><a href="{{route('welcome')}}"><i class="fa fa-dashboard"></i> Welcome</a></li>
                 @endguest
                 @auth
-                    <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{route('todos-cursos')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                 @endauth
                 <li class="active">Dashboard</li>
             </ol>

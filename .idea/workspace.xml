@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd303f69-65b6-4ad4-9798-b47251031ec4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
     </list>
@@ -391,14 +389,7 @@
       <workItem from="1571361270484" duration="390000" />
       <workItem from="1571694883964" duration="1373000" />
       <workItem from="1571831116526" duration="2948000" />
-      <workItem from="1574012470510" duration="153000" />
-    </task>
-    <task id="LOCAL-00015" summary="View meu-perfil e correção da navegação.">
-      <created>1565748475112</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1565748475113</updated>
+      <workItem from="1574012470510" duration="592000" />
     </task>
     <task id="LOCAL-00016" summary="View meu-perfil e correção da navegação.">
       <created>1565748731540</created>
@@ -736,7 +727,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571873230374</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Carregamento Login">
+      <created>1574012723082</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1574012723083</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -776,7 +774,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="AdminLTE" />
     <MESSAGE value="Mudanças no Head, alteração dos arquivos AdminLTE" />
     <MESSAGE value="DB seed" />
     <MESSAGE value="DB seed, estados, municipios, users" />
@@ -801,6 +798,7 @@
     <MESSAGE value="upload_max_filesize" />
     <MESSAGE value="Página Usuários, retirado botão excluir &quot;administrador&quot;" />
     <MESSAGE value="Sidebar &quot;Todos-Cursos&quot; incluída." />
-    <option name="LAST_COMMIT_MESSAGE" value="Sidebar &quot;Todos-Cursos&quot; incluída." />
+    <MESSAGE value="Carregamento Login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Carregamento Login" />
   </component>
 </project>

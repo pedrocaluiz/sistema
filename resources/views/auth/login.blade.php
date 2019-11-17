@@ -69,14 +69,14 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                 <label class="form-check-label" for="remember">
                                     {{ __('Manter conectado') }}
                                 </label>
                         </div>
-                    </div>
+                    </div>--}}
                     <button type="submit" class="btn btn-primary shadow-2 mb-4">{{ __('messages.login') }}</button>
                     <p class="mb-0 text-muted">Não possui conta? <a href="{{ route('register') }}">Registre-se</a></p>
                     @if (Route::has('password.request'))
